@@ -15,34 +15,6 @@
 </head>
 <body class="cumples-page eventos-page final-site final-subpage">
 
-<header class="cumples-topbar">
-  <a class="cumples-back" href="index.html">← Volver al home</a>
-  <span class="cumples-crumb">Eventos &amp; Empresas</span>
-  <a class="cumples-wp" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!">
-    <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
-    WhatsApp
-  </a>
-</header>
-
-<div class="intro">
-  <div class="intro-col">
-    <span class="lbl">sub-página</span>
-    <h1>Eventos &amp; Empresas — paquetes</h1>
-    <p>Sub-página a la que llegan desde el home al hacer click en "VER LOS PAQUETES". Misma onda visual sobria del home, con los <em>3 paquetes reales</em> de la web actual (Pizza Full, Ristrel Gourmet, Fun Food). Cada uno con su menú y mínimos. Cierre con un único WhatsApp.</p>
-  </div>
-  <div class="intro-col intro-checklist">
-    <span class="lbl">qué resuelve</span>
-    <ul>
-      <li>3 paquetes en cards visualmente diferenciables</li>
-      <li>Menú completo de cada uno, escaneable</li>
-      <li>Mínimo de personas claro arriba</li>
-      <li>Adicionales (bowling, hora extra) destacados</li>
-      <li>Tabla comparativa rápida</li>
-      <li>1 sola CTA al final → WhatsApp pre-cargado</li>
-    </ul>
-  </div>
-</div>
-
 <main class="site-mobile">
 <!-- nav -->
         <div class="m-nav m-nav--dir1">
@@ -54,9 +26,88 @@
               <span class="lang-sep">/</span>
               <span class="lang-opt" data-lang="en">EN</span>
             </button>
-            <button class="m-burger" type="button">≡</button>
+            <button class="m-burger" type="button" data-menu-toggle aria-label="Abrir menú">≡</button>
           </div>
         </div>
+          <!-- MOBILE OVERLAY MENU -->
+          <div class="m-menu" data-menu>
+            <div class="m-menu-head">
+              <a href="index.html" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.png" alt="Snack Ristrel"></a>
+              <button class="m-menu-close" data-menu-toggle aria-label="Cerrar">×</button>
+            </div>
+            <nav class="m-menu-list">
+              <a href="index.html#espacios" data-menu-link>
+                <span class="m-menu-num">01</span>
+                <span class="m-menu-text">
+                  <span class="m-menu-title">Los espacios</span>
+                  <span class="m-menu-sub">bowling · pool · resto · pelotero</span>
+                </span>
+                <span class="m-menu-arrow">→</span>
+              </a>
+              <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener" data-menu-link>
+                <span class="m-menu-num">02</span>
+                <span class="m-menu-text">
+                  <span class="m-menu-title">Carta digital <span class="m-menu-ext">↗</span></span>
+                  <span class="m-menu-sub">parrilla, pizzas, pastas y más</span>
+                </span>
+                <span class="m-menu-arrow">→</span>
+              </a>
+              <a href="cumples.html" data-menu-link>
+                <span class="m-menu-num">03</span>
+                <span class="m-menu-text">
+                  <span class="m-menu-title">Cumples infantiles</span>
+                  <span class="m-menu-sub">de 6 a 13 años</span>
+                </span>
+                <span class="m-menu-arrow">→</span>
+              </a>
+              <a href="eventos.html" data-menu-link>
+                <span class="m-menu-num">04</span>
+                <span class="m-menu-text">
+                  <span class="m-menu-title">Eventos &amp; empresas</span>
+                  <span class="m-menu-sub">after office · 15 años · corporativos</span>
+                </span>
+                <span class="m-menu-arrow">→</span>
+              </a>
+              <a href="index.html#historia" data-menu-link>
+                <span class="m-menu-num">05</span>
+                <span class="m-menu-text">
+                  <span class="m-menu-title">Historia</span>
+                  <span class="m-menu-sub">desde 1967</span>
+                </span>
+                <span class="m-menu-arrow">→</span>
+              </a>
+              <a href="index.html#contacto" data-menu-link>
+                <span class="m-menu-num">06</span>
+                <span class="m-menu-text">
+                  <span class="m-menu-title">Contacto</span>
+                  <span class="m-menu-sub">Av. del Libertador 13054</span>
+                </span>
+                <span class="m-menu-arrow">→</span>
+              </a>
+            </nav>
+            <div class="m-menu-foot">
+              <div class="m-menu-seal">
+                <span class="seal-line">·  EST  ·</span>
+                <span class="seal-year">1967</span>
+                <span class="seal-line">·  MARTÍNEZ  ·</span>
+              </div>
+              <a class="btn btn--menu-wp" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener">
+                <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+                <span>Hablá por WhatsApp</span>
+              </a>
+              <div class="m-menu-contact">
+                <a href="tel:47928009" class="m-menu-contact-row">
+                  <span class="m-menu-contact-lbl">Llamar</span>
+                  <span class="m-menu-contact-val">4792-8009</span>
+                </a>
+                <a href="https://maps.google.com/?q=Av.+del+Libertador+13054+Mart%C3%ADnez" target="_blank" rel="noopener" class="m-menu-contact-row">
+                  <span class="m-menu-contact-lbl">Dirección</span>
+                  <span class="m-menu-contact-val">Av. del Libertador 13054</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
 
         <!-- HERO -->
         <section class="ev-hero">
@@ -295,6 +346,6 @@
 
 
 
-<script src="wireframes.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
