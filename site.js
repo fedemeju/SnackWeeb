@@ -1,7 +1,46 @@
 // ──────────────── FINAL SITE JS ────────────────
 // (Stripped of the wireframe-specific tabs / notes / compare logic.
 //  Keeps: hamburger menu, smooth scroll, live hours, year counters,
-//  ES/EN toggle.)
+//  ES/EN toggle, trackEvent helper.)
+
+// ─── PWA · registrar service worker (solo si está servido por http(s)) ───
+if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {});
+  });
+}
+
+// ─── analytics helper · enchufable a GA4 / Plausible / lo que sea ───
+// Uso: trackEvent('cta_click', { label: 'whatsapp_hero' })
+window.trackEvent = function(name, params) {
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params || {});
+    }
+    // si después agregás Plausible: window.plausible && plausible(name, {props: params});
+  } catch (e) {}
+};
+
+// Tracking automático: cualquier link a WhatsApp y todos los CTAs
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href') || '';
+  if (href.includes('api.whatsapp.com') || href.includes('wa.me')) {
+    trackEvent('whatsapp_click', {
+      page: location.pathname,
+      label: a.textContent.replace(/\s+/g, ' ').trim().slice(0, 60)
+    });
+  } else if (href.startsWith('mailto:')) {
+    trackEvent('email_click', { page: location.pathname });
+  } else if (href.startsWith('tel:')) {
+    trackEvent('phone_click', { page: location.pathname });
+  } else if (href.includes('menu.maxirest.com')) {
+    trackEvent('menu_click', { page: location.pathname });
+  } else if (href.includes('maps.google') || href.includes('google.com/maps')) {
+    trackEvent('map_click', { page: location.pathname });
+  }
+}, { passive: true });
 
 // ─── mobile menu overlay ───
 document.querySelectorAll('[data-menu-toggle]').forEach(btn => {
@@ -208,7 +247,7 @@ const I18N = {
     'bowling · pool · resto · pelotero': 'bowling · pool · restaurant · ball pit',
     'parrilla, pizzas, pastas y más': 'grill, pizzas, pasta and more',
     'desde 1967': 'since 1967',
-    'after office · 15 años · corporativos': 'after office · birthdays · corporate',
+    'after office · corporativos': 'after office · birthdays · corporate',
     'Hola, les estoy hablando desde la web!': 'Hi, I\'m messaging from your website!',
 
     // Cumples (sub-page)
@@ -278,8 +317,8 @@ const I18N = {
     'Eventos & Empresas': 'Events & Business',
     'Tres paquetes,': 'Three packages,',
     'tu evento.': 'your event.',
-    'After office, despedidas, 15 años, corporativos o cumples de adultos. Elegí el formato gastronómico, sumá bowling y listo.': 'After office, send-offs, sweet 16s, corporate events or adult birthdays. Pick the food format, add bowling and you\'re set.',
-    '15 años': 'Sweet 16',
+    'After office, despedidas, corporativos o cumples de adultos. Elegí el formato gastronómico, sumá bowling y listo.': 'After office, send-offs, corporate events or adult birthdays. Pick the food format, add bowling and you\'re set.',
+
     'PAQUETE 1': 'PACKAGE 1',
     'PAQUETE 2': 'PACKAGE 2',
     'PAQUETE 3': 'PACKAGE 3',
@@ -339,11 +378,42 @@ const I18N = {
     'Postre': 'Dessert',
     'helado o café': 'ice cream or coffee',
     'Bebida libre 2h': 'Free drinks 2h',
-    'Invitaciones digitales': 'Digital invitations',
     'Para decidir de un vistazo': 'To decide at a glance',
     'Bowling y hora extra de bebida disponibles como adicionales en cualquier paquete.': 'Bowling and extra drinks hour available as add-ons in any package.',
     'Mandanos fecha tentativa, cantidad de personas y qué paquete te interesa. Te respondemos rápido.': 'Send us a tentative date, number of people and which package interests you. We reply fast.',
     'Ver precios ↗': 'See prices ↗',
+
+    // Historia (página completa)
+    'años haciendo historia en Martínez': 'years making history in Martínez',
+    'Snack Bowling abrió sus puertas en 1967 con el primer bowling automático del país. Desde entonces, cuatro generaciones de familias eligieron este lugar para festejar, jugar y comer.': 'Snack Bowling opened its doors in 1967 with the first automatic bowling alley in the country. Since then, four generations of families have chosen this place to celebrate, play and eat.',
+    'Restaurante': 'Restaurant',
+    'Más de 50 años de experiencia en el sector gastronómico. En esta foto podemos observar la primera caja registradora ¡una verdadera reliquia!': 'Over 50 years of experience in the food industry. In this photo we can see the first cash register — a true relic!',
+    'Salón principal': 'Main hall',
+    'Acá podemos ver el primer salón principal del restaurante, con la distribución original.': 'Here we can see the first main dining hall, with the original layout.',
+    'Sector Bowling': 'Bowling area',
+    'Acá podemos ver el bowling en sus orígenes. Los puntos se anotaban a mano y eran proyectados. Las máquinas de bowling son unas Brunswick A-1 ¡las primeras máquinas para palos automáticas de la Argentina!': 'Here we can see the bowling area in its origins. Scores were written by hand and projected. The bowling pinsetters are Brunswick A-1 — the first automatic pinsetters in Argentina!',
+    'Primer diseño del bowling': 'First bowling design',
+    'El primer estilo del bowling bien retro, el Brunswick Red Crown. Las pistas eran de madera, por lo cual se les hacía más mantenimiento para que no se dañen. Arriba se proyectaban las anotaciones.': 'The first super-retro bowling style, the Brunswick Red Crown. Lanes were wooden, requiring more maintenance to prevent damage. Scores were projected up above.',
+    'Cambio a pistas sintéticas': 'Switch to synthetic lanes',
+    'Se cambiaron las viejas pistas de madera por nuevas pistas sintéticas, más duraderas, con menos mantenimiento y las que se utilizan para jugar profesionalmente.': 'The old wooden lanes were replaced with new synthetic lanes — more durable, less maintenance, and the same ones used in professional play.',
+    '¡Estrenando pistas!': 'New lanes opening!',
+    'Las nuevas pistas y los nuevos retornos de bolas completamente instalados. También se cambió la decoración de las "máscaras" — lo que tapa la máquina de bowling — y los asientos.': 'The new lanes and ball returns fully installed. The pinsetter "masks" decoration and the seating were also updated.',
+    'Nuevo salón restaurante': 'New restaurant hall',
+    'Se renovó completamente el restaurante, cambiando la distribución del salón y unificando el mostrador (antes había dos). Se cambiaron todas las sillas y mesas.': 'The restaurant was fully renovated, changing the layout and unifying the counter (previously there were two). All chairs and tables were replaced.',
+    'Mostrador restaurante': 'Restaurant counter',
+    'Renovación del mostrador principal, cambio de heladeras y modernización del sistema de control de mesas.': 'Renovation of the main counter, new refrigerators and modernized table management system.',
+    'Nueva entrada': 'New entrance',
+    'Remodelación del jardín del frente. En ese momento no era necesario contar con estacionamiento, por lo tanto se usaba como jardín para poner mesas.': 'Renovation of the front garden. At that time parking wasn\'t needed, so the space was used as a garden with extra tables.',
+    '¡Apareció el pool!': 'Pool tables arrive!',
+    '¡Nuevo pool! Antes este sector se usaba como salón secundario con mesas para cenar o almorzar. Se remodeló completamente, agregando 5 mesas de pool.': 'New pool area! This sector was previously a secondary hall with dining tables. It was completely remodeled, adding 5 pool tables.',
+    'Estacionamiento': 'Parking',
+    'Ahora sí aparece el estacionamiento. También se renovó la fachada principal del local haciendo juego con el interior.': 'Now the parking lot appears. The main facade was also renovated to match the interior.',
+    'Tercer diseño del bowling': 'Third bowling design',
+    'Se cambió la estética general del bowling. Se cambió el sistema de anotaciones ¡por uno automático, ya no hay que anotar! Ahora los puntos se ven en pantallas.': 'The overall bowling aesthetic was updated. The scoring system was changed to an automatic one — no more manual scoring! Scores now show on screens.',
+    'Nueva fachada': 'New facade',
+    'Se renovó completamente el espacio exterior con una nueva imagen más moderna.': 'The outdoor space was fully renovated with a more modern look.',
+    'Decks y nuevo cartel': 'Decks and new sign',
+    'Se agregaron 3 decks exteriores y se cambió el cartel principal que da a la calle.': '3 outdoor decks were added and the main street-facing sign was replaced.',
   }
 };
 
@@ -384,4 +454,50 @@ function applyLang(lang) {
 
 document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
   btn.addEventListener('click', () => applyLang(currentLang === 'es' ? 'en' : 'es'));
+});
+
+// ─── cotizador → arma mensaje y abre WhatsApp ───
+const WP_PHONE = '+541168225209';
+function encodeWp(t) { return encodeURIComponent(t).replace(/%20/g, '%20'); }
+
+document.querySelectorAll('[data-cotizador]').forEach(form => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const tipo = form.dataset.cotizador;
+    const data = Object.fromEntries(new FormData(form).entries());
+    const fechaFmt = data.fecha
+      ? new Date(data.fecha + 'T12:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+      : 'a definir';
+
+    const lines = [];
+    if (tipo === 'cumples') {
+      lines.push('¡Hola Snack! Quiero cotizar un cumple infantil:');
+      lines.push('');
+      lines.push(`• Paquete: ${data.paquete}`);
+      lines.push(`• Fecha tentativa: ${fechaFmt}`);
+      lines.push(`• Cantidad: ${data.cantidad} chicos`);
+      if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
+      lines.push('');
+      lines.push('¡Gracias!');
+    } else if (tipo === 'eventos') {
+      lines.push('¡Hola Snack! Quiero cotizar un evento:');
+      lines.push('');
+      lines.push(`• Tipo: ${data.tipoEvento}`);
+      lines.push(`• Paquete: ${data.paquete}`);
+      lines.push(`• Fecha tentativa: ${fechaFmt}`);
+      lines.push(`• Cantidad: ${data.cantidad} personas`);
+      if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
+      lines.push('');
+      lines.push('¡Gracias!');
+    }
+    const text = lines.join('\n');
+    const url = `https://api.whatsapp.com/send?phone=${WP_PHONE}&text=${encodeWp(text)}`;
+    trackEvent('cotizacion_submit', {
+      tipo,
+      paquete: data.paquete,
+      cantidad: data.cantidad,
+      fecha: data.fecha
+    });
+    window.open(url, '_blank', 'noopener');
+  });
 });

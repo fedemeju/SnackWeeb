@@ -1,0 +1,53 @@
+{
+  "name": "Snack Bowling Martínez",
+  "short_name": "Snack Bowling",
+  "description": "Bowling, restaurante, cumples infantiles y eventos corporativos en Martínez, Zona Norte. Desde 1967.",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "start_url": "/index.html?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f3ea",
+  "theme_color": "#f6f3ea",
+  "categories": ["food", "entertainment", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/logo-nav.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo-nav.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo-home-v4.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Cumples infantiles",
+      "short_name": "Cumples",
+      "url": "/cumples.html",
+      "description": "Paquetes de cumples infantiles"
+    },
+    {
+      "name": "Eventos y empresas",
+      "short_name": "Eventos",
+      "url": "/eventos.html",
+      "description": "Eventos corporativos y privados"
+    },
+    {
+      "name": "WhatsApp",
+      "short_name": "WhatsApp",
+      "url": "/index.html#contacto?action=wp"
+    }
+  ]
+}

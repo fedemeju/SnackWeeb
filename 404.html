@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página no encontrada · Snack Bowling</title>
+<meta name="description" content="No pudimos encontrar esta página. Volvé al inicio de Snack Bowling Martínez.">
+<meta name="robots" content="noindex, follow">
+
+<link rel="icon" type="image/png" href="assets/logo-nav.webp">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#f6f3ea">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wireframes.css">
+<link rel="stylesheet" href="site.css">
+
+<style>
+  body.final-site { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .e404 {
+    text-align: center;
+    max-width: 460px;
+    width: 100%;
+    padding: 32px 24px 40px;
+  }
+  .e404-pin {
+    width: 220px;
+    max-width: 60vw;
+    height: auto;
+    margin: 0 auto 18px;
+    animation: e404-wobble 3.4s ease-in-out infinite;
+    transform-origin: 50% 90%;
+  }
+  @keyframes e404-wobble {
+    0%, 100% { transform: rotate(-3deg); }
+    50%      { transform: rotate(3deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .e404-pin { animation: none; }
+  }
+  .e404-code {
+    font-family: var(--font-ui, 'Archivo', sans-serif);
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent, #E63329);
+    margin: 0 0 6px;
+  }
+  .e404-title {
+    font-family: var(--font-ui, 'Archivo', sans-serif);
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink, #14110d);
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .e404-sub {
+    font-family: var(--font-ui, 'Archivo', sans-serif);
+    color: var(--ink-2, #4a463e);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+  }
+  .e404-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .e404-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-family: var(--font-ui, 'Archivo', sans-serif);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2.5px solid var(--ink, #14110d);
+    box-shadow: 4px 4px 0 var(--ink, #14110d);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .e404-btn:hover, .e404-btn:focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink, #14110d);
+    outline: none;
+  }
+  .e404-btn--primary { background: var(--accent, #E63329); color: #fff; }
+  .e404-btn--ghost { background: var(--paper, #f6f3ea); color: var(--ink, #14110d); }
+</style>
+</head>
+<body class="final-site">
+
+<section class="e404">
+  <img class="e404-pin" src="assets/404-pin.webp" alt="Palo de bowling confundido">
+  <p class="e404-code">404</p>
+  <h1 class="e404-title">No encontramos esta página</h1>
+  <p class="e404-sub">Capricho de bowling: el palo se cayó al lugar equivocado.<br>Pero podemos volver a la pista.</p>
+  <div class="e404-cta">
+    <a href="index.html" class="e404-btn e404-btn--primary">← VOLVER AL INICIO</a>
+    <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener" class="e404-btn e404-btn--ghost">CONTACTAR POR WP</a>
+  </div>
+</section>
+
+<script src="site.js"></script>
+</body>
+</html>
