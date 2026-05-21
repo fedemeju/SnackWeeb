@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos · Snack Bowling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wireframes.css">
+<link rel="stylesheet" href="cumples.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="eventos.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="cumples-page eventos-page final-site final-subpage">
+
+<header class="cumples-topbar">
+  <a class="cumples-back" href="index.html">← Volver al home</a>
+  <span class="cumples-crumb">Eventos &amp; Empresas</span>
+  <a class="cumples-wp" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!">
+    <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+    WhatsApp
+  </a>
+</header>
+
+<div class="intro">
+  <div class="intro-col">
+    <span class="lbl">sub-página</span>
+    <h1>Eventos &amp; Empresas — paquetes</h1>
+    <p>Sub-página a la que llegan desde el home al hacer click en "VER LOS PAQUETES". Misma onda visual sobria del home, con los <em>3 paquetes reales</em> de la web actual (Pizza Full, Ristrel Gourmet, Fun Food). Cada uno con su menú y mínimos. Cierre con un único WhatsApp.</p>
+  </div>
+  <div class="intro-col intro-checklist">
+    <span class="lbl">qué resuelve</span>
+    <ul>
+      <li>3 paquetes en cards visualmente diferenciables</li>
+      <li>Menú completo de cada uno, escaneable</li>
+      <li>Mínimo de personas claro arriba</li>
+      <li>Adicionales (bowling, hora extra) destacados</li>
+      <li>Tabla comparativa rápida</li>
+      <li>1 sola CTA al final → WhatsApp pre-cargado</li>
+    </ul>
+  </div>
+</div>
+
+<main class="site-mobile">
+<!-- nav -->
+        <div class="m-nav m-nav--dir1">
+          <a href="index.html" class="m-nav-back">←</a>
+          <a href="index.html" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.png" alt="Snack Ristrel"></a>
+          <div class="m-nav-right">
+            <button class="lang-toggle" data-lang-toggle type="button" aria-label="Cambiar idioma">
+              <span class="lang-opt is-active" data-lang="es">ES</span>
+              <span class="lang-sep">/</span>
+              <span class="lang-opt" data-lang="en">EN</span>
+            </button>
+            <button class="m-burger" type="button">≡</button>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <section class="ev-hero">
+          <span class="lbl">eventos & empresas</span>
+          <h1 class="ev-hero-title">Tres paquetes,<br>tu evento.</h1>
+          <p class="ev-hero-sub">After office, despedidas, 15 años, corporativos o cumples de adultos. Elegí el formato gastronómico, sumá bowling y listo.</p>
+          <div class="ev-hero-types">
+            <span class="events-type">After office</span>
+            <span class="events-type">Despedidas</span>
+            <span class="events-type">15 años</span>
+            <span class="events-type">Corporativos</span>
+            <span class="events-type">Cumples adultos</span>
+          </div>
+        </section>
+
+        <!-- PAQUETE 1 · PIZZA FULL -->
+        <section class="ev-pkg ev-pkg--pizza">
+          <div class="ev-pkg-head">
+            <div class="ev-pkg-head-row">
+              <div class="ev-pkg-head-text">
+                <span class="ev-pkg-tag">PAQUETE 1</span>
+                <h2 class="ev-pkg-name">Pizza Full</h2>
+              </div>
+              <div class="ev-pkg-min">
+                <svg class="ev-pkg-min-ring" viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"></circle>
+                </svg>
+                <span class="ev-pkg-min-from">desde</span>
+                <span class="ev-pkg-min-n">10</span>
+                <span class="ev-pkg-min-l">personas</span>
+              </div>
+            </div>
+            <p class="ev-pkg-tagline">Entrada + pizza libre + bebida libre + postre</p>
+          </div>
+
+          <div class="ev-pkg-body">
+            <div class="ev-pkg-section">
+              <span class="lbl">incluye</span>
+              <ul class="ev-list">
+                <li><span class="ev-check">✓</span>Pizza libre · Mozzarella, fugazzeta, napolitana, jamón</li>
+                <li><span class="ev-check">✓</span>Bebida libre 2h · Pepsi o cerveza Quilmes</li>
+                <li><span class="ev-check">✓</span>Entrada de nachos y papas con cheddar</li>
+                <li><span class="ev-check">✓</span>Helado o café</li>
+                <li><span class="ev-check">✓</span>Invitaciones digitales</li>
+                <li><span class="ev-check">✓</span>30 min de pool <small>(excepto vie / sáb)</small></li>
+              </ul>
+            </div>
+
+            <div class="ev-pkg-section ev-pkg-addons">
+              <span class="lbl">adicionales</span>
+              <div class="ev-addons">
+                <span class="ev-addon">🎳 Bowling</span>
+                <span class="ev-addon">🍺 Hora extra de bebida libre</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAQUETE 2 · RISTREL GOURMET -->
+        <section class="ev-pkg ev-pkg--gourmet">
+          <div class="ev-pkg-ribbon">★ con más opciones</div>
+          <div class="ev-pkg-head">
+            <div class="ev-pkg-head-row">
+              <div class="ev-pkg-head-text">
+                <span class="ev-pkg-tag">PAQUETE 2</span>
+                <h2 class="ev-pkg-name">Ristrel Gourmet</h2>
+              </div>
+              <div class="ev-pkg-min">
+                <svg class="ev-pkg-min-ring" viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"></circle>
+                </svg>
+                <span class="ev-pkg-min-from">desde</span>
+                <span class="ev-pkg-min-n">10</span>
+                <span class="ev-pkg-min-l">personas</span>
+              </div>
+            </div>
+            <p class="ev-pkg-tagline">Entrada + plato principal + bebida libre + postre</p>
+          </div>
+
+          <div class="ev-pkg-body">
+            <div class="ev-pkg-section">
+              <span class="lbl">entrada</span>
+              <p class="ev-pkg-item">Milanesitas de mozzarella con salsa de tomate</p>
+            </div>
+
+            <div class="ev-pkg-section">
+              <span class="lbl">plato principal · a elección</span>
+              <div class="ev-options">
+                <div class="ev-option">🍝 Ñoquis con salsa cuatro quesos</div>
+                <div class="ev-option">🍗 Pollo deshuesado al champiñón <small>con papas noisette</small></div>
+                <div class="ev-option">🥩 Bondiola con salsa Barbacoa</div>
+              </div>
+            </div>
+
+            <div class="ev-pkg-section">
+              <span class="lbl">postre · a elección</span>
+              <div class="ev-options">
+                <div class="ev-option">🍨 Helados</div>
+                <div class="ev-option">🍓 Ensalada de frutas</div>
+                <div class="ev-option">🥞 Panqueques <small>con crema o dulce de leche</small></div>
+              </div>
+            </div>
+
+            <div class="ev-pkg-section">
+              <span class="lbl">incluye</span>
+              <ul class="ev-list">
+                <li><span class="ev-check">✓</span>Bebida libre 2h · Pepsi, agua o cerveza Quilmes</li>
+                <li><span class="ev-check">✓</span>Invitaciones digitales</li>
+                <li><span class="ev-check">✓</span>30 min de pool <small>(excepto vie / sáb)</small></li>
+              </ul>
+            </div>
+
+            <div class="ev-pkg-section ev-pkg-addons">
+              <span class="lbl">adicionales</span>
+              <div class="ev-addons">
+                <span class="ev-addon">🎳 Bowling</span>
+                <span class="ev-addon">🍺 Hora extra de bebida libre</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAQUETE 3 · FUN FOOD -->
+        <section class="ev-pkg ev-pkg--fun">
+          <div class="ev-pkg-head">
+            <div class="ev-pkg-head-row">
+              <div class="ev-pkg-head-text">
+                <span class="ev-pkg-tag">PAQUETE 3</span>
+                <h2 class="ev-pkg-name">Fun Food</h2>
+              </div>
+              <div class="ev-pkg-min">
+                <svg class="ev-pkg-min-ring" viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"></circle>
+                </svg>
+                <span class="ev-pkg-min-from">desde</span>
+                <span class="ev-pkg-min-n">20</span>
+                <span class="ev-pkg-min-l">personas</span>
+              </div>
+            </div>
+            <p class="ev-pkg-tagline">Recepción + entradas + cazuela + bebida libre + postre</p>
+          </div>
+
+          <div class="ev-pkg-body">
+            <div class="ev-pkg-section">
+              <span class="lbl">recepción</span>
+              <p class="ev-pkg-item">Canapés y bruschettas mediterráneas</p>
+            </div>
+
+            <div class="ev-pkg-section">
+              <span class="lbl">entradas</span>
+              <div class="ev-options ev-options--grid">
+                <div class="ev-option-mini">Brochette Caprese</div>
+                <div class="ev-option-mini">Pletzalej de peceto y dulce de mostaza</div>
+                <div class="ev-option-mini">Papitas rellenas de queso y ciboulette</div>
+                <div class="ev-option-mini">Canastitas de calabaza y zanahoria</div>
+              </div>
+            </div>
+
+            <div class="ev-pkg-section">
+              <span class="lbl">cazuela · a elección</span>
+              <div class="ev-options">
+                <div class="ev-option">🍝 Ravioles de ricota, jamón y nuez <small>con boloñesa o mixta</small></div>
+                <div class="ev-option">🍗 Pollo en crema de puerros <small>con papas noisette</small></div>
+                <div class="ev-option">🥘 Arroz a la valenciana</div>
+              </div>
+            </div>
+
+            <div class="ev-pkg-section">
+              <span class="lbl">incluye</span>
+              <ul class="ev-list">
+                <li><span class="ev-check">✓</span>Bebida libre 2h · Pepsi, agua o cerveza Quilmes</li>
+                <li><span class="ev-check">✓</span>Helado o café</li>
+                <li><span class="ev-check">✓</span>Invitaciones digitales</li>
+                <li><span class="ev-check">✓</span>30 min de pool <small>(excepto vie / sáb)</small></li>
+              </ul>
+            </div>
+
+            <div class="ev-pkg-section ev-pkg-addons">
+              <span class="lbl">adicionales</span>
+              <div class="ev-addons">
+                <span class="ev-addon">🎳 Bowling</span>
+                <span class="ev-addon">🍺 Hora extra de bebida libre</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- COMPARATIVA -->
+        <section class="ev-compare">
+          <span class="lbl">comparativa rápida</span>
+          <h3 class="ev-compare-title">Para decidir de un vistazo</h3>
+          <div class="ev-compare-wrap">
+            <table class="ev-compare-table">
+              <thead>
+                <tr><th></th><th>Pizza<br>Full</th><th>Ristrel<br>Gourmet</th><th>Fun<br>Food</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Personas mínimo</td><td>10</td><td>10</td><td>20</td></tr>
+                <tr><td>Recepción / canapés</td><td>—</td><td>—</td><td>✓</td></tr>
+                <tr><td>Entrada</td><td>nachos</td><td>milanesitas</td><td>4 opciones</td></tr>
+                <tr><td>Pizza libre</td><td>✓</td><td>—</td><td>—</td></tr>
+                <tr><td>Plato principal</td><td>—</td><td>3 opciones</td><td>cazuela · 3 op.</td></tr>
+                <tr><td>Postre</td><td>helado o café</td><td>3 opciones</td><td>helado o café</td></tr>
+                <tr><td>Bebida libre 2h</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>30 min de pool</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Invitaciones digitales</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ev-compare-foot">Bowling y hora extra de bebida disponibles como adicionales en cualquier paquete.</p>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="ev-final">
+          <h3 class="ev-final-title">¿Lo armamos?</h3>
+          <p class="ev-final-sub">Mandanos fecha tentativa, cantidad de personas y qué paquete te interesa. Te respondemos rápido.</p>
+          <div class="ev-final-cta">
+            <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener" class="btn btn--ev-wp">
+              <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+              HABLAR POR WHATSAPP
+            </a>
+            <a href="https://docs.google.com/document/d/1VrTQGntAJkLmsnSJE0JwkpXRMwG4c6JWdeYfueRanVM/edit" target="_blank" rel="noopener" class="btn btn--ev-prices">Ver precios ↗</a>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="m-footer m-footer--dir1">
+          <div class="footer-hours" data-hours></div>
+          <img class="m-footer-logo" src="assets/logo-nav.png" alt="Snack Ristrel">
+          <div>EST 1967 · MARTÍNEZ · ZONA NORTE</div>
+          <div class="micro">© 2026</div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener" class="fab" aria-label="WhatsApp"><svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg></a>
+</main>
+
+
+
+<script src="wireframes.js"></script>
+</body>
+</html>

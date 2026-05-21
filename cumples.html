@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cumples · Snack Bowling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wireframes.css">
+<link rel="stylesheet" href="cumples.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="cumples-page final-site final-subpage">
+
+<!-- ───────────── BACK STRIP ───────────── -->
+<header class="cumples-topbar">
+  <a class="cumples-back" href="index.html">← Volver al home</a>
+  <span class="cumples-crumb">Cumples Infantiles</span>
+  <a class="cumples-wp" href="#">
+    <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+    WhatsApp
+  </a>
+</header>
+
+<!-- ───────────── PHONE PREVIEW WRAP ───────────── -->
+<div class="intro">
+  <div class="intro-col">
+    <span class="lbl">sub-página</span>
+    <h1>Cumples infantiles — paquetes</h1>
+    <p>Página donde llegan al hacer click en "VER LOS PAQUETES" desde el home. Misma onda visual Snack Kids, pensada para que el padre/madre <em>decida y mande un mensaje</em> sin dudas.</p>
+  </div>
+  <div class="intro-col intro-checklist">
+    <span class="lbl">qué resuelve</span>
+    <ul>
+      <li>Compara los 2 paquetes (Full / Base) lado a lado</li>
+      <li>Aclara qué cambia entre uno y otro</li>
+      <li>Tilde verde / cruz gris para diferenciar rápido</li>
+      <li>Menú de comida visible (4 opciones)</li>
+      <li>Cierre con WhatsApp pre-cargado</li>
+      <li>FAQs rápidos abajo</li>
+    </ul>
+  </div>
+</div>
+
+
+<main class="site-mobile">
+<!-- nav -->
+        <div class="m-nav m-nav--dir1">
+          <a href="index.html" class="m-nav-back">←</a>
+          <a href="index.html" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.png" alt="Snack Ristrel"></a>
+          <div class="m-nav-right">
+            <button class="lang-toggle" data-lang-toggle type="button" aria-label="Cambiar idioma">
+              <span class="lang-opt is-active" data-lang="es">ES</span>
+              <span class="lang-sep">/</span>
+              <span class="lang-opt" data-lang="en">EN</span>
+            </button>
+            <button class="m-burger" type="button">≡</button>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <section class="cp-hero">
+          <div class="kids-confetti" aria-hidden="true">
+            <span class="conf c1"></span><span class="conf c2"></span><span class="conf c3"></span>
+            <span class="conf c4"></span><span class="conf c5"></span><span class="conf c6"></span>
+            <span class="conf c7"></span><span class="conf c8"></span><span class="conf c9"></span>
+            <span class="conf c10"></span>
+          </div>
+          <img class="cp-hero-logo" src="assets/logo-kids.png" alt="Snack Kids">
+          <h1 class="cp-hero-title">
+            <span class="kids-word kids-word--1">Elegí</span>
+            <span class="kids-word kids-word--2">tu paquete</span>
+            <span class="kids-word kids-word--3">de cumple</span>
+          </h1>
+          <p class="cp-hero-sub">Dos opciones simples. Sin sorpresas, sin agregados ocultos. Vos elegís cuál encaja con tu cumple.</p>
+        </section>
+
+        <!-- PAQUETE FULL -->
+        <section class="paq-card paq-card--full">
+          <div class="paq-ribbon">🥇 El más elegido</div>
+          <div class="paq-card-head">
+            <span class="paq-card-tag">PAQUETE</span>
+            <h2 class="paq-card-name">FULL</h2>
+            <p class="paq-card-tagline">Comida + bowling + diversión + sorpresas</p>
+          </div>
+
+          <div class="paq-includes">
+            <span class="lbl">incluye</span>
+            <ul class="paq-list">
+              <li><span class="paq-check">✓</span>1 línea de bowling + tiros libres</li>
+              <li><span class="paq-check">✓</span>Bebida libre (Pepsi o agua)</li>
+              <li><span class="paq-check">✓</span>Regalo para el homenajeado</li>
+              <li><span class="paq-check">✓</span>Entrada de snacks</li>
+              <li><span class="paq-check paq-check--star">★</span>Cuponera con líneas gratis para el homenajeado</li>
+              <li><span class="paq-check paq-check--star">🏆</span>Premiación con trofeos y medallas</li>
+              <li><span class="paq-check">✓</span>Invitaciones digitales o físicas</li>
+            </ul>
+          </div>
+
+          <div class="paq-specs">
+            <div class="paq-spec"><span class="paq-spec-n">2h</span><span class="paq-spec-l">duración</span></div>
+            <div class="paq-spec"><span class="paq-spec-n">15+</span><span class="paq-spec-l">chicos mín.</span></div>
+          </div>
+
+          <div class="paq-menu">
+            <span class="lbl">menú a elección</span>
+            <p class="paq-menu-note">Se elige un menú para todos. Hay opciones sin TACC.</p>
+            <div class="paq-menu-grid">
+              <div class="paq-menu-item">🍔 Hamburguesa<br><small>con papas fritas</small></div>
+              <div class="paq-menu-item">🍕 Pizza<br><small>con papas fritas</small></div>
+              <div class="paq-menu-item">🌭 Panchos<br><small>con papas fritas</small></div>
+              <div class="paq-menu-item">🍗 Patitas<br><small>con papas fritas</small></div>
+            </div>
+          </div>
+
+          <p class="paq-footnote">🎁 Ideal para los que quieren una experiencia completa con sorpresas, trofeos y diversión sin límites.</p>
+
+          <div class="m-cta m-cta--kids">
+            <a class="btn btn--kids-primary" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20info%20del%20Paquete%20Full%20de%20cumples!" target="_blank" rel="noopener"><svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg> PEDIR EL FULL POR WP</a>
+            <a class="btn btn--kids-ghost" href="https://docs.google.com/document/d/1VrTQGntAJkLmsnSJE0JwkpXRMwG4c6JWdeYfueRanVM/edit" target="_blank" rel="noopener">Ver precios ↗</a>
+          </div>
+        </section>
+
+        <!-- DIVIDER -->
+        <div class="paq-divider">
+          <span class="paq-divider-line"></span>
+          <span class="paq-divider-or">o si querés algo más simple</span>
+          <span class="paq-divider-line"></span>
+        </div>
+
+        <!-- PAQUETE BASE -->
+        <section class="paq-card paq-card--base">
+          <div class="paq-card-head">
+            <span class="paq-card-tag">PAQUETE</span>
+            <h2 class="paq-card-name">BASE</h2>
+            <p class="paq-card-tagline">Comida + bowling + diversión</p>
+          </div>
+
+          <div class="paq-includes">
+            <span class="lbl">incluye</span>
+            <ul class="paq-list">
+              <li><span class="paq-check">✓</span>1 línea de bowling + tiros libres</li>
+              <li><span class="paq-check">✓</span>Bebida libre (Pepsi o agua)</li>
+              <li><span class="paq-check">✓</span>Regalo para el homenajeado</li>
+              <li><span class="paq-check">✓</span>Invitaciones digitales o físicas</li>
+              <li class="paq-list-faded"><span class="paq-check paq-check--x">×</span>Sin entrada de snacks</li>
+              <li class="paq-list-faded"><span class="paq-check paq-check--x">×</span>Sin cuponera gratis</li>
+              <li class="paq-list-faded"><span class="paq-check paq-check--x">×</span>Sin premiación con trofeos</li>
+            </ul>
+          </div>
+
+          <div class="paq-specs">
+            <div class="paq-spec"><span class="paq-spec-n">2h</span><span class="paq-spec-l">duración</span></div>
+            <div class="paq-spec"><span class="paq-spec-n">15+</span><span class="paq-spec-l">chicos mín.</span></div>
+          </div>
+
+          <div class="paq-menu">
+            <span class="lbl">menú a elección</span>
+            <p class="paq-menu-note">Se elige un menú para todos. Hay opciones sin TACC.</p>
+            <div class="paq-menu-grid paq-menu-grid--3">
+              <div class="paq-menu-item">🍔 Hamburguesa<br><small>con papas fritas</small></div>
+              <div class="paq-menu-item">🍕 Pizza<br><small>con papas fritas</small></div>
+              <div class="paq-menu-item">🌭 Panchos<br><small>con papas fritas</small></div>
+            </div>
+          </div>
+
+          <div class="m-cta m-cta--kids">
+            <a class="btn btn--kids-primary" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20info%20del%20Paquete%20Base%20de%20cumples!" target="_blank" rel="noopener"><svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg> PEDIR EL BASE POR WP</a>
+            <a class="btn btn--kids-ghost" href="https://docs.google.com/document/d/1VrTQGntAJkLmsnSJE0JwkpXRMwG4c6JWdeYfueRanVM/edit" target="_blank" rel="noopener">Ver precios ↗</a>
+          </div>
+        </section>
+
+        <!-- COMPARATIVA RAPIDA -->
+        <section class="paq-compare">
+          <span class="lbl">comparativa rápida</span>
+          <h3 class="paq-compare-title">¿En qué se diferencian?</h3>
+          <table class="paq-compare-table">
+            <thead>
+              <tr><th></th><th>Full</th><th>Base</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bowling + tiros libres</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Bebida libre</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Regalo homenajeado</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Invitaciones</td><td>✓</td><td>✓</td></tr>
+              <tr class="paq-compare-hl"><td>Entrada de snacks</td><td>✓</td><td>—</td></tr>
+              <tr class="paq-compare-hl"><td>Cuponera homenajeado</td><td>🎟</td><td>—</td></tr>
+              <tr class="paq-compare-hl"><td>Trofeos y medallas</td><td>🏆</td><td>—</td></tr>
+              <tr class="paq-compare-hl"><td>Opciones de menú</td><td>4</td><td>3</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- FAQ -->
+        <section class="cp-faq">
+          <span class="lbl">preguntas frecuentes</span>
+          <h3 class="cp-faq-title">Lo que todos preguntan</h3>
+          <details class="cp-faq-item" open>
+            <summary>¿Cómo reservo el día?</summary>
+            <p>Mandanos un mensaje por WhatsApp con la fecha tentativa y cuántos chicos van. Te confirmamos disponibilidad y reservamos con seña.</p>
+          </details>
+          <details class="cp-faq-item">
+            <summary>¿Hay opciones sin TACC?</summary>
+            <p>Sí. Avisanos al reservar cuántos chicos lo necesitan y armamos el menú adaptado.</p>
+          </details>
+          <details class="cp-faq-item">
+            <summary>¿Puedo traer torta?</summary>
+            <p>¡Por supuesto! Vos traés la torta y nosotros nos encargamos del resto.</p>
+          </details>
+          <details class="cp-faq-item">
+            <summary>¿Y si llegamos a 14 chicos?</summary>
+            <p>El mínimo es 15. Si son menos, igual escribinos y vemos cómo armarlo.</p>
+          </details>
+          <details class="cp-faq-item">
+            <summary>¿Adultos pueden comer?</summary>
+            <p>Sí, los adultos eligen a la carta del restaurante Ristrel. No están incluidos en el paquete kids.</p>
+          </details>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="cp-final">
+          <div class="kids-cta-block">
+            <h3 class="kids-cta-title">¿Lo armamos?</h3>
+            <p class="kids-cta-sub">Decinos fecha, paquete y cuántos van. Listo.</p>
+            <div class="m-cta m-cta--kids">
+              <a class="btn btn--kids-primary" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener"><svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg> HABLAR POR WHATSAPP</a>
+              <a class="btn btn--kids-ghost" href="https://docs.google.com/document/d/1VrTQGntAJkLmsnSJE0JwkpXRMwG4c6JWdeYfueRanVM/edit" target="_blank" rel="noopener">Ver precios ↗</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="m-footer m-footer--dir1">
+          <div class="footer-hours" data-hours></div>
+          <img class="m-footer-logo" src="assets/logo-nav.png" alt="Snack Ristrel">
+          <div>EST 1967 · MARTÍNEZ · ZONA NORTE</div>
+          <div class="micro">© 2026</div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener" class="fab" aria-label="WhatsApp"><svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg></a>
+</main>
+
+
+
+<script src="wireframes.js"></script>
+</body>
+</html>

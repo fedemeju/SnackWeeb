@@ -1,0 +1,128 @@
+/* ──────────────── FINAL SITE OVERRIDES ────────────────
+   This file overrides the wireframe-specific styles to produce
+   a real responsive page (no phone frame, no annotations, no tabs).
+   ──────────────────────────────────────────────────────── */
+
+/* reset wireframe page chrome */
+body.final-site {
+  background: #f6f3ea;
+  margin: 0;
+  padding: 0;
+}
+
+/* hide mobile on desktop, hide desktop on mobile */
+.site-mobile { display: block; }
+.site-desktop { display: none; }
+
+@media (min-width: 980px) {
+  .site-mobile { display: none; }
+  .site-desktop { display: block; }
+}
+
+/* ───── MOBILE adjustments ───── */
+.site-mobile {
+  background: var(--paper);
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+  box-shadow: 0 0 60px -20px rgba(0,0,0,0.1);
+  overflow-x: hidden;
+}
+
+/* on real mobile width, no max-width or shadow */
+@media (max-width: 520px) {
+  .site-mobile { max-width: none; box-shadow: none; }
+}
+
+/* nav becomes properly sticky to viewport */
+.site-mobile .m-nav {
+  position: sticky;
+  top: 0;
+}
+
+/* FAB sticks to viewport bottom-right */
+.site-mobile .fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  margin: 0;
+}
+
+/* mobile menu overlay covers viewport */
+.site-mobile .m-menu {
+  position: fixed;
+  inset: 0;
+  max-height: 100vh;
+}
+
+/* ───── DESKTOP adjustments ───── */
+.site-desktop {
+  background: var(--paper);
+}
+
+/* drop the fake browser chrome wrapper styles — desktop content lives directly in body */
+.site-desktop .d-nav {
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 30;
+}
+
+/* desktop FAB sticks to viewport */
+.site-desktop .fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  margin: 0;
+}
+
+/* hide placeholder lines (ph-line) on the real site */
+.final-site .ph-line { display: none; }
+
+/* hide map placeholder text — replace with a proper map embed later */
+.final-site .ph--map > span {
+  background: var(--paper);
+  border: 1px dashed var(--ink-3);
+  padding: 6px 14px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+
+/* ───── SUB-PAGES ───── */
+.final-subpage {
+  background: var(--paper);
+}
+
+.final-subpage .site-mobile {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--paper);
+}
+@media (max-width: 520px) {
+  .final-subpage .site-mobile { max-width: none; }
+}
+
+@media (min-width: 980px) {
+  .final-subpage .site-mobile {
+    max-width: 760px;
+  }
+  /* sub-pages don't have a desktop alt version yet — let them grow wider but readable */
+}
+
+/* On real screens, the mobile menu overlay needs to cover the viewport, not the wrapper */
+.final-subpage .m-menu {
+  position: fixed;
+  inset: 0;
+  max-height: 100vh;
+}
+
+.final-subpage .fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  margin: 0;
+}
