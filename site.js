@@ -68,6 +68,71 @@ document.querySelectorAll('[data-gallery-toggle]').forEach(btn => {
     else if (e.key === 'ArrowRight') show(current + 1);
     else if (e.key === 'ArrowLeft')  show(current - 1);
   });
+
+  // ─── Gestos táctiles (swipe en mobile) ───
+  let touchStartX = 0, touchStartY = 0;
+  let touchCurrX = 0, touchCurrY = 0;
+  let isDragging = false;
+  const SWIPE_X_THRESHOLD = 60;  // px mínimos para cambiar foto
+  const SWIPE_Y_THRESHOLD = 100; // px mínimos para cerrar
+
+  lightbox.addEventListener('touchstart', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    // ignorar si el touch empezó en un botón
+    if (e.target.closest('.lightbox-btn')) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchCurrX = touchStartX;
+    touchCurrY = touchStartY;
+    isDragging = true;
+    lbImg.style.transition = 'none';
+  }, { passive: true });
+
+  lightbox.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    touchCurrX = e.touches[0].clientX;
+    touchCurrY = e.touches[0].clientY;
+    const dx = touchCurrX - touchStartX;
+    const dy = touchCurrY - touchStartY;
+    // la foto sigue al dedo · con resistencia leve si es vertical
+    lbImg.style.transform = `translate(${dx}px, ${dy * 0.6}px)`;
+    // opacidad del fondo se va apagando con drag-down · efecto iOS
+    if (dy > 0) {
+      const opacity = Math.max(0.5, 1 - dy / 500);
+      lightbox.style.background = `rgba(10, 8, 6, ${opacity * 0.94})`;
+    }
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    const dx = touchCurrX - touchStartX;
+    const dy = touchCurrY - touchStartY;
+    // restaurar fondo
+    lightbox.style.background = '';
+    lbImg.style.transition = 'transform .3s cubic-bezier(.2,.8,.2,1)';
+    lbImg.style.transform = '';
+
+    // determinar gesto
+    const isVerticalDrag = Math.abs(dy) > Math.abs(dx);
+    if (isVerticalDrag && dy > SWIPE_Y_THRESHOLD) {
+      // swipe abajo → cerrar
+      close();
+    } else if (!isVerticalDrag && Math.abs(dx) > SWIPE_X_THRESHOLD) {
+      // swipe horizontal → navegar
+      if (dx < 0) show(current + 1);   // izquierda → siguiente
+      else show(current - 1);          // derecha → anterior
+    }
+  }, { passive: true });
+
+  // Si el touch se cancela (interrupción), restaurar
+  lightbox.addEventListener('touchcancel', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    lightbox.style.background = '';
+    lbImg.style.transition = 'transform .3s cubic-bezier(.2,.8,.2,1)';
+    lbImg.style.transform = '';
+  }, { passive: true });
 })();
 
 // ─── hero carousel · auto-rotate, fade, dots, teclado, pausa en hover ───

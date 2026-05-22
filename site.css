@@ -440,6 +440,28 @@
 }
 .final-site .lightbox-sep { opacity: 0.4; margin: 0 4px; }
 
+/* Performance: durante drag, la imagen se mueve fluido sin transition */
+.final-site .lightbox-img { will-change: transform; touch-action: pan-y; }
+
+/* En mobile, los botones prev/next pueden esconderse · gestos los reemplazan */
+@media (max-width: 720px) and (pointer: coarse) {
+  .final-site .lightbox-prev,
+  .final-site .lightbox-next {
+    opacity: 0.5;
+  }
+  .final-site .lightbox-prev:active,
+  .final-site .lightbox-next:active {
+    opacity: 1;
+  }
+}
+
+/* ─────────── eventos · sacar rayas diagonales del fondo ─────────── */
+.final-site .events-pattern {
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(230,51,41,0.07), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(247,178,35,0.05), transparent 70%);
+}
+
 /* ─────────── HERO CAROUSEL ─────────── */
 .final-site .hero-carousel {
   position: relative;

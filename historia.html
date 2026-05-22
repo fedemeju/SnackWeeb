@@ -219,6 +219,9 @@
   /* fade-in al scroll (soft, sin librería) */
   .timeline-item { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
   .timeline-item.is-visible { opacity: 1; transform: none; }
+  /* Las 2 primeras siempre visibles (suelen estar above the fold en mobile) */
+  .timeline-item:nth-of-type(1),
+  .timeline-item:nth-of-type(2) { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     .timeline-item { opacity: 1; transform: none; transition: none; }
   }
