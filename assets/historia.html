@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historia · Snack Bowling Martínez · Bowling desde 1967 en Zona Norte</title>
+<meta name="description" content="Snack Bowling, el primer bowling automático del país, abrió en 1967 en Av. del Libertador 13054, Martínez. Conocé la historia del bowling icónico de Zona Norte.">
+<meta name="keywords" content="historia Snack Bowling, primer bowling automático Argentina, bowling Martínez 1967, historia bowling zona norte">
+<link rel="canonical" href="https://www.snackbowling.com.ar/historia.html">
+<meta name="theme-color" content="#f6f3ea">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Snack Bowling">
+<meta property="og:title" content="Historia · Snack Bowling Martínez">
+<meta property="og:description" content="Desde 1967, el primer bowling automático del país. Conocé la historia de Snack en Martínez.">
+<meta property="og:url" content="https://www.snackbowling.com.ar/historia.html">
+<meta property="og:image" content="https://www.snackbowling.com.ar/assets/historic-bw.webp">
+<meta property="og:locale" content="es_AR">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wireframes.css">
+<link rel="stylesheet" href="cumples.css">
+<link rel="stylesheet" href="site.css">
+
+<style>
+  .hist-hero { padding: 56px 24px 24px; text-align: center; }
+  .hist-hero-eyebrow { display: inline-block; font-family: var(--font-ui); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 18px; }
+  .hist-hero-title { font-family: var(--font-ui); font-weight: 800; font-size: 38px; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 14px; color: var(--ink-1); text-wrap: balance; }
+  @media (min-width: 720px) { .hist-hero-title { font-size: 48px; } }
+  .hist-hero-sub { font-family: var(--font-ui); color: var(--ink-2); max-width: 520px; margin: 0 auto; line-height: 1.55; }
+  .hist-cta { text-align: center; padding: 32px 24px 48px; }
+
+  /* ───── TIMELINE — versión con foto/título/fecha/texto en zig-zag ───── */
+  .timeline {
+    padding: 60px 16px 40px;
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .timeline::before {
+    content: "";
+    background: var(--ink-1, #1a1814);
+    width: 4px;
+    height: calc(100% - 60px);
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+  .timeline-item {
+    width: 100%;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .timeline-item::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .timeline-img {
+    width: 22px;
+    height: 22px;
+    background: var(--ink-1, #1a1814);
+    border: 4px solid var(--paper, #f6f3ea);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 26px;
+    margin-left: -11px;
+    z-index: 2;
+    box-shadow: 0 0 0 2px var(--ink-1, #1a1814);
+  }
+  .timeline-content {
+    position: relative;
+    width: 44%;
+    padding: 0;
+    border-radius: 10px;
+    background: #f5f1e6;
+    box-shadow: 0 16px 32px -16px rgba(0,0,0,.25);
+    overflow: hidden;
+  }
+  /* odd items (1, 3, 5...) → left side, arrow points right */
+  .timeline-item:nth-child(odd) .timeline-content {
+    float: left;
+  }
+  .timeline-item:nth-child(odd) .timeline-content::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    width: 0; height: 0;
+    top: 32px;
+    right: -14px;
+    border-width: 10px 0 10px 14px;
+    border-color: transparent transparent transparent #f5f1e6;
+  }
+  /* even items (2, 4...) → right side, arrow points left */
+  .timeline-item:nth-child(even) .timeline-content {
+    float: right;
+  }
+  .timeline-item:nth-child(even) .timeline-content::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    width: 0; height: 0;
+    top: 32px;
+    left: -14px;
+    border-width: 10px 14px 10px 0;
+    border-color: transparent #f5f1e6 transparent transparent;
+  }
+  .timeline-img-header {
+    height: 220px;
+    position: relative;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .timeline-img-header h2 {
+    color: #fff;
+    position: absolute;
+    bottom: 12px;
+    left: 18px;
+    right: 18px;
+    margin: 0;
+    font-family: var(--font-ui);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    text-wrap: balance;
+  }
+  .timeline-content .date {
+    display: inline-block;
+    background: var(--ink-1, #1a1814);
+    color: #fff;
+    padding: 6px 12px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  .timeline-content p {
+    padding: 18px 22px 22px;
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-2, #3a3530);
+  }
+
+  /* fotos del timeline */
+  .ti-1 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)), url("assets/timeline/19.webp"); }
+  .ti-2 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.6)),  url("assets/timeline/7.webp"); }
+  .ti-3 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25)), url("assets/timeline/18.webp"); }
+  .ti-4 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)),  url("assets/timeline/20.webp"); background-position: top center; }
+  .ti-5 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)), url("assets/timeline/11.webp"); }
+  .ti-6 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)), url("assets/timeline/3.webp"); }
+  .ti-7 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/2.webp"); }
+  .ti-8 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.65)), url("assets/timeline/1.webp"); }
+  .ti-9 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/9.webp"); }
+  .ti-10 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)),  url("assets/timeline/13.webp"); }
+  .ti-11 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/21.webp"); }
+  .ti-12 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/22.webp"); }
+  .ti-13 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/14.webp"); }
+  .ti-14 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)),  url("assets/timeline/15.webp"); }
+
+  /* ───── responsive: mobile timeline ───── */
+  @media (max-width: 768px) {
+    .timeline { padding: 40px 12px 30px; }
+    .timeline::before {
+      left: 28px;
+      transform: none;
+      top: 20px;
+      height: calc(100% - 40px);
+    }
+    .timeline-item { margin-bottom: 36px; }
+    .timeline-img {
+      left: 28px;
+      top: 20px;
+      margin-left: -11px;
+    }
+    .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+      width: auto;
+      max-width: 100%;
+      float: none;
+      margin-left: 56px;
+    }
+    .timeline-item:nth-child(odd) .timeline-content::after,
+    .timeline-item:nth-child(even) .timeline-content::after {
+      top: 22px;
+      left: -13px;
+      right: auto;
+      border-width: 9px 13px 9px 0;
+      border-color: transparent #f5f1e6 transparent transparent;
+    }
+    .timeline-img-header { height: 160px; }
+    .timeline-img-header h2 { font-size: 22px; }
+    .timeline-content p { font-size: 13.5px; padding: 14px 18px 18px; }
+    .timeline-content .date { top: 10px; right: 10px; padding: 5px 9px; font-size: 10px; }
+  }
+
+  /* fade-in al scroll (soft, sin librería) */
+  .timeline-item { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .timeline-item.is-visible { opacity: 1; transform: none; }
+  /* Las 2 primeras siempre visibles (suelen estar above the fold en mobile) */
+  .timeline-item:nth-of-type(1),
+  .timeline-item:nth-of-type(2) { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-item { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+
+<!--
+  Google Analytics 4 · INSTRUCCIONES PARA ACTIVAR:
+  1. Crear cuenta GA4: https://analytics.google.com/  →  Admin  →  Crear propiedad
+  2. Anotar el "Measurement ID" (formato: G-XXXXXXXXXX)
+  3. Reemplazar G-XXXXXXXXXX abajo con tu ID (2 lugares)
+  4. Descomentar el bloque entero (quitar las líneas con DESCOMENTAR)
+-->
+<!-- DESCOMENTAR_INICIO
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+</script>
+DESCOMENTAR_FIN -->
+</head>
+<body class="cumples-page final-site final-subpage">
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<main class="site-mobile">
+<!-- nav -->
+        <div class="m-nav m-nav--dir1">
+          <a href="index.html" class="m-nav-back">←</a>
+          <a href="index.html" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" alt="Snack Ristrel"></a>
+          <div class="m-nav-right">
+            <button class="lang-toggle" data-lang-toggle type="button" aria-label="Cambiar idioma">
+              <span class="lang-opt is-active" data-lang="es">ES</span>
+              <span class="lang-sep">/</span>
+              <span class="lang-opt" data-lang="en">EN</span>
+            </button>
+            <button class="m-burger" type="button" data-menu-toggle aria-label="Abrir menú">≡</button>
+          </div>
+        </div>
+
+        <!-- MOBILE OVERLAY MENU -->
+        <div class="m-menu" data-menu>
+          <div class="m-menu-head">
+            <a href="index.html" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" alt="Snack Ristrel"></a>
+            <button class="m-menu-close" data-menu-toggle aria-label="Cerrar">×</button>
+          </div>
+          <nav class="m-menu-list">
+            <a href="index.html#espacios" data-menu-link>
+              <span class="m-menu-num">01</span>
+              <span class="m-menu-text">
+                <span class="m-menu-title">Los espacios</span>
+                <span class="m-menu-sub">bowling · pool · resto · pelotero</span>
+              </span>
+              <span class="m-menu-arrow">→</span>
+            </a>
+            <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener" data-menu-link>
+              <span class="m-menu-num">02</span>
+              <span class="m-menu-text">
+                <span class="m-menu-title">Carta digital <span class="m-menu-ext">↗</span></span>
+                <span class="m-menu-sub">parrilla, pizzas, pastas y más</span>
+              </span>
+              <span class="m-menu-arrow">→</span>
+            </a>
+            <a href="cumples.html" data-menu-link>
+              <span class="m-menu-num">03</span>
+              <span class="m-menu-text">
+                <span class="m-menu-title">Cumples infantiles</span>
+                <span class="m-menu-sub">de 6 a 13 años</span>
+              </span>
+              <span class="m-menu-arrow">→</span>
+            </a>
+            <a href="eventos.html" data-menu-link>
+              <span class="m-menu-num">04</span>
+              <span class="m-menu-text">
+                <span class="m-menu-title">Eventos &amp; empresas</span>
+                <span class="m-menu-sub">after office · corporativos</span>
+              </span>
+              <span class="m-menu-arrow">→</span>
+            </a>
+            <a href="historia.html" data-menu-link>
+              <span class="m-menu-num">05</span>
+              <span class="m-menu-text">
+                <span class="m-menu-title">Historia</span>
+                <span class="m-menu-sub">desde 1967</span>
+              </span>
+              <span class="m-menu-arrow">→</span>
+            </a>
+            <a href="index.html#contacto" data-menu-link>
+              <span class="m-menu-num">06</span>
+              <span class="m-menu-text">
+                <span class="m-menu-title">Contacto</span>
+                <span class="m-menu-sub">Av. del Libertador 13054</span>
+              </span>
+              <span class="m-menu-arrow">→</span>
+            </a>
+          </nav>
+          <div class="m-menu-foot">
+            <div class="m-menu-seal">
+              <span class="seal-line">·  EST  ·</span>
+              <span class="seal-year">1967</span>
+              <span class="seal-line">·  MARTÍNEZ  ·</span>
+            </div>
+            <a class="btn btn--menu-wp" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener">
+              <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+              <span>Hablá por WhatsApp</span>
+            </a>
+            <div class="m-menu-contact">
+              <a href="tel:+541147928009" class="m-menu-contact-row">
+                <span class="m-menu-contact-lbl">Llamar</span>
+                <span class="m-menu-contact-val">4792-8009</span>
+              </a>
+              <a href="https://maps.google.com/?q=Av.+del+Libertador+13054+Mart%C3%ADnez" target="_blank" rel="noopener" class="m-menu-contact-row">
+                <span class="m-menu-contact-lbl">Dirección</span>
+                <span class="m-menu-contact-val">Av. del Libertador 13054</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <section class="hist-hero">
+          <span class="hist-hero-eyebrow">·  EST  ·  1967  ·  MARTÍNEZ  ·</span>
+          <h1 class="hist-hero-title"><span data-years-since="1967">58</span> años haciendo historia en Martínez</h1>
+          <p class="hist-hero-sub">Snack Bowling abrió sus puertas en 1967 con el primer bowling automático del país. Desde entonces, cuatro generaciones de familias eligieron este lugar para festejar, jugar y comer.</p>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-1"><h2>Restaurante</h2></div>
+              <div class="date">25 MAY 1967</div>
+              <p>Más de 50 años de experiencia en el sector gastronómico. En esta foto podemos observar la primera caja registradora ¡una verdadera reliquia!</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-2"><h2>Salón principal</h2></div>
+              <div class="date">25 MAY 1972</div>
+              <p>Acá podemos ver el primer salón principal del restaurante, con la distribución original.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-3"><h2>Sector Bowling</h2></div>
+              <div class="date">25 MAY 1972</div>
+              <p>Acá podemos ver el bowling en sus orígenes. Los puntos se anotaban a mano y eran proyectados. Las máquinas de bowling son unas Brunswick A-1 ¡las primeras máquinas para palos automáticas de la Argentina!</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-4"><h2>Primer diseño del bowling</h2></div>
+              <div class="date">25 MAY 1972</div>
+              <p>El primer estilo del bowling bien retro, el Brunswick Red Crown. Las pistas eran de madera, por lo cual se les hacía más mantenimiento para que no se dañen. Arriba se proyectaban las anotaciones.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-5"><h2>Cambio a pistas sintéticas</h2></div>
+              <div class="date">5 OCT 1995</div>
+              <p>Se cambiaron las viejas pistas de madera por nuevas pistas sintéticas, más duraderas, con menos mantenimiento y las que se utilizan para jugar profesionalmente.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-6"><h2>¡Estrenando pistas!</h2></div>
+              <div class="date">5 OCT 1995</div>
+              <p>Las nuevas pistas y los nuevos retornos de bolas completamente instalados. También se cambió la decoración de las "máscaras" — lo que tapa la máquina de bowling — y los asientos.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-7"><h2>Nuevo salón restaurante</h2></div>
+              <div class="date">5 OCT 1995</div>
+              <p>Se renovó completamente el restaurante, cambiando la distribución del salón y unificando el mostrador (antes había dos). Se cambiaron todas las sillas y mesas.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-8"><h2>Mostrador restaurante</h2></div>
+              <div class="date">5 OCT 1995</div>
+              <p>Renovación del mostrador principal, cambio de heladeras y modernización del sistema de control de mesas.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-9"><h2>Nueva entrada</h2></div>
+              <div class="date">5 OCT 1995</div>
+              <p>Remodelación del jardín del frente. En ese momento no era necesario contar con estacionamiento, por lo tanto se usaba como jardín para poner mesas.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-10"><h2>¡Apareció el pool!</h2></div>
+              <div class="date">25 MAY 2000</div>
+              <p>¡Nuevo pool! Antes este sector se usaba como salón secundario con mesas para cenar o almorzar. Se remodeló completamente, agregando 5 mesas de pool.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-11"><h2>Estacionamiento</h2></div>
+              <div class="date">5 MAY 2008</div>
+              <p>Ahora sí aparece el estacionamiento. También se renovó la fachada principal del local haciendo juego con el interior.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-12"><h2>Tercer diseño del bowling</h2></div>
+              <div class="date">25 NOV 2008</div>
+              <p>Se cambió la estética general del bowling. Se cambió el sistema de anotaciones ¡por uno automático, ya no hay que anotar! Ahora los puntos se ven en pantallas.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-13"><h2>Nueva fachada</h2></div>
+              <div class="date">25 MAY 2020</div>
+              <p>Se renovó completamente el espacio exterior con una nueva imagen más moderna.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-img"></div>
+            <div class="timeline-content timeline-card">
+              <div class="timeline-img-header ti-14"><h2>Decks y nuevo cartel</h2></div>
+              <div class="date">25 NOV 2021</div>
+              <p>Se agregaron 3 decks exteriores y se cambió el cartel principal que da a la calle.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <div class="m-footer m-footer--dir1">
+          <div class="footer-hours" data-hours></div>
+          <img class="m-footer-logo" src="assets/logo-nav.webp" alt="Snack Ristrel">
+          <div>EST 1967 · MARTÍNEZ · ZONA NORTE</div>
+          <div class="micro">© 2026</div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20les%20estoy%20hablando%20desde%20la%20web!" target="_blank" rel="noopener" class="fab" aria-label="WhatsApp"><svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg></a>
+</main>
+
+<script src="site.js"></script>
+<script>
+  // fade-in al scroll para los items del timeline
+  (() => {
+    const items = document.querySelectorAll('.timeline-item');
+    if (!('IntersectionObserver' in window) || !items.length) {
+      items.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    items.forEach(el => io.observe(el));
+  })();
+</script>
+</body>
+</html>
