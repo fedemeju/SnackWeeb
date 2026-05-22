@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview · Hero Bento · Snack Bowling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f6f3ea;
+    --paper-2: #ece6d3;
+    --ink: #14110d;
+    --ink-2: #4a463e;
+    --ink-3: #8a8473;
+    --accent: #E63329;
+    --green: #25D366;
+    --font-ui: 'Archivo', system-ui, sans-serif;
+    --font-hand: 'Caveat', cursive;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-ui);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* —— preview wrapper —— */
+  .preview-note {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 24px;
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .preview-note strong { color: #f7b223; }
+
+  /* —— hero bento —— */
+  .hero-bento {
+    padding: 32px 16px 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* mobile: stack vertical */
+  .hero-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* desktop: bento asymmetric */
+  @media (min-width: 880px) {
+    .hero-bento-grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      min-height: 580px;
+    }
+  }
+
+  /* —— each tile —— */
+  .tile {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--ink);
+    aspect-ratio: 4/3;
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease;
+  }
+  .tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+  }
+  .tile:hover { transform: translateY(-4px); box-shadow: 0 16px 28px -16px rgba(0,0,0,.3); }
+  .tile:hover img { transform: scale(1.05); }
+  .tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.6) 100%);
+    pointer-events: none;
+  }
+  .tile-label {
+    position: absolute;
+    bottom: 16px;
+    left: 18px;
+    right: 18px;
+    z-index: 2;
+    color: #fff;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tile-label .ico {
+    font-size: 26px;
+    line-height: 1;
+  }
+  .tile-sub {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .82;
+    margin-bottom: 6px;
+  }
+
+  /* —— hero text tile (sin imagen) —— */
+  .tile-hero {
+    background:
+      radial-gradient(circle at 80% 10%, rgba(247,178,35,.10), transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(230,51,41,.08), transparent 60%),
+      var(--paper-2);
+    aspect-ratio: auto;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+  }
+  .tile-hero::after { display: none; }
+  .tile-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .tile-eyebrow .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(230,51,41,.18);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 4px rgba(230,51,41,.18); }
+    50%     { box-shadow: 0 0 0 8px rgba(230,51,41,.04); }
+  }
+  .tile-hero h1 {
+    font-family: var(--font-ui);
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 20px 0 10px;
+    text-wrap: balance;
+  }
+  .tile-hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .tile-hero p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+    max-width: 36ch;
+  }
+  .tile-hero-meta {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .tile-hero-meta b { font-weight: 800; color: var(--ink); }
+  .tile-hero-meta .sep { color: var(--ink-3); }
+
+  /* —— estamparillas decorativas —— */
+  .badge-est {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    color: var(--ink);
+    width: fit-content;
+  }
+  .badge-est b { color: var(--accent); font-weight: 900; }
+
+  /* —— layout-specific desktop placement —— */
+  @media (min-width: 880px) {
+    .tile-hero { grid-column: 1; grid-row: 1 / span 2; aspect-ratio: auto; min-height: 0; }
+    .tile-bowling { grid-column: 2 / span 2; grid-row: 1; aspect-ratio: auto; }
+    .tile-pool { grid-column: 2; grid-row: 2; aspect-ratio: 1; }
+    .tile-resto { grid-column: 3; grid-row: 2; aspect-ratio: 1; }
+  }
+
+  /* —— pelotero como tile bonus —— */
+  .tile-pelotero { display: none; }
+
+  /* —— logos in hero tile —— */
+  .hero-logo {
+    width: 200px;
+    max-width: 60%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-note">
+  <strong>PREVIEW</strong> · Hero bento grid · navegá <a href="index.html" style="color:#f7b223">a la home actual</a> para comparar
+</div>
+
+<section class="hero-bento">
+  <div class="hero-bento-grid">
+
+    <!-- TILE: hero text -->
+    <article class="tile tile-hero">
+      <div>
+        <span class="tile-eyebrow"><span class="dot"></span> Abierto ahora · hasta 02:00</span>
+        <img class="hero-logo" src="assets/logo-home-v4-clear.webp" alt="Snack Bowling" style="margin: 18px 0 6px">
+        <h1>Bowling, pool y <em>buena cocina</em> en Martínez.</h1>
+        <p>Multiespacio familiar desde 1967. Cuatro mundos bajo un techo en zona norte.</p>
+        <span class="badge-est">·  EST  · <b>1967</b> ·  MARTÍNEZ  ·</span>
+      </div>
+      <div class="tile-hero-meta">
+        <span><b>6</b> pistas</span>
+        <span class="sep">·</span>
+        <span><b>5</b> mesas de pool</span>
+        <span class="sep">·</span>
+        <span><b>180</b> personas/evento</span>
+      </div>
+    </article>
+
+    <!-- TILE: bowling (big) -->
+    <a class="tile tile-bowling" href="#espacios">
+      <img src="assets/bowling.webp" alt="Pistas de bowling">
+      <div class="tile-label">
+        <span class="ico">🎳</span>
+        <div>
+          <span class="tile-sub">EL CLÁSICO</span>
+          Bowling
+        </div>
+      </div>
+    </a>
+
+    <!-- TILE: pool -->
+    <a class="tile tile-pool" href="#espacios">
+      <img src="assets/pool.webp" alt="Mesas de pool">
+      <div class="tile-label">
+        <span class="ico">🎱</span>
+        Pool
+      </div>
+    </a>
+
+    <!-- TILE: restaurant -->
+    <a class="tile tile-resto" href="#ristrel">
+      <img src="assets/plato.webp" alt="Plato del restaurante">
+      <div class="tile-label">
+        <span class="ico">🍴</span>
+        Ristrel
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div style="max-width:680px;margin:0 auto;padding:40px 24px 80px;text-align:center;color:var(--ink-2);font-size:14px;line-height:1.6">
+  <p style="font-weight:800;color:var(--ink);font-size:16px;margin:0 0 14px">Después de este hero, viene el resto del sitio igual:</p>
+  <p>· 4 espacios en polaroids → secciones de cada uno<br>
+  · Ristrel · carta y reservas<br>
+  · Cumples infantiles · paquetes y cotizador<br>
+  · Eventos & empresas<br>
+  · Historia · 59 años<br>
+  · Contacto · mapa de Google</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview · Espacios expandibles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #14110d; --paper: #f6f3ea; --accent: #E63329; --font-ui: 'Archivo', sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-ui); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .note { background: var(--ink); color: var(--paper); padding: 12px 24px; font-size: 13px; text-align: center; }
+  .note strong { color: #f7b223; }
+
+  /* —— sección —— */
+  section { padding: 60px 16px; max-width: 1400px; margin: 0 auto; }
+  .head { text-align: center; margin: 0 0 32px; }
+  .lbl { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #8a8473; margin-bottom: 8px; }
+  h2 { font-weight: 900; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.02em; line-height: 1.05; margin: 0; text-wrap: balance; }
+
+  /* —— PANELS expandibles —— */
+  .panels {
+    display: flex;
+    gap: 8px;
+    height: 560px;
+    overflow: hidden;
+    border-radius: 22px;
+  }
+  @media (max-width: 880px) {
+    .panels { flex-direction: column; height: auto; border-radius: 0; gap: 10px; padding: 0 0; }
+  }
+  .panel {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex .6s cubic-bezier(.2,.8,.2,1);
+    background: var(--ink);
+    border-radius: 22px;
+    text-decoration: none;
+    color: #fff;
+  }
+  /* hover expand */
+  @media (min-width: 881px) {
+    .panels:hover .panel { flex: 0.6; }
+    .panels:hover .panel:hover { flex: 2.6; }
+  }
+  /* mobile · cada panel altura fija */
+  @media (max-width: 880px) {
+    .panel { height: 280px; }
+    .panel.is-open { height: 460px; }
+  }
+
+  .panel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease, filter .6s ease;
+    filter: brightness(0.65) saturate(1.1);
+  }
+  .panel:hover .panel-img,
+  .panel.is-open .panel-img {
+    filter: brightness(0.85) saturate(1.2);
+    transform: scale(1.05);
+  }
+  .panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,.75) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .panel-num {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: .2em;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(8px);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .panel-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 22px;
+    z-index: 2;
+    writing-mode: horizontal-tb;
+  }
+  /* título rotado en estado colapsado · vertical */
+  .panel-title {
+    font-weight: 900;
+    font-size: clamp(24px, 2.4vw, 32px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 3px 12px rgba(0,0,0,.5);
+  }
+  .panel-sub {
+    font-weight: 500;
+    font-size: 13px;
+    margin: 6px 0 0;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity .4s ease .2s, max-height .5s ease;
+    text-shadow: 0 1px 6px rgba(0,0,0,.5);
+  }
+  .panel-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 9px 16px;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .4s ease .3s, transform .4s ease .3s;
+  }
+  .panel:hover .panel-sub,
+  .panel.is-open .panel-sub {
+    opacity: .95;
+    max-height: 60px;
+  }
+  .panel:hover .panel-cta,
+  .panel.is-open .panel-cta {
+    opacity: 1;
+    transform: none;
+  }
+  @media (max-width: 880px) {
+    .panel-sub { opacity: .95; max-height: 60px; }
+    .panel-cta { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel, .panel-img, .panel-sub, .panel-cta { transition: none; }
+    .panel:hover .panel-img, .panel.is-open .panel-img { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="note">
+  <strong>PREVIEW · OPCIÓN B — Panels expandibles</strong> · pasá el mouse sobre uno · <a href="index.html" style="color:#f7b223">comparar con la versión actual</a>
+</div>
+
+<section>
+  <div class="head">
+    <span class="lbl">los espacios</span>
+    <h2>Cuatro mundos bajo un techo</h2>
+  </div>
+  <div class="panels">
+    <a class="panel" href="#galeria">
+      <img class="panel-img" src="assets/bowling.webp" alt="Bowling">
+      <span class="panel-num">01</span>
+      <div class="panel-body">
+        <h3 class="panel-title">Bowling</h3>
+        <p class="panel-sub">6 pistas automáticas con conteo digital. El clásico de Snack.</p>
+        <span class="panel-cta">Ver fotos →</span>
+      </div>
+    </a>
+    <a class="panel" href="#galeria">
+      <img class="panel-img" src="assets/pool.webp" alt="Pool">
+      <span class="panel-num">02</span>
+      <div class="panel-body">
+        <h3 class="panel-title">Pool</h3>
+        <p class="panel-sub">5 mesas con paños rojos clásicos. Para tirar unas tacadas.</p>
+        <span class="panel-cta">Ver fotos →</span>
+      </div>
+    </a>
+    <a class="panel" href="#ristrel">
+      <img class="panel-img" src="assets/plato.webp" alt="Restaurante">
+      <span class="panel-num">03</span>
+      <div class="panel-body">
+        <h3 class="panel-title">Ristrel</h3>
+        <p class="panel-sub">Parrilla, pizzas, pastas y hamburguesas. Carta amplia para todos.</p>
+        <span class="panel-cta">Ver carta →</span>
+      </div>
+    </a>
+    <a class="panel" href="cumples.html">
+      <img class="panel-img" src="assets/pelotero.webp" alt="Pelotero">
+      <span class="panel-num">04</span>
+      <div class="panel-body">
+        <h3 class="panel-title">Pelotero</h3>
+        <p class="panel-sub">Espacio infantil para los más chicos. Ideal para cumples.</p>
+        <span class="panel-cta">Ver cumples →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div style="max-width:680px;margin:0 auto;padding:24px 24px 80px;text-align:center;color:#666;font-size:14px;line-height:1.6">
+  <p style="font-weight:800;color:var(--ink);font-size:15px;margin:0 0 8px">Cómo funciona</p>
+  <p>Desktop: <b>hover</b> sobre un panel → se expande, los otros se achican.<br>
+  Mobile: <b>tap</b> sobre un panel → se abre el detalle, los otros quedan compactos.</p>
+</div>
+
+<script>
+  // En mobile, click toggle del panel
+  if (matchMedia('(max-width: 880px)').matches) {
+    document.querySelectorAll('.panel').forEach(p => {
+      p.addEventListener('click', (e) => {
+        // siempre dejar pasar el click al link si ya está abierto
+        if (p.classList.contains('is-open')) return;
+        e.preventDefault();
+        document.querySelectorAll('.panel.is-open').forEach(o => o.classList.remove('is-open'));
+        p.classList.add('is-open');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -835,56 +835,36 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0;
-  background: linear-gradient(135deg, #ffd9d5 0%, #ffe8b8 50%, #d8eef8 100%);
-  color: var(--ink);
-  border-radius: 16px;
-  padding: 18px 4px;
+  background: var(--ink);
+  color: white;
+  border-radius: 14px;
+  padding: 16px 4px;
   border: 2px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
-  position: relative;
-}
-.kids-stats::before {
-  content: '';
-  position: absolute;
-  top: -8px; left: 16px;
-  width: 16px; height: 16px;
-  background: var(--accent);
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-  transform: rotate(15deg);
-}
-.kids-stats::after {
-  content: '';
-  position: absolute;
-  bottom: -8px; right: 16px;
-  width: 12px; height: 12px;
-  background: #30a4dc;
-  border: 2px solid var(--ink);
-  border-radius: 50%;
+  box-shadow: 3px 3px 0 #f7b223;
 }
 .kids-stat {
   text-align: center;
   padding: 0 4px;
-  border-right: 1.5px dashed rgba(20,17,13,0.2);
+  border-right: 1px dashed rgba(255,255,255,0.25);
 }
 .kids-stat:last-child { border-right: none; }
 .kids-stat-n {
   display: block;
   font-family: var(--font-ui);
   font-weight: 900;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: #f7b223;
 }
 .kids-stat-l {
   display: block;
   font-family: var(--font-ui);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(20,17,13,0.55);
+  color: rgba(255,255,255,0.7);
   margin-top: 4px;
 }
 
@@ -970,41 +950,6 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  text-decoration: none;
-  transition: 0.15s;
-}
-.btn--kids-primary:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
-
-/* Home "VER PAQUETES" CTA — pastel, sticker-style, pulses */
-.btn--kids-cta {
-  background: #f7b223;
-  color: var(--ink);
-  border: 2.5px solid var(--ink);
-  border-radius: 999px;
-  padding: 16px 22px;
-  font-family: var(--font-ui);
-  font-weight: 900;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  box-shadow: 4px 4px 0 var(--ink), 0 0 0 0 rgba(247,178,35,0.5);
-  flex: 1 1 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-decoration: none;
-  position: relative;
-  animation: kids-cta-glow 2.4s ease-in-out infinite;
-}
-.btn--kids-cta:hover {
-  transform: translate(-2px, -2px) rotate(-1deg);
-  box-shadow: 6px 6px 0 var(--ink);
-  animation-play-state: paused;
-}
-@keyframes kids-cta-glow {
-  0%, 100% { box-shadow: 4px 4px 0 var(--ink), 0 0 0 0 rgba(247, 178, 35, 0.6); }
-  50%      { box-shadow: 4px 4px 0 var(--ink), 0 0 0 12px rgba(247, 178, 35, 0); }
 }
 .wp-icon-mini {
   width: 14px; height: 14px;

@@ -1,7 +1,127 @@
 // ──────────────── FINAL SITE JS ────────────────
 // (Stripped of the wireframe-specific tabs / notes / compare logic.
 //  Keeps: hamburger menu, smooth scroll, live hours, year counters,
-//  ES/EN toggle, trackEvent helper.)
+//  ES/EN toggle, trackEvent helper, hero carousel.)
+
+// ─── galería · botón "Mostrar más" ───
+document.querySelectorAll('[data-gallery-toggle]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.gallery-section');
+    const gallery = section?.querySelector('.gallery');
+    if (!gallery) return;
+    const expanded = gallery.classList.toggle('is-expanded');
+    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    if (!expanded) {
+      // Si se cierra, scrollear de vuelta al inicio de la galería
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    trackEvent('gallery_toggle', { expanded });
+  });
+});
+
+// ─── galería + lightbox ───
+(function initGalleryLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  const lbImg = lightbox.querySelector('.lightbox-img');
+  const lbCurrent = lightbox.querySelector('.lightbox-current');
+  const lbTotal = lightbox.querySelector('.lightbox-total');
+  let items = [];
+  let current = 0;
+
+  function open(galleryRoot, idx) {
+    items = Array.from(galleryRoot.querySelectorAll('.gallery-item'));
+    current = idx;
+    show(idx);
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    trackEvent('gallery_open', { idx });
+  }
+  function close() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+  function show(i) {
+    current = (i + items.length) % items.length;
+    lbImg.src = items[current].dataset.full;
+    lbImg.alt = items[current].querySelector('img')?.alt || '';
+    lbCurrent.textContent = current + 1;
+    lbTotal.textContent = items.length;
+  }
+
+  // Conectar todos los .gallery (mobile + desktop)
+  document.querySelectorAll('.gallery').forEach(g => {
+    g.querySelectorAll('.gallery-item').forEach((item, i) => {
+      item.addEventListener('click', () => open(g, i));
+    });
+  });
+  lightbox.querySelector('.lightbox-close').addEventListener('click', close);
+  lightbox.querySelector('.lightbox-prev').addEventListener('click', () => show(current - 1));
+  lightbox.querySelector('.lightbox-next').addEventListener('click', () => show(current + 1));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') show(current + 1);
+    else if (e.key === 'ArrowLeft')  show(current - 1);
+  });
+})();
+
+// ─── hero carousel · auto-rotate, fade, dots, teclado, pausa en hover ───
+function initHeroCarousel(root) {
+  const slides = root.querySelectorAll('.hero-slide');
+  const dots = root.querySelectorAll('.hero-dot');
+  if (slides.length < 2) return;
+  let current = 0, timer = null;
+  const ROTATE_MS = 3000;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(i) {
+    i = (i + slides.length) % slides.length;
+    if (i === current) return;
+    slides[current].classList.remove('is-active');
+    dots[current]?.classList.remove('is-active');
+    slides[i].classList.add('is-active');
+    dots[i]?.classList.add('is-active');
+    current = i;
+  }
+  function next() { show(current + 1); }
+  function start() { if (!timer && !reduceMotion) timer = setInterval(next, ROTATE_MS); }
+  function stop() { clearInterval(timer); timer = null; }
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  dots.forEach(d => d.addEventListener('click', () => {
+    stop(); show(parseInt(d.dataset.i)); start();
+  }));
+  // teclado solo cuando el carousel está visible en viewport
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { stop(); next(); start(); }
+    if (e.key === 'ArrowLeft')  { stop(); show(current - 1); start(); }
+  });
+  start();
+}
+// Inicializar todos los carousels que estén visibles (mobile o desktop)
+document.querySelectorAll('.hero-carousel').forEach(root => {
+  // Solo iniciar el que está realmente visible
+  if (root.offsetParent !== null) initHeroCarousel(root);
+});
+// Si la ventana se redimensiona y cambia qué carousel está visible, re-inicializar
+let _heroResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(_heroResizeTimer);
+  _heroResizeTimer = setTimeout(() => {
+    document.querySelectorAll('.hero-carousel').forEach(root => {
+      if (root.offsetParent !== null && !root._heroInited) {
+        root._heroInited = true;
+        initHeroCarousel(root);
+      }
+    });
+  }, 200);
+});
 
 // ─── PWA · registrar service worker (solo si está servido por http(s)) ───
 if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview · Hero Carousel · Snack Bowling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f6f3ea;
+    --ink: #14110d;
+    --accent: #E63329;
+    --font-ui: 'Archivo', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-ui);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .preview-note {
+    background: var(--ink); color: var(--paper); padding: 12px 24px;
+    font-size: 13px; text-align: center; letter-spacing: 0.04em;
+  }
+  .preview-note strong { color: #f7b223; }
+  .preview-note a { color: #f7b223; }
+
+  /* ──────────── HERO CAROUSEL ──────────── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    min-height: 540px;
+    max-height: 760px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  @media (max-width: 720px) {
+    .hero { height: 88vh; min-height: 580px; }
+  }
+
+  /* slides stack */
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    z-index: 1;
+    will-change: opacity;
+  }
+  .hero-slide.is-active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  /* dark gradient overlay para legibilidad del logo */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.7) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.55) 100%);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* contenido centrado encima */
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    pointer-events: none;
+  }
+  .hero-logo {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    filter: brightness(0) invert(1) drop-shadow(0 4px 24px rgba(0,0,0,0.5));
+    margin-bottom: 18px;
+    animation: heroLogoIn 1s cubic-bezier(.2,.8,.2,1);
+  }
+  @media (min-width: 880px) {
+    .hero-logo { max-width: 480px; }
+  }
+  @keyframes heroLogoIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hero-title {
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(20px, 3vw, 28px);
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .hero-badge b { color: var(--accent); font-weight: 900; }
+
+  /* dots indicador */
+  .hero-dots {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    gap: 10px;
+    pointer-events: auto;
+  }
+  .hero-dot {
+    width: 32px;
+    height: 4px;
+    border-radius: 2px;
+    border: 0;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background .25s ease, width .25s ease;
+    padding: 0;
+  }
+  .hero-dot:hover { background: rgba(255,255,255,0.6); }
+  .hero-dot.is-active {
+    background: #fff;
+    width: 44px;
+  }
+
+  /* ken-burns sutil en la imagen activa */
+  @keyframes kenBurns {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.10); }
+  }
+  .hero-slide.is-active {
+    animation: kenBurns 6s ease-out forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide { transition: opacity .3s ease; animation: none !important; }
+    .hero-logo { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-note">
+  <strong>PREVIEW</strong> · Hero carousel · 4 fotos · auto-rotate cada 3s · <a href="index.html">comparar con home actual</a>
+</div>
+
+<section class="hero">
+  <div class="hero-slides" data-carousel>
+    <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" alt="Pista de bowling de Snack" data-i="0">
+    <img class="hero-slide" src="assets/hero/02-pizza.webp" alt="Pizza fresca de Ristrel" data-i="1">
+    <img class="hero-slide" src="assets/hero/03-vino.webp" alt="Vino Rutini Cabernet-Malbec" data-i="2">
+    <img class="hero-slide" src="assets/hero/04-cerveza.webp" alt="Cerveza tirada Patagonia" data-i="3">
+  </div>
+
+  <div class="hero-content">
+    <img class="hero-logo" src="assets/logo-home-v4-clear.webp" alt="Snack Bowling">
+    <p class="hero-title">Bowling, pool, restaurante y pelotero · en Martínez</p>
+    <span class="hero-badge">·  EST  · <b>1967</b> ·  MARTÍNEZ  ·</span>
+  </div>
+
+  <div class="hero-dots" data-dots>
+    <button class="hero-dot is-active" data-i="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-i="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" data-i="2" aria-label="Slide 3"></button>
+    <button class="hero-dot" data-i="3" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<div style="max-width:680px;margin:0 auto;padding:40px 24px 80px;text-align:center;color:#666;font-size:14px;line-height:1.6">
+  <p style="font-weight:800;color:var(--ink);font-size:16px;margin:0 0 14px">Después de este hero viene el resto del sitio igual.</p>
+  <p style="color:#999"><b>Atajo de teclado:</b> ← / → para cambiar de slide manualmente</p>
+</div>
+
+<script>
+  (() => {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    let current = 0;
+    let timer = null;
+    const ROTATE_MS = 3000;
+
+    function show(i) {
+      i = (i + slides.length) % slides.length;
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      slides[i].classList.add('is-active');
+      dots[i].classList.add('is-active');
+      current = i;
+    }
+    function next() { show(current + 1); }
+    function start() {
+      if (timer) return;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      timer = setInterval(next, ROTATE_MS);
+    }
+    function stop() { clearInterval(timer); timer = null; }
+
+    // pause on hover
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+
+    // dots
+    dots.forEach(d => d.addEventListener('click', () => {
+      stop();
+      show(parseInt(d.dataset.i));
+      start();
+    }));
+
+    // arrow keys
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { stop(); next(); start(); }
+      if (e.key === 'ArrowLeft')  { stop(); show(current - 1); start(); }
+    });
+
+    start();
+  })();
+</script>
+
+</body>
+</html>
