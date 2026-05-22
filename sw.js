@@ -2,7 +2,7 @@
 // Estrategia: precaching de shell + stale-while-revalidate para todo lo demás.
 // Bumpear CACHE_VERSION cada vez que cambien los archivos del shell.
 
-const CACHE_VERSION = 'snack-v11';
+const CACHE_VERSION = 'snack-v27';
 const CACHE_NAME = `snack-${CACHE_VERSION}`;
 
 // Archivos críticos que se cachean al instalar (app shell)
@@ -19,7 +19,9 @@ const PRECACHE = [
   '/eventos.css',
   '/manifest.webmanifest',
   '/assets/logo-nav.webp',
-  '/assets/logo-home-v4-clear.webp'
+  '/assets/logo-snack.webp',
+  '/assets/favicon-32.png',
+  '/assets/favicon-192.png'
 ];
 
 self.addEventListener('install', (event) => {

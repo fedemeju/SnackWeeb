@@ -123,6 +123,116 @@ window.addEventListener('resize', () => {
   }, 200);
 });
 
+// ─── Toast helper (notificaciones flotantes) ───
+window.showToast = function(message, duration = 2500) {
+  // remover toast previo si existe
+  document.querySelectorAll('.site-toast').forEach(t => t.remove());
+  const toast = document.createElement('div');
+  toast.className = 'site-toast';
+  toast.textContent = message;
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('is-visible'));
+  setTimeout(() => {
+    toast.classList.remove('is-visible');
+    setTimeout(() => toast.remove(), 350);
+  }, duration);
+};
+
+// ─── 1. Scroll progress bar ───
+(() => {
+  const bar = document.querySelector('.scroll-progress');
+  if (!bar) return;
+  let ticking = false;
+  function update() {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = docHeight > 0 ? window.scrollY / docHeight : 0;
+    bar.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+})();
+
+// ─── 2. Scroll reveal · fade-in on scroll ───
+(() => {
+  if (!('IntersectionObserver' in window)) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll(
+    '.m-band, .d-band, .gallery-section, .cotizador, .cp-hero, .ev-hero, ' +
+    '.ristrel-head, .ristrel-photo, .kids-card, .events-head, .events-types-grid, ' +
+    '.events-stats, .events-pkg-section, .events-cta-block, .paq-pair, .ev-pkg-grid, ' +
+    '.paq-compare, .ev-compare, .cp-faq, .cp-final, .ev-final, .d-duo-card--solo, ' +
+    '.d-mundos, .d-ristrel, .d-timeline, .d-contact, .espacios-grid, .hist-hero, ' +
+    '.timeline'
+  );
+  if (reduce) {
+    targets.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  targets.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+  targets.forEach(el => io.observe(el));
+})();
+
+// ─── 4. Smart sticky nav · hide on scroll down, show on scroll up ───
+(() => {
+  const navs = document.querySelectorAll('.m-nav, .d-nav');
+  if (!navs.length) return;
+  let lastScroll = window.scrollY;
+  let ticking = false;
+  function update() {
+    const current = window.scrollY;
+    const goingDown = current > lastScroll;
+    const farFromTop = current > 120;
+    navs.forEach(n => {
+      if (goingDown && farFromTop) n.classList.add('nav-hidden');
+      else n.classList.remove('nav-hidden');
+    });
+    lastScroll = current;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+})();
+
+// ─── 8. Click-to-copy en teléfonos (solo desktop) ───
+(() => {
+  const isDesktop = matchMedia('(min-width: 980px)').matches;
+  if (!isDesktop || !navigator.clipboard) return;
+  document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const number = link.textContent.trim() || link.getAttribute('href').replace('tel:', '');
+      navigator.clipboard.writeText(number).then(() => {
+        showToast(`📞 Copiado: ${number}`);
+        trackEvent('phone_copy', { number });
+      }).catch(() => {
+        // fallback: dejar que el browser maneje
+        window.location.href = link.getAttribute('href');
+      });
+    });
+  });
+})();
+
+// ─── Cotizador · agregar toast al submit ───
+document.querySelectorAll('[data-cotizador]').forEach(form => {
+  form.addEventListener('submit', () => {
+    setTimeout(() => showToast('✓ Abriendo WhatsApp...', 2500), 50);
+  }, { capture: false });
+});
+
 // ─── PWA · registrar service worker (solo si está servido por http(s)) ───
 if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
   window.addEventListener('load', () => {
@@ -279,6 +389,7 @@ setInterval(renderHours, 60000);
 const I18N = {
   en: {
     'Bowling, pool, restaurante y pelotero, en Martínez.': 'Bowling, pool, restaurant and ball pit, in Martínez.',
+    'Bowling, pool, restaurante y pelotero · en Martínez': 'Bowling, pool, restaurant and ball pit · in Martínez',
     'VER CARTA →': 'VIEW MENU →',
     'HABLAR POR WHATSAPP': 'CHAT ON WHATSAPP',
     'Multiespacio familiar desde 1967. Vení por una pista de bowling, quedate a comer y festejá tus cumples acá.': 'Family multispace since 1967. Come for a bowling lane, stay for dinner and host your birthdays here.',

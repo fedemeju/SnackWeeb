@@ -3,17 +3,114 @@
    a real responsive page (no phone frame, no annotations, no tabs).
    ──────────────────────────────────────────────────────── */
 
-/* ─────────── ESPACIOS · 4 cards modernas ─────────── */
+/* ─────────── 1. SCROLL PROGRESS BAR ─────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent, #E63329) 0%, #f7b223 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 100;
+  pointer-events: none;
+  transition: transform .05s ease-out;
+  box-shadow: 0 2px 8px rgba(230,51,41,.25);
+}
+
+/* ─────────── 2. SCROLL REVEAL animations ─────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─────────── 4. SMART STICKY NAV (hide on scroll down) ─────────── */
+.site-mobile .m-nav,
+.site-desktop .d-nav {
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), background .3s ease, box-shadow .3s ease;
+}
+.site-mobile .m-nav.nav-hidden,
+.site-desktop .d-nav.nav-hidden {
+  transform: translateY(-100%);
+}
+/* En subpáginas el nav está centrado con translateX, hay que combinar transforms */
+@media (min-width: 521px) and (max-width: 979px) {
+  .site-mobile .m-nav.nav-hidden { transform: translate(-50%, -100%); }
+}
+@media (min-width: 980px) {
+  .final-subpage .site-mobile .m-nav.nav-hidden { transform: translate(-50%, -100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-mobile .m-nav, .site-desktop .d-nav { transition: none; }
+}
+
+
+/* ─────────── 8. TOAST (notificación copy phone, cotizador, etc) ─────────── */
+.site-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: var(--ink, #14110d);
+  color: var(--paper, #f6f3ea);
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 0 12px 32px -10px rgba(0,0,0,.45);
+  max-width: 92vw;
+  text-align: center;
+}
+.site-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+/* en mobile con sticky bar, levantamos un poco el toast */
+.has-sticky-bar .site-toast { bottom: 88px; }
+@media (prefers-reduced-motion: reduce) {
+  .site-toast { transition: opacity .15s ease; }
+}
+
+/* ─────────── ESPACIOS · bento asimétrico (desktop) con stats ─────────── */
+/* mobile + tablet · 2 cols uniformes */
 .final-site .espacios-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   padding: 8px 0 0;
 }
-@media (min-width: 720px) {
+@media (min-width: 540px) {
+  .final-site .espacios-grid { gap: 12px; }
+}
+/* desktop · bento asimétrico · bowling feature izq, 3 cards stacked der */
+@media (min-width: 880px) {
   .final-site .espacios-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .final-site .espacio-card--feat {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+  .final-site .espacio-card:not(.espacio-card--feat) {
+    grid-column: 2;
   }
 }
 .final-site .espacio-card {
@@ -25,6 +122,10 @@
   background: var(--ink, #14110d);
   color: #fff;
   isolation: isolate;
+}
+@media (min-width: 880px) {
+  .final-site .espacio-card { aspect-ratio: auto; min-height: 200px; }
+  .final-site .espacio-card--feat { aspect-ratio: auto; min-height: 0; }
 }
 .final-site .espacio-card-img {
   position: absolute;
@@ -50,6 +151,10 @@
   z-index: 3;
 }
 .final-site .espacio-card-num {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
   display: inline-block;
   font-family: var(--font-ui);
   font-weight: 800;
@@ -62,8 +167,28 @@
   -webkit-backdrop-filter: blur(6px);
   padding: 3px 8px;
   border-radius: 6px;
-  margin-bottom: 10px;
 }
+/* Stat pill · con color por espacio */
+.final-site .espacio-card-stat {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  background: var(--accent, #E63329);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.final-site .espacio-card--bowling .espacio-card-stat { background: var(--accent, #E63329); color: #fff; }
+.final-site .espacio-card--pool .espacio-card-stat { background: #8B1538; color: #fff; }
+.final-site .espacio-card--resto .espacio-card-stat { background: #f7b223; color: #14110d; }
+.final-site .espacio-card--pelotero .espacio-card-stat { background: #30a4dc; color: #fff; }
 .final-site .espacio-card-title {
   font-family: var(--font-ui);
   font-weight: 900;
@@ -75,6 +200,19 @@
 }
 @media (min-width: 720px) {
   .final-site .espacio-card-title { font-size: 24px; }
+}
+/* Card feature · título mucho más grande */
+@media (min-width: 880px) {
+  .final-site .espacio-card--feat .espacio-card-title {
+    font-size: clamp(36px, 4vw, 52px);
+  }
+  .final-site .espacio-card--feat .espacio-card-sub {
+    font-size: 14px;
+  }
+  .final-site .espacio-card--feat .espacio-card-stat {
+    font-size: 13px;
+    padding: 7px 14px;
+  }
 }
 .final-site .espacio-card-sub {
   font-family: var(--font-ui);
@@ -337,8 +475,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.7) 100%),
-    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.05) 40%, rgba(0,0,0,.55) 100%);
+    radial-gradient(ellipse at center, rgba(0,0,0,.08) 0%, rgba(0,0,0,.42) 55%, rgba(0,0,0,.75) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.10) 40%, rgba(0,0,0,.60) 100%);
   z-index: 3;
   pointer-events: none;
 }
@@ -358,7 +496,7 @@
   width: 100%;
   max-width: 340px;
   height: auto;
-  filter: brightness(0) invert(1) drop-shadow(0 4px 24px rgba(0,0,0,.5));
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,.5));
   margin-bottom: 18px;
   animation: heroLogoIn 1s cubic-bezier(.2,.8,.2,1);
 }
