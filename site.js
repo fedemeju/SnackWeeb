@@ -760,6 +760,7 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       lines.push(`• Paquete: ${data.paquete}`);
       lines.push(`• Fecha tentativa: ${fechaFmt}`);
       lines.push(`• Cantidad: ${data.cantidad} personas`);
+      if (data.bowling) lines.push(`• ¿Con bowling?: ${data.bowling}`);
       if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
       lines.push('');
       lines.push('¡Gracias!');

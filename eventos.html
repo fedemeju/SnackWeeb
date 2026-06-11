@@ -458,6 +458,15 @@ DESCOMENTAR_FIN -->
               <input type="number" id="cot-cantidad-ev" name="cantidad" min="10" max="180" step="1" placeholder="20" required>
             </div>
             <div class="cotizador-field">
+              <span class="cotizador-field-label">¿Querés con bowling?</span>
+              <div class="cotizador-toggle" role="radiogroup" aria-label="¿Querés con bowling?">
+                <input type="radio" id="cot-bowling-si" name="bowling" value="Sí" required>
+                <label for="cot-bowling-si">Sí</label>
+                <input type="radio" id="cot-bowling-no" name="bowling" value="No">
+                <label for="cot-bowling-no">No</label>
+              </div>
+            </div>
+            <div class="cotizador-field">
               <label for="cot-nombre-ev">Tu nombre o empresa <span class="lbl-opt">· opcional</span></label>
               <input type="text" id="cot-nombre-ev" name="nombre" maxlength="60" autocomplete="organization">
             </div>
