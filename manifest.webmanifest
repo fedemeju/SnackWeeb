@@ -4,7 +4,7 @@
   "description": "Bowling, restaurante, cumples infantiles y eventos corporativos en Martínez, Zona Norte. Desde 1967.",
   "lang": "es-AR",
   "dir": "ltr",
-  "start_url": "/?utm_source=pwa",
+  "start_url": "/index.html?utm_source=pwa",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -35,19 +35,19 @@
     {
       "name": "Cumples infantiles",
       "short_name": "Cumples",
-      "url": "/cumples",
+      "url": "/cumples.html",
       "description": "Paquetes de cumples infantiles"
     },
     {
       "name": "Eventos y empresas",
       "short_name": "Eventos",
-      "url": "/eventos",
+      "url": "/eventos.html",
       "description": "Eventos corporativos y privados"
     },
     {
       "name": "WhatsApp",
       "short_name": "WhatsApp",
-      "url": "/#contacto?action=wp"
+      "url": "/index.html#contacto?action=wp"
     }
   ]
 }

@@ -7,19 +7,19 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.snackbowling.com.ar/cumples</loc>
+    <loc>https://www.snackbowling.com.ar/cumples.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.snackbowling.com.ar/eventos</loc>
+    <loc>https://www.snackbowling.com.ar/eventos.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.snackbowling.com.ar/historia</loc>
+    <loc>https://www.snackbowling.com.ar/historia.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
