@@ -2,16 +2,16 @@
 // Estrategia: precaching de shell + stale-while-revalidate para todo lo demás.
 // Bumpear CACHE_VERSION cada vez que cambien los archivos del shell.
 
-const CACHE_VERSION = 'snack-v36';
+const CACHE_VERSION = 'snack-v37';
 const CACHE_NAME = `snack-${CACHE_VERSION}`;
 
 // Archivos críticos que se cachean al instalar (app shell)
+// URLs sin .html · Cloudflare Pages sirve `/cumples.html` con redirect 308 a `/cumples`
 const PRECACHE = [
   '/',
-  '/index.html',
-  '/cumples.html',
-  '/eventos.html',
-  '/historia.html',
+  '/cumples',
+  '/eventos',
+  '/historia',
   '/site.css',
   '/site.js',
   '/wireframes.css',
@@ -26,53 +26,40 @@ const PRECACHE = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) =>
-      // addAll falla si UNO solo falla; usamos add() individual para tolerar 404s
-      Promise.all(PRECACHE.map((url) =>
-        cache.add(url).catch(() => null)
-      ))
-    ).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(PRECACHE).catch(() => {}))
+      .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys
-        .filter((k) => k.startsWith('snack-') && k !== CACHE_NAME)
-        .map((k) => caches.delete(k))
-      )
-    ).then(() => self.clients.claim())
+    caches.keys()
+      .then((keys) => Promise.all(
+        keys.filter((k) => k.startsWith('snack-') && k !== CACHE_NAME)
+            .map((k) => caches.delete(k))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-
-  // Solo GET
   if (req.method !== 'GET') return;
-
   const url = new URL(req.url);
-
-  // No interceptar pedidos externos (Google Fonts, GA, Maps, etc.)
   if (url.origin !== location.origin) return;
-
-  // No cachear el ServiceWorker en sí ni partials con query strings versionados
   if (url.pathname === '/sw.js') return;
 
   event.respondWith(
     caches.match(req).then((cached) => {
-      // Stale-while-revalidate: si está en cache, lo retorna y revalida en background
-      const networkFetch = fetch(req)
-        .then((resp) => {
-          if (resp && resp.status === 200 && resp.type === 'basic') {
-            const copy = resp.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-          }
-          return resp;
-        })
-        .catch(() => cached);
-
+      const networkFetch = fetch(req).then((res) => {
+        // Solo cacheamos respuestas 200 OK (no redirects 308)
+        if (res && res.status === 200 && res.type === 'basic') {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, clone).catch(() => {}));
+        }
+        return res;
+      }).catch(() => cached);
       return cached || networkFetch;
     })
   );
