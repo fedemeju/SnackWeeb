@@ -2,16 +2,16 @@
 // Estrategia: precaching de shell + stale-while-revalidate para todo lo demás.
 // Bumpear CACHE_VERSION cada vez que cambien los archivos del shell.
 
-const CACHE_VERSION = 'snack-v36';
+const CACHE_VERSION = 'snack-v37';
 const CACHE_NAME = `snack-${CACHE_VERSION}`;
 
 // Archivos críticos que se cachean al instalar (app shell)
+// URLs sin .html · Cloudflare Pages sirve /cumples.html con redirect 308 a /cumples
 const PRECACHE = [
   '/',
-  '/index.html',
-  '/cumples.html',
-  '/eventos.html',
-  '/historia.html',
+  '/cumples',
+  '/eventos',
+  '/historia',
   '/site.css',
   '/site.js',
   '/wireframes.css',
