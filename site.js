@@ -452,7 +452,7 @@ const I18N = {
     'parrilla · pizzas · pastas · hamburguesas · tragos': 'grill · pizzas · pastas · burgers · drinks',
     'VER CARTA COMPLETA →': 'VIEW FULL MENU →',
     'Reservar mesa': 'Book a table',
-    'La cocina que acompaña a Snack desde 1995. Carta amplia, opciones para chicos y grandes, sin necesidad de reservar.': 'The kitchen accompanying Snack since 1995. Wide menu, options for kids and adults, no reservation needed.',
+    'La cocina que acompaña a Snack desde 1967. Carta amplia, opciones para chicos y grandes, sin necesidad de reservar.': 'The kitchen accompanying Snack since 1967. Wide menu, options for kids and adults, no reservation needed.',
     'platos\nen la carta': 'dishes\non the menu',
     'opciones\nsin TACC': 'gluten-free\noptions',
     'menú\npara chicos': 'kids\nmenu',
