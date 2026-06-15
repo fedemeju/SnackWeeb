@@ -341,6 +341,7 @@ renderYears();
 // ─── live opening hours ───
 // Domingo a Jueves: 08:30 → 02:00 (siguiente día)
 // Viernes y Sábado: 08:30 → 04:00 (siguiente día)
+// Excepción · víspera de feriado (mañana feriado, o hoy feriado con mañana Vie/Sáb) → cierre 04:00
 const HOURS_SCHEDULE = {
   0: { open: 510, close: 1560 }, // Domingo
   1: { open: 510, close: 1560 }, // Lunes
@@ -350,6 +351,63 @@ const HOURS_SCHEDULE = {
   5: { open: 510, close: 1680 }, // Viernes
   6: { open: 510, close: 1680 }, // Sábado
 };
+
+// Fallback de feriados argentinos · usado si la API no responde
+// Fuente: calendario oficial 2026-2027 (actualizar año tras año si la API queda muerta)
+const FERIADOS_FALLBACK = new Set([
+  // 2026
+  '2026-01-01', '2026-02-16', '2026-02-17', '2026-03-23', '2026-03-24',
+  '2026-04-02', '2026-04-03', '2026-05-01', '2026-05-25', '2026-06-15',
+  '2026-06-20', '2026-07-09', '2026-08-17', '2026-10-12', '2026-11-23',
+  '2026-12-08', '2026-12-25',
+  // 2027
+  '2027-01-01', '2027-02-08', '2027-02-09', '2027-03-24', '2027-03-26',
+  '2027-04-02', '2027-05-01', '2027-05-25', '2027-06-15', '2027-06-21',
+  '2027-07-09', '2027-08-16', '2027-10-11', '2027-11-22', '2027-12-08',
+  '2027-12-25',
+]);
+
+let FERIADOS_AR = new Set(FERIADOS_FALLBACK);
+
+function dateToISO(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function isFeriado(date) {
+  return FERIADOS_AR.has(dateToISO(date));
+}
+
+// Fetch async de la API · cachea 30 días en localStorage · re-renderiza al terminar
+async function loadFeriados() {
+  try {
+    const cacheKey = 'feriados-AR-v1';
+    const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+    const now = Date.now();
+    if (cached && cached.expires > now && Array.isArray(cached.data)) {
+      FERIADOS_AR = new Set([...FERIADOS_FALLBACK, ...cached.data]);
+      return;
+    }
+    const year = new Date().getFullYear();
+    const fetches = [year, year + 1].map(y =>
+      fetch(`https://api.argentinadatos.com/v1/feriados/${y}`, { signal: AbortSignal.timeout(3000) })
+        .then(r => r.ok ? r.json() : [])
+        .catch(() => [])
+    );
+    const results = await Promise.all(fetches);
+    const fechas = results.flat().map(f => f.fecha).filter(Boolean);
+    if (fechas.length) {
+      FERIADOS_AR = new Set([...FERIADOS_FALLBACK, ...fechas]);
+      localStorage.setItem(cacheKey, JSON.stringify({
+        data: fechas,
+        expires: now + 30 * 24 * 60 * 60 * 1000,
+      }));
+      renderHours();
+    }
+  } catch (_) { /* silencio · usa fallback */ }
+}
 
 function minutesToHHMM(mins) {
   const m = ((mins % 1440) + 1440) % 1440;
@@ -366,8 +424,30 @@ function renderHours() {
   const dow = now.getDay();
   const minutes = now.getHours() * 60 + now.getMinutes();
   const yesterdayDow = (dow + 6) % 7;
-  const yesterdaySchedule = HOURS_SCHEDULE[yesterdayDow];
-  const todaySchedule = HOURS_SCHEDULE[dow];
+
+  const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+  const yesterday = new Date(now); yesterday.setDate(yesterday.getDate() - 1);
+  const todayIsHoliday = isFeriado(now);
+  const tomorrowIsHoliday = isFeriado(tomorrow);
+  const yesterdayIsHoliday = isFeriado(yesterday);
+
+  // Cierre extendido a 04:00 si:
+  //  · mañana es feriado (víspera)
+  //  · hoy es feriado AND mañana es Vie/Sáb
+  function getCloseFor(dowVal, isToday, todayHoliday, tomorrowHoliday) {
+    const base = HOURS_SCHEDULE[dowVal];
+    if (!base) return base;
+    const tomorrowDow = (dowVal + 1) % 7;
+    const tomorrowIsFriSat = tomorrowDow === 5 || tomorrowDow === 6;
+    const isWeekend = dowVal === 5 || dowVal === 6;
+    if (isWeekend) return base; // Vie/Sáb ya cierran 04:00
+    if (tomorrowHoliday) return { ...base, close: 1680 };
+    if (todayHoliday && tomorrowIsFriSat) return { ...base, close: 1680 };
+    return base;
+  }
+
+  const todaySchedule = getCloseFor(dow, true, todayIsHoliday, tomorrowIsHoliday);
+  const yesterdaySchedule = getCloseFor(yesterdayDow, false, yesterdayIsHoliday, todayIsHoliday);
 
   let isOpen = false;
   let closesAtMins = null;
@@ -420,6 +500,7 @@ function renderHours() {
 }
 renderHours();
 setInterval(renderHours, 60000);
+loadFeriados();
 
 // ─── language toggle (ES / EN) ───
 const I18N = {
