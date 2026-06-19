@@ -1081,7 +1081,7 @@ body.final-site {
 .final-site .d-nav-logo { height: 48px; }
 
 /* desktop nav links · funcionales, con hover */
-.site-desktop .d-nav-links a {
+.d-nav-links a {
   font-family: var(--font-ui);
   font-weight: 600;
   font-size: 13px;
@@ -1092,7 +1092,7 @@ body.final-site {
   position: relative;
   transition: color .15s ease;
 }
-.site-desktop .d-nav-links a::after {
+.d-nav-links a::after {
   content: "";
   position: absolute;
   left: 0; right: 0;
@@ -1103,18 +1103,35 @@ body.final-site {
   transform-origin: left;
   transition: transform .2s ease;
 }
-.site-desktop .d-nav-links a:hover,
-.site-desktop .d-nav-links a:focus-visible {
+.d-nav-links a:hover,
+.d-nav-links a:focus-visible {
   color: var(--accent, #E63329);
   outline: none;
 }
-.site-desktop .d-nav-links a:hover::after,
-.site-desktop .d-nav-links a:focus-visible::after {
+.d-nav-links a:hover::after,
+.d-nav-links a:focus-visible::after {
   transform: scaleX(1);
 }
 
 /* desktop lang toggle alineado a la derecha */
-.site-desktop .d-lang-toggle { margin-left: auto; }
+.d-lang-toggle { margin-left: auto; }
+
+/* ───── Subpáginas · DESKTOP NAV inline (cumples/eventos/historia) ───── */
+.subpage-d-nav { display: none; }
+
+@media (min-width: 980px) {
+  .final-subpage .subpage-d-nav {
+    display: flex;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    z-index: 50;
+  }
+  .final-subpage .site-mobile .m-nav { display: none; }
+  .final-subpage .site-mobile { padding-top: 100px; }
+  .subpage-d-nav .d-nav-links a.is-current { color: var(--accent, #E63329); }
+  .subpage-d-nav .d-nav-links a.is-current::after { transform: scaleX(1); }
+}
 
 /* desktop FAB sticks to viewport */
 .site-desktop .fab {
