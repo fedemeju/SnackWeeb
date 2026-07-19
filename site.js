@@ -920,6 +920,30 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       },
     },
     {
+      id: 'menu',
+      es: {
+        q: '📖 Ver el menú de comidas',
+        a: '¡Sí! Te paso nuestro menú digital con todos los platos y precios.',
+        cta: { text: 'Ver menú digital →', href: 'https://menu.maxirest.com/408' },
+      },
+      en: {
+        q: '📖 See the food menu',
+        a: 'Sure! Here\'s our digital menu with all dishes and prices.',
+        cta: { text: 'View digital menu →', href: 'https://menu.maxirest.com/408' },
+      },
+    },
+    {
+      id: 'celiacos',
+      es: {
+        q: '🌾 Opciones sin TACC (celíacos)',
+        a: '¡Sí! Tenemos <b>varias opciones para celíacos</b>. Al llegar avisale al mozo/a y te asesoramos con lo apto.',
+      },
+      en: {
+        q: '🌾 Gluten-free options (celiac)',
+        a: 'Yes! We have <b>several gluten-free options</b>. Let your waiter know when you arrive and we\'ll guide you.',
+      },
+    },
+    {
       id: 'cumples',
       es: {
         q: '🎂 Cumples infantiles',
@@ -949,11 +973,19 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       id: 'horarios',
       es: {
         q: '🕐 Horarios de atención',
-        a: '<b>Domingo a Jueves</b> · 08:30 a 02:00<br><b>Viernes y Sábados</b> · 08:30 a 04:00<br><br>Víspera de feriado extiende el cierre a 04:00.',
+        a: () => {
+          const hoy = getCloseHoyLabel();
+          const linea = hoy ? `<b>Hoy</b> estamos abiertos hasta las <b>${hoy}</b>.<br><br>` : '';
+          return `${linea}<b>Domingo a Jueves</b> · 08:30 a 02:00<br><b>Viernes y Sábados</b> · 08:30 a 04:00<br><br><i>Víspera de feriado extiende el cierre a 04:00.</i>`;
+        },
       },
       en: {
         q: '🕐 Opening hours',
-        a: '<b>Sunday to Thursday</b> · 08:30 to 02:00<br><b>Friday & Saturday</b> · 08:30 to 04:00<br><br>Eve of holiday extends closing time to 04:00.',
+        a: () => {
+          const hoy = getCloseHoyLabel();
+          const linea = hoy ? `<b>Today</b> we're open until <b>${hoy}</b>.<br><br>` : '';
+          return `${linea}<b>Sunday to Thursday</b> · 08:30 to 02:00<br><b>Friday & Saturday</b> · 08:30 to 04:00<br><br><i>Eve of holiday extends closing time to 04:00.</i>`;
+        },
       },
     },
     {
@@ -985,6 +1017,22 @@ document.addEventListener('DOMContentLoaded', function initChat() {
   const getLang = () => (window.currentLang === 'en' ? 'en' : 'es');
   const getItem = (id) => QA.find(x => x.id === id);
   const t = () => CHAT_STRINGS[getLang()];
+
+  // Calcula el horario de cierre de hoy usando la misma lógica de renderHours()
+  const getCloseHoyLabel = () => {
+    if (typeof HOURS_SCHEDULE === 'undefined') return null;
+    const now = new Date();
+    const dow = now.getDay();
+    const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+    const todayHoliday = typeof isFeriado === 'function' && isFeriado(now);
+    const tomorrowHoliday = typeof isFeriado === 'function' && isFeriado(tomorrow);
+    const isWeekend = dow === 5 || dow === 6;
+    const tomorrowIsFriSat = ((dow + 1) % 7) === 5 || ((dow + 1) % 7) === 6;
+    let closeMins = HOURS_SCHEDULE[dow]?.close || 1560;
+    if (!isWeekend && (tomorrowHoliday || (todayHoliday && tomorrowIsFriSat))) closeMins = 1680;
+    const m = ((closeMins % 1440) + 1440) % 1440;
+    return `${String(Math.floor(m / 60)).padStart(2,'0')}:${String(m % 60).padStart(2,'0')}`;
+  };
 
   const $ = (tag, cls) => {
     const el = document.createElement(tag);
@@ -1044,7 +1092,8 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     const typing = addTyping();
     setTimeout(() => {
       typing.remove();
-      addMsg('bot', loc.a);
+      const answerText = typeof loc.a === 'function' ? loc.a() : loc.a;
+      addMsg('bot', answerText);
       if (loc.cta) addCta(loc.cta);
       const quicks = $('div', 'ai-chat-quicks');
       const back = $('button', 'ai-chat-quick ai-chat-quick--back');
