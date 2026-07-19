@@ -874,7 +874,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     {
       id: 'reservar',
       q: '🎳 Reservar bowling o pool',
-      a: 'No trabajamos con reserva de pistas · es por <b>orden de llegada</b>.<br><br>Los fines de semana suele haber espera de 20-30 min. Mientras esperás podés comer o tomar algo en el resto.',
+      a: 'No trabajamos con reserva de bowling ni pool · es por <b>orden de llegada</b>.',
     },
     {
       id: 'mesa',
