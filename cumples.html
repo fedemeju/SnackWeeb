@@ -423,32 +423,6 @@ DESCOMENTAR_FIN -->
           </form>
         </section>
 
-        <!-- FAQ -->
-        <section class="cp-faq">
-          <span class="lbl">preguntas frecuentes</span>
-          <h3 class="cp-faq-title">Lo que todos preguntan</h3>
-          <details class="cp-faq-item" open>
-            <summary>¿Cómo reservo el día?</summary>
-            <p>Mandanos un mensaje por WhatsApp con la fecha tentativa y cuántos chicos van. Te confirmamos disponibilidad y reservamos con seña.</p>
-          </details>
-          <details class="cp-faq-item">
-            <summary>¿Hay opciones sin TACC?</summary>
-            <p>Sí. Avisanos al reservar cuántos chicos lo necesitan y armamos el menú adaptado.</p>
-          </details>
-          <details class="cp-faq-item">
-            <summary>¿Puedo traer torta?</summary>
-            <p>¡Por supuesto! Vos traés la torta y nosotros nos encargamos del resto.</p>
-          </details>
-          <details class="cp-faq-item">
-            <summary>¿Y si llegamos a 14 chicos?</summary>
-            <p>El mínimo es 15. Si son menos, igual escribinos y vemos cómo armarlo.</p>
-          </details>
-          <details class="cp-faq-item">
-            <summary>¿Adultos pueden comer?</summary>
-            <p>Sí, los adultos eligen a la carta del restaurante Ristrel. No están incluidos en el paquete kids.</p>
-          </details>
-        </section>
-
         <!-- FOOTER -->
         <div class="m-footer m-footer--dir1">
           <div class="footer-hours" data-hours></div>
@@ -470,10 +444,12 @@ DESCOMENTAR_FIN -->
 
 <script src="site.js"></script>
 
-<!-- ═══ CHAT ASISTENTE ═══ -->
-<div class="ai-chat" data-chat data-chat-state="closed">
+<!-- ═══ CHAT ASISTENTE (contexto CUMPLES) ═══ -->
+<div class="ai-chat ai-chat--cumples" data-chat data-chat-state="closed" data-chat-context="cumples">
+  <span class="ai-chat-hint" data-chat-hint>¿Dudas sobre el cumple? 🎂</span>
   <button class="ai-chat-launcher" data-chat-toggle type="button" aria-label="Abrir chat de ayuda">
-    <svg class="ai-chat-launcher-icon ai-chat-launcher-icon--closed" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <img class="ai-chat-launcher-icon ai-chat-launcher-icon--closed ai-chat-launcher-img" src="assets/chat-cumples.webp" alt="" aria-hidden="true" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <svg class="ai-chat-launcher-icon ai-chat-launcher-icon--closed ai-chat-launcher-fallback" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none">
       <path d="M12 2C6.48 2 2 6.03 2 11c0 2.38 1.19 4.47 3 6l-.66 3.6c-.1.44.35.79.75.6L8.5 20c1.09.42 2.27.65 3.5.65 5.52 0 10-4.03 10-9s-4.48-9-10-9zM7.5 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4.5 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4.5 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
     </svg>
     <svg class="ai-chat-launcher-icon ai-chat-launcher-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">

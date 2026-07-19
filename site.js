@@ -879,22 +879,136 @@ document.addEventListener('DOMContentLoaded', function initChat() {
   const waLink = root.querySelector('[data-chat-wa]');
   const WA_BASE = 'https://api.whatsapp.com/send?phone=+541168225209&text=';
 
+  const CHAT_CONTEXT = root.getAttribute('data-chat-context') || 'general';
+
   const CHAT_STRINGS = {
     es: {
-      greet: '¡Hola! 👋 Soy el asistente del <b>Snack</b>. ¿En qué te puedo ayudar?',
+      greet: CHAT_CONTEXT === 'cumples'
+        ? '¡Hola! 🎂 ¿Tenés dudas sobre los cumples? Elegí una consulta.'
+        : '¡Hola! 👋 Soy el asistente del <b>Snack</b>. ¿En qué te puedo ayudar?',
       back: '← Otra consulta',
       waPrefix: 'Hola! Tengo una consulta sobre: ',
-      waDefault: 'Hola, les estoy hablando desde la web!',
+      waDefault: CHAT_CONTEXT === 'cumples'
+        ? '¡Hola! Quiero info de cumples infantiles.'
+        : 'Hola, les estoy hablando desde la web!',
     },
     en: {
       greet: 'Hi! 👋 I\'m <b>Snack</b>\'s assistant. How can I help?',
       back: '← Another question',
       waPrefix: 'Hi! I have a question about: ',
-      waDefault: 'Hi, I\'m contacting you from your website!',
+      waDefault: CHAT_CONTEXT === 'cumples'
+        ? 'Hi! I\'d like info about kids birthday parties.'
+        : 'Hi, I\'m contacting you from your website!',
     },
   };
 
-  const QA = [
+  const QA_CUMPLES = [
+    {
+      id: 'reservar-cumple',
+      es: {
+        q: '📅 ¿Cómo reservo el día?',
+        a: 'Mandanos un WhatsApp con la <b>fecha tentativa</b> y cuántos chicos van. Te confirmamos disponibilidad y reservamos con seña.',
+      },
+      en: {
+        q: '📅 How do I book the day?',
+        a: 'Send us a WhatsApp with the <b>tentative date</b> and number of kids. We confirm availability and reserve with a deposit.',
+      },
+    },
+    {
+      id: 'precio',
+      es: {
+        q: '💰 ¿Cuánto sale? / Cotización',
+        a: 'Completá el <b>cotizador</b> con paquete, fecha y cantidad de chicos — te respondemos con el detalle y precio.',
+        cta: { text: 'Cotizar ↓', href: '#cotizador' },
+      },
+      en: {
+        q: '💰 How much? / Quote',
+        a: 'Fill out the <b>quote form</b> with the package, date and number of kids — we\'ll reply with details and pricing.',
+        cta: { text: 'Get a quote ↓', href: '#cotizador' },
+      },
+    },
+    {
+      id: 'incluye',
+      es: {
+        q: '🎁 ¿Qué incluye el paquete?',
+        a: 'Ambos paquetes incluyen <b>bowling con tiros libres</b>, comida a elección, bebida libre, regalo e invitaciones.<br><br>El <b>FULL</b> suma trofeos, medallas, entrada de snacks y cuponera con sorpresas.',
+      },
+      en: {
+        q: '🎁 What\'s in the package?',
+        a: 'Both packages include <b>bowling with free throws</b>, food, unlimited drinks, gift and invitations.<br><br>The <b>FULL</b> adds trophies, medals, snacks entry and a surprise coupon book.',
+      },
+    },
+    {
+      id: 'torta',
+      es: {
+        q: '🍰 ¿Puedo traer torta?',
+        a: '¡Por supuesto! Vos traés la torta y nosotros nos encargamos del resto.',
+      },
+      en: {
+        q: '🍰 Can I bring my own cake?',
+        a: 'Of course! You bring the cake and we handle everything else.',
+      },
+    },
+    {
+      id: 'minimo',
+      es: {
+        q: '👥 ¿Y si son menos de 15 chicos?',
+        a: 'El mínimo es <b>15 chicos</b>. Si son menos, igual escribinos y vemos cómo armarlo.',
+      },
+      en: {
+        q: '👥 What if we\'re under 15 kids?',
+        a: 'Minimum is <b>15 kids</b>. If you have fewer, message us anyway and we\'ll figure it out.',
+      },
+    },
+    {
+      id: 'celiaco-cumple',
+      es: {
+        q: '🌾 ¿Opciones sin TACC?',
+        a: '¡Sí! Avisanos al reservar cuántos chicos lo necesitan y armamos el <b>menú apto celíaco</b>.',
+      },
+      en: {
+        q: '🌾 Gluten-free options?',
+        a: 'Yes! Let us know how many kids need it when you book and we\'ll prep a <b>gluten-free menu</b>.',
+      },
+    },
+    {
+      id: 'adultos-cumple',
+      es: {
+        q: '🍔 ¿Adultos pueden comer?',
+        a: 'Sí, los adultos eligen a la carta del <b>restaurante Ristrel</b>. No están incluidos en el paquete kids.',
+      },
+      en: {
+        q: '🍔 Can adults eat too?',
+        a: 'Yes, adults order from the <b>Ristrel restaurant</b> menu. Not included in the kids package.',
+      },
+    },
+    {
+      id: 'edad-cumple',
+      es: {
+        q: '🎳 ¿Qué edad para el bowling?',
+        a: 'Los paquetes de cumples son para chicos de <b>6 a 13 años</b>.',
+      },
+      en: {
+        q: '🎳 What age for bowling parties?',
+        a: 'Birthday packages are for kids <b>6 to 13 years old</b>.',
+      },
+    },
+    {
+      id: 'ubicacion-cumple',
+      es: {
+        q: '📍 Dónde estamos + estacionamiento',
+        a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>Contamos con <b>estacionamiento propio</b> para más de 10 autos.',
+        cta: { text: 'Ver en Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
+      },
+      en: {
+        q: '📍 Where we are + parking',
+        a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>We have our own <b>parking</b> for more than 10 cars.',
+        cta: { text: 'View on Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
+      },
+    },
+  ];
+
+  const QA_GENERAL = [
     {
       id: 'reservar',
       es: {
@@ -1013,6 +1127,8 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       },
     },
   ];
+
+  const QA = CHAT_CONTEXT === 'cumples' ? QA_CUMPLES : QA_GENERAL;
 
   const getLang = () => (window.currentLang === 'en' ? 'en' : 'es');
   const getItem = (id) => QA.find(x => x.id === id);
@@ -1143,4 +1259,27 @@ document.addEventListener('DOMContentLoaded', function initChat() {
   try {
     if (localStorage.getItem('chat-visited')) root.setAttribute('data-chat-visited', 'true');
   } catch (_) {}
+
+  // Hint tooltip · aparece a los 3s (solo en contexto cumples · solo primera visita)
+  const hint = root.querySelector('[data-chat-hint]');
+  if (hint && CHAT_CONTEXT === 'cumples') {
+    let hintShown = false;
+    try { hintShown = !!localStorage.getItem('chat-hint-shown-cumples'); } catch (_) {}
+    if (!hintShown) {
+      setTimeout(() => {
+        if (root.getAttribute('data-chat-state') !== 'open') {
+          root.setAttribute('data-chat-hint-visible', 'true');
+        }
+      }, 3000);
+      setTimeout(() => {
+        root.removeAttribute('data-chat-hint-visible');
+        try { localStorage.setItem('chat-hint-shown-cumples', '1'); } catch (_) {}
+      }, 12000);
+    }
+    // Cerrar hint al abrir chat
+    toggles.forEach(btn => btn.addEventListener('click', () => {
+      root.removeAttribute('data-chat-hint-visible');
+      try { localStorage.setItem('chat-hint-shown-cumples', '1'); } catch (_) {}
+    }));
+  }
 });
