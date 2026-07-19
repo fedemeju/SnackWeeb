@@ -879,7 +879,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     {
       id: 'mesa',
       q: '🍽️ Reservar mesa (cena/almuerzo)',
-      a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.<br><br>Los fines de semana y feriados conviene reservar hasta las <b>21:30</b>.',
+      a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.',
       cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
     },
     {
@@ -903,7 +903,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       id: 'ubicacion',
       q: '📍 Dónde estamos + estacionamiento',
       a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>Contamos con <b>estacionamiento propio</b> para más de 10 autos.',
-      cta: { text: 'Ver en Google Maps →', href: 'https://maps.app.goo.gl/nyfsJhSm1ubgSjZL7' },
+      cta: { text: 'Ver en Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
     },
     {
       id: 'pelotero',
