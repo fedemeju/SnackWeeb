@@ -1325,3 +1325,114 @@ body.final-site {
   right: 16px;
   margin: 0;
 }
+
+/* ───── FAQ SECTION ───── */
+.faq-section {
+  padding: 48px 20px 32px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.faq-head .lbl {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3, #837a68);
+  margin-bottom: 8px;
+}
+.faq-head h2 {
+  margin: 0;
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.faq-item {
+  background: var(--paper-2, #fdfbf3);
+  border: 1px solid rgba(20, 17, 13, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.faq-item[open] {
+  border-color: rgba(20, 17, 13, 0.16);
+  box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.12);
+}
+.faq-item summary {
+  cursor: pointer;
+  padding: 16px 44px 16px 18px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink, #14110d);
+  list-style: none;
+  position: relative;
+  transition: background 0.15s ease;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "＋";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--accent, #E63329);
+  transition: transform 0.2s ease;
+  line-height: 1;
+}
+.faq-item[open] summary::after {
+  content: "−";
+  transform: translateY(-50%) rotate(180deg);
+}
+.faq-item summary:hover {
+  background: rgba(230, 51, 41, 0.04);
+}
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent, #E63329);
+  outline-offset: -2px;
+}
+.faq-body {
+  padding: 0 18px 18px;
+  font-family: var(--font-body, system-ui);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2, #4a4238);
+}
+.faq-body p { margin: 0; }
+.faq-body a {
+  color: var(--accent, #E63329);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(230, 51, 41, 0.4);
+  transition: border-color 0.15s ease;
+}
+.faq-body a:hover { border-color: var(--accent, #E63329); }
+
+@media (min-width: 980px) {
+  .faq-section {
+    padding: 72px 40px 56px;
+    max-width: 880px;
+  }
+  .faq-item summary {
+    padding: 20px 52px 20px 24px;
+    font-size: 17px;
+  }
+  .faq-item summary::after {
+    right: 22px;
+    font-size: 24px;
+  }
+  .faq-body {
+    padding: 0 24px 22px;
+    font-size: 15.5px;
+  }
+}

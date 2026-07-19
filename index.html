@@ -131,6 +131,51 @@
 }
 </script>
 
+<!-- JSON-LD: FAQ para rich snippets en Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Se puede reservar el bowling o el pool?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, ambos son por orden de llegada." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo reservar mesa para cenar o almorzar?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, reservá al 4792-8009." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hacen eventos empresariales?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, tenemos paquetes para after office, despedidas y corporativos." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hacen cumples infantiles?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, para chicos de 6 a 13 años." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen estacionamiento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, estacionamiento propio para más de 10 autos." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen pelotero para chicos?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, para los más peques de 4 a 7 años." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son los horarios de atención?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Domingo a Jueves de 08:30 a 02:00. Viernes y Sábados hasta las 04:00." }
+    }
+  ]
+}
+</script>
+
 <!--
   Google Analytics 4 · INSTRUCCIONES PARA ACTIVAR:
   1. Crear cuenta GA4: https://analytics.google.com/  →  Admin  →  Crear propiedad
@@ -528,6 +573,44 @@ DESCOMENTAR_FIN -->
             <div class="m-cta"><a href="/historia" class="btn btn--historia">HISTORIA COMPLETA →</a></div>
           </div>
 
+          <!-- FAQ -->
+          <section class="faq-section" id="faq">
+            <div class="faq-head">
+              <span class="lbl">preguntas frecuentes</span>
+              <h2 class="m-h2">Lo que todos preguntan</h2>
+            </div>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>¿Se puede reservar el bowling o el pool?</summary>
+                <div class="faq-body"><p>No · ambos son por orden de llegada.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Puedo reservar mesa para cenar o almorzar?</summary>
+                <div class="faq-body"><p>Sí · reservá al <a href="tel:+541147928009">4792-8009</a>.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Hacen eventos empresariales?</summary>
+                <div class="faq-body"><p>Sí · after office, corporativos y despedidas. <a href="/eventos">Ver paquetes →</a></p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Hacen cumples infantiles?</summary>
+                <div class="faq-body"><p>Sí · para chicos de 6 a 13 años. <a href="/cumples">Ver paquetes →</a></p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Tienen estacionamiento?</summary>
+                <div class="faq-body"><p>Sí · estacionamiento propio para más de 10 autos.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Tienen pelotero para chicos?</summary>
+                <div class="faq-body"><p>Sí · para los más peques, de 4 a 7 años.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Cuáles son los horarios?</summary>
+                <div class="faq-body"><p>Domingo a Jueves · 08:30 a 02:00.<br>Viernes y Sábados · 08:30 a 04:00.</p></div>
+              </details>
+            </div>
+          </section>
+
           <!-- GALERIA -->
           <section class="gallery-section" id="galeria">
             <div class="gallery-head">
@@ -892,6 +975,44 @@ DESCOMENTAR_FIN -->
               </div>
             </div>
           </div>
+
+          <!-- FAQ -->
+          <section class="faq-section">
+            <div class="faq-head">
+              <span class="lbl">preguntas frecuentes</span>
+              <h2 class="d-h2">Lo que todos preguntan</h2>
+            </div>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>¿Se puede reservar el bowling o el pool?</summary>
+                <div class="faq-body"><p>No · ambos son por orden de llegada.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Puedo reservar mesa para cenar o almorzar?</summary>
+                <div class="faq-body"><p>Sí · reservá al <a href="tel:+541147928009">4792-8009</a>.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Hacen eventos empresariales?</summary>
+                <div class="faq-body"><p>Sí · after office, corporativos y despedidas. <a href="/eventos">Ver paquetes →</a></p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Hacen cumples infantiles?</summary>
+                <div class="faq-body"><p>Sí · para chicos de 6 a 13 años. <a href="/cumples">Ver paquetes →</a></p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Tienen estacionamiento?</summary>
+                <div class="faq-body"><p>Sí · estacionamiento propio para más de 10 autos.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Tienen pelotero para chicos?</summary>
+                <div class="faq-body"><p>Sí · para los más peques, de 4 a 7 años.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>¿Cuáles son los horarios?</summary>
+                <div class="faq-body"><p>Domingo a Jueves · 08:30 a 02:00.<br>Viernes y Sábados · 08:30 a 04:00.</p></div>
+              </details>
+            </div>
+          </section>
 
           <!-- GALERIA -->
           <section class="gallery-section">
