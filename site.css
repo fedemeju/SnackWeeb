@@ -1794,7 +1794,7 @@ body.final-site {
 .ai-chat-wa:hover { background: var(--chat-accent-dark); }
 .ai-chat-wa svg { width: 18px; height: 18px; }
 
-/* ─── Responsive · MOBILE bottom sheet ─── */
+/* ─── Responsive · MOBILE (panel flotante, no full-width) ─── */
 @media (max-width: 520px) {
   .ai-chat-launcher {
     bottom: 16px;
@@ -1803,20 +1803,30 @@ body.final-site {
     height: 56px;
   }
   .ai-chat-panel {
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: min(85vh, 620px);
-    max-height: none;
-    border-radius: 22px 22px 0 0;
-    transform-origin: bottom center;
+    right: 12px;
+    left: auto;
+    bottom: 84px;
+    width: min(360px, 82vw);
+    height: min(78vh, 560px);
+    max-height: calc(100vh - 110px);
+    border-radius: 22px;
+    transform-origin: bottom right;
   }
   .ai-chat[data-chat-state="open"] .ai-chat-launcher {
-    /* en mobile con panel abierto ocultamos el launcher para no estorbar */
-    opacity: 0;
-    pointer-events: none;
+    /* con panel de 82vw el launcher queda debajo, no molesta · lo dejamos visible como toggle */
+    opacity: 1;
+    pointer-events: auto;
   }
+}
+
+/* Panel más chico y compacto en pantallas muy angostas */
+@media (max-width: 380px) {
+  .ai-chat-panel {
+    width: 86vw;
+    height: 76vh;
+  }
+  .ai-chat-bubble { font-size: 13.5px; }
+  .ai-chat-quick { font-size: 13px; padding: 9px 12px; }
 }
 
 /* Sticky bar del sitio · dejar espacio si convive */
