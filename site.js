@@ -857,3 +857,162 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
     window.open(url, '_blank', 'noopener');
   });
 });
+
+// ═══════════════════════════════════════════════════════════════
+// CHAT ASISTENTE · quick-reply widget
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function initChat() {
+  const root = document.querySelector('[data-chat]');
+  if (!root) return;
+
+  const body = root.querySelector('[data-chat-body]');
+  const toggles = root.querySelectorAll('[data-chat-toggle]');
+  const waLink = root.querySelector('[data-chat-wa]');
+  const WA_BASE = 'https://api.whatsapp.com/send?phone=+541168225209&text=';
+
+  const QA = [
+    {
+      id: 'reservar',
+      q: '🎳 Reservar bowling o pool',
+      a: 'No trabajamos con reserva de pistas · es por <b>orden de llegada</b>.<br><br>Los fines de semana suele haber espera de 20-30 min. Mientras esperás podés comer o tomar algo en el resto.',
+    },
+    {
+      id: 'mesa',
+      q: '🍽️ Reservar mesa (cena/almuerzo)',
+      a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.<br><br>Los fines de semana y feriados conviene reservar con 2-3 días de anticipación.',
+      cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
+    },
+    {
+      id: 'cumples',
+      q: '🎂 Cumples infantiles',
+      a: 'Sí, paquetes para chicos de <b>6 a 13 años</b>. Incluyen pistas de bowling, comida y bebida.<br><br>Mínimo 15 chicos.',
+      cta: { text: 'Ver paquetes y cotizar →', href: '/cumples' },
+    },
+    {
+      id: 'eventos',
+      q: '💼 Eventos y empresas',
+      a: 'After office, despedidas, corporativos y cumples adultos.<br><br>3 paquetes gastronómicos para <b>10 a 180 personas</b>.',
+      cta: { text: 'Ver paquetes y cotizar →', href: '/eventos' },
+    },
+    {
+      id: 'horarios',
+      q: '🕐 Horarios de atención',
+      a: '<b>Domingo a Jueves</b> · 08:30 a 02:00<br><b>Viernes y Sábados</b> · 08:30 a 04:00<br><br>Víspera de feriado extiende el cierre a 04:00.',
+    },
+    {
+      id: 'ubicacion',
+      q: '📍 Dónde estamos + estacionamiento',
+      a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>Contamos con <b>estacionamiento propio</b> para más de 10 autos.',
+      cta: { text: 'Ver en Google Maps →', href: 'https://maps.app.goo.gl/nyfsJhSm1ubgSjZL7' },
+    },
+    {
+      id: 'pelotero',
+      q: '👶 Pelotero para los chicos',
+      a: 'Sí, tenemos peloteros para los más peques (<b>4 a 7 años</b>).<br><br>Libre para clientes del restaurante.',
+    },
+  ];
+
+  const $ = (tag, cls) => {
+    const el = document.createElement(tag);
+    if (cls) el.className = cls;
+    return el;
+  };
+
+  const scrollToBottom = () => {
+    body.scrollTop = body.scrollHeight;
+  };
+
+  const addMsg = (side, html, extraClass) => {
+    const msg = $('div', 'ai-chat-msg ai-chat-msg--' + side + (extraClass ? ' ' + extraClass : ''));
+    const bubble = $('div', 'ai-chat-bubble');
+    bubble.innerHTML = html;
+    msg.appendChild(bubble);
+    body.appendChild(msg);
+    scrollToBottom();
+    return msg;
+  };
+
+  const addTyping = () => addMsg('bot', '<span></span><span></span><span></span>', 'ai-chat-typing');
+
+  const addCta = (cta, parentMsg) => {
+    const wrap = $('div', 'ai-chat-cta');
+    const a = document.createElement('a');
+    a.href = cta.href;
+    a.textContent = cta.text;
+    if (cta.href.startsWith('http') || cta.href.startsWith('/')) {
+      if (cta.href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+    }
+    wrap.appendChild(a);
+    parentMsg.appendChild(wrap);
+    scrollToBottom();
+  };
+
+  const renderMenu = () => {
+    body.innerHTML = '';
+    addMsg('bot', '¡Hola! 👋 Soy el asistente del <b>Snack</b>. ¿En qué te puedo ayudar?');
+    const quicks = $('div', 'ai-chat-quicks');
+    QA.forEach(item => {
+      const btn = $('button', 'ai-chat-quick');
+      btn.type = 'button';
+      btn.textContent = item.q;
+      btn.addEventListener('click', () => showAnswer(item));
+      quicks.appendChild(btn);
+    });
+    body.appendChild(quicks);
+    scrollToBottom();
+  };
+
+  const showAnswer = (item) => {
+    // Mensaje del user
+    addMsg('user', item.q);
+    // Typing indicator, luego respuesta
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      const msg = addMsg('bot', item.a);
+      if (item.cta) addCta(item.cta, msg);
+      // Botón para volver al menú
+      const quicks = $('div', 'ai-chat-quicks');
+      const back = $('button', 'ai-chat-quick ai-chat-quick--back');
+      back.type = 'button';
+      back.textContent = '← Otra consulta';
+      back.addEventListener('click', renderMenu);
+      quicks.appendChild(back);
+      body.appendChild(quicks);
+      scrollToBottom();
+      // Actualizar link de WhatsApp con contexto de la consulta
+      if (waLink) {
+        waLink.href = WA_BASE + encodeURIComponent('Hola! Tengo una consulta sobre: ' + item.q.replace(/^[^\s]+\s/, ''));
+      }
+    }, 650);
+  };
+
+  const openChat = () => {
+    root.setAttribute('data-chat-state', 'open');
+    root.setAttribute('data-chat-visited', 'true');
+    try { localStorage.setItem('chat-visited', '1'); } catch (_) {}
+    if (!body.children.length) renderMenu();
+  };
+
+  const closeChat = () => {
+    root.setAttribute('data-chat-state', 'closed');
+    if (waLink) waLink.href = WA_BASE + encodeURIComponent('Hola, les estoy hablando desde la web!');
+  };
+
+  const toggle = () => {
+    if (root.getAttribute('data-chat-state') === 'open') closeChat();
+    else openChat();
+  };
+
+  toggles.forEach(t => t.addEventListener('click', toggle));
+
+  // ESC cierra
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && root.getAttribute('data-chat-state') === 'open') closeChat();
+  });
+
+  // Ocultar pulse si el user ya visitó una vez
+  try {
+    if (localStorage.getItem('chat-visited')) root.setAttribute('data-chat-visited', 'true');
+  } catch (_) {}
+});
