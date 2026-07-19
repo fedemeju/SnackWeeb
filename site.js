@@ -515,6 +515,10 @@ const I18N = {
     'eventos': 'events',
     'línea de tiempo': 'timeline',
     'contacto': 'contact',
+    'En línea': 'Online',
+    'Escribir directo por WhatsApp': 'Message us on WhatsApp',
+    'Abrir chat de ayuda': 'Open help chat',
+    'Cerrar chat': 'Close chat',
     'Cuatro mundos': 'Four worlds',
     'bajo un techo': 'under one roof',
     'Eventos': 'Events',
@@ -766,10 +770,15 @@ const I18N = {
 };
 
 let currentLang = 'es';
+window.currentLang = currentLang;
 
 function applyLang(lang) {
   currentLang = lang;
+  window.currentLang = lang;
   document.documentElement.lang = lang;
+  // Reset chat si está en el DOM (para traducir preguntas/respuestas dinámicas)
+  const chatRoot = document.querySelector('[data-chat]');
+  if (chatRoot && chatRoot._chatReset) chatRoot._chatReset();
 
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
@@ -870,47 +879,112 @@ document.addEventListener('DOMContentLoaded', function initChat() {
   const waLink = root.querySelector('[data-chat-wa]');
   const WA_BASE = 'https://api.whatsapp.com/send?phone=+541168225209&text=';
 
+  const CHAT_STRINGS = {
+    es: {
+      greet: '¡Hola! 👋 Soy el asistente del <b>Snack</b>. ¿En qué te puedo ayudar?',
+      back: '← Otra consulta',
+      waPrefix: 'Hola! Tengo una consulta sobre: ',
+      waDefault: 'Hola, les estoy hablando desde la web!',
+    },
+    en: {
+      greet: 'Hi! 👋 I\'m <b>Snack</b>\'s assistant. How can I help?',
+      back: '← Another question',
+      waPrefix: 'Hi! I have a question about: ',
+      waDefault: 'Hi, I\'m contacting you from your website!',
+    },
+  };
+
   const QA = [
     {
       id: 'reservar',
-      q: '🎳 Reservar bowling o pool',
-      a: 'No trabajamos con reserva de bowling ni pool · es por <b>orden de llegada</b>.',
+      es: {
+        q: '🎳 Reservar bowling o pool',
+        a: 'No trabajamos con reserva de bowling ni pool · es por <b>orden de llegada</b>.',
+      },
+      en: {
+        q: '🎳 Reserve bowling or pool',
+        a: 'We don\'t take bowling or pool reservations · it\'s <b>first come, first served</b>.',
+      },
     },
     {
       id: 'mesa',
-      q: '🍽️ Reservar mesa (cena/almuerzo)',
-      a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.',
-      cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
+      es: {
+        q: '🍽️ Reservar mesa (cena/almuerzo)',
+        a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.',
+        cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
+      },
+      en: {
+        q: '🍽️ Book a table (lunch/dinner)',
+        a: 'Yes, we take reservations for meals. Call us at <b>4792-8009</b>.',
+        cta: { text: '📞 Call 4792-8009', href: 'tel:+541147928009' },
+      },
     },
     {
       id: 'cumples',
-      q: '🎂 Cumples infantiles',
-      a: 'Sí, tenemos paquetes para chicos de <b>6 a 13 años</b>. Incluye bowling, comida y bebida.',
-      cta: { text: 'Ver paquetes y cotizar →', href: '/cumples' },
+      es: {
+        q: '🎂 Cumples infantiles',
+        a: 'Sí, tenemos paquetes para chicos de <b>6 a 13 años</b>. Incluye bowling, comida y bebida.',
+        cta: { text: 'Ver paquetes y cotizar →', href: '/cumples' },
+      },
+      en: {
+        q: '🎂 Kids birthday parties',
+        a: 'Yes, we have packages for kids <b>6 to 13 years old</b>. Includes bowling, food and drinks.',
+        cta: { text: 'View packages & quote →', href: '/cumples' },
+      },
     },
     {
       id: 'eventos',
-      q: '💼 Eventos y empresas',
-      a: '¡Sí, realizamos eventos! After office, despedidas, corporativos y cumples adultos.<br><br>Tenemos <b>3 paquetes</b> para 10 a 180 personas.',
-      cta: { text: 'Ver paquetes y cotizar →', href: '/eventos' },
+      es: {
+        q: '💼 Eventos y empresas',
+        a: '¡Sí, realizamos eventos! After office, despedidas, corporativos y cumples adultos.<br><br>Tenemos <b>3 paquetes</b> para 10 a 180 personas.',
+        cta: { text: 'Ver paquetes y cotizar →', href: '/eventos' },
+      },
+      en: {
+        q: '💼 Events & companies',
+        a: 'Yes, we host events! After office, farewell parties, corporate events and adult birthdays.<br><br>We have <b>3 packages</b> for 10 to 180 people.',
+        cta: { text: 'View packages & quote →', href: '/eventos' },
+      },
     },
     {
       id: 'horarios',
-      q: '🕐 Horarios de atención',
-      a: '<b>Domingo a Jueves</b> · 08:30 a 02:00<br><b>Viernes y Sábados</b> · 08:30 a 04:00<br><br>Víspera de feriado extiende el cierre a 04:00.',
+      es: {
+        q: '🕐 Horarios de atención',
+        a: '<b>Domingo a Jueves</b> · 08:30 a 02:00<br><b>Viernes y Sábados</b> · 08:30 a 04:00<br><br>Víspera de feriado extiende el cierre a 04:00.',
+      },
+      en: {
+        q: '🕐 Opening hours',
+        a: '<b>Sunday to Thursday</b> · 08:30 to 02:00<br><b>Friday & Saturday</b> · 08:30 to 04:00<br><br>Eve of holiday extends closing time to 04:00.',
+      },
     },
     {
       id: 'ubicacion',
-      q: '📍 Dónde estamos + estacionamiento',
-      a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>Contamos con <b>estacionamiento propio</b> para más de 10 autos.',
-      cta: { text: 'Ver en Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
+      es: {
+        q: '📍 Dónde estamos + estacionamiento',
+        a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>Contamos con <b>estacionamiento propio</b> para más de 10 autos.',
+        cta: { text: 'Ver en Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
+      },
+      en: {
+        q: '📍 Where we are + parking',
+        a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>We have our own <b>parking</b> for more than 10 cars.',
+        cta: { text: 'View on Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
+      },
     },
     {
       id: 'pelotero',
-      q: '👶 Pelotero para los chicos',
-      a: 'Sí, tenemos pelotero para los más peques (<b>4 a 7 años</b>).<br><br>Libre para clientes del restaurante.',
+      es: {
+        q: '👶 Pelotero para los chicos',
+        a: 'Sí, tenemos pelotero para los más peques (<b>4 a 7 años</b>).<br><br>Libre para clientes del restaurante.',
+      },
+      en: {
+        q: '👶 Ball pit for kids',
+        a: 'Yes, we have a ball pit for the little ones (<b>4 to 7 years old</b>).<br><br>Free for restaurant customers.',
+      },
     },
   ];
+
+  const getLang = () => (window.currentLang === 'en' ? 'en' : 'es');
+  const getItem = (id) => QA.find(x => x.id === id);
+  const t = () => CHAT_STRINGS[getLang()];
 
   const $ = (tag, cls) => {
     const el = document.createElement(tag);
@@ -949,42 +1023,48 @@ document.addEventListener('DOMContentLoaded', function initChat() {
 
   const renderMenu = () => {
     body.innerHTML = '';
-    addMsg('bot', '¡Hola! 👋 Soy el asistente del <b>Snack</b>. ¿En qué te puedo ayudar?');
+    const lang = getLang();
+    addMsg('bot', t().greet);
     const quicks = $('div', 'ai-chat-quicks');
     QA.forEach(item => {
       const btn = $('button', 'ai-chat-quick');
       btn.type = 'button';
-      btn.textContent = item.q;
-      btn.addEventListener('click', () => showAnswer(item));
+      btn.textContent = item[lang].q;
+      btn.addEventListener('click', () => showAnswer(item.id));
       quicks.appendChild(btn);
     });
     body.appendChild(quicks);
     scrollToBottom();
   };
 
-  const showAnswer = (item) => {
-    // Mensaje del user
-    addMsg('user', item.q);
-    // Typing indicator, luego respuesta
+  const showAnswer = (id) => {
+    const item = getItem(id);
+    const lang = getLang();
+    const loc = item[lang];
+    addMsg('user', loc.q);
     const typing = addTyping();
     setTimeout(() => {
       typing.remove();
-      const msg = addMsg('bot', item.a);
-      if (item.cta) addCta(item.cta, msg);
-      // Botón para volver al menú
+      const msg = addMsg('bot', loc.a);
+      if (loc.cta) addCta(loc.cta, msg);
       const quicks = $('div', 'ai-chat-quicks');
       const back = $('button', 'ai-chat-quick ai-chat-quick--back');
       back.type = 'button';
-      back.textContent = '← Otra consulta';
+      back.textContent = t().back;
       back.addEventListener('click', renderMenu);
       quicks.appendChild(back);
       body.appendChild(quicks);
       scrollToBottom();
-      // Actualizar link de WhatsApp con contexto de la consulta
       if (waLink) {
-        waLink.href = WA_BASE + encodeURIComponent('Hola! Tengo una consulta sobre: ' + item.q.replace(/^[^\s]+\s/, ''));
+        waLink.href = WA_BASE + encodeURIComponent(t().waPrefix + loc.q.replace(/^[^\s]+\s/, ''));
       }
     }, 650);
+  };
+
+  // Exponer renderMenu para re-render cuando cambia el idioma
+  root._chatReset = () => {
+    if (body.children.length) renderMenu();
+    if (waLink) waLink.href = WA_BASE + encodeURIComponent(t().waDefault);
   };
 
   const openChat = () => {
@@ -996,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
 
   const closeChat = () => {
     root.setAttribute('data-chat-state', 'closed');
-    if (waLink) waLink.href = WA_BASE + encodeURIComponent('Hola, les estoy hablando desde la web!');
+    if (waLink) waLink.href = WA_BASE + encodeURIComponent(t().waDefault);
   };
 
   const toggle = () => {
@@ -1004,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     else openChat();
   };
 
-  toggles.forEach(t => t.addEventListener('click', toggle));
+  toggles.forEach(btn => btn.addEventListener('click', toggle));
 
   // ESC cierra
   document.addEventListener('keydown', (e) => {
