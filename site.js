@@ -879,19 +879,19 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     {
       id: 'mesa',
       q: '🍽️ Reservar mesa (cena/almuerzo)',
-      a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.<br><br>Los fines de semana y feriados conviene reservar con 2-3 días de anticipación.',
+      a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.<br><br>Los fines de semana y feriados conviene reservar hasta las <b>21:30</b>.',
       cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
     },
     {
       id: 'cumples',
       q: '🎂 Cumples infantiles',
-      a: 'Sí, paquetes para chicos de <b>6 a 13 años</b>. Incluyen pistas de bowling, comida y bebida.<br><br>Mínimo 15 chicos.',
+      a: 'Sí, tenemos paquetes para chicos de <b>6 a 13 años</b>. Incluye bowling, comida y bebida.',
       cta: { text: 'Ver paquetes y cotizar →', href: '/cumples' },
     },
     {
       id: 'eventos',
       q: '💼 Eventos y empresas',
-      a: 'After office, despedidas, corporativos y cumples adultos.<br><br>3 paquetes gastronómicos para <b>10 a 180 personas</b>.',
+      a: '¡Sí, realizamos eventos! After office, despedidas, corporativos y cumples adultos.<br><br>Tenemos <b>3 paquetes</b> para 10 a 180 personas.',
       cta: { text: 'Ver paquetes y cotizar →', href: '/eventos' },
     },
     {
@@ -908,7 +908,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     {
       id: 'pelotero',
       q: '👶 Pelotero para los chicos',
-      a: 'Sí, tenemos peloteros para los más peques (<b>4 a 7 años</b>).<br><br>Libre para clientes del restaurante.',
+      a: 'Sí, tenemos pelotero para los más peques (<b>4 a 7 años</b>).<br><br>Libre para clientes del restaurante.',
     },
   ];
 
