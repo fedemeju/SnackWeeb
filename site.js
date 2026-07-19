@@ -1008,16 +1008,15 @@ document.addEventListener('DOMContentLoaded', function initChat() {
 
   const addTyping = () => addMsg('bot', '<span></span><span></span><span></span>', 'ai-chat-typing');
 
-  const addCta = (cta, parentMsg) => {
+  const addCta = (cta) => {
+    // El CTA se agrega como HERMANO del mensaje, no dentro (evita conflictos de flex)
     const wrap = $('div', 'ai-chat-cta');
     const a = document.createElement('a');
     a.href = cta.href;
     a.textContent = cta.text;
-    if (cta.href.startsWith('http') || cta.href.startsWith('/')) {
-      if (cta.href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
-    }
+    if (cta.href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
     wrap.appendChild(a);
-    parentMsg.appendChild(wrap);
+    body.appendChild(wrap);
     scrollToBottom();
   };
 
@@ -1045,8 +1044,8 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     const typing = addTyping();
     setTimeout(() => {
       typing.remove();
-      const msg = addMsg('bot', loc.a);
-      if (loc.cta) addCta(loc.cta, msg);
+      addMsg('bot', loc.a);
+      if (loc.cta) addCta(loc.cta);
       const quicks = $('div', 'ai-chat-quicks');
       const back = $('button', 'ai-chat-quick ai-chat-quick--back');
       back.type = 'button';

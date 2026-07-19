@@ -1752,8 +1752,10 @@ body.final-site {
 
 /* CTA inline en respuestas · debajo del bubble, no al costado */
 .ai-chat-cta {
-  max-width: 82%;
-  align-self: flex-start;
+  display: block;
+  margin-top: -4px;
+  margin-bottom: 10px;
+  padding-left: 4px;
 }
 .ai-chat-cta a {
   display: inline-flex;
@@ -1767,6 +1769,7 @@ body.final-site {
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
+  max-width: 100%;
   box-shadow: 0 3px 10px -3px rgba(37, 211, 102, 0.4);
   transition: background 0.15s ease;
 }
