@@ -1536,5 +1536,10 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     toggles.forEach(btn => btn.addEventListener('click', () => {
       root.removeAttribute('data-chat-hint-visible');
     }));
+    // Click en el hint también abre el chat
+    hint.addEventListener('click', () => {
+      root.removeAttribute('data-chat-hint-visible');
+      openChat();
+    });
   }
 });

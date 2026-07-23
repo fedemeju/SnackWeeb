@@ -1983,6 +1983,10 @@ body.final-site {
   transform: translateY(0) scale(1) !important;
   animation: hintWiggle 3s ease-in-out infinite;
   pointer-events: auto;
+  cursor: pointer;
+}
+.ai-chat[data-chat-hint-visible] .ai-chat-hint:hover {
+  transform: translateY(-2px) scale(1.02) !important;
 }
 @keyframes hintWiggle {
   0%, 100% { transform: translateY(0) scale(1) rotate(0); }
