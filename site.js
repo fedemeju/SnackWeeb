@@ -262,12 +262,18 @@ window.showToast = function(message, duration = 2500) {
   });
 })();
 
-// ─── Cotizador · agregar toast al submit ───
-document.querySelectorAll('[data-cotizador]').forEach(form => {
-  form.addEventListener('submit', () => {
-    setTimeout(() => showToast('✓ Abriendo WhatsApp...', 2500), 50);
-  }, { capture: false });
-});
+// ─── Cotizador · agregar toast al submit + min date = hoy ───
+(function initCotizadores() {
+  const todayIso = new Date().toISOString().split('T')[0];
+  document.querySelectorAll('[data-cotizador] input[type="date"]').forEach(el => {
+    el.min = todayIso;
+  });
+  document.querySelectorAll('[data-cotizador]').forEach(form => {
+    form.addEventListener('submit', () => {
+      setTimeout(() => showToast('✓ Abriendo WhatsApp...', 2500), 50);
+    }, { capture: false });
+  });
+})();
 
 // ─── PWA · registrar service worker (solo si está servido por http(s)) ───
 if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
@@ -1387,9 +1393,15 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     setTimeout(() => {
       typing.remove();
       addMsg('bot', wz().askFecha);
+      const todayIso = new Date().toISOString().split('T')[0];
       addInputRow({
         type: 'date',
+        min: todayIso,
         autofocus: true,
+        validate: (v) => {
+          if (v && v < todayIso) return getLang() === 'en' ? 'Please choose a future date.' : 'Elegí una fecha futura.';
+          return null;
+        },
       }, (val) => {
         wizardData.fecha = val;
         addMsg('user', val ? formatFecha(val) : wz().undefined);
