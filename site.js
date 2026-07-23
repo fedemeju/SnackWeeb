@@ -1529,9 +1529,6 @@ document.addEventListener('DOMContentLoaded', function initChat() {
         root.setAttribute('data-chat-hint-visible', 'true');
       }
     }, 4000);
-    setTimeout(() => {
-      root.removeAttribute('data-chat-hint-visible');
-    }, 15000);
     // Cerrar hint al abrir chat
     toggles.forEach(btn => btn.addEventListener('click', () => {
       root.removeAttribute('data-chat-hint-visible');
