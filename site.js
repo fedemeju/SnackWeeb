@@ -949,12 +949,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     {
       id: 'minimo',
       es: {
-        q: '👥 ¿Y si son menos de 15 chicos?',
-        a: 'El mínimo es <b>15 chicos</b>. Si son menos, igual escribinos y vemos cómo armarlo.',
+        q: '👥 ¿Y si son menos chicos?',
+        a: 'El mínimo es <b>10 chicos</b>. De 10 a 14 el costo por chico es un poco distinto — al cotizar te pasamos el detalle.',
       },
       en: {
-        q: '👥 What if we\'re under 15 kids?',
-        a: 'Minimum is <b>15 kids</b>. If you have fewer, message us anyway and we\'ll figure it out.',
+        q: '👥 What if we\'re fewer kids?',
+        a: 'Minimum is <b>10 kids</b>. From 10 to 14 the price per kid is slightly different — we\'ll share the details when you request a quote.',
       },
     },
     {
@@ -1235,13 +1235,13 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       pkgFull: '🎁 Paquete FULL',
       pkgBase: '📦 Paquete BASE',
       pkgUnsure: '🤔 No estoy seguro/a',
-      askCantidad: '¿Cuántos chicos van? <i>(mínimo 15)</i>',
+      askCantidad: '¿Cuántos chicos van? <i>(mínimo 10)</i>',
       askFecha: '¿Qué fecha tentativa tenés en mente? 📅',
       askCumples: '¿Cuántos cumpleañeros/as festejan? 🎉',
       askNombre: '¿Cómo te llamás? <i>(opcional)</i>',
       skip: 'Saltar',
       next: 'Siguiente →',
-      minError: 'El mínimo es 15 chicos.',
+      minError: 'El mínimo es 10 chicos.',
       resumen: '¡Perfecto! Este es el resumen:',
       confirmSend: '¿Envío esto por WhatsApp?',
       send: '✅ Enviar por WhatsApp',
@@ -1260,13 +1260,13 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       pkgFull: '🎁 FULL Package',
       pkgBase: '📦 BASE Package',
       pkgUnsure: '🤔 Not sure yet',
-      askCantidad: 'How many kids will come? <i>(min. 15)</i>',
+      askCantidad: 'How many kids will come? <i>(min. 10)</i>',
       askFecha: 'What tentative date do you have in mind? 📅',
       askCumples: 'How many birthday kids? 🎉',
       askNombre: 'What\'s your name? <i>(optional)</i>',
       skip: 'Skip',
       next: 'Next →',
-      minError: 'Minimum is 15 kids.',
+      minError: 'Minimum is 10 kids.',
       resumen: 'Perfect! Here\'s the summary:',
       confirmSend: 'Send this via WhatsApp?',
       send: '✅ Send via WhatsApp',
@@ -1366,12 +1366,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       addMsg('bot', wz().askCantidad);
       addInputRow({
         type: 'number',
-        min: 15,
-        placeholder: '15',
+        min: 10,
+        placeholder: '10',
         autofocus: true,
         validate: (v) => {
           const n = parseInt(v, 10);
-          if (isNaN(n) || n < 15) return wz().minError;
+          if (isNaN(n) || n < 10) return wz().minError;
           return null;
         },
       }, (val) => {
