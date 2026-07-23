@@ -1979,9 +1979,10 @@ body.final-site {
   white-space: nowrap;
 }
 .ai-chat[data-chat-hint-visible] .ai-chat-hint {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
   animation: hintWiggle 3s ease-in-out infinite;
+  pointer-events: auto;
 }
 @keyframes hintWiggle {
   0%, 100% { transform: translateY(0) scale(1) rotate(0); }

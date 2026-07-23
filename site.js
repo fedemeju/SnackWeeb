@@ -1521,26 +1521,20 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     if (localStorage.getItem('chat-visited')) root.setAttribute('data-chat-visited', 'true');
   } catch (_) {}
 
-  // Hint tooltip · aparece a los 3s (solo en contexto cumples · solo primera visita)
+  // Hint tooltip · aparece a los 4s en cada visita (solo en contexto cumples)
   const hint = root.querySelector('[data-chat-hint]');
   if (hint && CHAT_CONTEXT === 'cumples') {
-    let hintShown = false;
-    try { hintShown = !!localStorage.getItem('chat-hint-shown-cumples'); } catch (_) {}
-    if (!hintShown) {
-      setTimeout(() => {
-        if (root.getAttribute('data-chat-state') !== 'open') {
-          root.setAttribute('data-chat-hint-visible', 'true');
-        }
-      }, 3000);
-      setTimeout(() => {
-        root.removeAttribute('data-chat-hint-visible');
-        try { localStorage.setItem('chat-hint-shown-cumples', '1'); } catch (_) {}
-      }, 12000);
-    }
+    setTimeout(() => {
+      if (root.getAttribute('data-chat-state') !== 'open') {
+        root.setAttribute('data-chat-hint-visible', 'true');
+      }
+    }, 4000);
+    setTimeout(() => {
+      root.removeAttribute('data-chat-hint-visible');
+    }, 15000);
     // Cerrar hint al abrir chat
     toggles.forEach(btn => btn.addEventListener('click', () => {
       root.removeAttribute('data-chat-hint-visible');
-      try { localStorage.setItem('chat-hint-shown-cumples', '1'); } catch (_) {}
     }));
   }
 });
