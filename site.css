@@ -1913,12 +1913,17 @@ body.final-site {
 
 /* ─── VARIANTE CUMPLES · launcher con imagen custom + bounce + tooltip ─── */
 .ai-chat--cumples .ai-chat-launcher {
+  width: 69px;
+  height: 69px;
   background: #FFB84A;
   box-shadow: 0 10px 30px -8px rgba(255, 155, 40, 0.55),
               0 4px 12px -4px rgba(0, 0, 0, 0.25);
   padding: 0;
   overflow: hidden;
   animation: cumplesBounce 4.5s ease-in-out infinite;
+}
+@media (max-width: 520px) {
+  .ai-chat--cumples .ai-chat-launcher { width: 64px; height: 64px; }
 }
 .ai-chat--cumples .ai-chat-launcher:hover {
   background: #FFA82A;
