@@ -910,24 +910,13 @@ document.addEventListener('DOMContentLoaded', function initChat() {
 
   const QA_CUMPLES = [
     {
-      id: 'reservar-cumple',
-      es: {
-        q: '📅 ¿Cómo reservo el día?',
-        a: 'Mandanos un WhatsApp con la <b>fecha tentativa</b> y cuántos chicos van. Te confirmamos disponibilidad y reservamos con seña.',
-      },
-      en: {
-        q: '📅 How do I book the day?',
-        a: 'Send us a WhatsApp with the <b>tentative date</b> and number of kids. We confirm availability and reserve with a deposit.',
-      },
-    },
-    {
       id: 'precio',
       wizard: 'cotizador-cumples',
       es: {
-        q: '💰 ¿Cuánto sale? / Cotización',
+        q: '📅 ¿Cómo reservo? ¿Cuánto sale?',
       },
       en: {
-        q: '💰 How much? / Quote',
+        q: '📅 How do I book? How much?',
       },
     },
     {
@@ -950,17 +939,6 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       en: {
         q: '🍰 Can I bring my own cake?',
         a: 'Of course! You bring the cake and we handle everything else.',
-      },
-    },
-    {
-      id: 'minimo',
-      es: {
-        q: '👥 ¿Y si son menos chicos?',
-        a: 'El mínimo es <b>10 chicos</b>. De 10 a 14 el costo por chico es un poco distinto — al cotizar te pasamos el detalle.',
-      },
-      en: {
-        q: '👥 What if we\'re fewer kids?',
-        a: 'Minimum is <b>10 kids</b>. From 10 to 14 the price per kid is slightly different — we\'ll share the details when you request a quote.',
       },
     },
     {
@@ -988,25 +966,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     {
       id: 'edad-cumple',
       es: {
-        q: '🎳 ¿Qué edad para el bowling?',
-        a: 'Los paquetes de cumples son para chicos de <b>6 a 13 años</b>.',
+        q: '🎳 ¿Qué edad pueden festejar?',
+        a: 'Los cumples son para chicos de <b>6 a 13 años</b>.',
       },
       en: {
-        q: '🎳 What age for bowling parties?',
-        a: 'Birthday packages are for kids <b>6 to 13 years old</b>.',
-      },
-    },
-    {
-      id: 'ubicacion-cumple',
-      es: {
-        q: '📍 Dónde estamos + estacionamiento',
-        a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>Contamos con <b>estacionamiento propio</b> para más de 10 autos.',
-        cta: { text: 'Ver en Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
-      },
-      en: {
-        q: '📍 Where we are + parking',
-        a: '<b>Av. del Libertador 13054</b>, Martínez (Zona Norte, BsAs).<br><br>We have our own <b>parking</b> for more than 10 cars.',
-        cta: { text: 'View on Google Maps →', href: 'https://www.google.com/maps/search/?api=1&query=Snack+Bowling+Av+del+Libertador+13054+Martinez' },
+        q: '🎳 What ages can celebrate?',
+        a: 'Birthday parties are for kids <b>6 to 13 years old</b>.',
       },
     },
   ];
