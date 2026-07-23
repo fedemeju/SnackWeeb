@@ -916,15 +916,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     },
     {
       id: 'precio',
+      wizard: 'cotizador-cumples',
       es: {
         q: '💰 ¿Cuánto sale? / Cotización',
-        a: 'Completá el <b>cotizador</b> con paquete, fecha y cantidad de chicos — te respondemos con el detalle y precio.',
-        cta: { text: 'Cotizar ↓', href: '#cotizador' },
       },
       en: {
         q: '💰 How much? / Quote',
-        a: 'Fill out the <b>quote form</b> with the package, date and number of kids — we\'ll reply with details and pricing.',
-        cta: { text: 'Get a quote ↓', href: '#cotizador' },
       },
     },
     {
@@ -1205,6 +1202,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     const lang = getLang();
     const loc = item[lang];
     addMsg('user', loc.q);
+    // Si es un wizard interactivo, arrancar el flow
+    if (item.wizard === 'cotizador-cumples') {
+      const typing = addTyping();
+      setTimeout(() => { typing.remove(); startWizardCumples(); }, 650);
+      return;
+    }
     const typing = addTyping();
     setTimeout(() => {
       typing.remove();
@@ -1223,6 +1226,287 @@ document.addEventListener('DOMContentLoaded', function initChat() {
         waLink.href = WA_BASE + encodeURIComponent(t().waPrefix + loc.q.replace(/^[^\s]+\s/, ''));
       }
     }, 650);
+  };
+
+  // ═══ WIZARD COTIZADOR CUMPLES · flow conversacional ═══
+  const WIZARD_STR = {
+    es: {
+      askPaquete: '¿Qué paquete te interesa? 🎁',
+      pkgFull: '🎁 Paquete FULL',
+      pkgBase: '📦 Paquete BASE',
+      pkgUnsure: '🤔 No estoy seguro/a',
+      askCantidad: '¿Cuántos chicos van? <i>(mínimo 15)</i>',
+      askFecha: '¿Qué fecha tentativa tenés en mente? 📅',
+      askCumples: '¿Cuántos cumpleañeros/as festejan? 🎉',
+      askNombre: '¿Cómo te llamás? <i>(opcional)</i>',
+      skip: 'Saltar',
+      next: 'Siguiente →',
+      minError: 'El mínimo es 15 chicos.',
+      resumen: '¡Perfecto! Este es el resumen:',
+      confirmSend: '¿Envío esto por WhatsApp?',
+      send: '✅ Enviar por WhatsApp',
+      restart: '✏️ Empezar de nuevo',
+      lPaquete: 'Paquete',
+      lCantidad: 'Cantidad de chicos',
+      lFecha: 'Fecha tentativa',
+      lCumples: 'Cumpleañeros/as',
+      lNombre: 'De parte de',
+      msgHeader: '¡Hola Snack! Quiero cotizar un cumple infantil:',
+      msgFooter: '¡Gracias!',
+      undefined: 'A definir',
+    },
+    en: {
+      askPaquete: 'Which package are you interested in? 🎁',
+      pkgFull: '🎁 FULL Package',
+      pkgBase: '📦 BASE Package',
+      pkgUnsure: '🤔 Not sure yet',
+      askCantidad: 'How many kids will come? <i>(min. 15)</i>',
+      askFecha: 'What tentative date do you have in mind? 📅',
+      askCumples: 'How many birthday kids? 🎉',
+      askNombre: 'What\'s your name? <i>(optional)</i>',
+      skip: 'Skip',
+      next: 'Next →',
+      minError: 'Minimum is 15 kids.',
+      resumen: 'Perfect! Here\'s the summary:',
+      confirmSend: 'Send this via WhatsApp?',
+      send: '✅ Send via WhatsApp',
+      restart: '✏️ Start over',
+      lPaquete: 'Package',
+      lCantidad: 'Number of kids',
+      lFecha: 'Tentative date',
+      lCumples: 'Birthday kids',
+      lNombre: 'From',
+      msgHeader: 'Hi Snack! I\'d like to quote a kids birthday party:',
+      msgFooter: 'Thanks!',
+      undefined: 'To be defined',
+    },
+  };
+
+  const wz = () => WIZARD_STR[getLang()];
+
+  const wizardData = { paquete: '', cantidad: '', fecha: '', cumpleaneros: '1', nombre: '' };
+
+  const addOptionsRow = (options, onPick) => {
+    const wrap = $('div', 'ai-chat-quicks');
+    options.forEach(opt => {
+      const btn = $('button', 'ai-chat-quick');
+      btn.type = 'button';
+      btn.textContent = opt.label;
+      btn.addEventListener('click', () => onPick(opt.value, opt.label));
+      wrap.appendChild(btn);
+    });
+    body.appendChild(wrap);
+    scrollToBottom();
+    return wrap;
+  };
+
+  const addInputRow = (opts, onSubmit) => {
+    const wrap = $('div', 'ai-chat-input-row');
+    const input = document.createElement('input');
+    input.type = opts.type || 'text';
+    input.placeholder = opts.placeholder || '';
+    input.className = 'ai-chat-input';
+    if (opts.min != null) input.min = opts.min;
+    if (opts.value != null) input.value = opts.value;
+    if (opts.autofocus) setTimeout(() => input.focus(), 100);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ai-chat-input-send';
+    btn.textContent = opts.buttonLabel || wz().next;
+    const submit = () => {
+      const val = input.value.trim();
+      const err = opts.validate ? opts.validate(val) : null;
+      if (err) {
+        input.setAttribute('aria-invalid', 'true');
+        wrap.querySelector('.ai-chat-input-error')?.remove();
+        const errEl = $('div', 'ai-chat-input-error');
+        errEl.textContent = err;
+        wrap.appendChild(errEl);
+        return;
+      }
+      onSubmit(val);
+    };
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); submit(); }
+    });
+    btn.addEventListener('click', submit);
+    wrap.appendChild(input);
+    wrap.appendChild(btn);
+    if (opts.skipLabel) {
+      const skip = document.createElement('button');
+      skip.type = 'button';
+      skip.className = 'ai-chat-input-skip';
+      skip.textContent = opts.skipLabel;
+      skip.addEventListener('click', () => onSubmit(''));
+      wrap.appendChild(skip);
+    }
+    body.appendChild(wrap);
+    scrollToBottom();
+    return wrap;
+  };
+
+  const startWizardCumples = () => {
+    Object.assign(wizardData, { paquete: '', cantidad: '', fecha: '', cumpleaneros: '1', nombre: '' });
+    addMsg('bot', wz().askPaquete);
+    addOptionsRow([
+      { value: 'FULL', label: wz().pkgFull },
+      { value: 'BASE', label: wz().pkgBase },
+      { value: 'A definir', label: wz().pkgUnsure },
+    ], (val, label) => {
+      wizardData.paquete = val;
+      addMsg('user', label);
+      askCantidad();
+    });
+  };
+
+  const askCantidad = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askCantidad);
+      addInputRow({
+        type: 'number',
+        min: 15,
+        placeholder: '15',
+        autofocus: true,
+        validate: (v) => {
+          const n = parseInt(v, 10);
+          if (isNaN(n) || n < 15) return wz().minError;
+          return null;
+        },
+      }, (val) => {
+        wizardData.cantidad = val;
+        addMsg('user', val);
+        askFecha();
+      });
+    }, 500);
+  };
+
+  const askFecha = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askFecha);
+      addInputRow({
+        type: 'date',
+        autofocus: true,
+      }, (val) => {
+        wizardData.fecha = val;
+        addMsg('user', val ? formatFecha(val) : wz().undefined);
+        askCumples();
+      });
+    }, 500);
+  };
+
+  const askCumples = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askCumples);
+      addInputRow({
+        type: 'number',
+        min: 1,
+        value: '1',
+        autofocus: true,
+        validate: (v) => {
+          const n = parseInt(v, 10);
+          if (isNaN(n) || n < 1) return '≥ 1';
+          return null;
+        },
+      }, (val) => {
+        wizardData.cumpleaneros = val;
+        addMsg('user', val);
+        askNombre();
+      });
+    }, 500);
+  };
+
+  const askNombre = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askNombre);
+      addInputRow({
+        type: 'text',
+        placeholder: '',
+        autofocus: true,
+        skipLabel: wz().skip,
+      }, (val) => {
+        wizardData.nombre = val;
+        if (val) addMsg('user', val);
+        showResumen();
+      });
+    }, 500);
+  };
+
+  const formatFecha = (iso) => {
+    if (!iso) return wz().undefined;
+    try {
+      return new Date(iso + 'T12:00').toLocaleDateString(getLang() === 'en' ? 'en-US' : 'es-AR', {
+        day: 'numeric', month: 'long', year: 'numeric',
+      });
+    } catch (_) { return iso; }
+  };
+
+  const showResumen = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      const s = wz();
+      const cumples = parseInt(wizardData.cumpleaneros || '1', 10);
+      const html = [
+        `<b>${s.resumen}</b>`,
+        `• <b>${s.lPaquete}:</b> ${wizardData.paquete}`,
+        `• <b>${s.lCantidad}:</b> ${wizardData.cantidad}`,
+        `• <b>${s.lFecha}:</b> ${wizardData.fecha ? formatFecha(wizardData.fecha) : s.undefined}`,
+        `• <b>${s.lCumples}:</b> ${cumples}`,
+      ];
+      if (wizardData.nombre) html.push(`• <b>${s.lNombre}:</b> ${wizardData.nombre}`);
+      html.push('');
+      html.push(s.confirmSend);
+      addMsg('bot', html.join('<br>'));
+
+      const actions = $('div', 'ai-chat-quicks');
+      const sendBtn = $('button', 'ai-chat-quick ai-chat-quick--send');
+      sendBtn.type = 'button';
+      sendBtn.textContent = s.send;
+      sendBtn.addEventListener('click', sendWizard);
+      const restartBtn = $('button', 'ai-chat-quick ai-chat-quick--back');
+      restartBtn.type = 'button';
+      restartBtn.textContent = s.restart;
+      restartBtn.addEventListener('click', () => {
+        addMsg('user', s.restart);
+        setTimeout(startWizardCumples, 300);
+      });
+      actions.appendChild(sendBtn);
+      actions.appendChild(restartBtn);
+      body.appendChild(actions);
+      scrollToBottom();
+    }, 500);
+  };
+
+  const sendWizard = () => {
+    const s = wz();
+    const cumples = parseInt(wizardData.cumpleaneros || '1', 10);
+    const cumplesLabel = getLang() === 'en'
+      ? (cumples === 1 ? 'birthday kid' : 'birthday kids')
+      : (cumples === 1 ? 'cumpleañero/a' : 'cumpleañeros/as');
+    const lines = [
+      s.msgHeader,
+      '',
+      `• ${s.lPaquete}: ${wizardData.paquete}`,
+      `• ${s.lFecha}: ${wizardData.fecha ? formatFecha(wizardData.fecha) : s.undefined}`,
+      `• ${s.lCantidad}: ${wizardData.cantidad}`,
+      `• ${cumples} ${cumplesLabel}`,
+    ];
+    if (wizardData.nombre) lines.push(`• ${s.lNombre}: ${wizardData.nombre}`);
+    lines.push('', s.msgFooter);
+    const text = lines.join('\n');
+    const url = `${WA_BASE}${encodeURIComponent(text)}`;
+    if (typeof trackEvent === 'function') {
+      trackEvent('cotizacion_submit', { tipo: 'cumples-chat', ...wizardData });
+    }
+    window.open(url, '_blank', 'noopener');
   };
 
   // Exponer renderMenu para re-render cuando cambia el idioma

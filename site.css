@@ -1749,6 +1749,82 @@ body.final-site {
   background: rgba(0, 0, 0, 0.04);
   border-color: rgba(0, 0, 0, 0.15);
 }
+.ai-chat-quick--send {
+  background: var(--chat-accent);
+  color: #fff;
+  border-color: var(--chat-accent);
+  text-align: center;
+  box-shadow: 0 3px 10px -3px rgba(37, 211, 102, 0.4);
+}
+.ai-chat-quick--send:hover {
+  background: var(--chat-accent-dark);
+  border-color: var(--chat-accent-dark);
+  color: #fff;
+}
+
+/* ─── Wizard cotizador · inputs inline ─── */
+.ai-chat-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 2px 12px;
+  align-items: center;
+}
+.ai-chat-input {
+  flex: 1 1 140px;
+  min-width: 100px;
+  padding: 10px 14px;
+  border: 1.5px solid rgba(37, 211, 102, 0.3);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--chat-ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ai-chat-input:focus {
+  border-color: var(--chat-accent);
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+}
+.ai-chat-input[aria-invalid="true"] {
+  border-color: #e63329;
+  box-shadow: 0 0 0 3px rgba(230, 51, 41, 0.15);
+}
+.ai-chat-input-send {
+  padding: 10px 16px;
+  background: var(--chat-accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+.ai-chat-input-send:hover { background: var(--chat-accent-dark); }
+.ai-chat-input-skip {
+  padding: 10px 12px;
+  background: transparent;
+  color: var(--chat-ink-3);
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ai-chat-input-skip:hover { color: var(--chat-ink); }
+.ai-chat-input-error {
+  flex-basis: 100%;
+  color: #c52a22;
+  font-size: 12px;
+  padding: 2px 4px 0;
+  font-weight: 500;
+}
 
 /* CTA inline en respuestas · debajo del bubble, no al costado */
 .ai-chat-cta {
