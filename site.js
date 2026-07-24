@@ -1193,9 +1193,9 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       quicks.appendChild(back);
       body.appendChild(quicks);
       scrollToBottom();
-      if (waLink) {
-        waLink.href = WA_BASE + encodeURIComponent(t().waPrefix + loc.q.replace(/^[^\s]+\s/, ''));
-      }
+      // El link del footer WA queda con el mensaje genérico ·
+      // así evitamos que llegue "Hola! Tengo una consulta sobre: X" cuando
+      // el chat YA respondió esa X y el user solo clickeó el botón por reflejo.
     }, 650);
   };
 
