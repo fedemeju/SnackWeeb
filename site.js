@@ -1206,7 +1206,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       pkgFull: '🎁 Paquete FULL',
       pkgBase: '📦 Paquete BASE',
       pkgUnsure: '🤔 No estoy seguro/a',
-      askCantidad: '¿Cuántos chicos van? <i>(mínimo 10)</i>',
+      askCantidad: '¿Cuántos chicos son? <i>(mínimo 10)</i>',
       askFecha: '¿Qué fecha tentativa tenés en mente? 📅',
       askCumples: '¿Cuántos cumpleañeros/as festejan? 🎉',
       askNombre: '¿Cómo te llamás? <i>(opcional)</i>',
