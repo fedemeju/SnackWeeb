@@ -2010,3 +2010,79 @@ body.final-site {
 @media (max-width: 520px) {
   .has-sticky-bar .ai-chat-launcher { bottom: 82px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   POLISH · sombras + focus + tipo CTA + spacing (v-consistencia)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1 · Sistema de sombras coherente (aplica sobre cards y containers principales) */
+.final-site .espacio-card,
+.final-site .gallery-item,
+.final-site .paq-pkg,
+.final-site .ev-pkg,
+.final-site .cotizador-form,
+.final-site .m-menu,
+.final-site .toast,
+.final-site .lightbox-inner {
+  box-shadow: var(--shadow-elevated);
+}
+.final-site .espacio-card:hover,
+.final-site .paq-pkg:hover,
+.final-site .ev-pkg:hover {
+  box-shadow: var(--shadow-floating);
+  transform: translateY(-2px);
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+
+/* 2 · Focus visible universal para elementos interactivos */
+.final-site a:focus-visible,
+.final-site button:focus-visible,
+.final-site [role="button"]:focus-visible,
+.final-site input:focus-visible,
+.final-site select:focus-visible,
+.final-site textarea:focus-visible,
+.final-site summary:focus-visible {
+  outline: 2px solid var(--accent, #E63329);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.final-site .btn:focus-visible,
+.final-site .cotizador-submit:focus-visible {
+  outline-offset: 4px;
+}
+
+/* 3 · Tipografía CTA · letter-spacing consistente (unifica los 0.04-0.12 mezclados) */
+.final-site .btn,
+.final-site .cotizador-submit,
+.final-site .events-pkg,
+.final-site .btn--historia,
+.final-site .btn--events,
+.final-site .btn--kids-cta,
+.final-site .btn--kids-primary,
+.final-site .btn--kids-ghost,
+.final-site .btn--ev-wp,
+.final-site .btn--ristrel-reserva,
+.final-site .btn--menu-wp,
+.final-site .sticky-btn {
+  letter-spacing: 0.08em;
+}
+
+/* 4 · Ritmo vertical uniforme para secciones principales */
+.final-site .gallery-section,
+.final-site .faq-section,
+.final-site .cotizador,
+.final-site .cp-hero,
+.final-site .ev-hero {
+  padding-top: var(--section-pad-y-mobile);
+  padding-bottom: var(--section-pad-y-mobile);
+}
+@media (min-width: 720px) {
+  .final-site .gallery-section,
+  .final-site .faq-section,
+  .final-site .cotizador,
+  .final-site .cp-hero,
+  .final-site .ev-hero {
+    padding-top: var(--section-pad-y);
+    padding-bottom: var(--section-pad-y);
+  }
+}

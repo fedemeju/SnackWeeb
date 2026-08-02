@@ -19,6 +19,16 @@
 
   --phone-w: 390px;
   --phone-r: 36px;
+
+  /* Sistema de sombras · 2 niveles */
+  --shadow-elevated: 0 4px 12px -4px rgba(20, 17, 13, 0.10),
+                     0 2px 4px -2px rgba(20, 17, 13, 0.06);
+  --shadow-floating: 0 16px 40px -12px rgba(20, 17, 13, 0.22),
+                     0 4px 10px -4px rgba(20, 17, 13, 0.10);
+
+  /* Ritmo vertical · secciones */
+  --section-pad-y: 88px;
+  --section-pad-y-mobile: 56px;
 }
 
 body.no-accent { --accent: #14110d; --accent-soft: #ece6d3; }
