@@ -433,6 +433,16 @@ body {
   align-items: center;
   justify-content: center;
 }
+/* Cuando el overlay está abierto, elevar el nav completo sobre el overlay
+   (el burger vive adentro del m-nav que tiene su propio stacking context) */
+body.menu-is-open .site-mobile .m-nav,
+body.menu-is-open .final-subpage .site-mobile .m-nav {
+  z-index: 200;
+}
+body.menu-is-open .m-burger {
+  background: rgba(20, 17, 13, 0.06);
+  border-radius: 50%;
+}
 /* Ícono hamburguesa animado (3 líneas → X) */
 .m-burger-icon {
   position: relative;
