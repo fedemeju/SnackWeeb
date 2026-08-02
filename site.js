@@ -255,14 +255,29 @@ window.showToast = function(message, duration = 2500) {
         showToast(`📞 Copiado: ${number}`);
         trackEvent('phone_copy', { number });
       }).catch(() => {
-        // fallback: dejar que el browser maneje
         window.location.href = link.getAttribute('href');
       });
     });
   });
 })();
 
-// ─── Cotizador · agregar toast al submit + min date = hoy ───
+// ─── Click-to-copy dirección (todos los devices) ───
+(() => {
+  if (!navigator.clipboard) return;
+  document.querySelectorAll('[data-copy-address]').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.setAttribute('title', 'Click para copiar dirección');
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const address = el.dataset.copyAddress || el.textContent.trim();
+      navigator.clipboard.writeText(address).then(() => {
+        showToast(`📍 Dirección copiada`);
+      });
+    });
+  });
+})();
+
+// ─── Cotizador · toast personalizado + confetti + min date = hoy ───
 (function initCotizadores() {
   const todayIso = new Date().toISOString().split('T')[0];
   document.querySelectorAll('[data-cotizador] input[type="date"]').forEach(el => {
@@ -270,10 +285,105 @@ window.showToast = function(message, duration = 2500) {
   });
   document.querySelectorAll('[data-cotizador]').forEach(form => {
     form.addEventListener('submit', () => {
-      setTimeout(() => showToast('✓ Abriendo WhatsApp...', 2500), 50);
+      const tipo = form.dataset.cotizador;
+      const msg = tipo === 'cumples'
+        ? '🎂 ¡Enviando tu cotización de cumple!'
+        : tipo === 'eventos'
+        ? '💼 ¡Enviando tu cotización de evento!'
+        : '✓ Abriendo WhatsApp...';
+      setTimeout(() => showToast(msg, 3000), 50);
+      fireConfetti();
     }, { capture: false });
   });
 })();
+
+// ─── Scroll-to-top flotante (bottom-left para no chocar con chat) ───
+(function initScrollTop() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'scroll-top-btn';
+  btn.setAttribute('aria-label', 'Volver arriba');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  document.body.appendChild(btn);
+  let ticking = false;
+  const update = () => {
+    btn.classList.toggle('is-visible', window.scrollY > 500);
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+})();
+
+// ─── Skeleton loading para imágenes de galería ───
+(function initGallerySkeleton() {
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    const item = img.closest('.gallery-item');
+    if (!item) return;
+    if (img.complete && img.naturalHeight !== 0) {
+      item.classList.add('is-loaded');
+    } else {
+      item.classList.add('is-loading');
+      img.addEventListener('load', () => {
+        item.classList.remove('is-loading');
+        item.classList.add('is-loaded');
+      });
+      img.addEventListener('error', () => item.classList.remove('is-loading'));
+    }
+  });
+})();
+
+// ─── Confetti · celebración al enviar cotización ───
+window.fireConfetti = function fireConfetti() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const colors = ['#E63329', '#25D366', '#FFB84A', '#f7b223', '#4a90e2', '#fff'];
+  const particles = [];
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+  for (let i = 0; i < 90; i++) {
+    const angle = (Math.random() - 0.5) * Math.PI - Math.PI / 2;
+    const speed = 6 + Math.random() * 10;
+    particles.push({
+      x: cx + (Math.random() - 0.5) * 60,
+      y: cy + (Math.random() - 0.5) * 30,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      w: 6 + Math.random() * 6,
+      h: 4 + Math.random() * 4,
+      rot: Math.random() * Math.PI,
+      vrot: (Math.random() - 0.5) * 0.35,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+    });
+  }
+  let frames = 0;
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of particles) {
+      p.vy += 0.35;
+      p.vx *= 0.99;
+      p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
+      if (frames > 60) p.alpha = Math.max(0, p.alpha - 0.018);
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    frames++;
+    if (frames < 160) requestAnimationFrame(tick);
+    else canvas.remove();
+  }
+  requestAnimationFrame(tick);
+};
 
 // ─── PWA · registrar service worker (solo si está servido por http(s)) ───
 if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
@@ -848,7 +958,7 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       lines.push(`• ${cumpleaneros} ${cumpleaneroLabel}`);
       if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
       lines.push('');
-      lines.push('¡Gracias!');
+      lines.push('¡Gracias! · enviado desde el formulario web ✨');
     } else if (tipo === 'eventos') {
       lines.push('¡Hola Snack! Quiero cotizar un evento:');
       lines.push('');
@@ -859,7 +969,7 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       if (data.bowling) lines.push(`• ¿Con bowling?: ${data.bowling}`);
       if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
       lines.push('');
-      lines.push('¡Gracias!');
+      lines.push('¡Gracias! · enviado desde el formulario web ✨');
     }
     const text = lines.join('\n');
     const url = `https://api.whatsapp.com/send?phone=${WP_PHONE}&text=${encodeWp(text)}`;
@@ -1212,7 +1322,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       askNombre: '¿Cómo te llamás? <i>(opcional)</i>',
       skip: 'Saltar',
       next: 'Siguiente →',
-      minError: 'El mínimo es 10 chicos.',
+      minError: 'Uy, mínimo son 10 chicos 😅',
       resumen: '¡Perfecto! Este es el resumen:',
       confirmSend: '¿Envío esto por WhatsApp?',
       send: '✅ Enviar por WhatsApp',
@@ -1223,7 +1333,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       lCumples: 'Cumpleañeros/as',
       lNombre: 'De parte de',
       msgHeader: '¡Hola Snack! Quiero cotizar un cumple infantil:',
-      msgFooter: '¡Gracias!',
+      msgFooter: '¡Gracias! · enviado desde el chat web ✨',
       undefined: 'A definir',
     },
     en: {
@@ -1237,7 +1347,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       askNombre: 'What\'s your name? <i>(optional)</i>',
       skip: 'Skip',
       next: 'Next →',
-      minError: 'Minimum is 10 kids.',
+      minError: 'Oops, minimum is 10 kids 😅',
       resumen: 'Perfect! Here\'s the summary:',
       confirmSend: 'Send this via WhatsApp?',
       send: '✅ Send via WhatsApp',
@@ -1248,7 +1358,7 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       lCumples: 'Birthday kids',
       lNombre: 'From',
       msgHeader: 'Hi Snack! I\'d like to quote a kids birthday party:',
-      msgFooter: 'Thanks!',
+      msgFooter: 'Thanks! · sent from the web chat ✨',
       undefined: 'To be defined',
     },
   };
@@ -1483,7 +1593,16 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     if (typeof trackEvent === 'function') {
       trackEvent('cotizacion_submit', { tipo: 'cumples-chat', ...wizardData });
     }
+    if (typeof fireConfetti === 'function') fireConfetti();
     window.open(url, '_blank', 'noopener');
+    // Post-envío · agradecimiento + follow-up (delay para que el user vea WA abriéndose primero)
+    setTimeout(() => {
+      const isEn = getLang() === 'en';
+      const thanks = isEn
+        ? '✅ Sent! We usually reply within the day. Meanwhile, follow us on <a href="https://www.instagram.com/snackbowling/" target="_blank" rel="noopener">Instagram</a> 📸'
+        : '✅ ¡Enviado! Te respondemos en el día. Mientras tanto seguinos en <a href="https://www.instagram.com/snackbowling/" target="_blank" rel="noopener">Instagram</a> 📸';
+      addMsg('bot', thanks);
+    }, 900);
   };
 
   // Exponer renderMenu para re-render cuando cambia el idioma
