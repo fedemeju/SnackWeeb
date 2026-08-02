@@ -422,13 +422,52 @@ body {
 .m-burger {
   background: transparent;
   border: none;
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1;
   cursor: pointer;
   color: inherit;
-  padding: 4px 8px;
+  padding: 8px;
+  position: relative;
+  z-index: 110;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+/* Ícono hamburguesa animado (3 líneas → X) */
+.m-burger-icon {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 16px;
+}
+.m-burger-icon > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: currentColor;
+  border-radius: 3px;
+  transition: transform 0.35s cubic-bezier(0.68, -0.35, 0.27, 1.35),
+              opacity 0.2s ease,
+              top 0.35s cubic-bezier(0.68, -0.35, 0.27, 1.35);
+}
+.m-burger-icon > span:nth-child(1) { top: 0; }
+.m-burger-icon > span:nth-child(2) { top: 50%; margin-top: -1.25px; }
+.m-burger-icon > span:nth-child(3) { top: 100%; margin-top: -2.5px; }
+.m-burger.is-open .m-burger-icon > span:nth-child(1) {
+  top: 50%; margin-top: -1.25px;
+  transform: rotate(45deg);
+}
+.m-burger.is-open .m-burger-icon > span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.m-burger.is-open .m-burger-icon > span:nth-child(3) {
+  top: 50%; margin-top: -1.25px;
+  transform: rotate(-45deg);
+}
+/* Ocultar el close del overlay · el burger morfa a X arriba */
+body.menu-is-open .m-menu-close { display: none; }
 .m-wp { text-decoration: none; }
 
 /* Lang toggle */

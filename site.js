@@ -428,6 +428,9 @@ document.addEventListener('click', (e) => {
 document.querySelectorAll('[data-menu-toggle]').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('[data-menu]').forEach(m => m.classList.toggle('open'));
+    document.body.classList.toggle('menu-is-open');
+    // Sync class en TODOS los burgers para morph icon
+    document.querySelectorAll('.m-burger').forEach(b => b.classList.toggle('is-open'));
   });
 });
 document.querySelectorAll('[data-menu-link]').forEach(link => {
