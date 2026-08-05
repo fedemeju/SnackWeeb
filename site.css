@@ -1911,41 +1911,13 @@ body.final-site {
   .ai-chat-quick { font-size: 13px; padding: 9px 12px; }
 }
 
-/* ─── VARIANTE CUMPLES · launcher con imagen custom + bounce + tooltip ─── */
+/* ─── VARIANTE CUMPLES · bounce sutil para llamar la atención (mismo look verde) ─── */
 .ai-chat--cumples .ai-chat-launcher {
-  width: 69px;
-  height: 69px;
-  background: #FFB84A;
-  box-shadow: 0 10px 30px -8px rgba(255, 155, 40, 0.55),
-              0 4px 12px -4px rgba(0, 0, 0, 0.25);
-  padding: 0;
-  overflow: hidden;
   animation: cumplesBounce 4.5s ease-in-out infinite;
 }
-@media (max-width: 520px) {
-  .ai-chat--cumples .ai-chat-launcher { width: 64px; height: 64px; }
-}
-.ai-chat--cumples .ai-chat-launcher:hover {
-  background: #FFA82A;
-  animation-play-state: paused;
-}
+.ai-chat--cumples .ai-chat-launcher:hover,
 .ai-chat--cumples[data-chat-state="open"] .ai-chat-launcher {
-  animation: none;
-  background: var(--chat-ink);
-}
-.ai-chat--cumples .ai-chat-launcher-pulse { background: #FFB84A; }
-.ai-chat-launcher-img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  border-radius: 50%;
-  position: absolute;
-  inset: 0;
-  transition: opacity 0.2s ease, transform 0.3s ease;
-}
-.ai-chat--cumples[data-chat-state="open"] .ai-chat-launcher-img {
-  opacity: 0;
-  transform: rotate(90deg);
+  animation-play-state: paused;
 }
 @keyframes cumplesBounce {
   0%, 84%, 100% { transform: translateY(0) rotate(0); }
