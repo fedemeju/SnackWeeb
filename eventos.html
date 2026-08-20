@@ -76,6 +76,12 @@
         "name": "Fun Food",
         "description": "Recepción + canapés + cazuela a elección + bebida libre + postre. Para grupos medianos y grandes.",
         "category": "Evento corporativo"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pizza Teen",
+        "description": "Pizza libre de mozzarella + bebida libre 2h (Pepsi, Pepsi Black, agua) + helado Cassata + 1 línea de bowling incluida. Ideal para cumples adolescentes.",
+        "category": "Cumple adolescente"
       }
     ]
   },
@@ -405,6 +411,47 @@ DESCOMENTAR_FIN -->
             </div>
           </div>
         </section>
+
+        <!-- PAQUETE 4 · PIZZA TEEN -->
+        <section class="ev-pkg ev-pkg--pizza">
+          <div class="ev-pkg-head">
+            <div class="ev-pkg-head-row">
+              <div class="ev-pkg-head-text">
+                <span class="ev-pkg-tag">PAQUETE 4</span>
+                <h2 class="ev-pkg-name">Pizza Teen</h2>
+              </div>
+              <div class="ev-pkg-min">
+                <svg class="ev-pkg-min-ring" viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"></circle>
+                </svg>
+                <span class="ev-pkg-min-from">desde</span>
+                <span class="ev-pkg-min-n">10</span>
+                <span class="ev-pkg-min-l">personas</span>
+              </div>
+            </div>
+            <p class="ev-pkg-tagline">Pizza libre + bebida libre + postre + bowling incluido</p>
+          </div>
+
+          <div class="ev-pkg-body">
+            <div class="ev-pkg-section">
+              <span class="lbl">incluye</span>
+              <ul class="ev-list">
+                <li><span class="ev-check">✓</span>Pizza libre de mozzarella</li>
+                <li><span class="ev-check">✓</span>Bebida libre 2h · Pepsi, Pepsi Black y agua mineral</li>
+                <li><span class="ev-check">✓</span>Postre · helado Cassata</li>
+                <li><span class="ev-check">✓</span><b>1 línea de bowling</b> <small>incluida</small></li>
+              </ul>
+            </div>
+
+            <div class="ev-pkg-section ev-pkg-addons">
+              <span class="lbl">adicionales</span>
+              <div class="ev-addons">
+                <span class="ev-addon">🎳 Más líneas de bowling</span>
+                <span class="ev-addon">🍺 Hora extra de bebida libre</span>
+              </div>
+            </div>
+          </div>
+        </section>
         </div><!-- /.ev-pkg-grid -->
 
         <!-- COMPARATIVA -->
@@ -414,18 +461,19 @@ DESCOMENTAR_FIN -->
           <div class="ev-compare-wrap">
             <table class="ev-compare-table">
               <thead>
-                <tr><th></th><th>Pizza<br>Full</th><th>Ristrel<br>Gourmet</th><th>Fun<br>Food</th></tr>
+                <tr><th></th><th>Pizza<br>Full</th><th>Ristrel<br>Gourmet</th><th>Fun<br>Food</th><th>Pizza<br>Teen</th></tr>
               </thead>
               <tbody>
-                <tr><td>Personas mínimo</td><td>10</td><td>10</td><td>20</td></tr>
-                <tr><td>Recepción / canapés</td><td>—</td><td>—</td><td>✓</td></tr>
-                <tr><td>Entrada</td><td>nachos</td><td>milanesitas</td><td>4 opciones</td></tr>
-                <tr><td>Pizza libre</td><td>✓</td><td>—</td><td>—</td></tr>
-                <tr><td>Plato principal</td><td>—</td><td>3 opciones</td><td>cazuela · 3 op.</td></tr>
-                <tr><td>Postre</td><td>helado o café</td><td>3 opciones</td><td>helado o café</td></tr>
-                <tr><td>Bebida libre 2h</td><td>✓</td><td>✓</td><td>✓</td></tr>
-                <tr><td>30 min de pool</td><td>✓</td><td>✓</td><td>✓</td></tr>
-                <tr><td>Invitaciones digitales</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                <tr><td>Personas mínimo</td><td>10</td><td>10</td><td>20</td><td>10</td></tr>
+                <tr><td>Recepción / canapés</td><td>—</td><td>—</td><td>✓</td><td>—</td></tr>
+                <tr><td>Entrada</td><td>nachos</td><td>milanesitas</td><td>4 opciones</td><td>—</td></tr>
+                <tr><td>Pizza libre</td><td>✓</td><td>—</td><td>—</td><td>✓ mozzarella</td></tr>
+                <tr><td>Plato principal</td><td>—</td><td>3 opciones</td><td>cazuela · 3 op.</td><td>—</td></tr>
+                <tr><td>Postre</td><td>helado o café</td><td>3 opciones</td><td>helado o café</td><td>helado Cassata</td></tr>
+                <tr><td>Bebida libre 2h</td><td>✓</td><td>✓</td><td>✓</td><td>✓ sin alcohol</td></tr>
+                <tr><td>30 min de pool</td><td>✓</td><td>✓</td><td>✓</td><td>—</td></tr>
+                <tr><td>1 línea de bowling</td><td>—</td><td>—</td><td>—</td><td>✓ incluida</td></tr>
+                <tr><td>Invitaciones digitales</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
               </tbody>
             </table>
           </div>
@@ -460,6 +508,7 @@ DESCOMENTAR_FIN -->
                 <option value="Pizza Full">Pizza Full</option>
                 <option value="Ristrel Gourmet">Ristrel Gourmet</option>
                 <option value="Fun Food">Fun Food</option>
+                <option value="Pizza Teen">Pizza Teen · con bowling</option>
                 <option value="A definir">No estoy seguro/a · ayudame a elegir</option>
               </select>
             </div>
