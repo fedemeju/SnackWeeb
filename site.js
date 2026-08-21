@@ -277,6 +277,25 @@ window.showToast = function(message, duration = 2500) {
   });
 })();
 
+// ─── Cotizador eventos · ocultar "¿Con bowling?" si el paquete ya lo incluye ───
+(function initBowlingToggle() {
+  const paqSelect = document.querySelector('#cot-paquete-ev');
+  const bowlingField = document.querySelector('[data-bowling-field]');
+  if (!paqSelect || !bowlingField) return;
+  const radios = bowlingField.querySelectorAll('input[type="radio"]');
+  const PACKAGES_WITH_BOWLING = ['Pizza Teen'];
+  const update = () => {
+    const includes = PACKAGES_WITH_BOWLING.includes(paqSelect.value);
+    bowlingField.style.display = includes ? 'none' : '';
+    radios.forEach(r => {
+      if (includes) { r.required = false; r.checked = false; }
+      else if (r.id === 'cot-bowling-si') r.required = true;
+    });
+  };
+  paqSelect.addEventListener('change', update);
+  update();
+})();
+
 // ─── Cotizador · toast personalizado + confetti + min date = hoy ───
 (function initCotizadores() {
   const todayIso = new Date().toISOString().split('T')[0];
@@ -969,7 +988,8 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       lines.push(`• Paquete: ${data.paquete}`);
       lines.push(`• Fecha tentativa: ${fechaFmt}`);
       lines.push(`• Cantidad: ${data.cantidad} personas`);
-      if (data.bowling) lines.push(`• ¿Con bowling?: ${data.bowling}`);
+      if (data.paquete === 'Pizza Teen') lines.push(`• Bowling: incluido`);
+      else if (data.bowling) lines.push(`• ¿Con bowling?: ${data.bowling}`);
       if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
       lines.push('');
       lines.push('¡Gracias! · enviado desde el formulario web ✨');
