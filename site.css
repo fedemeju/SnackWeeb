@@ -1983,6 +1983,28 @@ body.final-site {
   .has-sticky-bar .ai-chat-launcher { bottom: 82px; }
 }
 
+/* Ocultar botones flotantes cuando el menú overlay está abierto */
+body.menu-is-open .ai-chat,
+body.menu-is-open .ai-chat-hint,
+body.menu-is-open .scroll-top-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+/* Contact rows del menú · alinear estética con los items del menú (más limpio) */
+.m-menu-contact {
+  border: none !important;
+  border-radius: 0 !important;
+  margin-top: 8px;
+}
+.m-menu-contact-row {
+  padding: 18px 0 !important;
+  border-bottom: 1px solid rgba(20, 17, 13, 0.08) !important;
+}
+.m-menu-contact-row:last-child { border-bottom: none !important; }
+.m-menu-contact-row:hover { background: transparent !important; }
+
 /* ─── Scroll-to-top button (bottom-left, no compite con chat) ─── */
 .scroll-top-btn {
   position: fixed;
