@@ -2110,3 +2110,243 @@ body.final-site {
     padding-bottom: var(--section-pad-y);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MODERN POLISH v2 · boutique warm · Fraunces · blur nav · alternos
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1 · Tipografía · SERIF EDITORIAL para titulares grandes */
+.final-site .hero-tagline,
+.final-site .m-h2,
+.final-site .d-h2,
+.final-site .kids-cta-title,
+.final-site .paq-title,
+.final-site .paq-name,
+.final-site .ev-pkg-name,
+.final-site .ev-final-title,
+.final-site .cotizador-title,
+.final-site .cp-faq-title,
+.final-site .faq-head h2,
+.final-site .gallery-head h2,
+.final-site .cp-hero-title,
+.final-site .ev-hero-title,
+.final-site .hist-hero-title,
+.final-site .ristrel-logo-text {
+  font-family: var(--font-serif) !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+/* Body · line-height más aireado */
+.final-site body,
+.final-site p,
+.final-site .m-p,
+.final-site .cotizador-sub,
+.final-site .gallery-sub,
+.final-site .ristrel-pitch,
+.final-site .faq-body,
+.final-site .ev-pkg-tagline {
+  line-height: 1.6;
+}
+
+/* 2 · Hero tagline gigante en desktop */
+@media (min-width: 720px) {
+  .final-site .hero-tagline { font-size: 56px !important; line-height: 1.05; }
+}
+@media (min-width: 1200px) {
+  .final-site .hero-tagline { font-size: 64px !important; }
+}
+
+/* 3 · STICKY NAV con backdrop blur (Apple/boutique) */
+.site-desktop .d-nav {
+  background: rgba(246, 243, 234, 0.72) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(20, 17, 13, 0.06);
+  transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.site-desktop.is-scrolled .d-nav,
+body.is-scrolled .site-desktop .d-nav {
+  background: rgba(246, 243, 234, 0.88) !important;
+  box-shadow: 0 8px 24px -12px rgba(20, 17, 13, 0.08);
+}
+.final-subpage .subpage-d-nav {
+  background: rgba(246, 243, 234, 0.72) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(20, 17, 13, 0.06);
+}
+.site-mobile .m-nav {
+  background: rgba(246, 243, 234, 0.78) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  border-bottom: 1px solid rgba(20, 17, 13, 0.05);
+}
+
+/* 4 · Border radius más generoso y consistente */
+.final-site .espacio-card,
+.final-site .paq-pkg,
+.final-site .ev-pkg,
+.final-site .gallery-item,
+.final-site .cotizador-form,
+.final-site .cp-hero,
+.final-site .ev-hero,
+.final-site .faq-item,
+.final-site .cp-faq-item,
+.final-site .toast,
+.final-site .lightbox-inner,
+.final-site .ristrel-card,
+.final-site .kids-cta-block,
+.final-site .m-band,
+.final-site .events-pkg {
+  border-radius: var(--radius-lg);
+}
+.final-site .paq-pkg--featured,
+.final-site .ev-pkg--gourmet {
+  border-radius: var(--radius-xl);
+}
+.final-site input[type="text"],
+.final-site input[type="number"],
+.final-site input[type="date"],
+.final-site input[type="tel"],
+.final-site input[type="email"],
+.final-site select,
+.final-site textarea,
+.final-site .cotizador-field input,
+.final-site .cotizador-field select {
+  border-radius: var(--radius-sm) !important;
+}
+.final-site .btn,
+.final-site .cotizador-submit,
+.final-site .btn--kids-primary,
+.final-site .btn--kids-ghost,
+.final-site .btn--events,
+.final-site .btn--historia,
+.final-site .btn--ristrel-reserva,
+.final-site .btn--kids-cta,
+.final-site .btn--ev-wp,
+.final-site .btn--ev-prices,
+.final-site .events-pkg,
+.final-site .sticky-btn {
+  border-radius: var(--radius-pill) !important;
+}
+
+/* 5 · Alternar fondos entre secciones (ritmo visual boutique) */
+.site-desktop .ristrel-section,
+.site-desktop .cumples-section,
+.site-desktop .gallery-section:nth-of-type(even) {
+  background: var(--paper-cream);
+}
+.site-desktop .events-section,
+.site-desktop .d-band,
+.site-desktop .faq-section {
+  background: var(--paper-warm);
+}
+.site-mobile .m-band,
+.site-mobile .faq-section {
+  background: var(--paper-warm);
+  border-radius: 0;
+}
+.final-subpage .cotizador,
+.final-subpage .cp-faq {
+  background: var(--paper-cream);
+}
+
+/* 6 · Sombras unificadas en cards principales */
+.final-site .espacio-card,
+.final-site .paq-pkg,
+.final-site .ev-pkg,
+.final-site .gallery-item,
+.final-site .events-pkg,
+.final-site .kids-cta-block,
+.final-site .ristrel-card {
+  box-shadow: var(--shadow-elevated);
+  transition: box-shadow .3s ease, transform .3s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.final-site .espacio-card:hover,
+.final-site .paq-pkg:hover,
+.final-site .ev-pkg:hover,
+.final-site .events-pkg:hover,
+.final-site .ristrel-card:hover {
+  box-shadow: var(--shadow-floating);
+  transform: translateY(-3px);
+}
+
+/* 7 · Fotografías con más protagonismo */
+.final-site .hero-slide {
+  filter: saturate(1.08) contrast(1.04);
+}
+.final-site .gallery-item {
+  overflow: hidden;
+}
+.final-site .gallery-item img {
+  transition: transform .5s cubic-bezier(0.2, 0.9, 0.3, 1), filter .3s ease;
+}
+.final-site .gallery-item:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.1);
+}
+.final-site .gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(20, 17, 13, 0.25));
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.final-site .gallery-item:hover::after { opacity: 1; }
+.final-site .gallery-item { position: relative; }
+
+/* 8 · Jerarquía · más aire entre eyebrow, título y párrafo */
+.final-site .lbl {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3, #837a68);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.final-site .lbl::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #E63329);
+  display: inline-block;
+}
+.final-site .cotizador-title,
+.final-site .cp-faq-title,
+.final-site .faq-head h2,
+.final-site .gallery-head h2 {
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+.final-site .cotizador-sub,
+.final-site .gallery-sub {
+  color: var(--ink-2, #4a4238);
+  font-size: 15.5px;
+}
+
+/* 9 · Iconografía consistente · reducir emojis en labels prominentes
+   (mantenemos emojis en botones amigables como chat/wizard) */
+.final-site .faq-item summary,
+.final-site .cp-faq-item summary {
+  font-family: var(--font-ui);
+  font-weight: 500;
+}
+
+/* 10 · Chip para "adicionales" en paquetes (más boutique) */
+.final-site .ev-addon,
+.final-site .paq-addon {
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  background: rgba(20, 17, 13, 0.05);
+  border: 1px solid rgba(20, 17, 13, 0.08);
+  font-weight: 500;
+}
+

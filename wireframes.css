@@ -16,19 +16,36 @@
   --font-sketch: 'Patrick Hand', 'Caveat', cursive;
   --font-hand: 'Caveat', cursive;
   --font-ui: 'Archivo', system-ui, sans-serif;
+  /* Serif editorial para titulares (opsz variable) */
+  --font-serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
 
   --phone-w: 390px;
   --phone-r: 36px;
 
-  /* Sistema de sombras · 2 niveles */
-  --shadow-elevated: 0 4px 12px -4px rgba(20, 17, 13, 0.10),
-                     0 2px 4px -2px rgba(20, 17, 13, 0.06);
-  --shadow-floating: 0 16px 40px -12px rgba(20, 17, 13, 0.22),
-                     0 4px 10px -4px rgba(20, 17, 13, 0.10);
+  /* Sistema de sombras · 3 niveles cálidos */
+  --shadow-soft:     0 2px 8px -3px rgba(76, 60, 40, 0.08),
+                     0 1px 3px -1px rgba(76, 60, 40, 0.04);
+  --shadow-elevated: 0 8px 24px -8px rgba(76, 60, 40, 0.14),
+                     0 3px 8px -3px rgba(76, 60, 40, 0.08);
+  --shadow-floating: 0 24px 60px -18px rgba(76, 60, 40, 0.28),
+                     0 8px 20px -8px rgba(76, 60, 40, 0.12);
+
+  /* Border radius · sistema */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --radius-pill: 999px;
 
   /* Ritmo vertical · secciones */
-  --section-pad-y: 88px;
-  --section-pad-y-mobile: 56px;
+  --section-pad-y: 112px;
+  --section-pad-y-mobile: 72px;
+
+  /* Fondos alternados (boutique warm) */
+  --paper-cream: #f9f6ec;
+  --paper-warm: #f0ead8;
 }
 
 body.no-accent { --accent: #14110d; --accent-soft: #ece6d3; }
