@@ -316,19 +316,6 @@ window.showToast = function(message, duration = 2500) {
   });
 })();
 
-// ─── Nav sticky · agregar .is-scrolled al body al scrollear (para blur más denso) ───
-(function initScrolledFlag() {
-  let ticking = false;
-  const update = () => {
-    document.body.classList.toggle('is-scrolled', window.scrollY > 40);
-    ticking = false;
-  };
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-  update();
-})();
-
 // ─── Scroll-to-top flotante (bottom-left para no chocar con chat) ───
 (function initScrollTop() {
   const btn = document.createElement('button');
