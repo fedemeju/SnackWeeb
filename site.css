@@ -1190,10 +1190,12 @@ body.final-site {
 .final-site .ph--map .map-overlay:hover .map-overlay-cta { transform: translateY(-2px); }
 
 /* social chips become real links — keep visual styling intact */
-.final-site .social-row .chip {
-  text-decoration: none;
+.final-site .social-row a.chip,
+.final-site .social-row a.chip:link,
+.final-site .social-row a.chip:visited {
+  text-decoration: none !important;
   cursor: pointer;
-  color: var(--ink);
+  color: var(--ink, #14110d) !important;
   transition: background .15s ease, color .15s ease, transform .15s ease, border-color .15s ease;
 }
 .final-site .social-row .chip:hover {
