@@ -1190,8 +1190,18 @@ body.final-site {
 .final-site .ph--map .map-overlay:hover .map-overlay-cta { transform: translateY(-2px); }
 
 /* social chips become real links — keep visual styling intact */
-.final-site .social-row .chip { text-decoration: none; cursor: pointer; }
-.final-site .social-row .chip:hover { transform: translateY(-1px); }
+.final-site .social-row .chip {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background .15s ease, color .15s ease, transform .15s ease, border-color .15s ease;
+}
+.final-site .social-row .chip:hover {
+  transform: translateY(-1px);
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
 
 /* ───── SUB-PAGES ───── */
 .final-subpage {
