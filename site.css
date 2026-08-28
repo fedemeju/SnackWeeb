@@ -2485,22 +2485,25 @@ body.eventos-page .events-type {
 }
 /* Form · warm y aireado, no rígido */
 body.eventos-page .cotizador-form,
-body.historia-page .cotizador-form {
+body.historia-page .cotizador-form,
+body.cumples-page .cotizador-form {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
+  box-shadow: none !important;
 }
 .final-subpage .cotizador-field {
   margin-bottom: 22px;
 }
 .final-subpage .cotizador-field input,
 .final-subpage .cotizador-field select {
-  background: rgba(20, 17, 13, 0.03) !important;
+  background: #fff !important;
   color: #14110d !important;
-  border: 1.5px solid rgba(20, 17, 13, 0.10) !important;
+  border: 1.5px solid rgba(20, 17, 13, 0.18) !important;
   border-radius: 14px !important;
   padding: 14px 16px !important;
   font-size: 15px;
+  width: 100%;
   transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 .final-subpage .cotizador-field input:hover,
@@ -2528,9 +2531,9 @@ body.historia-page .cotizador-form {
   gap: 8px;
 }
 .final-subpage .cotizador-toggle label {
-  background: rgba(20, 17, 13, 0.03) !important;
+  background: #fff !important;
   color: #14110d !important;
-  border: 1.5px solid rgba(20, 17, 13, 0.10) !important;
+  border: 1.5px solid rgba(20, 17, 13, 0.18) !important;
   border-radius: 999px !important;
   padding: 14px 20px !important;
   transition: all .2s ease;
