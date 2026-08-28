@@ -2027,7 +2027,7 @@ body.menu-is-open .scroll-top-btn {
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: var(--ink, #14110d);
+  background: var(--accent, #E63329);
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -2044,7 +2044,7 @@ body.menu-is-open .scroll-top-btn {
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
-.scroll-top-btn:hover { opacity: 1; background: var(--accent, #E63329); }
+.scroll-top-btn:hover { opacity: 1; background: #c52a22; }
 .scroll-top-btn svg { width: 20px; height: 20px; }
 @media (max-width: 520px) {
   .scroll-top-btn { bottom: 20px; left: 16px; width: 40px; height: 40px; }
@@ -2353,11 +2353,12 @@ body.menu-is-open .scroll-top-btn {
 .final-site .hist-hero-sub { color: var(--ink-2) !important; }
 .final-site .hist-hero-eyebrow { color: var(--ink-3) !important; }
 
-/* ═══ SUBPÁGINAS con fondo CLARO (historia + eventos) ═══
+/* ═══ SUBPÁGINAS con fondo CLARO (cumples + historia + eventos) ═══
    Override de tokens · todo lo que usa var(--paper), var(--ink), etc.
    queda con valores claros automáticamente sin necesidad de !important en cada regla */
 body.historia-page,
-body.eventos-page {
+body.eventos-page,
+body.cumples-page {
   --paper: #f6f3ea;
   --paper-2: #ece6d3;
   --bone: #efece2;
@@ -2543,14 +2544,31 @@ body.eventos-page .ev-compare-table tbody td:not(:first-child) { color: #14110d 
 body.eventos-page .ev-compare { border-color: rgba(20, 17, 13, 0.15) !important; }
 body.eventos-page .ev-compare-foot { color: #4a4238 !important; }
 
-/* Logo del nav · subpáginas claras usan el logo original oscuro,
-   subpáginas dark + index dark usan el nuevo logo claro */
-body.historia-page .subpage-d-nav .d-nav-logo,
-body.eventos-page .subpage-d-nav .d-nav-logo {
+/* Logo del nav · subpáginas claras usan el logo original oscuro */
+body.cumples-page .subpage-d-nav .d-nav-logo {
   content: url("assets/logo-nav.webp");
 }
-/* Logo mobile en páginas dark (index / cumples) · usar la versión clara */
-body.final-site:not(.historia-page):not(.eventos-page) .site-mobile .m-nav-logo,
-body.final-site:not(.historia-page):not(.eventos-page) .m-menu-head .m-nav-logo {
+/* Logo mobile · en index dark usar logo full claro */
+body.final-site:not(.cumples-page) .site-mobile .m-nav-logo,
+body.final-site:not(.cumples-page) .m-menu-head .m-nav-logo {
   content: url("assets/logo-nav-full.webp");
+}
+
+/* Botones Ristrel · fix contraste en index dark theme */
+body.final-site:not(.cumples-page) .btn--ristrel-primary {
+  background: #f2ede0 !important;
+  color: #14110d !important;
+  border-color: #f2ede0 !important;
+}
+body.final-site:not(.cumples-page) .btn--ristrel-primary:hover {
+  background: #fff !important;
+}
+body.final-site:not(.cumples-page) .btn--ristrel-reserva {
+  background: transparent !important;
+  color: #f2ede0 !important;
+  border-color: rgba(242, 237, 224, 0.35) !important;
+}
+body.final-site:not(.cumples-page) .btn--ristrel-reserva:hover {
+  background: rgba(242, 237, 224, 0.08) !important;
+  border-color: rgba(242, 237, 224, 0.6) !important;
 }
