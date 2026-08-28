@@ -2666,11 +2666,45 @@ body.final-site:not(.cumples-page) .gallery-more-btn:focus-visible {
   color: #f6f3ea !important;
 }
 
+/* Sección Ristrel (index dark) · forzar textos claros sobre bg oscuro fijo */
+body.final-site:not(.cumples-page) .d-band--ristrel,
+body.final-site:not(.cumples-page) .m-band--ristrel {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(230, 51, 41, 0.18), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 10% 100%, rgba(247, 178, 35, 0.10), transparent 60%),
+    #181410 !important;
+  color: #f2ede0 !important;
+}
+body.final-site:not(.cumples-page) .d-band--ristrel .lbl,
+body.final-site:not(.cumples-page) .d-band--ristrel .lbl.light,
+body.final-site:not(.cumples-page) .m-band--ristrel .lbl,
+body.final-site:not(.cumples-page) .ristrel-pitch,
+body.final-site:not(.cumples-page) .ristrel-feature-num,
+body.final-site:not(.cumples-page) .ristrel-card-title {
+  color: #f2ede0 !important;
+}
+body.final-site:not(.cumples-page) .ristrel-tagline,
+body.final-site:not(.cumples-page) .ristrel-feature-lbl {
+  color: rgba(242, 237, 224, 0.65) !important;
+}
+body.final-site:not(.cumples-page) .ristrel-logo,
+body.final-site:not(.cumples-page) .ristrel-logo--d {
+  filter: brightness(1.5) contrast(1.1);
+}
+
 /* Sección Historia del home (línea de tiempo) · fondo claro */
 body.final-site:not(.cumples-page) #historia,
 body.final-site:not(.cumples-page) .d-band {
   background: #f2ede0 !important;
   color: #14110d !important;
+}
+/* Excepción · d-band ristrel NO se sobrescribe por la regla anterior */
+body.final-site:not(.cumples-page) .d-band.d-band--ristrel {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(230, 51, 41, 0.18), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 10% 100%, rgba(247, 178, 35, 0.10), transparent 60%),
+    #181410 !important;
+  color: #f2ede0 !important;
 }
 body.final-site:not(.cumples-page) #historia .m-h2,
 body.final-site:not(.cumples-page) #historia .lbl,
