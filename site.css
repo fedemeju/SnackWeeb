@@ -2353,9 +2353,21 @@ body.menu-is-open .scroll-top-btn {
 .final-site .hist-hero-sub { color: var(--ink-2) !important; }
 .final-site .hist-hero-eyebrow { color: var(--ink-3) !important; }
 
-/* ═══ SUBPÁGINAS con fondo CLARO (historia + eventos) ═══ */
+/* ═══ SUBPÁGINAS con fondo CLARO (historia + eventos) ═══
+   Override de tokens · todo lo que usa var(--paper), var(--ink), etc.
+   queda con valores claros automáticamente sin necesidad de !important en cada regla */
 body.historia-page,
 body.eventos-page {
+  --paper: #f6f3ea;
+  --paper-2: #ece6d3;
+  --bone: #efece2;
+  --ink: #14110d;
+  --ink-1: #14110d;
+  --ink-2: #4a463e;
+  --ink-3: #8a8473;
+  --fog: #d8d3c2;
+  --rule: #14110d;
+  --accent-soft: #fef0ee;
   background: #f6f3ea !important;
   background-image: none !important;
   color: #14110d !important;
