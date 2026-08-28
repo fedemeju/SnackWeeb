@@ -501,6 +501,8 @@ body.menu-is-open .m-menu-close { display: none; }
 }
 .lang-toggle:hover { background: var(--ink); color: var(--paper); }
 .lang-toggle:hover .lang-sep { color: rgba(246,243,234,0.4); }
+.lang-toggle:hover .lang-opt { opacity: 0.75; color: var(--paper); }
+.lang-toggle:hover .lang-opt.is-active { opacity: 1; color: var(--accent); }
 .lang-opt {
   padding: 0 2px;
   opacity: 0.4;
