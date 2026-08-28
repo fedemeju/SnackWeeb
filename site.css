@@ -2572,3 +2572,13 @@ body.final-site:not(.cumples-page) .btn--ristrel-reserva:hover {
   background: rgba(242, 237, 224, 0.08) !important;
   border-color: rgba(242, 237, 224, 0.6) !important;
 }
+
+/* Sección kids (index dark theme) · forzar textos oscuros sobre cards claras */
+body.final-site:not(.cumples-page) .kids-word--3 { color: #14110d !important; }
+body.final-site:not(.cumples-page) .kids-feat-text,
+body.final-site:not(.cumples-page) .kids-feat-text small {
+  color: #14110d !important;
+}
+body.final-site:not(.cumples-page) .kids-feat {
+  border-color: #14110d !important;
+}
