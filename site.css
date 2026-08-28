@@ -2666,6 +2666,16 @@ body.final-site:not(.cumples-page) .gallery-more-btn:focus-visible {
   color: #f6f3ea !important;
 }
 
+/* Sección Espacios del home · fondo claro (cards mantienen su look) */
+body.final-site:not(.cumples-page) #espacios,
+body.final-site:not(.cumples-page) .m-band--tan {
+  background: #f2ede0 !important;
+  color: #14110d !important;
+}
+body.final-site:not(.cumples-page) #espacios .m-h2,
+body.final-site:not(.cumples-page) #espacios .d-h2,
+body.final-site:not(.cumples-page) #espacios .lbl { color: #14110d !important; }
+
 /* Sección Historia del home (línea de tiempo) · fondo claro */
 body.final-site:not(.cumples-page) #historia,
 body.final-site:not(.cumples-page) .d-band {
