@@ -2318,3 +2318,37 @@ body.menu-is-open .scroll-top-btn {
   box-shadow: 0 10px 30px -8px rgba(37, 211, 102, 0.5),
               0 0 0 1px rgba(242, 237, 224, 0.05);
 }
+
+/* Chips de tipos de evento */
+.final-site .ev-hero-types .events-type,
+.final-site .events-type {
+  background: rgba(242, 237, 224, 0.06) !important;
+  border-color: rgba(242, 237, 224, 0.18) !important;
+  color: var(--ink) !important;
+}
+
+/* Cotizador · títulos y labels visibles */
+.final-site .cotizador-title,
+.final-site .cotizador-sub,
+.final-site .cotizador .lbl,
+.final-site .cotizador-head,
+.final-site .cotizador-foot {
+  color: var(--ink) !important;
+}
+.final-site .cotizador-sub { color: var(--ink-2) !important; }
+.final-site .cotizador-foot { color: var(--ink-3) !important; }
+
+/* Hero + tagline subpáginas */
+.final-site .cp-hero-title,
+.final-site .cp-hero-sub,
+.final-site .ev-hero-title,
+.final-site .ev-hero-sub,
+.final-site .hist-hero-title,
+.final-site .hist-hero-eyebrow,
+.final-site .hist-hero-sub {
+  color: var(--ink) !important;
+}
+.final-site .cp-hero-sub,
+.final-site .ev-hero-sub,
+.final-site .hist-hero-sub { color: var(--ink-2) !important; }
+.final-site .hist-hero-eyebrow { color: var(--ink-3) !important; }
