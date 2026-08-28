@@ -2639,3 +2639,37 @@ body.final-site:not(.cumples-page) .gallery-section .lbl {
 body.final-site:not(.cumples-page) .gallery-section .gallery-sub {
   color: #4a463e !important;
 }
+
+/* Botón "Mostrar todas las fotos" · legible sobre galería clara */
+body.final-site:not(.cumples-page) .gallery-more-btn {
+  color: #14110d !important;
+  border-color: #14110d !important;
+}
+body.final-site:not(.cumples-page) .gallery-more-btn:hover,
+body.final-site:not(.cumples-page) .gallery-more-btn:focus-visible {
+  background: #14110d !important;
+  color: #f6f3ea !important;
+}
+
+/* Sección Historia del home (línea de tiempo) · fondo claro */
+body.final-site:not(.cumples-page) #historia,
+body.final-site:not(.cumples-page) .d-band {
+  background: #f2ede0 !important;
+  color: #14110d !important;
+}
+body.final-site:not(.cumples-page) #historia .m-h2,
+body.final-site:not(.cumples-page) #historia .lbl,
+body.final-site:not(.cumples-page) .d-band .d-h2,
+body.final-site:not(.cumples-page) .d-band .lbl,
+body.final-site:not(.cumples-page) .tl-card,
+body.final-site:not(.cumples-page) .d-tl-card {
+  color: #14110d !important;
+}
+body.final-site:not(.cumples-page) .tl-year,
+body.final-site:not(.cumples-page) .d-tl-year {
+  color: #E63329 !important;
+}
+body.final-site:not(.cumples-page) .d-tl-axis,
+body.final-site:not(.cumples-page) .m-timeline::before {
+  background: #14110d !important;
+}
