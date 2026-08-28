@@ -2448,24 +2448,97 @@ body.eventos-page .events-type {
   border-color: rgba(20, 17, 13, 0.14) !important;
   color: #14110d !important;
 }
+/* Form · warm y aireado, no rígido */
+body.eventos-page .cotizador-form,
+body.historia-page .cotizador-form {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+body.eventos-page .cotizador-field,
+body.historia-page .cotizador-field {
+  margin-bottom: 22px;
+}
 body.eventos-page .cotizador-field input,
 body.eventos-page .cotizador-field select {
-  background: #fff !important;
+  background: rgba(20, 17, 13, 0.03) !important;
   color: #14110d !important;
+  border: 1.5px solid rgba(20, 17, 13, 0.10) !important;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+  font-size: 15px;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+body.eventos-page .cotizador-field input:hover,
+body.eventos-page .cotizador-field select:hover {
+  border-color: rgba(20, 17, 13, 0.18) !important;
+}
+body.eventos-page .cotizador-field input:focus,
+body.eventos-page .cotizador-field select:focus {
+  border-color: var(--accent, #E63329) !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 4px rgba(230, 51, 41, 0.08) !important;
+  outline: none;
+}
+body.eventos-page .cotizador-field input::placeholder { color: rgba(20, 17, 13, 0.30) !important; }
+body.eventos-page .cotizador-field input[type="date"]::-webkit-calendar-picker-indicator { filter: none; opacity: 0.5; }
+body.eventos-page .cotizador-field label,
+body.eventos-page .cotizador-field-label {
+  font-size: 11.5px !important;
+  letter-spacing: 0.12em !important;
+  color: #837a68 !important;
+  margin-bottom: 10px !important;
+  display: block;
+}
+body.eventos-page .cotizador-toggle {
+  gap: 8px;
+}
+body.eventos-page .cotizador-toggle label {
+  background: rgba(20, 17, 13, 0.03) !important;
+  color: #14110d !important;
+  border: 1.5px solid rgba(20, 17, 13, 0.10) !important;
+  border-radius: 999px !important;
+  padding: 14px 20px !important;
+  transition: all .2s ease;
+}
+body.eventos-page .cotizador-toggle input:checked + label {
+  background: var(--accent, #E63329) !important;
+  color: #fff !important;
+  border-color: var(--accent, #E63329) !important;
+  box-shadow: 0 4px 12px -4px rgba(230, 51, 41, 0.35) !important;
+}
+body.eventos-page .cotizador-title { font-size: 32px !important; }
+body.eventos-page .cotizador-sub { font-size: 15px !important; margin-bottom: 32px !important; }
+body.eventos-page .ev-compare-wrap {
+  background: #fff !important;
   border-color: rgba(20, 17, 13, 0.15) !important;
 }
-body.eventos-page .cotizador-field input::placeholder { color: rgba(20, 17, 13, 0.35) !important; }
-body.eventos-page .cotizador-field input[type="date"]::-webkit-calendar-picker-indicator { filter: none; }
-body.eventos-page .cotizador-toggle label {
-  background: rgba(20, 17, 13, 0.04) !important;
+body.eventos-page .ev-compare-table thead th {
+  background: #f6f3ea !important;
   color: #14110d !important;
-  border-color: rgba(20, 17, 13, 0.15) !important;
 }
 body.eventos-page .ev-compare-table th,
-body.eventos-page .ev-compare-table td { border-color: rgba(20, 17, 13, 0.10) !important; }
+body.eventos-page .ev-compare-table td {
+  color: #14110d !important;
+  border-bottom-color: rgba(20, 17, 13, 0.08) !important;
+}
+body.eventos-page .ev-compare-table th:first-child,
+body.eventos-page .ev-compare-table td:first-child {
+  color: #4a4238 !important;
+  background: rgba(20, 17, 13, 0.03) !important;
+}
+body.eventos-page .ev-compare-table tbody td:not(:first-child) { color: #14110d !important; }
+body.eventos-page .ev-compare { border-color: rgba(20, 17, 13, 0.15) !important; }
+body.eventos-page .ev-compare-foot { color: #4a4238 !important; }
 
-/* Logo del nav en subpáginas claras · usar el logo original oscuro */
+/* Logo del nav · subpáginas claras usan el logo original oscuro,
+   subpáginas dark + index dark usan el nuevo logo claro */
 body.historia-page .subpage-d-nav .d-nav-logo,
 body.eventos-page .subpage-d-nav .d-nav-logo {
   content: url("assets/logo-nav.webp");
+}
+/* Logo mobile en páginas dark (index / cumples) · usar la versión clara */
+body.final-site:not(.historia-page):not(.eventos-page) .site-mobile .m-nav-logo,
+body.final-site:not(.historia-page):not(.eventos-page) .m-menu-head .m-nav-logo {
+  content: url("assets/logo-nav-full.webp");
 }
