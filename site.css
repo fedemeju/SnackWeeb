@@ -2352,3 +2352,41 @@ body.menu-is-open .scroll-top-btn {
 .final-site .ev-hero-sub,
 .final-site .hist-hero-sub { color: var(--ink-2) !important; }
 .final-site .hist-hero-eyebrow { color: var(--ink-3) !important; }
+
+/* ═══ HISTORIA · mantener fondo claro (excepción del dark theme) ═══ */
+body.historia-page {
+  background: #f6f3ea !important;
+  background-image: none !important;
+  color: #14110d !important;
+}
+body.historia-page .site-mobile,
+body.historia-page .subpage-d-nav {
+  background: rgba(246, 243, 234, 0.85) !important;
+  border-bottom-color: rgba(20, 17, 13, 0.08) !important;
+}
+body.historia-page .subpage-d-nav .d-nav-links a { color: #14110d !important; }
+body.historia-page .subpage-d-nav .d-nav-links a.is-current { color: #E63329 !important; }
+body.historia-page .hist-hero,
+body.historia-page .timeline-content {
+  background: #f5f1e6 !important;
+  color: #14110d !important;
+}
+body.historia-page .hist-hero-title,
+body.historia-page .hist-hero-eyebrow,
+body.historia-page .hist-hero-sub,
+body.historia-page .timeline-content p {
+  color: #14110d !important;
+}
+body.historia-page .hist-hero-eyebrow { color: #837a68 !important; }
+body.historia-page .hist-hero-sub { color: #4a4238 !important; }
+body.historia-page .timeline-content p { color: #4a4238 !important; }
+body.historia-page .timeline::before,
+body.historia-page .timeline-img { background: #14110d !important; }
+body.historia-page .timeline-img { border-color: #f6f3ea !important; box-shadow: 0 0 0 2px #14110d !important; }
+body.historia-page .timeline-item:nth-child(odd) .timeline-content::after {
+  border-color: transparent transparent transparent #f5f1e6 !important;
+}
+body.historia-page .timeline-item:nth-child(even) .timeline-content::after {
+  border-color: transparent #f5f1e6 transparent transparent !important;
+}
+body.historia-page .timeline-content .date { background: #14110d !important; color: #fff !important; }
