@@ -2144,3 +2144,177 @@ body.menu-is-open .scroll-top-btn {
     padding-bottom: var(--section-pad-y);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK THEME OVERRIDES · aplica dark warm en cumples/eventos/historia
+   (subpáginas y cards que tienen bg white hardcoded)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Cards principales (cumples paquetes) */
+.final-site .paq-pkg,
+.final-site .paq-card,
+.final-site .paq-menu,
+.final-site .paq-compare,
+.final-site .cp-hero,
+.final-site .cp-final,
+.final-site .kids-cta-block,
+.final-site .paq-includes {
+  background: var(--paper-2) !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(242, 237, 224, 0.08);
+}
+.final-site .paq-menu-item,
+.final-site .paq-card--full .paq-menu-item {
+  background: rgba(242, 237, 224, 0.05) !important;
+  color: var(--ink) !important;
+}
+.final-site .paq-menu-item-title,
+.final-site .paq-title,
+.final-site .paq-name { color: var(--ink) !important; }
+
+/* Tabla comparativa cumples */
+.final-site .paq-compare-table,
+.final-site .paq-compare th,
+.final-site .paq-compare td {
+  color: var(--ink) !important;
+  border-color: rgba(242, 237, 224, 0.10) !important;
+}
+.final-site .paq-compare-hl td { background: rgba(230, 51, 41, 0.10) !important; }
+
+/* Cards eventos */
+.final-site .ev-pkg,
+.final-site .ev-hero,
+.final-site .ev-compare,
+.final-site .ev-final,
+.final-site .ev-compare-table {
+  background: var(--paper-2) !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(242, 237, 224, 0.08);
+}
+.final-site .ev-pkg--pizza,
+.final-site .ev-pkg--gourmet,
+.final-site .ev-pkg--fun {
+  background: var(--paper-2) !important;
+}
+.final-site .ev-pkg-name,
+.final-site .ev-pkg-tag,
+.final-site .ev-pkg-item,
+.final-site .ev-pkg-min-n,
+.final-site .ev-pkg-min-from,
+.final-site .ev-pkg-min-l,
+.final-site .ev-option,
+.final-site .ev-option-mini,
+.final-site .ev-list li,
+.final-site .ev-compare th,
+.final-site .ev-compare td,
+.final-site .ev-final-title,
+.final-site .ev-final-sub {
+  color: var(--ink) !important;
+}
+.final-site .ev-option,
+.final-site .ev-option-mini {
+  background: rgba(242, 237, 224, 0.05) !important;
+  border-color: rgba(242, 237, 224, 0.10) !important;
+}
+.final-site .ev-compare-table th,
+.final-site .ev-compare-table td {
+  border-color: rgba(242, 237, 224, 0.10) !important;
+}
+.final-site .ev-addon,
+.final-site .paq-addon {
+  background: rgba(242, 237, 224, 0.06) !important;
+  border-color: rgba(242, 237, 224, 0.12) !important;
+  color: var(--ink) !important;
+}
+
+/* Cotizador form (cumples/eventos) */
+.final-site .cotizador {
+  background: transparent;
+}
+.final-site .cotizador-form {
+  background: var(--paper-2) !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(242, 237, 224, 0.08);
+}
+.final-site .cotizador-field label,
+.final-site .cotizador-field-label {
+  color: var(--ink) !important;
+}
+.final-site .cotizador-field input,
+.final-site .cotizador-field select {
+  background: rgba(242, 237, 224, 0.06) !important;
+  color: var(--ink) !important;
+  border-color: rgba(242, 237, 224, 0.15) !important;
+}
+.final-site .cotizador-field input::placeholder {
+  color: rgba(242, 237, 224, 0.35) !important;
+}
+.final-site .cotizador-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+}
+.final-site .cotizador-toggle label {
+  background: rgba(242, 237, 224, 0.05) !important;
+  color: var(--ink) !important;
+  border-color: rgba(242, 237, 224, 0.15) !important;
+}
+.final-site .cotizador-toggle input:checked + label {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+}
+
+/* Historia · timeline cards */
+.final-site .timeline-content,
+.final-site .hist-hero {
+  background: var(--paper-2) !important;
+  color: var(--ink) !important;
+}
+.final-site .timeline-content p { color: var(--ink-2) !important; }
+.final-site .timeline-content .date {
+  background: rgba(242, 237, 224, 0.12) !important;
+  color: var(--ink) !important;
+}
+.final-site .timeline-item:nth-child(odd) .timeline-content::after {
+  border-color: transparent transparent transparent var(--paper-2) !important;
+}
+.final-site .timeline-item:nth-child(even) .timeline-content::after {
+  border-color: transparent var(--paper-2) transparent transparent !important;
+}
+.final-site .timeline::before,
+.final-site .timeline-img {
+  background: var(--ink-3) !important;
+  border-color: var(--paper) !important;
+}
+
+/* FAQ (cumples y home) */
+.final-site .cp-faq-item,
+.final-site .faq-item {
+  background: var(--paper-2) !important;
+  color: var(--ink) !important;
+  border-color: rgba(242, 237, 224, 0.10) !important;
+}
+.final-site .cp-faq-item summary,
+.final-site .faq-item summary,
+.final-site .cp-faq-title,
+.final-site .faq-item p,
+.final-site .cp-faq-item p {
+  color: var(--ink) !important;
+}
+
+/* Nav desktop subpáginas · fondo consistente */
+.final-subpage .subpage-d-nav {
+  background: rgba(28, 25, 21, 0.85) !important;
+  border-bottom: 1px solid rgba(242, 237, 224, 0.08) !important;
+}
+.subpage-d-nav .d-nav-links a { color: var(--ink) !important; }
+.subpage-d-nav .d-nav-links a.is-current { color: var(--accent) !important; }
+.final-subpage .site-mobile .m-nav {
+  background: rgba(28, 25, 21, 0.85) !important;
+  border-bottom-color: rgba(242, 237, 224, 0.06) !important;
+}
+
+/* Chat launcher · borde suave para verse sobre fondo dark */
+.ai-chat-launcher {
+  box-shadow: 0 10px 30px -8px rgba(37, 211, 102, 0.5),
+              0 0 0 1px rgba(242, 237, 224, 0.05);
+}
