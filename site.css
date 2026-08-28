@@ -2596,3 +2596,33 @@ body.final-site:not(.cumples-page) .kids-feat-text small {
 body.final-site:not(.cumples-page) .kids-feat {
   border-color: #14110d !important;
 }
+
+/* Sección eventos del index dark · botón y nombres de paquete visibles */
+body.final-site:not(.cumples-page) .btn--events {
+  background: #f2ede0 !important;
+  color: #14110d !important;
+  border-color: #f2ede0 !important;
+}
+body.final-site:not(.cumples-page) .btn--events:hover {
+  background: #fff !important;
+}
+body.final-site:not(.cumples-page) .events-pkg-name {
+  color: #f2ede0 !important;
+}
+body.final-site:not(.cumples-page) .events-pkg-num {
+  color: rgba(242, 237, 224, 0.5) !important;
+}
+
+/* Galería del index dark · fondo claro para dar respiro visual */
+body.final-site:not(.cumples-page) .gallery-section {
+  background: #f2ede0 !important;
+  color: #14110d !important;
+}
+body.final-site:not(.cumples-page) .gallery-section h2,
+body.final-site:not(.cumples-page) .gallery-section .gallery-head h2,
+body.final-site:not(.cumples-page) .gallery-section .lbl {
+  color: #14110d !important;
+}
+body.final-site:not(.cumples-page) .gallery-section .gallery-sub {
+  color: #4a463e !important;
+}
