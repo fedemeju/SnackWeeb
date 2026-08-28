@@ -2009,13 +2009,28 @@ body.menu-is-open .scroll-top-btn {
   border: none !important;
   border-radius: 0 !important;
   margin-top: 8px;
+  background: transparent !important;
 }
 .m-menu-contact-row {
   padding: 18px 0 !important;
-  border-bottom: 1px solid rgba(20, 17, 13, 0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #f2ede0 !important;
 }
 .m-menu-contact-row:last-child { border-bottom: none !important; }
 .m-menu-contact-row:hover { background: transparent !important; }
+.m-menu-contact-lbl {
+  color: rgba(242, 237, 224, 0.55) !important;
+}
+.m-menu-contact-val {
+  color: #f2ede0 !important;
+}
+/* En subpáginas claras · invertir contraste */
+.final-subpage .m-menu-contact-row {
+  border-bottom-color: rgba(20, 17, 13, 0.10) !important;
+  color: #14110d !important;
+}
+.final-subpage .m-menu-contact-lbl { color: rgba(20, 17, 13, 0.55) !important; }
+.final-subpage .m-menu-contact-val { color: #14110d !important; }
 
 /* ─── Scroll-to-top button (bottom-left, no compite con chat) ─── */
 .scroll-top-btn {
