@@ -2429,9 +2429,6 @@ body.eventos-page .ev-pkg-name,
 body.eventos-page .ev-pkg-tag,
 body.eventos-page .ev-pkg-tagline,
 body.eventos-page .ev-pkg-item,
-body.eventos-page .ev-pkg-min-n,
-body.eventos-page .ev-pkg-min-from,
-body.eventos-page .ev-pkg-min-l,
 body.eventos-page .ev-option,
 body.eventos-page .ev-option-mini,
 body.eventos-page .ev-list li,
@@ -2444,6 +2441,20 @@ body.eventos-page .cotizador-sub,
 body.eventos-page .cotizador-field label,
 body.eventos-page .cotizador-field-label,
 body.eventos-page .cotizador-foot { color: #14110d !important; }
+
+/* Círculo "desde X personas" · bg oscuro con texto claro */
+body.eventos-page .ev-pkg-min {
+  background: #14110d !important;
+  border-color: #14110d !important;
+  color: #f6f3ea !important;
+}
+body.eventos-page .ev-pkg-min-n { color: #f6f3ea !important; }
+body.eventos-page .ev-pkg-min-from,
+body.eventos-page .ev-pkg-min-l { color: rgba(246, 243, 234, 0.7) !important; }
+body.eventos-page .ev-pkg--gourmet .ev-pkg-min {
+  background: #E63329 !important;
+  border-color: #E63329 !important;
+}
 body.eventos-page .ev-hero-sub,
 body.eventos-page .ev-pkg-tagline,
 body.eventos-page .cotizador-sub { color: #4a4238 !important; }
@@ -2544,9 +2555,12 @@ body.eventos-page .ev-compare-table tbody td:not(:first-child) { color: #14110d 
 body.eventos-page .ev-compare { border-color: rgba(20, 17, 13, 0.15) !important; }
 body.eventos-page .ev-compare-foot { color: #4a4238 !important; }
 
-/* Logo del nav · subpáginas claras usan el logo original oscuro */
-body.cumples-page .subpage-d-nav .d-nav-logo {
-  content: url("assets/logo-nav.webp");
+/* Logo del nav · subpáginas claras (usan el logo full con invert para verse oscuro) */
+body.cumples-page .subpage-d-nav .d-nav-logo,
+body.cumples-page .site-mobile .m-nav-logo,
+body.cumples-page .m-menu-head .m-nav-logo {
+  content: url("assets/logo-nav-full.webp");
+  filter: invert(1) hue-rotate(180deg);
 }
 /* Logo mobile · en index dark usar logo full claro */
 body.final-site:not(.cumples-page) .site-mobile .m-nav-logo,
