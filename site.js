@@ -805,7 +805,7 @@ const I18N = {
 
     // Eventos (sub-page)
     'Eventos & Empresas': 'Events & Business',
-    'Tres paquetes,': 'Three packages,',
+    'Cuatro paquetes,': 'Four packages,',
     'tu evento.': 'your event.',
     'After office, despedidas, corporativos o cumples de adultos. Elegí el formato gastronómico, sumá bowling y listo.': 'After office, send-offs, corporate events or adult birthdays. Pick the food format, add bowling and you\'re set.',
 
@@ -1175,12 +1175,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       id: 'eventos',
       es: {
         q: '💼 Eventos y empresas',
-        a: '¡Sí, realizamos eventos! After office, despedidas, corporativos y cumples adultos.<br><br>Tenemos <b>3 paquetes</b> para 10 a 180 personas.',
+        a: '¡Sí, realizamos eventos! After office, despedidas, corporativos y cumples adultos.<br><br>Tenemos <b>4 paquetes</b> para 10 a 180 personas.',
         cta: { text: 'Ver paquetes y cotizar →', href: '/eventos' },
       },
       en: {
         q: '💼 Events & companies',
-        a: 'Yes, we host events! After office, farewell parties, corporate events and adult birthdays.<br><br>We have <b>3 packages</b> for 10 to 180 people.',
+        a: 'Yes, we host events! After office, farewell parties, corporate events and adult birthdays.<br><br>We have <b>4 packages</b> for 10 to 180 people.',
         cta: { text: 'View packages & quote →', href: '/eventos' },
       },
     },
