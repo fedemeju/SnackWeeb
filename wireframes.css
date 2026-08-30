@@ -2282,8 +2282,8 @@ body.menu-is-open .m-menu-close { display: none; }
 /* FOOTER */
 .d-footer {
   padding: 48px 56px 40px;
-  background: var(--ink);
-  color: var(--paper);
+  background: #0f0d0a;
+  color: #f2ede0;
   text-align: center;
   display: grid;
   gap: 8px;
@@ -2291,7 +2291,6 @@ body.menu-is-open .m-menu-close { display: none; }
 }
 .d-footer-logo {
   width: 240px;
-  filter: invert(1);
   margin-bottom: 8px;
 }
 .d-footer-tagline {
