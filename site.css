@@ -116,7 +116,7 @@
 .final-site .espacio-card {
   position: relative;
   display: block;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 8 / 7;
   overflow: hidden;
   border-radius: 18px;
   background: var(--ink, #14110d);
