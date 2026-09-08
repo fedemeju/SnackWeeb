@@ -2624,6 +2624,28 @@ body.final-site:not(.cumples-page) .kids-feat-text small {
 body.final-site:not(.cumples-page) .kids-feat {
   border-color: #14110d !important;
 }
+/* Stats "2h · 10+ · 2 paquetes" · fondo dark hardcoded */
+body.final-site:not(.cumples-page) .kids-stats {
+  background: #14110d !important;
+  border-color: #14110d !important;
+  color: #fff !important;
+}
+body.final-site:not(.cumples-page) .kids-stat-l {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+/* Botón CTA "VER LOS PAQUETES" · más legible */
+body.final-site:not(.cumples-page) .btn--kids-cta {
+  background: #f7b223 !important;
+  color: #14110d !important;
+  border-color: #14110d !important;
+}
+body.final-site:not(.cumples-page) .btn--kids-cta:hover {
+  background: #f5a800 !important;
+  transform: translateY(-1px);
+}
+body.final-site:not(.cumples-page) .kids-cta-title {
+  color: #14110d !important;
+}
 
 /* Sección eventos del index dark · botón y nombres de paquete visibles */
 body.final-site:not(.cumples-page) .btn--events {
