@@ -434,3 +434,15 @@
 .cp-final .kids-cta-block {
   margin: 0;
 }
+
+/* nota de mínimo · excepción 10-14 chicos */
+.paq-min-note {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--fog);
+  border-radius: 10px;
+  background: #fff8e6;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}

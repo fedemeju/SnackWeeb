@@ -2744,3 +2744,574 @@ body.final-site:not(.cumples-page) .d-tl-axis,
 body.final-site:not(.cumples-page) .m-timeline::before {
   background: #14110d !important;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   TANDA 1 · CTAs de hero, franja de datos y reserva de mesa
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────── CTAs dentro del hero ─────────── */
+.final-site .hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.final-site .btn--hero-primary,
+.final-site .btn--hero-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 24px;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease, color .2s ease;
+}
+.final-site .btn--hero-primary {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--accent);
+  box-shadow: 0 10px 24px -12px rgba(230,51,41,.9);
+}
+.final-site .btn--hero-primary:hover { transform: translateY(-1px); background: #cf2b22; border-color: #cf2b22; }
+.final-site .btn--hero-ghost {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.final-site .btn--hero-ghost:hover { transform: translateY(-1px); background: rgba(255,255,255,.18); }
+@media (max-width: 380px) {
+  .final-site .hero-cta { gap: 8px; }
+  .final-site .btn--hero-primary,
+  .final-site .btn--hero-ghost { padding: 12px 18px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .final-site .btn--hero-primary,
+  .final-site .btn--hero-ghost { transition: none; }
+}
+
+/* Más contraste sobre la foto del hero para que se lean logo y botones */
+.final-site .hero-slide { filter: brightness(.82); }
+
+/* ─────────── Franja de datos bajo el hero ─────────── */
+.final-site .quick-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 720px) {
+  .final-site .quick-facts { grid-template-columns: repeat(4, 1fr); }
+}
+.final-site .quick-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: flex-start;
+  background: var(--paper-2);
+  padding: 16px 14px;
+  min-height: 78px;
+}
+.final-site .quick-fact-n {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .01em;
+  color: var(--ink-1);
+}
+.final-site .quick-fact-l {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--ink-3);
+}
+/* El indicador en vivo usa la variante compacta: misma tipografía que el resto
+   de la franja, con un punto de estado como única señal de color. */
+.final-site .quick-fact-live {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.final-site .quick-fact-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  vertical-align: 1px;
+  background: var(--ink-3);
+}
+.final-site .quick-fact-live.footer-hours--open .quick-fact-dot {
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(37,211,102,.18);
+}
+.final-site .quick-fact-live.footer-hours--closing .quick-fact-dot {
+  background: #f7b223;
+  box-shadow: 0 0 0 3px rgba(247,178,35,.2);
+}
+.final-site .quick-fact-live.footer-hours--closed .quick-fact-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(230,51,41,.2);
+}
+
+/* ─────────── Barra fija · home ─────────── */
+.final-site .sticky-cta-bar--home .sticky-btn--reserva {
+  background: var(--accent);
+  cursor: pointer;
+}
+.final-site .sticky-cta-bar--home .sticky-btn--map {
+  background: var(--paper);
+  color: var(--ink-1, #14110d);
+}
+
+/* ─────────── Modal de reserva ─────────── */
+.reserva-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.reserva-modal[hidden] { display: none; }
+body.reserva-open { overflow: hidden; }
+.reserva-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 6, .68);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.reserva-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  background: var(--paper-2, #26221c);
+  border: 1px solid var(--fog);
+  border-radius: 16px;
+  padding: 26px 22px 22px;
+  box-shadow: 0 30px 70px -20px rgba(0,0,0,.7);
+}
+.reserva-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.reserva-close:hover { background: rgba(255,255,255,.08); color: var(--ink-1); }
+.reserva-head { margin-bottom: 18px; }
+.reserva-title {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: -.02em;
+  margin: 6px 0 6px;
+  color: var(--ink-1);
+}
+.reserva-sub {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.reserva-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.reserva-form .cotizador-field { margin-bottom: 12px; }
+.reserva-submit { width: 100%; }
+.reserva-rules {
+  margin: 12px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.reserva-rules b { color: var(--ink-2); }
+.reserva-rules a { color: var(--accent); }
+
+.reserva-warn {
+  border: 1px solid rgba(230,51,41,.45);
+  background: rgba(230,51,41,.10);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-1);
+}
+.reserva-warn[hidden] { display: none; }
+.reserva-warn p { margin: 0 0 6px; }
+.reserva-warn-sub { color: var(--ink-2); font-size: 12.5px; margin-bottom: 0; }
+
+/* el tag de paquete necesita ancla propia (antes se posicionaba contra el grid) */
+.final-site .events-pkg { position: relative; }
+
+/* ─────────── Historia · CTA de cierre ─────────── */
+.hist-final {
+  text-align: center;
+  padding: 40px 22px 44px;
+  background: linear-gradient(180deg, rgba(230,51,41,.06), rgba(230,51,41,.02));
+  border-top: 2px solid var(--ink-1, #14110d);
+}
+.hist-final-title {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: clamp(22px, 5vw, 32px);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin: 8px auto 10px;
+  max-width: 18ch;
+  text-wrap: balance;
+  color: var(--ink-1, #14110d);
+}
+.hist-final-sub {
+  margin: 0 auto 20px;
+  max-width: 42ch;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+.hist-final-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.btn--hist-primary,
+.btn--hist-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 22px;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 12.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform .15s ease;
+}
+.btn--hist-primary {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--ink-1, #14110d);
+  box-shadow: 3px 3px 0 var(--ink-1, #14110d);
+}
+.btn--hist-ghost {
+  background: transparent;
+  color: var(--ink-1, #14110d);
+  border: 2px solid var(--ink-1, #14110d);
+}
+.btn--hist-primary:hover,
+.btn--hist-ghost:hover { transform: translateY(-1px); }
+.hist-final-foot {
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.hist-final-foot a { color: var(--accent); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  .btn--hist-primary, .btn--hist-ghost { transition: none; }
+}
+
+/* botón que parece link, dentro del FAQ */
+.final-site .faq-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ─────────── Ajustes hero · menos carga visual ───────────
+   · el hero-content tiene pointer-events:none, los CTAs necesitan recuperarlo
+   · botones lado a lado y más chicos (antes ocupaban el ancho completo)
+   · logo más chico para dejar respirar a los botones                       */
+.final-site .hero-cta {
+  pointer-events: auto;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.final-site .btn--hero-primary,
+.final-site .btn--hero-ghost {
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 18px;
+  font-size: 12px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+.final-site .btn--hero-ghost {
+  border-width: 1.5px;
+  background: rgba(0,0,0,.25);
+}
+@media (max-width: 400px) {
+  .final-site .btn--hero-primary,
+  .final-site .btn--hero-ghost { padding: 11px 13px; font-size: 11px; letter-spacing: .04em; }
+}
+.final-site .hero-logo { max-width: 250px; margin-bottom: 14px; }
+@media (min-width: 880px) { .final-site .hero-logo { max-width: 400px; } }
+
+/* La barra fija aparece recién cuando el hero salió de pantalla,
+   así no se duplica el CTA de "Reservar mesa" en el primer pantallazo. */
+.final-site .sticky-cta-bar--home {
+  transform: translateY(110%);
+  transition: transform .28s cubic-bezier(.2,.8,.2,1);
+}
+.final-site .sticky-cta-bar--home.is-visible { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .final-site .sticky-cta-bar--home { transition: none; }
+}
+
+/* fallback cuando el navegador bloquea la ventana de WhatsApp */
+.wa-fallback {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: rgba(230,51,41,.08);
+  text-align: center;
+}
+.wa-fallback p { margin: 0 0 10px; font-size: 13px; line-height: 1.45; }
+.wa-fallback-btn {
+  display: inline-block;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+}
+
+/* ═══════════ PRUEBA SOCIAL · reseñas de Google ═══════════ */
+.final-site .social-proof {
+  padding: var(--section-pad-y-mobile) 22px;
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 980px) {
+  .final-site .social-proof { padding: var(--section-pad-y) 48px; }
+}
+.final-site .sp-head { text-align: center; margin-bottom: 26px; }
+.final-site .sp-rating {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 18px;
+  border: 1px solid var(--fog);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--ink-1);
+  transition: border-color .2s ease;
+}
+.final-site .sp-rating:hover { border-color: var(--ink-3); }
+.final-site .sp-stars, .final-site .sp-card-stars { color: #f7b223; letter-spacing: .06em; }
+.final-site .sp-score { font-family: var(--font-ui); font-weight: 800; font-size: 18px; }
+.final-site .sp-count { font-size: 12.5px; color: var(--ink-3); }
+.final-site .sp-arrow { font-size: 12px; color: var(--ink-3); }
+
+.final-site .sp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (min-width: 720px) {
+  .final-site .sp-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+}
+.final-site .sp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 18px 18px 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--fog);
+  border-radius: 12px;
+}
+.final-site .sp-card-stars { font-size: 13px; }
+.final-site .sp-card blockquote {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-1);
+}
+.final-site .sp-card blockquote::before { content: '“'; }
+.final-site .sp-card blockquote::after { content: '”'; }
+.final-site .sp-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px solid var(--rule);
+}
+.final-site .sp-author { font-family: var(--font-ui); font-weight: 700; font-size: 13px; }
+.final-site .sp-meta { font-size: 11.5px; color: var(--ink-3); }
+.final-site .sp-all {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: .04em;
+  color: var(--accent);
+  text-decoration: none;
+}
+.final-site .sp-all:hover { text-decoration: underline; }
+
+/* mientras haya placeholders sin completar, se marca en amarillo para no publicarlo por error */
+.final-site .social-proof[data-reviews-pendiente] {
+  outline: 2px dashed #f7b223;
+  outline-offset: -8px;
+}
+
+/* prueba social · variante de una sola reseña (subpáginas claras) */
+.final-site .social-proof--solo {
+  background: transparent;
+  padding: 28px 22px;
+}
+.final-site .sp-grid--solo { max-width: 620px; }
+.final-site .social-proof--solo .sp-card {
+  background: rgba(0,0,0,.03);
+  border-color: var(--fog);
+}
+
+/* ═══════════ LEGIBILIDAD ═══════════
+   La base pasa de 14px a 16px. Los micro-labels en mayúscula (.lbl, badges,
+   stats) mantienen su tamaño: ahí 10-11px es correcto, el problema era el
+   texto de lectura. */
+.final-site { font-size: 16px; }
+
+/* Inputs a 16px: por debajo de eso, Safari en iPhone hace zoom al enfocar
+   el campo y descoloca el formulario. Es la causa más común de abandono
+   en formularios mobile. */
+.final-site input,
+.final-site select,
+.final-site textarea {
+  font-size: 16px;
+}
+
+/* texto de lectura que estaba por debajo del mínimo cómodo */
+.final-site .tl-card { font-size: 14.5px; }
+.final-site .gallery-sub { font-size: 14px; }
+.final-site .faq-body p { font-size: 15.5px; }
+.final-site .reserva-sub { font-size: 14.5px; }
+.final-site .sp-card blockquote { font-size: 15.5px; }
+.final-site .espacio-card-sub { font-size: 12.5px; }
+.final-site .events-pkg-desc { font-size: 12.5px; }
+.final-site .cotizador-foot,
+.final-site .events-cta-foot { font-size: 13px; }
+
+/* estos ganan por especificidad a las reglas de arriba */
+.final-site .cotizador-field input,
+.final-site .cotizador-field select,
+.final-site .cotizador-field textarea,
+.final-subpage .cotizador-field input,
+.final-subpage .cotizador-field select,
+.final-site .cotizador-toggle label { font-size: 16px; }
+
+/* cada reseña abre el panel de reseñas de Google (no existe permalink por reseña) */
+.final-site a.sp-card {
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .18s ease, transform .18s ease;
+}
+.final-site a.sp-card:hover,
+.final-site a.sp-card:focus-visible {
+  border-color: var(--ink-3);
+  transform: translateY(-2px);
+}
+.final-site .sp-foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2px 10px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+.final-site .sp-foot .sp-author { grid-column: 1; }
+.final-site .sp-foot .sp-meta { grid-column: 1; }
+.final-site .sp-verify {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .final-site a.sp-card { transition: none; }
+  .final-site a.sp-card:hover { transform: none; }
+}
+
+/* ─────────── Galería · filtros por espacio ─────────── */
+.final-site .gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+.final-site .gal-chip {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: .03em;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid var(--fog);
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.final-site .gal-chip:hover { color: var(--ink-1); border-color: var(--ink-3); }
+.final-site .gal-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+/* con filtro activo se muestran todas las coincidencias, sin el corte de 6 */
+.final-site .gallery.is-filtered .gallery-item--more { display: block; }
+.final-site .gallery .gallery-item[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .final-site .gal-chip { transition: none; }
+}

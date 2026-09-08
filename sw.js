@@ -2,7 +2,7 @@
 // Estrategia: precaching de shell + stale-while-revalidate para todo lo demás.
 // Bumpear CACHE_VERSION cada vez que cambien los archivos del shell.
 
-const CACHE_VERSION = 'snack-v101';
+const CACHE_VERSION = 'snack-v102';
 const CACHE_NAME = `snack-${CACHE_VERSION}`;
 
 // Archivos críticos que se cachean al instalar (app shell)
@@ -59,6 +59,24 @@ self.addEventListener('fetch', (event) => {
 
   // No cachear el ServiceWorker en sí ni partials con query strings versionados
   if (url.pathname === '/sw.js') return;
+
+  // Las páginas (HTML) van a red primero: si no, quien ya visitó el sitio sigue
+  // viendo la versión vieja hasta la segunda carga. El cache queda como respaldo
+  // offline. Los assets (css, js, imágenes) sí usan stale-while-revalidate.
+  if (req.mode === 'navigate' || req.destination === 'document') {
+    event.respondWith(
+      fetch(req)
+        .then((resp) => {
+          if (resp && resp.status === 200 && resp.type === 'basic') {
+            const copy = resp.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          }
+          return resp;
+        })
+        .catch(() => caches.match(req).then((c) => c || caches.match('/')))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(req).then((cached) => {

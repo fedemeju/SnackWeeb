@@ -81,6 +81,13 @@
     { "@type": "Place", "name": "Zona Norte, Buenos Aires" }
   ],
   "foundingDate": "1967",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.1",
+    "reviewCount": "4636",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -115,7 +122,7 @@
       {
         "@type": "Offer",
         "name": "Cumples infantiles con bowling",
-        "description": "Paquetes Full y Base. De 6 a 13 años. Bowling, comida y bebida libre. Desde 10 chicos.",
+        "description": "Paquetes Full y Base. De 6 a 13 años. Bowling, comida y bebida libre. Desde 15 chicos (grupos de 10 a 14, con tarifa especial).",
         "url": "https://www.snackbowling.com.ar/cumples",
         "category": "Cumples infantiles"
       },
@@ -145,7 +152,7 @@
     {
       "@type": "Question",
       "name": "¿Puedo reservar mesa para cenar o almorzar?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sí, reservá al 4792-8009." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Podés pedir la mesa desde el formulario de la web y te respondemos por WhatsApp, o llamar al 4792-8009. La reserva queda confirmada cuando te damos el OK." }
     },
     {
       "@type": "Question",
@@ -191,14 +198,14 @@
   gtag('config', 'G-M6GGPZSK61', { anonymize_ip: true });
 </script>
 </head>
-<body class="final-site">
+<body class="final-site has-sticky-bar">
 <div class="scroll-progress" aria-hidden="true"></div>
 
 <!-- MOBILE / TABLET VERSION -->
 <div class="site-mobile">
 <!-- nav -->
           <div class="m-nav m-nav--dir1">
-            <a href="/" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" alt="Snack Ristrel"></a>
+            <a href="/" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" width="2000" height="500" alt="Snack Ristrel"></a>
             <div class="m-nav-right">
               <button class="lang-toggle" data-lang-toggle type="button" aria-label="Cambiar idioma">
                 <span class="lang-opt lang-opt--es is-active" data-lang="es">ES</span>
@@ -212,7 +219,7 @@
           <!-- MOBILE OVERLAY MENU -->
           <div class="m-menu" data-menu>
             <div class="m-menu-head">
-              <a href="/" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" alt="Snack Ristrel"></a>
+              <a href="/" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" width="2000" height="500" alt="Snack Ristrel"></a>
               <button class="m-menu-close" data-menu-toggle aria-label="Cerrar">×</button>
             </div>
 
@@ -290,15 +297,19 @@
           <!-- HERO carousel -->
           <section class="hero-carousel">
             <div class="hero-slides" data-carousel>
-              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" alt="Pista de bowling de Snack Bowling Martínez" data-i="0">
-              <img class="hero-slide" src="assets/hero/02-pizza.webp" alt="Pizza fresca del restaurante Ristrel" data-i="1" loading="lazy">
-              <img class="hero-slide" src="assets/hero/03-vino.webp" alt="Vino Rutini Cabernet-Malbec en Ristrel" data-i="2" loading="lazy">
-              <img class="hero-slide" src="assets/hero/04-cerveza.webp" alt="Cerveza tirada Patagonia en el bar" data-i="3" loading="lazy">
+              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" width="1280" height="1920" alt="Pista de bowling de Snack Bowling Martínez" data-i="0">
+              <img class="hero-slide" src="assets/hero/02-pizza.webp" width="1280" height="1920" alt="Pizza fresca del restaurante Ristrel" data-i="1" loading="lazy">
+              <img class="hero-slide" src="assets/hero/03-vino.webp" width="1280" height="1920" alt="Vino Rutini Cabernet-Malbec en Ristrel" data-i="2" loading="lazy">
+              <img class="hero-slide" src="assets/hero/04-cerveza.webp" width="1280" height="1920" alt="Cerveza tirada Patagonia en el bar" data-i="3" loading="lazy">
             </div>
             <div class="hero-content">
-              <img class="hero-logo" src="assets/logo-snack.webp" alt="Snack Bowling">
+              <img class="hero-logo" src="assets/logo-snack.webp" width="660" height="396" alt="Snack Bowling">
               <h1 class="hero-tagline">Bowling, pool, restaurante y pelotero · en Martínez</h1>
               <span class="hero-badge">·  EST  · <b>1967</b> ·  MARTÍNEZ  ·</span>
+              <div class="hero-cta">
+                <button type="button" class="btn btn--hero-primary" data-reserva-open>Reservar mesa</button>
+                <a class="btn btn--hero-ghost" href="#festejos" data-goto-festejos>Cumples y eventos</a>
+              </div>
             </div>
             <div class="hero-dots" data-dots>
               <button class="hero-dot is-active" data-i="0" type="button" aria-label="Slide 1"></button>
@@ -308,13 +319,32 @@
             </div>
           </section>
 
+          <!-- FRANJA DE DATOS · responde las 4 dudas de entrada -->
+          <div class="quick-facts">
+            <div class="quick-fact quick-fact--hours">
+              <span class="quick-fact-live" data-hours="compact"></span>
+            </div>
+            <div class="quick-fact">
+              <span class="quick-fact-n">Sin reserva</span>
+              <span class="quick-fact-l">bowling y pool por orden de llegada</span>
+            </div>
+            <div class="quick-fact">
+              <span class="quick-fact-n">Estacionamiento</span>
+              <span class="quick-fact-l">propio, para más de 10 autos</span>
+            </div>
+            <div class="quick-fact">
+              <span class="quick-fact-n">Desde 1967</span>
+              <span class="quick-fact-l">el primer bowling automático del país</span>
+            </div>
+          </div>
+
           <!-- 4 ESPACIOS -->
           <div class="m-band m-band--tan" id="espacios">
             <span class="lbl">los espacios</span>
             <h2 class="m-h2">Cuatro mundos<br>bajo un techo</h2>
             <div class="espacios-grid">
               <div class="espacio-card espacio-card--feat espacio-card--bowling">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/bowling.webp" alt="Pistas de bowling automáticas">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/bowling.webp" width="611" height="477" alt="Pistas de bowling automáticas">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">01</span>
                 <div class="espacio-card-content">
@@ -324,7 +354,7 @@
                 </div>
               </div>
               <div class="espacio-card espacio-card--pool">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pool.webp" alt="Mesas de pool con paños rojos">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pool.webp" width="1920" height="1080" alt="Mesas de pool con paños rojos">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">02</span>
                 <div class="espacio-card-content">
@@ -334,7 +364,7 @@
                 </div>
               </div>
               <div class="espacio-card espacio-card--resto">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/resto.webp" alt="Interior del restaurante Ristrel">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/resto.webp" width="1067" height="1600" alt="Interior del restaurante Ristrel">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">03</span>
                 <div class="espacio-card-content">
@@ -344,7 +374,7 @@
                 </div>
               </div>
               <div class="espacio-card espacio-card--pelotero">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pelotero.webp" alt="Pelotero infantil con pelotas de colores">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pelotero.webp" width="1066" height="1600" alt="Pelotero infantil con pelotas de colores">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">04</span>
                 <div class="espacio-card-content">
@@ -362,17 +392,17 @@
 
             <div class="ristrel-head">
               <span class="lbl light">el restaurante</span>
-              <img class="ristrel-logo" loading="lazy" decoding="async" src="assets/logo-ristrel.webp" alt="Ristrel Food House">
+              <img class="ristrel-logo" loading="lazy" decoding="async" src="assets/logo-ristrel.webp" width="1000" height="500" alt="Ristrel Food House">
               <p class="ristrel-tagline">parrilla · pizzas · pastas · hamburguesas · tragos</p>
             </div>
 
             <div class="ristrel-photo">
-              <img loading="lazy" decoding="async" src="assets/plato.webp" alt="Plato de Ristrel">
+              <img loading="lazy" decoding="async" src="assets/plato.webp" width="1600" height="1060" alt="Plato de Ristrel">
             </div>
 
             <div class="ristrel-cta">
               <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener" class="btn btn--ristrel-primary">VER CARTA COMPLETA →</a>
-              <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20reservar%20una%20mesa%20en%20Ristrel" target="_blank" rel="noopener" class="btn btn--ristrel-reserva">
+              <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20reservar%20una%20mesa%20en%20Ristrel" target="_blank" rel="noopener" class="btn btn--ristrel-reserva" data-reserva-open>
                 <svg class="reserva-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M3 10h18M5 6h14a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                   <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -386,7 +416,7 @@
           </section>
 
           <!-- ============ CUMPLES KIDS ============ -->
-          <section class="m-band m-band--kids" id="cumples-section">
+          <section class="m-band m-band--kids" id="festejos">
             <div class="kids-confetti" aria-hidden="true">
               <span class="conf c1"></span><span class="conf c2"></span><span class="conf c3"></span>
               <span class="conf c4"></span><span class="conf c5"></span><span class="conf c6"></span>
@@ -397,11 +427,11 @@
             <!-- KIDS HERO CARD -->
             <div class="kids-card">
               <div class="kids-card-photo">
-                <img loading="lazy" decoding="async" src="assets/cumple-bowling.webp" alt="Cumple infantil en Snack">
+                <img loading="lazy" decoding="async" src="assets/cumple-bowling.webp" width="1420" height="1108" alt="Cumple infantil en Snack">
                 <span class="kids-tag-edad">de 6 a 13 años</span>
               </div>
               <div class="kids-card-body">
-                <img class="kids-logo" loading="lazy" decoding="async" src="assets/logo-kids.webp" alt="Snack Kids">
+                <img class="kids-logo" loading="lazy" decoding="async" src="assets/logo-kids.webp" width="1920" height="1080" alt="Snack Kids">
                 <p class="kids-lead">
                   <span class="kids-word kids-word--1">¡El cumple</span>
                   <span class="kids-word kids-word--2">más divertido</span>
@@ -440,7 +470,7 @@
                 <span class="kids-stat-l">duración</span>
               </div>
               <div class="kids-stat">
-                <span class="kids-stat-n">10+</span>
+                <span class="kids-stat-n">15+</span>
                 <span class="kids-stat-l">chicos</span>
               </div>
               <div class="kids-stat">
@@ -543,14 +573,56 @@
                   </span>
                   <span class="events-pkg-arrow">→</span>
                 </a>
+                <a href="/eventos" class="events-pkg events-pkg--num">
+                  <span class="events-pkg-tag">bowling incluido</span>
+                  <span class="events-pkg-n">04</span>
+                  <span class="events-pkg-body">
+                    <span class="events-pkg-name">Pizza Teen</span>
+                    <span class="events-pkg-desc">Pizza libre + bebida libre + postre + 1 línea de bowling</span>
+                  </span>
+                  <span class="events-pkg-arrow">→</span>
+                </a>
               </div>
             </div>
 
             <!-- CTA final con micro-copy -->
             <div class="events-cta-block">
-              <a href="/eventos" class="btn btn--events">VER LOS 3 PAQUETES →</a>
+              <a href="/eventos" class="btn btn--events">VER LOS 4 PAQUETES →</a>
               <p class="events-cta-foot">o pedí cotización directa por WhatsApp</p>
             </div>
+          </section>
+
+
+          <!-- ═══ PRUEBA SOCIAL · reseñas reales de Google ═══ -->
+          <section class="social-proof" id="opiniones">
+            <div class="sp-head">
+              <span class="lbl">lo que dicen</span>
+              <h2 class="m-h2">Opiniones de Google</h2>
+              <a class="sp-rating" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">
+                <span class="sp-stars" aria-hidden="true">★★★★★</span>
+                <span class="sp-score">4,1</span>
+                <span class="sp-count">· 4.636 reseñas en Google</span>
+                <span class="sp-arrow">↗</span>
+              </a>
+            </div>
+            <div class="sp-grid">
+              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
+                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>¡Excelente comida! Muy amable la atención y altamente recomendable. Precios buenos para la zona y los empleados súper profesionales. Un lugar que no falla.</blockquote>
+                <div class="sp-foot"><span class="sp-author">Carolina</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
+              </a>
+              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
+                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>Un lugar re copado para ir con amigos o familia. Muy buen ambiente, las pistas andan bárbaro y la combinación de comer algo rico mientras jugás unos bolos hace que la noche sea perfecta.</blockquote>
+                <div class="sp-foot"><span class="sp-author">Lisandro</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
+              </a>
+              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
+                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>Lugar clásico de Libertador. Muy buena gastronomía, porciones abundantes y atención de diez. Todo de diez, ideal para ir a divertirse y comer bien sin vueltas.</blockquote>
+                <div class="sp-foot"><span class="sp-author">Emilia</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
+              </a>
+            </div>
+            <a class="sp-all" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">Ver todas las reseñas en Google ↗</a>
           </section>
 
           <!-- TIMELINE -->
@@ -579,7 +651,7 @@
               </details>
               <details class="faq-item">
                 <summary>¿Puedo reservar mesa para cenar o almorzar?</summary>
-                <div class="faq-body"><p>Sí · reservá al <a href="tel:+541147928009">4792-8009</a>.</p></div>
+                <div class="faq-body"><p>Sí · <button type="button" class="faq-link" data-reserva-open>pedí tu mesa desde acá</button> y te respondemos por WhatsApp, o llamanos al <a href="tel:+541147928009">4792-8009</a>. Queda confirmada cuando te damos el OK.</p></div>
               </details>
               <details class="faq-item">
                 <summary>¿Hacen eventos empresariales?</summary>
@@ -610,33 +682,40 @@
               <span class="lbl">galería</span>
               <h2 class="m-h2">El lugar en fotos</h2>
               <p class="gallery-sub">Tocá cualquier foto para verla en grande</p>
+              <div class="gallery-filters" role="group" aria-label="Filtrar fotos por espacio">
+                <button type="button" class="gal-chip is-active" data-gallery-filter="todas">Todas</button>
+                <button type="button" class="gal-chip" data-gallery-filter="bowling">Bowling</button>
+                <button type="button" class="gal-chip" data-gallery-filter="resto">Restaurante</button>
+                <button type="button" class="gal-chip" data-gallery-filter="pool">Pool</button>
+                <button type="button" class="gal-chip" data-gallery-filter="pelotero">Pelotero</button>
+              </div>
             </div>
             <div class="gallery" data-gallery>
-              <button type="button" class="gallery-item gallery-item--feature" data-full="assets/galeria/bowling.webp" aria-label="Ver foto de pistas de bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/bowling.webp" alt="Pistas de bowling"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/DSC02262.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02262.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/resto.webp" aria-label="Ver foto del restaurante"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/resto.webp" alt="Restaurante Ristrel"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/DSC02326.webp" aria-label="Ver foto de pizza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02326.webp" alt="Pizza Ristrel"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/DSC02287.webp" aria-label="Ver foto de vino"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02287.webp" alt="Vino Rutini en Ristrel"></button>
-              <button type="button" class="gallery-item gallery-item--wide" data-full="assets/galeria/pelotero.webp" aria-label="Ver foto del pelotero"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/pelotero.webp" alt="Pelotero infantil"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02395.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02395.webp" alt="Cerveza tirada Patagonia"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02201.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02201.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02221.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02221.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02286.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02286.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02293.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02293.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02298.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02298.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02303.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02303.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02317.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02317.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02322.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02322.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02327.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02327.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02335.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02335.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02337.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02337.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02338.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02338.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02392.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02392.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02446.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02446.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02447.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02447.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02451.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02451.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02461.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02461.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02462.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02462.webp" alt="Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--feature" data-cat="bowling" data-full="assets/galeria/bowling.webp" aria-label="Ver foto de pistas de bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/bowling.webp" width="600" height="600" alt="Pistas de bowling"></button>
+              <button type="button" class="gallery-item" data-cat="bowling" data-full="assets/galeria/DSC02262.webp" aria-label="Ampliar: Bolos y bola verde al fondo de la pista, con la máquina de Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02262.webp" width="600" height="600" alt="Bolos y bola verde al fondo de la pista, con la máquina de Snack Bowling"></button>
+              <button type="button" class="gallery-item" data-cat="resto" data-full="assets/galeria/resto.webp" aria-label="Ver foto del restaurante"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/resto.webp" width="600" height="600" alt="Restaurante Ristrel"></button>
+              <button type="button" class="gallery-item" data-cat="resto" data-full="assets/galeria/DSC02326.webp" aria-label="Ver foto de pizza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02326.webp" width="600" height="600" alt="Pizza Ristrel"></button>
+              <button type="button" class="gallery-item" data-cat="resto" data-full="assets/galeria/DSC02287.webp" aria-label="Ver foto de vino"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02287.webp" width="600" height="600" alt="Vino Rutini en Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--wide" data-cat="pelotero" data-full="assets/galeria/pelotero.webp" aria-label="Ver foto del pelotero"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/pelotero.webp" width="600" height="600" alt="Pelotero infantil"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02395.webp" aria-label="Ampliar: Canillas de cerveza tirada Patagonia y Stella Artois en la barra"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02395.webp" width="600" height="600" alt="Canillas de cerveza tirada Patagonia y Stella Artois en la barra"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02201.webp" aria-label="Ampliar: Chica festejando después de tirar la bola en las pistas de Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02201.webp" width="600" height="600" alt="Chica festejando después de tirar la bola en las pistas de Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02221.webp" aria-label="Ampliar: Jugador lanzando la bola en las pistas de bowling de Martínez"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02221.webp" width="600" height="600" alt="Jugador lanzando la bola en las pistas de bowling de Martínez"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02286.webp" aria-label="Ampliar: Sorrentinos verdes a la crema de Ristrel con una copa de vino tinto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02286.webp" width="600" height="600" alt="Sorrentinos verdes a la crema de Ristrel con una copa de vino tinto"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02293.webp" aria-label="Ampliar: Milanesa a la napolitana con papas fritas del restaurante Ristrel"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02293.webp" width="600" height="600" alt="Milanesa a la napolitana con papas fritas del restaurante Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02298.webp" aria-label="Ampliar: Plato de sorrentinos a la crema servido en la mesa de Ristrel"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02298.webp" width="600" height="600" alt="Plato de sorrentinos a la crema servido en la mesa de Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02303.webp" aria-label="Ampliar: Botella de Rutini Cabernet Malbec y copas servidas en Ristrel"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02303.webp" width="600" height="600" alt="Botella de Rutini Cabernet Malbec y copas servidas en Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02317.webp" aria-label="Ampliar: Nachos con salsa de queso cheddar para compartir en Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02317.webp" width="600" height="600" alt="Nachos con salsa de queso cheddar para compartir en Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02322.webp" aria-label="Ampliar: Picada de nachos con cheddar y papas sobre la mesa"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02322.webp" width="600" height="600" alt="Picada de nachos con cheddar y papas sobre la mesa"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02327.webp" aria-label="Ampliar: Porción de pizza de muzzarella con aceitunas y un chopp de cerveza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02327.webp" width="600" height="600" alt="Porción de pizza de muzzarella con aceitunas y un chopp de cerveza"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02335.webp" aria-label="Ampliar: Chopp de cerveza tirada Stella Artois con una porción de pizza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02335.webp" width="600" height="600" alt="Chopp de cerveza tirada Stella Artois con una porción de pizza"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02337.webp" aria-label="Ampliar: Pistas de bowling de fondo, con papas y cerveza servidas en la mesa"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02337.webp" width="600" height="600" alt="Pistas de bowling de fondo, con papas y cerveza servidas en la mesa"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02338.webp" aria-label="Ampliar: Grupo compartiendo nachos y cerveza entre partidas de bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02338.webp" width="600" height="600" alt="Grupo compartiendo nachos y cerveza entre partidas de bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02392.webp" aria-label="Ampliar: Salón del restaurante Ristrel con las mesas puestas"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02392.webp" width="600" height="600" alt="Salón del restaurante Ristrel con las mesas puestas"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="pool" data-full="assets/galeria/DSC02446.webp" aria-label="Ampliar: Tirando en una mesa de pool de paño rojo en Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02446.webp" width="600" height="600" alt="Tirando en una mesa de pool de paño rojo en Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02447.webp" aria-label="Ampliar: Zapatos de bowling de Snack alineados, listos para retirar"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02447.webp" width="600" height="600" alt="Zapatos de bowling de Snack alineados, listos para retirar"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02451.webp" aria-label="Ampliar: Atándose los zapatos de bowling antes de empezar a jugar"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02451.webp" width="600" height="600" alt="Atándose los zapatos de bowling antes de empezar a jugar"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02461.webp" aria-label="Ampliar: Grupo de amigos en ronda alrededor de una bola de bowling roja"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02461.webp" width="600" height="600" alt="Grupo de amigos en ronda alrededor de una bola de bowling roja"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02462.webp" aria-label="Ampliar: Pistas de bowling de Snack Bowling Martínez con su mural geométrico"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02462.webp" width="600" height="600" alt="Pistas de bowling de Snack Bowling Martínez con su mural geométrico"></button>
             </div>
             <div class="gallery-more-wrap">
               <button type="button" class="gallery-more-btn" data-gallery-toggle aria-expanded="false">
@@ -669,7 +748,7 @@
           <!-- FOOTER -->
           <div class="m-footer m-footer--dir1">
             <div class="footer-hours" data-hours></div>
-            <img class="m-footer-logo" src="assets/logo-nav.webp" alt="Snack Ristrel">
+            <img class="m-footer-logo" src="assets/logo-nav.webp" width="2000" height="500" alt="Snack Ristrel">
             <div>EST 1967 · MARTÍNEZ · ZONA NORTE</div>
             <div class="micro">© 2026</div>
           </div>
@@ -681,7 +760,7 @@
 
           <!-- nav -->
           <div class="d-nav">
-            <a href="/" class="d-nav-logo-link" aria-label="Ir al inicio"><img class="d-nav-logo" src="assets/logo-nav-full.webp" alt="Snack Ristrel"></a>
+            <a href="/" class="d-nav-logo-link" aria-label="Ir al inicio"><img class="d-nav-logo" src="assets/logo-nav-full.webp" width="2000" height="500" alt="Snack Ristrel"></a>
             <div class="d-nav-links">
               <a href="#espacios">Espacios</a>
               <a href="/cumples">Cumples</a>
@@ -700,15 +779,19 @@
           <!-- HERO carousel -->
           <section class="hero-carousel">
             <div class="hero-slides" data-carousel>
-              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" alt="Pista de bowling de Snack Bowling Martínez" data-i="0">
-              <img class="hero-slide" src="assets/hero/02-pizza.webp" alt="Pizza fresca del restaurante Ristrel" data-i="1" loading="lazy">
-              <img class="hero-slide" src="assets/hero/03-vino.webp" alt="Vino Rutini Cabernet-Malbec en Ristrel" data-i="2" loading="lazy">
-              <img class="hero-slide" src="assets/hero/04-cerveza.webp" alt="Cerveza tirada Patagonia en el bar" data-i="3" loading="lazy">
+              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" width="1280" height="1920" alt="Pista de bowling de Snack Bowling Martínez" data-i="0">
+              <img class="hero-slide" src="assets/hero/02-pizza.webp" width="1280" height="1920" alt="Pizza fresca del restaurante Ristrel" data-i="1" loading="lazy">
+              <img class="hero-slide" src="assets/hero/03-vino.webp" width="1280" height="1920" alt="Vino Rutini Cabernet-Malbec en Ristrel" data-i="2" loading="lazy">
+              <img class="hero-slide" src="assets/hero/04-cerveza.webp" width="1280" height="1920" alt="Cerveza tirada Patagonia en el bar" data-i="3" loading="lazy">
             </div>
             <div class="hero-content">
-              <img class="hero-logo" src="assets/logo-snack.webp" alt="Snack Bowling">
-              <h1 class="hero-tagline">Bowling, pool, restaurante y pelotero · en Martínez</h1>
+              <img class="hero-logo" src="assets/logo-snack.webp" width="660" height="396" alt="Snack Bowling">
+              <p class="hero-tagline">Bowling, pool, restaurante y pelotero · en Martínez</p>
               <span class="hero-badge">·  EST  · <b>1967</b> ·  MARTÍNEZ  ·</span>
+              <div class="hero-cta">
+                <button type="button" class="btn btn--hero-primary" data-reserva-open>Reservar mesa</button>
+                <a class="btn btn--hero-ghost" href="#festejos" data-goto-festejos>Cumples y eventos</a>
+              </div>
             </div>
             <div class="hero-dots" data-dots>
               <button class="hero-dot is-active" data-i="0" type="button" aria-label="Slide 1"></button>
@@ -718,6 +801,25 @@
             </div>
           </section>
 
+          <!-- FRANJA DE DATOS · responde las 4 dudas de entrada -->
+          <div class="quick-facts">
+            <div class="quick-fact quick-fact--hours">
+              <span class="quick-fact-live" data-hours="compact"></span>
+            </div>
+            <div class="quick-fact">
+              <span class="quick-fact-n">Sin reserva</span>
+              <span class="quick-fact-l">bowling y pool por orden de llegada</span>
+            </div>
+            <div class="quick-fact">
+              <span class="quick-fact-n">Estacionamiento</span>
+              <span class="quick-fact-l">propio, para más de 10 autos</span>
+            </div>
+            <div class="quick-fact">
+              <span class="quick-fact-n">Desde 1967</span>
+              <span class="quick-fact-l">el primer bowling automático del país</span>
+            </div>
+          </div>
+
           <!-- 4 MUNDOS scattered -->
           <div class="d-band d-band--tan">
             <div class="d-band-head">
@@ -726,7 +828,7 @@
             </div>
             <div class="espacios-grid">
               <div class="espacio-card espacio-card--feat espacio-card--bowling">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/bowling.webp" alt="Pistas de bowling automáticas">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/bowling.webp" width="611" height="477" alt="Pistas de bowling automáticas">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">01</span>
                 <div class="espacio-card-content">
@@ -736,7 +838,7 @@
                 </div>
               </div>
               <div class="espacio-card espacio-card--pool">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pool.webp" alt="Mesas de pool con paños rojos">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pool.webp" width="1920" height="1080" alt="Mesas de pool con paños rojos">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">02</span>
                 <div class="espacio-card-content">
@@ -746,7 +848,7 @@
                 </div>
               </div>
               <div class="espacio-card espacio-card--resto">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/resto.webp" alt="Interior del restaurante Ristrel">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/resto.webp" width="1067" height="1600" alt="Interior del restaurante Ristrel">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">03</span>
                 <div class="espacio-card-content">
@@ -756,7 +858,7 @@
                 </div>
               </div>
               <div class="espacio-card espacio-card--pelotero">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pelotero.webp" alt="Pelotero infantil con pelotas de colores">
+                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pelotero.webp" width="1066" height="1600" alt="Pelotero infantil con pelotas de colores">
                 <div class="espacio-card-overlay"></div>
                 <span class="espacio-card-num">04</span>
                 <div class="espacio-card-content">
@@ -774,7 +876,7 @@
             <div class="d-ristrel">
               <div class="d-ristrel-left">
                 <span class="lbl light">el restaurante</span>
-                <img class="ristrel-logo ristrel-logo--d" loading="lazy" decoding="async" src="assets/logo-ristrel.webp" alt="Ristrel Food House">
+                <img class="ristrel-logo ristrel-logo--d" loading="lazy" decoding="async" src="assets/logo-ristrel.webp" width="1000" height="500" alt="Ristrel Food House">
                 <p class="ristrel-tagline">parrilla · pizzas · pastas · hamburguesas · tragos</p>
 
                 <p class="ristrel-pitch">La cocina que acompaña a Snack desde 1967. Carta amplia, opciones para chicos y grandes, sin necesidad de reservar.</p>
@@ -797,7 +899,7 @@
 
                 <div class="ristrel-cta">
                   <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener" class="btn btn--ristrel-primary">VER CARTA COMPLETA →</a>
-                  <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20reservar%20una%20mesa%20en%20Ristrel" target="_blank" rel="noopener" class="btn btn--ristrel-reserva">
+                  <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20reservar%20una%20mesa%20en%20Ristrel" target="_blank" rel="noopener" class="btn btn--ristrel-reserva" data-reserva-open>
                     <svg class="reserva-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M3 10h18M5 6h14a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
                       <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -812,7 +914,7 @@
 
               <div class="d-ristrel-right">
                 <div class="ristrel-photo ristrel-photo--d">
-                  <img loading="lazy" decoding="async" src="assets/plato.webp" alt="Plato de Ristrel">
+                  <img loading="lazy" decoding="async" src="assets/plato.webp" width="1600" height="1060" alt="Plato de Ristrel">
                   <div class="ristrel-photo-cap">Gran bife Ristrel</div>
                 </div>
               </div>
@@ -820,16 +922,16 @@
           </div>
 
           <!-- KIDS · full width -->
-          <section class="d-duo-card d-duo-card--kids d-duo-card--solo">
+          <section class="d-duo-card d-duo-card--kids d-duo-card--solo" id="festejos-d">
             <div class="kids-confetti" aria-hidden="true">
               <span class="conf c1"></span><span class="conf c3"></span><span class="conf c5"></span>
               <span class="conf c7"></span><span class="conf c9"></span>
             </div>
             <div class="d-kids-photo">
-              <img loading="lazy" decoding="async" src="assets/cumple-bowling.webp" alt="Cumple infantil">
+              <img loading="lazy" decoding="async" src="assets/cumple-bowling.webp" width="1420" height="1108" alt="Cumple infantil">
               <span class="kids-tag-edad">de 6 a 13 años</span>
             </div>
-            <img class="d-kids-logo" loading="lazy" decoding="async" src="assets/logo-kids.webp" alt="Snack Kids">
+            <img class="d-kids-logo" loading="lazy" decoding="async" src="assets/logo-kids.webp" width="1920" height="1080" alt="Snack Kids">
             <p class="kids-lead">
               <span class="kids-word kids-word--1">¡El cumple</span>
               <span class="kids-word kids-word--2">más divertido</span>
@@ -928,13 +1030,55 @@
                   </span>
                   <span class="events-pkg-arrow">→</span>
                 </a>
+                <a href="/eventos" class="events-pkg events-pkg--num">
+                  <span class="events-pkg-tag">bowling incluido</span>
+                  <span class="events-pkg-n">04</span>
+                  <span class="events-pkg-body">
+                    <span class="events-pkg-name">Pizza Teen</span>
+                    <span class="events-pkg-desc">Pizza libre + bebida libre + postre + 1 línea de bowling</span>
+                  </span>
+                  <span class="events-pkg-arrow">→</span>
+                </a>
               </div>
             </div>
 
             <div class="events-cta-block">
-              <a href="/eventos" class="btn btn--events">VER LOS 3 PAQUETES →</a>
+              <a href="/eventos" class="btn btn--events">VER LOS 4 PAQUETES →</a>
               <p class="events-cta-foot">o pedí cotización directa por WhatsApp</p>
             </div>
+          </section>
+
+
+          <!-- ═══ PRUEBA SOCIAL · reseñas reales de Google ═══ -->
+          <section class="social-proof" id="opiniones">
+            <div class="sp-head">
+              <span class="lbl">lo que dicen</span>
+              <h2 class="d-h2">Opiniones de Google</h2>
+              <a class="sp-rating" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">
+                <span class="sp-stars" aria-hidden="true">★★★★★</span>
+                <span class="sp-score">4,1</span>
+                <span class="sp-count">· 4.636 reseñas en Google</span>
+                <span class="sp-arrow">↗</span>
+              </a>
+            </div>
+            <div class="sp-grid">
+              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
+                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>¡Excelente comida! Muy amable la atención y altamente recomendable. Precios buenos para la zona y los empleados súper profesionales. Un lugar que no falla.</blockquote>
+                <div class="sp-foot"><span class="sp-author">Carolina</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
+              </a>
+              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
+                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>Un lugar re copado para ir con amigos o familia. Muy buen ambiente, las pistas andan bárbaro y la combinación de comer algo rico mientras jugás unos bolos hace que la noche sea perfecta.</blockquote>
+                <div class="sp-foot"><span class="sp-author">Lisandro</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
+              </a>
+              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
+                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                <blockquote>Lugar clásico de Libertador. Muy buena gastronomía, porciones abundantes y atención de diez. Todo de diez, ideal para ir a divertirse y comer bien sin vueltas.</blockquote>
+                <div class="sp-foot"><span class="sp-author">Emilia</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
+              </a>
+            </div>
+            <a class="sp-all" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">Ver todas las reseñas en Google ↗</a>
           </section>
 
           <!-- TIMELINE HORIZONTAL -->
@@ -977,7 +1121,7 @@
               </details>
               <details class="faq-item">
                 <summary>¿Puedo reservar mesa para cenar o almorzar?</summary>
-                <div class="faq-body"><p>Sí · reservá al <a href="tel:+541147928009">4792-8009</a>.</p></div>
+                <div class="faq-body"><p>Sí · <button type="button" class="faq-link" data-reserva-open>pedí tu mesa desde acá</button> y te respondemos por WhatsApp, o llamanos al <a href="tel:+541147928009">4792-8009</a>. Queda confirmada cuando te damos el OK.</p></div>
               </details>
               <details class="faq-item">
                 <summary>¿Hacen eventos empresariales?</summary>
@@ -1008,33 +1152,40 @@
               <span class="lbl">galería</span>
               <h2 class="d-h2">El lugar en fotos</h2>
               <p class="gallery-sub">Hacé click en cualquier foto para verla en grande</p>
+              <div class="gallery-filters" role="group" aria-label="Filtrar fotos por espacio">
+                <button type="button" class="gal-chip is-active" data-gallery-filter="todas">Todas</button>
+                <button type="button" class="gal-chip" data-gallery-filter="bowling">Bowling</button>
+                <button type="button" class="gal-chip" data-gallery-filter="resto">Restaurante</button>
+                <button type="button" class="gal-chip" data-gallery-filter="pool">Pool</button>
+                <button type="button" class="gal-chip" data-gallery-filter="pelotero">Pelotero</button>
+              </div>
             </div>
             <div class="gallery" data-gallery>
-              <button type="button" class="gallery-item gallery-item--feature" data-full="assets/galeria/bowling.webp" aria-label="Ver foto de pistas de bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/bowling.webp" alt="Pistas de bowling"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/DSC02262.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02262.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/resto.webp" aria-label="Ver foto del restaurante"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/resto.webp" alt="Restaurante Ristrel"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/DSC02326.webp" aria-label="Ver foto de pizza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02326.webp" alt="Pizza Ristrel"></button>
-              <button type="button" class="gallery-item" data-full="assets/galeria/DSC02287.webp" aria-label="Ver foto de vino"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02287.webp" alt="Vino Rutini en Ristrel"></button>
-              <button type="button" class="gallery-item gallery-item--wide" data-full="assets/galeria/pelotero.webp" aria-label="Ver foto del pelotero"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/pelotero.webp" alt="Pelotero infantil"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02395.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02395.webp" alt="Cerveza tirada Patagonia"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02201.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02201.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02221.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02221.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02286.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02286.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02293.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02293.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02298.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02298.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02303.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02303.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02317.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02317.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02322.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02322.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02327.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02327.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02335.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02335.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02337.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02337.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02338.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02338.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02392.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02392.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02446.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02446.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02447.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02447.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02451.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02451.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02461.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02461.webp" alt="Snack Bowling"></button>
-              <button type="button" class="gallery-item gallery-item--more" data-full="assets/galeria/DSC02462.webp" aria-label="Ver foto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02462.webp" alt="Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--feature" data-cat="bowling" data-full="assets/galeria/bowling.webp" aria-label="Ver foto de pistas de bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/bowling.webp" width="600" height="600" alt="Pistas de bowling"></button>
+              <button type="button" class="gallery-item" data-cat="bowling" data-full="assets/galeria/DSC02262.webp" aria-label="Ampliar: Bolos y bola verde al fondo de la pista, con la máquina de Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02262.webp" width="600" height="600" alt="Bolos y bola verde al fondo de la pista, con la máquina de Snack Bowling"></button>
+              <button type="button" class="gallery-item" data-cat="resto" data-full="assets/galeria/resto.webp" aria-label="Ver foto del restaurante"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/resto.webp" width="600" height="600" alt="Restaurante Ristrel"></button>
+              <button type="button" class="gallery-item" data-cat="resto" data-full="assets/galeria/DSC02326.webp" aria-label="Ver foto de pizza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02326.webp" width="600" height="600" alt="Pizza Ristrel"></button>
+              <button type="button" class="gallery-item" data-cat="resto" data-full="assets/galeria/DSC02287.webp" aria-label="Ver foto de vino"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02287.webp" width="600" height="600" alt="Vino Rutini en Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--wide" data-cat="pelotero" data-full="assets/galeria/pelotero.webp" aria-label="Ver foto del pelotero"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/pelotero.webp" width="600" height="600" alt="Pelotero infantil"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02395.webp" aria-label="Ampliar: Canillas de cerveza tirada Patagonia y Stella Artois en la barra"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02395.webp" width="600" height="600" alt="Canillas de cerveza tirada Patagonia y Stella Artois en la barra"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02201.webp" aria-label="Ampliar: Chica festejando después de tirar la bola en las pistas de Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02201.webp" width="600" height="600" alt="Chica festejando después de tirar la bola en las pistas de Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02221.webp" aria-label="Ampliar: Jugador lanzando la bola en las pistas de bowling de Martínez"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02221.webp" width="600" height="600" alt="Jugador lanzando la bola en las pistas de bowling de Martínez"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02286.webp" aria-label="Ampliar: Sorrentinos verdes a la crema de Ristrel con una copa de vino tinto"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02286.webp" width="600" height="600" alt="Sorrentinos verdes a la crema de Ristrel con una copa de vino tinto"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02293.webp" aria-label="Ampliar: Milanesa a la napolitana con papas fritas del restaurante Ristrel"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02293.webp" width="600" height="600" alt="Milanesa a la napolitana con papas fritas del restaurante Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02298.webp" aria-label="Ampliar: Plato de sorrentinos a la crema servido en la mesa de Ristrel"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02298.webp" width="600" height="600" alt="Plato de sorrentinos a la crema servido en la mesa de Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02303.webp" aria-label="Ampliar: Botella de Rutini Cabernet Malbec y copas servidas en Ristrel"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02303.webp" width="600" height="600" alt="Botella de Rutini Cabernet Malbec y copas servidas en Ristrel"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02317.webp" aria-label="Ampliar: Nachos con salsa de queso cheddar para compartir en Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02317.webp" width="600" height="600" alt="Nachos con salsa de queso cheddar para compartir en Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02322.webp" aria-label="Ampliar: Picada de nachos con cheddar y papas sobre la mesa"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02322.webp" width="600" height="600" alt="Picada de nachos con cheddar y papas sobre la mesa"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02327.webp" aria-label="Ampliar: Porción de pizza de muzzarella con aceitunas y un chopp de cerveza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02327.webp" width="600" height="600" alt="Porción de pizza de muzzarella con aceitunas y un chopp de cerveza"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02335.webp" aria-label="Ampliar: Chopp de cerveza tirada Stella Artois con una porción de pizza"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02335.webp" width="600" height="600" alt="Chopp de cerveza tirada Stella Artois con una porción de pizza"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02337.webp" aria-label="Ampliar: Pistas de bowling de fondo, con papas y cerveza servidas en la mesa"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02337.webp" width="600" height="600" alt="Pistas de bowling de fondo, con papas y cerveza servidas en la mesa"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02338.webp" aria-label="Ampliar: Grupo compartiendo nachos y cerveza entre partidas de bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02338.webp" width="600" height="600" alt="Grupo compartiendo nachos y cerveza entre partidas de bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="resto" data-full="assets/galeria/DSC02392.webp" aria-label="Ampliar: Salón del restaurante Ristrel con las mesas puestas"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02392.webp" width="600" height="600" alt="Salón del restaurante Ristrel con las mesas puestas"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="pool" data-full="assets/galeria/DSC02446.webp" aria-label="Ampliar: Tirando en una mesa de pool de paño rojo en Snack Bowling"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02446.webp" width="600" height="600" alt="Tirando en una mesa de pool de paño rojo en Snack Bowling"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02447.webp" aria-label="Ampliar: Zapatos de bowling de Snack alineados, listos para retirar"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02447.webp" width="600" height="600" alt="Zapatos de bowling de Snack alineados, listos para retirar"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02451.webp" aria-label="Ampliar: Atándose los zapatos de bowling antes de empezar a jugar"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02451.webp" width="600" height="600" alt="Atándose los zapatos de bowling antes de empezar a jugar"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02461.webp" aria-label="Ampliar: Grupo de amigos en ronda alrededor de una bola de bowling roja"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02461.webp" width="600" height="600" alt="Grupo de amigos en ronda alrededor de una bola de bowling roja"></button>
+              <button type="button" class="gallery-item gallery-item--more" data-cat="bowling" data-full="assets/galeria/DSC02462.webp" aria-label="Ampliar: Pistas de bowling de Snack Bowling Martínez con su mural geométrico"><img loading="lazy" decoding="async" src="assets/galeria/thumbs/DSC02462.webp" width="600" height="600" alt="Pistas de bowling de Snack Bowling Martínez con su mural geométrico"></button>
             </div>
             <div class="gallery-more-wrap">
               <button type="button" class="gallery-more-btn" data-gallery-toggle aria-expanded="false">
@@ -1080,13 +1231,74 @@
           <!-- FOOTER -->
           <div class="d-footer">
             <div class="footer-hours footer-hours--d" data-hours></div>
-            <img class="d-footer-logo" src="assets/logo-nav.webp" alt="Snack Ristrel">
+            <img class="d-footer-logo" src="assets/logo-nav.webp" width="2000" height="500" alt="Snack Ristrel">
             <div class="d-footer-tagline">EST 1967 · MARTÍNEZ · ZONA NORTE</div>
             <div class="d-footer-meta">© 2026 · Hecho con cariño en zona norte</div>
           </div>
 
 
         
+</div>
+
+<!-- STICKY CTA BAR mobile · home -->
+<aside class="sticky-cta-bar sticky-cta-bar--home" aria-label="Acciones rápidas">
+  <button type="button" class="sticky-btn sticky-btn--reserva" data-reserva-open>Reservar mesa</button>
+  <a class="sticky-btn sticky-btn--map" href="https://maps.google.com/?q=Av.+del+Libertador+13054+Mart%C3%ADnez" target="_blank" rel="noopener">Cómo llegar</a>
+</aside>
+
+<!-- MODAL RESERVA DE MESA (compartido mobile + desktop) -->
+<div class="reserva-modal" data-reserva-modal hidden>
+  <div class="reserva-backdrop" data-reserva-close></div>
+  <div class="reserva-dialog" role="dialog" aria-modal="true" aria-labelledby="reservaTitle">
+    <button type="button" class="reserva-close" data-reserva-close aria-label="Cerrar">×</button>
+
+    <div class="reserva-head">
+      <span class="lbl">restaurante ristrel</span>
+      <h2 class="reserva-title" id="reservaTitle">Reservá tu mesa</h2>
+      <p class="reserva-sub">Completá los datos y te abrimos el WhatsApp con el mensaje ya armado.</p>
+    </div>
+
+    <form class="reserva-form" data-cotizador="mesa" novalidate>
+      <div class="reserva-row">
+        <div class="cotizador-field">
+          <label for="res-fecha">Día</label>
+          <input type="date" id="res-fecha" name="fecha" required>
+        </div>
+        <div class="cotizador-field">
+          <label for="res-hora">Horario</label>
+          <input type="time" id="res-hora" name="hora" step="900" required>
+        </div>
+      </div>
+
+      <div class="reserva-row">
+        <div class="cotizador-field">
+          <label for="res-personas">Personas</label>
+          <input type="number" id="res-personas" name="personas" min="1" max="40" step="1" placeholder="4" required>
+        </div>
+        <div class="cotizador-field">
+          <label for="res-nombre">Tu nombre</label>
+          <input type="text" id="res-nombre" name="nombre" maxlength="40" autocomplete="name" required>
+        </div>
+      </div>
+
+      <div class="cotizador-field">
+        <label for="res-tel">Teléfono <span class="lbl-opt">· opcional, por si se corta el WhatsApp</span></label>
+        <input type="tel" id="res-tel" name="telefono" maxlength="25" autocomplete="tel">
+      </div>
+
+      <div class="reserva-warn" data-reserva-warn hidden></div>
+
+      <button type="submit" class="cotizador-submit reserva-submit">
+        <svg class="wp-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+        PEDIR LA RESERVA
+      </button>
+
+      <p class="reserva-rules">
+        <b>Tu reserva queda confirmada cuando te respondemos con el OK.</b><br>
+        Viernes a la noche tomamos reservas hasta las 22:00 y sábados hasta las 21:15. Sábados y domingos al mediodía, hasta las 13:30.
+      </p>
+    </form>
+  </div>
 </div>
 
 <!-- LIGHTBOX galería (compartido) -->
@@ -1116,7 +1328,7 @@
     <div class="ai-chat-head">
       <div class="ai-chat-head-info">
         <div class="ai-chat-avatar" aria-hidden="true">
-          <img src="assets/favicon-192.png" alt="">
+          <img src="assets/favicon-192.png" width="192" height="192" alt="">
         </div>
         <div class="ai-chat-head-text">
           <div class="ai-chat-name" id="aiChatTitle">Snack Bowling</div>
@@ -1140,6 +1352,17 @@
     </div>
   </div>
 </div>
+
+
+<!-- Form oculto · registra los campos en Netlify Forms para que acepte los POST del cotizador -->
+<form name="leads" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="tipo"><input type="text" name="paquete"><input type="text" name="tipoEvento">
+  <input type="text" name="fecha"><input type="text" name="hora"><input type="text" name="cantidad">
+  <input type="text" name="personas"><input type="text" name="cumpleaneros"><input type="text" name="bowling">
+  <input type="text" name="nombre"><input type="text" name="telefono"><input type="text" name="contacto">
+  <textarea name="mensaje"></textarea><input type="text" name="pagina"><input type="text" name="enviado">
+  <input type="text" name="bot-field">
+</form>
 
 </body>
 </html>

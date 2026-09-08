@@ -29,8 +29,12 @@ document.querySelectorAll('[data-gallery-toggle]').forEach(btn => {
   let items = [];
   let current = 0;
 
-  function open(galleryRoot, idx) {
-    items = Array.from(galleryRoot.querySelectorAll('.gallery-item'));
+  function open(galleryRoot, clicked) {
+    // Solo las fotos visibles: si hay un filtro activo, las flechas no tienen
+    // que pasar por las que están ocultas.
+    items = Array.from(galleryRoot.querySelectorAll('.gallery-item'))
+      .filter(el => el.offsetParent !== null);
+    const idx = Math.max(0, items.indexOf(clicked));
     current = idx;
     show(idx);
     lightbox.classList.add('is-open');
@@ -54,8 +58,8 @@ document.querySelectorAll('[data-gallery-toggle]').forEach(btn => {
 
   // Conectar todos los .gallery (mobile + desktop)
   document.querySelectorAll('.gallery').forEach(g => {
-    g.querySelectorAll('.gallery-item').forEach((item, i) => {
-      item.addEventListener('click', () => open(g, i));
+    g.querySelectorAll('.gallery-item').forEach((item) => {
+      item.addEventListener('click', () => open(g, item));
     });
   });
   lightbox.querySelector('.lightbox-close').addEventListener('click', close);
@@ -630,10 +634,43 @@ function renderHours() {
     detailText = `Abre ${dayLabel} a las ${openLabel}`;
   }
 
+  // Variante compacta (franja bajo el hero): mismo dato, pero con la misma
+  // tipografía que las otras celdas y sin encabezar con una negativa.
+  // El indicador se re-renderiza cada minuto, así que traduce por su cuenta:
+  // el TreeWalker del toggle ES/EN no alcanza a texto que se regenera solo.
+  const en = window.currentLang === 'en';
+  let compactTitle, compactDetail;
+  if (isOpen) {
+    compactTitle = en ? 'Open now' : 'Abierto ahora';
+    const hora = minutesToHHMM(closesAtMins);
+    if (stateClass === 'footer-hours--closing') {
+      compactDetail = en ? `closing at ${hora}` : `cerramos a las ${hora}`;
+    } else {
+      compactDetail = en ? `until ${hora}` : `hasta las ${hora}`;
+    }
+  } else {
+    compactTitle = en ? 'Closed now' : 'Cerrado ahora';
+    compactDetail = detailText.charAt(0).toLowerCase() + detailText.slice(1);
+  }
+  if (en) {
+    statusText = isOpen
+      ? (stateClass === 'footer-hours--closing' ? 'Closing soon' : 'Open now')
+      : 'Closed now';
+    detailText = detailText
+      .replace('Hasta las', 'Until')
+      .replace('Abre hoy a las', 'Opens today at')
+      .replace('Abre mañana a las', 'Opens tomorrow at');
+    compactDetail = compactDetail
+      .replace('abre hoy a las', 'opens today at')
+      .replace('abre mañana a las', 'opens tomorrow at');
+  }
+
   els.forEach(el => {
     el.classList.remove('footer-hours--open', 'footer-hours--closing', 'footer-hours--closed');
     el.classList.add(stateClass);
-    el.innerHTML = `<span class="footer-hours-status">${statusText}</span><span class="footer-hours-detail">${detailText}</span>`;
+    el.innerHTML = el.dataset.hours === 'compact'
+      ? `<span class="quick-fact-n"><span class="quick-fact-dot" aria-hidden="true"></span>${compactTitle}</span><span class="quick-fact-l">${compactDetail}</span>`
+      : `<span class="footer-hours-status">${statusText}</span><span class="footer-hours-detail">${detailText}</span>`;
   });
 }
 renderHours();
@@ -910,6 +947,14 @@ const I18N = {
 let currentLang = 'es';
 window.currentLang = currentLang;
 
+// La elección de idioma se recuerda entre páginas y visitas.
+function guardarLang(lang) {
+  try { localStorage.setItem('snack_lang', lang); } catch (e) { /* incógnito */ }
+}
+function langGuardado() {
+  try { return localStorage.getItem('snack_lang'); } catch (e) { return null; }
+}
+
 function applyLang(lang) {
   currentLang = lang;
   window.currentLang = lang;
@@ -917,6 +962,7 @@ function applyLang(lang) {
   // Reset chat si está en el DOM (para traducir preguntas/respuestas dinámicas)
   const chatRoot = document.querySelector('[data-chat]');
   if (chatRoot && chatRoot._chatReset) chatRoot._chatReset();
+  if (typeof renderHours === 'function') renderHours();
 
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
@@ -948,8 +994,18 @@ function applyLang(lang) {
 }
 
 document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(currentLang === 'es' ? 'en' : 'es'));
+  btn.addEventListener('click', () => {
+    const nuevo = currentLang === 'es' ? 'en' : 'es';
+    guardarLang(nuevo);
+    applyLang(nuevo);
+  });
 });
+
+// Al cargar, respetar el idioma elegido antes
+(function restaurarLang() {
+  const guardado = langGuardado();
+  if (guardado === 'en') applyLang('en');
+})();
 
 // ─── cotizador → arma mensaje y abre WhatsApp ───
 const WP_PHONE = '+541168225209';
@@ -979,8 +1035,19 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       lines.push(`• Cantidad de invitados: ${data.cantidad} chicos`);
       lines.push(`• ${cumpleaneros} ${cumpleaneroLabel}`);
       if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
+      if (data.contacto) lines.push(`• Contacto: ${data.contacto}`);
       lines.push('');
       lines.push('¡Gracias! · enviado desde el formulario web ✨');
+    } else if (tipo === 'mesa') {
+      lines.push('¡Hola Snack! Quiero reservar una mesa en Ristrel:');
+      lines.push('');
+      lines.push(`• Día: ${fechaFmt}`);
+      lines.push(`• Horario: ${data.hora}`);
+      lines.push(`• Personas: ${data.personas}`);
+      lines.push(`• A nombre de: ${data.nombre}`);
+      if (data.telefono) lines.push(`• Teléfono: ${data.telefono}`);
+      lines.push('');
+      lines.push('Quedo a la espera del OK para confirmar. ¡Gracias!');
     } else if (tipo === 'eventos') {
       lines.push('¡Hola Snack! Quiero cotizar un evento:');
       lines.push('');
@@ -991,6 +1058,7 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       if (data.paquete === 'Pizza Teen') lines.push(`• Bowling: incluido`);
       else if (data.bowling) lines.push(`• ¿Con bowling?: ${data.bowling}`);
       if (data.nombre) lines.push(`• De parte de: ${data.nombre}`);
+      if (data.contacto) lines.push(`• Contacto: ${data.contacto}`);
       lines.push('');
       lines.push('¡Gracias! · enviado desde el formulario web ✨');
     }
@@ -1002,9 +1070,65 @@ document.querySelectorAll('[data-cotizador]').forEach(form => {
       cantidad: data.cantidad,
       fecha: data.fecha
     });
-    window.open(url, '_blank', 'noopener');
+
+    // El lead se guarda ANTES de abrir WhatsApp: si la persona se arrepiente
+    // o el navegador bloquea la ventana, el dato no se pierde igual.
+    guardarLead(tipo, data, text);
+
+    const win = window.open(url, '_blank', 'noopener');
+    if (!win) mostrarFallbackWhatsApp(form, url);
   });
 });
+
+// ═══════════════════════════════════════════════════════════════
+// PERSISTENCIA DE LEADS
+// Se envía a Netlify Forms (funciona solo si el sitio está deployado ahí).
+// Para usar otro destino — Google Sheets vía Apps Script, Formspree, un
+// endpoint propio — poné la URL en LEADS_ENDPOINT y listo.
+// Siempre queda además una copia local como último respaldo.
+// ═══════════════════════════════════════════════════════════════
+const LEADS_ENDPOINT = '';           // ej: 'https://script.google.com/macros/s/AKfy.../exec'
+const LEADS_NETLIFY_FORM = 'leads';  // nombre del form oculto en el HTML
+
+function guardarLead(tipo, data, mensaje) {
+  const lead = {
+    tipo,
+    ...data,
+    mensaje,
+    pagina: location.pathname,
+    enviado: new Date().toISOString(),
+  };
+
+  // 1· respaldo local (sobrevive aunque no haya red)
+  try {
+    const previos = JSON.parse(localStorage.getItem('snack_leads') || '[]');
+    previos.push(lead);
+    localStorage.setItem('snack_leads', JSON.stringify(previos.slice(-50)));
+  } catch (e) { /* modo incógnito o storage lleno */ }
+
+  // 2· envío al backend
+  const body = new URLSearchParams({ 'form-name': LEADS_NETLIFY_FORM, ...lead });
+  const destino = LEADS_ENDPOINT || '/';
+  fetch(destino, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString(),
+  }).catch(() => { /* sin backend configurado: queda el respaldo local */ });
+}
+
+function mostrarFallbackWhatsApp(form, url) {
+  const previo = form.querySelector('.wa-fallback');
+  if (previo) previo.remove();
+  const box = document.createElement('div');
+  box.className = 'wa-fallback';
+  box.innerHTML =
+    '<p>Tu navegador bloqueó la ventana de WhatsApp. Tocá acá para abrirlo:</p>' +
+    '<a class="wa-fallback-btn" target="_blank" rel="noopener">Abrir WhatsApp</a>';
+  box.querySelector('a').href = url;
+  form.appendChild(box);
+  box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  trackEvent('whatsapp_popup_bloqueado', { page: location.pathname });
+}
 
 // ═══════════════════════════════════════════════════════════════
 // CHAT ASISTENTE · quick-reply widget
@@ -1125,12 +1249,12 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       id: 'mesa',
       es: {
         q: '🍽️ Reservar mesa (cena/almuerzo)',
-        a: 'Sí, tomamos reservas para comer. Llamanos al <b>4792-8009</b>.',
+        a: 'Sí. Pedila con el botón <b>Reservar mesa</b> de la web y te respondemos por WhatsApp, o llamanos al <b>4792-8009</b>.<br><br>Queda confirmada cuando te damos el OK.',
         cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
       },
       en: {
         q: '🍽️ Book a table (lunch/dinner)',
-        a: 'Yes, we take reservations for meals. Call us at <b>4792-8009</b>.',
+        a: 'Yes. Use the <b>Reservar mesa</b> button on the site and we\'ll reply on WhatsApp, or call us at <b>4792-8009</b>.<br><br>It\'s confirmed once we send you the OK.',
         cta: { text: '📞 Call 4792-8009', href: 'tel:+541147928009' },
       },
     },
@@ -1681,4 +1805,169 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       openChat();
     });
   }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// RESERVA DE MESA · modal compartido (mobile + desktop)
+// Reglas de horario:
+//   · Vie a la noche → hasta las 22:00
+//   · Sáb a la noche → hasta las 21:15
+//   · Sáb y Dom al mediodía → hasta las 13:30
+//   · Fuera de esos rangos → no se toma la reserva
+// La reserva no queda confirmada hasta que un empleado responde el OK.
+// ═══════════════════════════════════════════════════════════════
+(function initReservaMesa() {
+  const modal = document.querySelector('[data-reserva-modal]');
+  if (!modal) return;
+
+  const form = modal.querySelector('[data-cotizador="mesa"]');
+  const warn = modal.querySelector('[data-reserva-warn]');
+  let lastFocused = null;
+
+  function open() {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('reserva-open');
+    const first = form.querySelector('input');
+    if (first) setTimeout(() => first.focus(), 60);
+    trackEvent('reserva_modal_open', { page: location.pathname });
+  }
+
+  function close() {
+    modal.hidden = true;
+    document.body.classList.remove('reserva-open');
+    hideWarn();
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-reserva-open]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); open(); });
+  });
+  modal.querySelectorAll('[data-reserva-close]').forEach(btn => {
+    btn.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+
+  function hideWarn() {
+    warn.hidden = true;
+    warn.innerHTML = '';
+  }
+
+  function showWarn(html) {
+    warn.hidden = false;
+    warn.innerHTML = html;
+    warn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function toMinutes(hhmm) {
+    const [h, m] = (hhmm || '').split(':').map(Number);
+    if (Number.isNaN(h) || Number.isNaN(m)) return null;
+    return h * 60 + m;
+  }
+
+  // Devuelve null si el horario es reservable, o el motivo si no lo es.
+  function motivoFueraDeRango(fecha, mins) {
+    const dow = new Date(fecha + 'T12:00').getDay(); // 0 dom · 5 vie · 6 sáb
+    if (mins < 510) return 'Abrimos a las 08:30.';
+    if (dow === 5 && mins > 1320) {
+      return 'Los viernes a la noche tomamos reservas hasta las <b>22:00</b>.';
+    }
+    if (dow === 6 && mins > 1275) {
+      return 'Los sábados a la noche tomamos reservas hasta las <b>21:15</b>.';
+    }
+    if ((dow === 6 || dow === 0) && mins >= 660 && mins <= 960 && mins > 810) {
+      return 'Los sábados y domingos al mediodía tomamos reservas hasta las <b>13:30</b>.';
+    }
+    return null;
+  }
+
+  // Capture en el contenedor: corre ANTES del handler genérico del cotizador,
+  // así podemos frenar el envío si falta un dato o el horario está fuera de rango.
+  modal.addEventListener('submit', (e) => {
+    if (e.target !== form) return;
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    if (!data.fecha || !data.hora || !data.personas || !(data.nombre || '').trim()) {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarn('Nos falta un dato: completá día, horario, personas y tu nombre.');
+      return;
+    }
+
+    const mins = toMinutes(data.hora);
+    const motivo = mins === null ? 'Revisá el horario.' : motivoFueraDeRango(data.fecha, mins);
+    if (motivo) {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarn(
+        '<p>' + motivo + '</p>' +
+        '<p class="reserva-warn-sub">En ese horario no tomamos reservas. Elegí otro y seguimos.</p>'
+      );
+      trackEvent('reserva_fuera_de_rango', { fecha: data.fecha, hora: data.hora });
+      return;
+    }
+
+    hideWarn();
+  }, true);
+})();
+
+// ─── hero · "Cumples y eventos" scrollea a la sección visible (mobile o desktop) ───
+document.querySelectorAll('[data-goto-festejos]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = [document.getElementById('festejos'), document.getElementById('festejos-d')]
+      .find(el => el && el.offsetParent !== null);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ─── barra fija de la home · aparece al salir del hero ───
+(function initHomeStickyBar() {
+  const bar = document.querySelector('.sticky-cta-bar--home');
+  if (!bar) return;
+  const hero = document.querySelector('.site-mobile .hero-carousel') || document.querySelector('.hero-carousel');
+  if (!hero) { bar.classList.add('is-visible'); return; }
+  if (!('IntersectionObserver' in window)) { bar.classList.add('is-visible'); return; }
+  new IntersectionObserver(([entry]) => {
+    bar.classList.toggle('is-visible', !entry.isIntersecting);
+  }, { threshold: 0, rootMargin: '-40px 0px 0px 0px' }).observe(hero);
+})();
+
+// ─── galería · filtros por espacio ───
+// Con un filtro activo se muestran todas las fotos de esa categoría (se ignora
+// el corte de "mostrar todas", que solo tiene sentido en la vista completa).
+document.querySelectorAll('.gallery-section').forEach(section => {
+  const chips = section.querySelectorAll('[data-gallery-filter]');
+  if (!chips.length) return;
+  const gallery = section.querySelector('.gallery');
+  const moreWrap = section.querySelector('.gallery-more-wrap');
+
+  // Un filtro con una sola foto parece un error: se oculta hasta que haya más.
+  chips.forEach(chip => {
+    const cat = chip.dataset.galleryFilter;
+    if (cat === 'todas') return;
+    const cuantas = gallery.querySelectorAll(`.gallery-item[data-cat="${cat}"]`).length;
+    if (cuantas < 2) chip.hidden = true;
+  });
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cat = chip.dataset.galleryFilter;
+      chips.forEach(c => c.classList.toggle('is-active', c === chip));
+
+      const todas = cat === 'todas';
+      gallery.classList.toggle('is-filtered', !todas);
+      if (moreWrap) moreWrap.hidden = !todas;
+      if (!todas) gallery.classList.remove('is-expanded');
+
+      gallery.querySelectorAll('.gallery-item').forEach(item => {
+        item.hidden = !todas && item.dataset.cat !== cat;
+      });
+
+      trackEvent('gallery_filter', { categoria: cat });
+    });
+  });
 });

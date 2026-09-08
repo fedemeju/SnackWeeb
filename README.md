@@ -74,15 +74,25 @@ php -S localhost:8000
 
 Abrir http://localhost:8000
 
-## Activar Google Analytics
+## Google Analytics
 
-1. Crear cuenta en https://analytics.google.com → Admin → Crear propiedad
-2. Copiar el **Measurement ID** (formato: `G-XXXXXXXXXX`)
-3. Buscar el bloque comentado `<!-- DESCOMENTAR_INICIO -->` en cada HTML
-4. Reemplazar `G-XXXXXXXXXX` por tu ID (2 lugares)
-5. Quitar los comentarios `DESCOMENTAR_INICIO` y `DESCOMENTAR_FIN`
+GA4 **ya está activo** en las 4 páginas con el ID `G-M6GGPZSK61`.
 
-Una vez activo, ya se trackean automáticamente: clicks a WhatsApp, mail, teléfono, mapa, menú externo y envíos del cotizador.
+Eventos que se trackean solos: `whatsapp_click`, `email_click`, `phone_click`,
+`map_click`, `menu_click`, `cotizacion_submit`, `reserva_modal_open`,
+`reserva_fuera_de_rango`, `whatsapp_popup_bloqueado`, `gallery_open`.
+
+**Pendiente en la cuenta de GA4:** marcar `cotizacion_submit`, `whatsapp_click` y
+`phone_click` como *conversiones* (Admin → Eventos → marcar como conversión).
+Sin eso no se puede optimizar campañas ni medir el retorno.
+
+## Leads del cotizador
+
+Cada envío se guarda antes de abrir WhatsApp: copia local en `localStorage` y POST
+al backend. Por defecto va a **Netlify Forms** (form oculto `name="leads"` en cada
+página). Para usar otro destino — Google Sheets vía Apps Script, Formspree, endpoint
+propio — poner la URL en `LEADS_ENDPOINT`, en `site.js`.
+
 
 ## Deploy
 
