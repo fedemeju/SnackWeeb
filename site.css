@@ -3337,3 +3337,16 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   text-align: center;
 }
 .final-site .events-pkg-desc { text-wrap: balance; }
+
+/* aclaración: la reserva es sólo de mesa, no de pista */
+.reserva-note {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-left: 2px solid var(--accent);
+  background: rgba(230,51,41,.07);
+  border-radius: 0 8px 8px 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.reserva-note b { color: var(--ink-1); }
