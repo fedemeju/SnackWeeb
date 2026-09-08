@@ -3315,3 +3315,25 @@ body.reserva-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .final-site .gal-chip { transition: none; }
 }
+
+/* ═══════════ ARREGLOS ═══════════ */
+
+/* Al agregar width/height a las imágenes, las que tienen sólo un max-width en
+   CSS tomaban el height del atributo (ej: el logo Kids quedaba 240x1080).
+   Selector de elemento a propósito: cualquier regla de clase con height sigue
+   ganando, así que sólo aplica donde antes escalaba solo. */
+img { height: auto; }
+
+/* El título del bloque CTA de cumples usaba var(--ink), que en fondo oscuro
+   resolvía a casi negro: texto negro sobre card negra. */
+body.final-site .kids-cta-block .kids-cta-title,
+body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
+
+/* Las tarjetas de paquetes se centraban por contenido: cada una arrancaba en
+   un x distinto según el largo del texto. Ahora el bloque ocupa todo el ancho
+   y el texto se centra parejo. */
+.final-site .events-pkg-body {
+  align-self: stretch;
+  text-align: center;
+}
+.final-site .events-pkg-desc { text-wrap: balance; }
