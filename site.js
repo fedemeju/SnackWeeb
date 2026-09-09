@@ -1247,16 +1247,9 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     },
     {
       id: 'mesa',
-      es: {
-        q: '🍽️ Reservar mesa (cena/almuerzo)',
-        a: 'Sí. Pedila con el botón <b>Reservar mesa</b> de la web y te respondemos por WhatsApp, o llamanos al <b>4792-8009</b>.<br><br>Queda confirmada cuando te damos el OK.',
-        cta: { text: '📞 Llamar al 4792-8009', href: 'tel:+541147928009' },
-      },
-      en: {
-        q: '🍽️ Book a table (lunch/dinner)',
-        a: 'Yes. Use the <b>Reservar mesa</b> button on the site and we\'ll reply on WhatsApp, or call us at <b>4792-8009</b>.<br><br>It\'s confirmed once we send you the OK.',
-        cta: { text: '📞 Call 4792-8009', href: 'tel:+541147928009' },
-      },
+      wizard: 'reserva-mesa',
+      es: { q: '🍽️ Reservar mesa (cena/almuerzo)' },
+      en: { q: '🍽️ Book a table (lunch/dinner)' },
     },
     {
       id: 'menu',
@@ -1436,6 +1429,11 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       setTimeout(() => { typing.remove(); startWizardCumples(); }, 650);
       return;
     }
+    if (item.wizard === 'reserva-mesa') {
+      const typing = addTyping();
+      setTimeout(() => { typing.remove(); startWizardMesa(); }, 650);
+      return;
+    }
     const typing = addTyping();
     setTimeout(() => {
       typing.remove();
@@ -1482,6 +1480,23 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       msgHeader: '¡Hola Snack! Quiero cotizar un cumple infantil:',
       msgFooter: '¡Gracias! · enviado desde el chat web ✨',
       undefined: 'A definir',
+      // reserva de mesa
+      mesaIntro: 'Dale, armamos la reserva 🍽️<br><small>Es sólo para mesas del restaurante: el bowling y el pool son por orden de llegada.</small>',
+      askMesaFecha: '¿Para qué día la querés? 📅',
+      askMesaHora: '¿A qué hora? 🕘',
+      askMesaPersonas: '¿Cuántas personas son?',
+      askMesaNombre: '¿A nombre de quién la reservo?',
+      mesaHoraError: 'Poné una hora válida, tipo 21:00',
+      mesaPersonasError: 'Tienen que ser al menos 1 persona',
+      mesaNombreError: 'Necesito un nombre para la reserva',
+      mesaOtroHorario: '🕘 Probar otro horario',
+      lMesaFecha: 'Día',
+      lHora: 'Horario',
+      lPersonas: 'Personas',
+      lMesaNombre: 'A nombre de',
+      msgMesaHeader: '¡Hola Snack! Quiero reservar una mesa en Ristrel:',
+      msgMesaFooter: 'Quedo a la espera del OK para confirmar. ¡Gracias!',
+      mesaConfirmNota: '<small>La reserva queda confirmada cuando te respondemos con el OK.</small>',
     },
     en: {
       askPaquete: 'Which package are you interested in? 🎁',
@@ -1507,6 +1522,23 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       msgHeader: 'Hi Snack! I\'d like to quote a kids birthday party:',
       msgFooter: 'Thanks! · sent from the web chat ✨',
       undefined: 'To be defined',
+      // table booking
+      mesaIntro: 'Sure, let\'s book it 🍽️<br><small>Restaurant tables only: bowling and pool are first come, first served.</small>',
+      askMesaFecha: 'What day would you like? 📅',
+      askMesaHora: 'What time? 🕘',
+      askMesaPersonas: 'How many people?',
+      askMesaNombre: 'Under what name?',
+      mesaHoraError: 'Please enter a valid time, like 21:00',
+      mesaPersonasError: 'It has to be at least 1 person',
+      mesaNombreError: 'I need a name for the booking',
+      mesaOtroHorario: '🕘 Try another time',
+      lMesaFecha: 'Day',
+      lHora: 'Time',
+      lPersonas: 'People',
+      lMesaNombre: 'Under the name',
+      msgMesaHeader: 'Hi Snack! I\'d like to book a table at Ristrel:',
+      msgMesaFooter: 'Waiting for your OK to confirm. Thanks!',
+      mesaConfirmNota: '<small>Your booking is confirmed once we reply with the OK.</small>',
     },
   };
 
@@ -1673,6 +1705,173 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     }, 500);
   };
 
+  // ─── wizard · reserva de mesa ───
+  const mesaData = { fecha: '', hora: '', personas: '', nombre: '' };
+
+  const startWizardMesa = () => {
+    Object.assign(mesaData, { fecha: '', hora: '', personas: '', nombre: '' });
+    addMsg('bot', wz().mesaIntro);
+    askMesaFecha();
+  };
+
+  const askMesaFecha = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askMesaFecha);
+      const hoy = new Date().toISOString().split('T')[0];
+      addInputRow({
+        type: 'date',
+        value: hoy,
+        min: hoy,
+        autofocus: true,
+        validate: (v) => (v ? null : wz().askMesaFecha),
+      }, (val) => {
+        mesaData.fecha = val;
+        addMsg('user', formatFecha(val));
+        askMesaHora();
+      });
+    }, 500);
+  };
+
+  const askMesaHora = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askMesaHora);
+      addInputRow({
+        type: 'time',
+        autofocus: true,
+        validate: (v) => (window.horaAMinutos(v) === null ? wz().mesaHoraError : null),
+      }, (val) => {
+        addMsg('user', val);
+        // se valida contra los horarios en que se toman reservas
+        const motivo = window.motivoReservaFueraDeRango(
+          mesaData.fecha, window.horaAMinutos(val), getLang() === 'en'
+        );
+        if (motivo) {
+          if (typeof trackEvent === 'function') {
+            trackEvent('reserva_fuera_de_rango', { origen: 'chat', fecha: mesaData.fecha, hora: val });
+          }
+          const t2 = addTyping();
+          setTimeout(() => {
+            t2.remove();
+            addMsg('bot', motivo);
+            addOptionsRow([{ value: 'otro', label: wz().mesaOtroHorario }], () => {
+              addMsg('user', wz().mesaOtroHorario);
+              askMesaHora();
+            });
+          }, 500);
+          return;
+        }
+        mesaData.hora = val;
+        askMesaPersonas();
+      });
+    }, 500);
+  };
+
+  const askMesaPersonas = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askMesaPersonas);
+      addInputRow({
+        type: 'number',
+        min: 1,
+        placeholder: '4',
+        autofocus: true,
+        validate: (v) => {
+          const n = parseInt(v, 10);
+          return (isNaN(n) || n < 1) ? wz().mesaPersonasError : null;
+        },
+      }, (val) => {
+        mesaData.personas = val;
+        addMsg('user', val);
+        askMesaNombre();
+      });
+    }, 500);
+  };
+
+  const askMesaNombre = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      addMsg('bot', wz().askMesaNombre);
+      addInputRow({
+        type: 'text',
+        autofocus: true,
+        validate: (v) => (v.trim() ? null : wz().mesaNombreError),
+      }, (val) => {
+        mesaData.nombre = val;
+        addMsg('user', val);
+        showResumenMesa();
+      });
+    }, 500);
+  };
+
+  const showResumenMesa = () => {
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      const s = wz();
+      addMsg('bot', [
+        `<b>${s.resumen}</b>`,
+        `• <b>${s.lMesaFecha}:</b> ${formatFecha(mesaData.fecha)}`,
+        `• <b>${s.lHora}:</b> ${mesaData.hora}`,
+        `• <b>${s.lPersonas}:</b> ${mesaData.personas}`,
+        `• <b>${s.lMesaNombre}:</b> ${mesaData.nombre}`,
+        '',
+        s.mesaConfirmNota,
+        '',
+        s.confirmSend,
+      ].join('<br>'));
+
+      const actions = $('div', 'ai-chat-quicks');
+      const sendBtn = $('button', 'ai-chat-quick ai-chat-quick--send');
+      sendBtn.type = 'button';
+      sendBtn.textContent = s.send;
+      sendBtn.addEventListener('click', sendWizardMesa);
+      const restartBtn = $('button', 'ai-chat-quick ai-chat-quick--back');
+      restartBtn.type = 'button';
+      restartBtn.textContent = s.restart;
+      restartBtn.addEventListener('click', () => {
+        addMsg('user', s.restart);
+        setTimeout(startWizardMesa, 300);
+      });
+      actions.appendChild(sendBtn);
+      actions.appendChild(restartBtn);
+      body.appendChild(actions);
+      scrollToBottom();
+    }, 500);
+  };
+
+  const sendWizardMesa = () => {
+    const s = wz();
+    const lines = [
+      s.msgMesaHeader,
+      '',
+      `• ${s.lMesaFecha}: ${formatFecha(mesaData.fecha)}`,
+      `• ${s.lHora}: ${mesaData.hora}`,
+      `• ${s.lPersonas}: ${mesaData.personas}`,
+      `• ${s.lMesaNombre}: ${mesaData.nombre}`,
+      '',
+      s.msgMesaFooter,
+    ];
+    const text = lines.join('\n');
+    if (typeof trackEvent === 'function') {
+      trackEvent('cotizacion_submit', { tipo: 'mesa-chat', ...mesaData });
+    }
+    if (typeof guardarLead === 'function') {
+      guardarLead('mesa-chat', { ...mesaData }, text);
+    }
+    window.open(`${WA_BASE}${encodeURIComponent(text)}`, '_blank', 'noopener');
+    setTimeout(() => {
+      addMsg('bot', getLang() === 'en'
+        ? '✅ Sent! We\'ll confirm your table on WhatsApp.'
+        : '✅ ¡Enviado! Te confirmamos la mesa por WhatsApp.');
+    }, 900);
+  };
+
   const formatFecha = (iso) => {
     if (!iso) return wz().undefined;
     try {
@@ -1808,6 +2007,38 @@ document.addEventListener('DOMContentLoaded', function initChat() {
 });
 
 // ═══════════════════════════════════════════════════════════════
+// RESERVA DE MESA · reglas de horario
+// Las usan tanto el modal como el wizard del chat, así que viven acá,
+// en un solo lugar. Devuelve null si el horario se puede reservar.
+// ═══════════════════════════════════════════════════════════════
+window.horaAMinutos = function (hhmm) {
+  const [h, m] = (hhmm || '').split(':').map(Number);
+  if (Number.isNaN(h) || Number.isNaN(m)) return null;
+  return h * 60 + m;
+};
+
+window.motivoReservaFueraDeRango = function (fecha, mins, en) {
+  const dow = new Date(fecha + 'T12:00').getDay(); // 0 dom · 5 vie · 6 sáb
+  if (mins < 510) return en ? 'We open at 08:30.' : 'Abrimos a las 08:30.';
+  if (dow === 5 && mins > 1320) {
+    return en
+      ? 'On Friday nights we take reservations until <b>22:00</b>.'
+      : 'Los viernes a la noche tomamos reservas hasta las <b>22:00</b>.';
+  }
+  if (dow === 6 && mins > 1275) {
+    return en
+      ? 'On Saturday nights we take reservations until <b>21:15</b>.'
+      : 'Los sábados a la noche tomamos reservas hasta las <b>21:15</b>.';
+  }
+  if ((dow === 6 || dow === 0) && mins >= 660 && mins <= 960 && mins > 810) {
+    return en
+      ? 'On Saturdays and Sundays at midday we take reservations until <b>13:30</b>.'
+      : 'Los sábados y domingos al mediodía tomamos reservas hasta las <b>13:30</b>.';
+  }
+  return null;
+};
+
+// ═══════════════════════════════════════════════════════════════
 // RESERVA DE MESA · modal compartido (mobile + desktop)
 // Reglas de horario:
 //   · Vie a la noche → hasta las 22:00
@@ -1861,27 +2092,8 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     warn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   }
 
-  function toMinutes(hhmm) {
-    const [h, m] = (hhmm || '').split(':').map(Number);
-    if (Number.isNaN(h) || Number.isNaN(m)) return null;
-    return h * 60 + m;
-  }
-
-  // Devuelve null si el horario es reservable, o el motivo si no lo es.
-  function motivoFueraDeRango(fecha, mins) {
-    const dow = new Date(fecha + 'T12:00').getDay(); // 0 dom · 5 vie · 6 sáb
-    if (mins < 510) return 'Abrimos a las 08:30.';
-    if (dow === 5 && mins > 1320) {
-      return 'Los viernes a la noche tomamos reservas hasta las <b>22:00</b>.';
-    }
-    if (dow === 6 && mins > 1275) {
-      return 'Los sábados a la noche tomamos reservas hasta las <b>21:15</b>.';
-    }
-    if ((dow === 6 || dow === 0) && mins >= 660 && mins <= 960 && mins > 810) {
-      return 'Los sábados y domingos al mediodía tomamos reservas hasta las <b>13:30</b>.';
-    }
-    return null;
-  }
+  const toMinutes = (hhmm) => window.horaAMinutos(hhmm);
+  const motivoFueraDeRango = (fecha, mins) => window.motivoReservaFueraDeRango(fecha, mins, false);
 
   // Capture en el contenedor: corre ANTES del handler genérico del cotizador,
   // así podemos frenar el envío si falta un dato o el horario está fuera de rango.
