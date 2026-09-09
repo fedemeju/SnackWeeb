@@ -3745,3 +3745,21 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (prefers-reduced-motion: reduce) {
   .skip-link { transition: none; }
 }
+
+/* Los chips de la galería usaban var(--ink-2), que es un crema pensado para
+   fondos oscuros: sobre la sección clara daba 1,56:1 de contraste. */
+.final-site .gal-chip {
+  color: #4a463e;
+  border-color: rgba(20, 17, 13, .28);
+}
+.final-site .gal-chip:hover {
+  color: #14110d;
+  border-color: rgba(20, 17, 13, .55);
+  background: rgba(20, 17, 13, .04);
+}
+.final-site .gal-chip.is-active {
+  background: #d0271d;
+  border-color: #d0271d;
+  color: #fff;
+}
+.final-site .gal-chip.is-active:hover { background: #b8221a; border-color: #b8221a; }
