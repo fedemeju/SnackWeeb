@@ -1295,7 +1295,7 @@ body.final-site {
 
 /* Cotizador centrado · ya tiene max-width 460px en .cotizador-form */
 @media (min-width: 980px) {
-  .final-subpage .cotizador { padding: 48px 32px; }
+  .final-subpage .cotizador { padding: var(--section-pad-y) 32px; }
 }
 
 /* ─────────── HOME · ajustes desktop ─────────── */
@@ -1310,7 +1310,7 @@ body.final-site {
   .m-band--events {
     max-width: 1200px;
     margin: 0 auto 32px;
-    padding: 64px 48px;
+    padding: var(--section-pad-y) 48px;
   }
   /* el headline mobile usa stack vertical (Festejá / tu evento / con nosotros),
      en desktop podemos hacerlo horizontal o más grande */
@@ -2150,7 +2150,9 @@ body.menu-is-open .scroll-top-btn {
 .final-site .faq-section,
 .final-site .cotizador,
 .final-site .cp-hero,
-.final-site .ev-hero {
+.final-site .ev-hero,
+.final-site .m-band--events,
+.final-site .social-proof {
   padding-top: var(--section-pad-y-mobile);
   padding-bottom: var(--section-pad-y-mobile);
 }
@@ -2159,7 +2161,8 @@ body.menu-is-open .scroll-top-btn {
   .final-site .faq-section,
   .final-site .cotizador,
   .final-site .cp-hero,
-  .final-site .ev-hero {
+  .final-site .ev-hero,
+  .final-site .social-proof {
     padding-top: var(--section-pad-y);
     padding-bottom: var(--section-pad-y);
   }
@@ -3493,14 +3496,14 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 
 /* banda de sección compartida · reemplaza a .m-band / .d-band */
 .band {
-  padding: 30px 20px 24px;
+  padding: var(--band-pad-y-mobile) 20px;
   border-top: 1px solid var(--ink);
   position: relative;
 }
 .band--tan { background: var(--paper-2); }
 .band-head { margin-bottom: 4px; }
 @media (min-width: 980px) {
-  .band { padding: 48px 56px; }
+  .band { padding: var(--band-pad-y) 56px; }
   .band-head { margin-bottom: 24px; max-width: 720px; }
 }
 
@@ -3812,3 +3815,48 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   color: #f2ede0;
 }
 .final-site .m-band--events .events-stat-sm { color: rgba(242, 237, 224, .6); }
+
+/* el launcher del chat se aparta cuando el formulario está en pantalla */
+.ai-chat--oculto .ai-chat-launcher,
+.ai-chat--oculto .ai-chat-hint {
+  opacity: 0;
+  transform: translateY(20px) scale(.9);
+  pointer-events: none;
+}
+.ai-chat-launcher,
+.ai-chat-hint {
+  transition: opacity .2s ease, transform .2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-chat-launcher, .ai-chat-hint { transition: none; }
+}
+
+/* ─────────── Chat · atajos arriba de las preguntas ─────────── */
+.ai-chat-atajos {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+.ai-chat-atajo {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: .01em;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--chat-accent, #25D366);
+  background: rgba(37, 211, 102, .07);
+  color: #14110d;
+  cursor: pointer;
+  transition: background .16s ease, transform .16s ease;
+}
+.ai-chat-atajo:hover {
+  background: rgba(37, 211, 102, .16);
+  transform: translateY(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-chat-atajo { transition: none; }
+}

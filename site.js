@@ -690,7 +690,7 @@ const I18N = {
     'eventos': 'events',
     'línea de tiempo': 'timeline',
     'contacto': 'contact',
-    'En línea': 'Online',
+    'Respuestas rápidas': 'Quick answers',
     'Escribir directo por WhatsApp': 'Message us on WhatsApp',
     'Abrir chat de ayuda': 'Open help chat',
     'Cerrar chat': 'Close chat',
@@ -1402,10 +1402,38 @@ document.addEventListener('DOMContentLoaded', function initChat() {
     scrollToBottom();
   };
 
+  // Atajos · las tres cosas que la gente viene a hacer, antes de las preguntas
+  const ATAJOS = {
+    es: [
+      { txt: '🍽️ Reservar mesa', accion: () => showAnswer('mesa') },
+      { txt: '🎂 Cotizar cumple', accion: () => location.assign('/cumples#cotizador') },
+      { txt: '📍 Cómo llegar', accion: () => window.open('https://maps.google.com/?q=Av.+del+Libertador+13054+Mart%C3%ADnez', '_blank', 'noopener') },
+    ],
+    en: [
+      { txt: '🍽️ Book a table', accion: () => showAnswer('mesa') },
+      { txt: '🎂 Quote a birthday', accion: () => location.assign('/cumples#cotizador') },
+      { txt: '📍 How to get there', accion: () => window.open('https://maps.google.com/?q=Av.+del+Libertador+13054+Mart%C3%ADnez', '_blank', 'noopener') },
+    ],
+  };
+
   const renderMenu = () => {
     body.innerHTML = '';
     const lang = getLang();
     addMsg('bot', t().greet);
+
+    const atajos = $('div', 'ai-chat-atajos');
+    (ATAJOS[lang] || ATAJOS.es).forEach(a => {
+      const btn = $('button', 'ai-chat-atajo');
+      btn.type = 'button';
+      btn.textContent = a.txt;
+      btn.addEventListener('click', () => {
+        if (typeof trackEvent === 'function') trackEvent('chat_atajo', { atajo: a.txt });
+        a.accion();
+      });
+      atajos.appendChild(btn);
+    });
+    body.appendChild(atajos);
+
     const quicks = $('div', 'ai-chat-quicks');
     QA.forEach(item => {
       const btn = $('button', 'ai-chat-quick');
@@ -1415,7 +1443,8 @@ document.addEventListener('DOMContentLoaded', function initChat() {
       quicks.appendChild(btn);
     });
     body.appendChild(quicks);
-    scrollToBottom();
+    // el menú arranca arriba: si no, el saludo y los atajos quedan fuera de vista
+    body.scrollTop = 0;
   };
 
   const showAnswer = (id) => {
@@ -2219,4 +2248,33 @@ document.querySelectorAll('.sp-grid').forEach(grid => {
     if (!abierto) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     trackEvent('resenas_toggle', { expanded: abierto, page: location.pathname });
   });
+});
+
+// ─── el chat no debe tapar el formulario ───
+// Cuando el cotizador o el modal de reserva están en pantalla, el launcher se
+// esconde: en mobile queda justo encima de los últimos campos y del botón de
+// enviar. Se usa posición de scroll y no IntersectionObserver, porque en las
+// subpáginas el contenido vive dentro de un wrapper con overflow propio y el
+// observer no dispara.
+// El markup del chat está DESPUÉS del <script>, así que hay que esperar al DOM.
+document.addEventListener('DOMContentLoaded', function initChatSinTaparForm() {
+  const chat = document.querySelector('.ai-chat');
+  const form = document.querySelector('[data-cotizador]');
+  if (!chat || !form) return;
+
+  function actualizar() {
+    // si el chat está abierto, no lo tocamos: lo abrió la persona
+    if (chat.dataset.chatState === 'open') {
+      chat.classList.remove('ai-chat--oculto');
+      return;
+    }
+    const r = form.getBoundingClientRect();
+    const enPantalla = r.top < window.innerHeight - 80 && r.bottom > 120;
+    chat.classList.toggle('ai-chat--oculto', enPantalla);
+  }
+
+  window.addEventListener('scroll', actualizar, { passive: true });
+  window.addEventListener('resize', actualizar);
+  window.addEventListener('load', actualizar);
+  actualizar();
 });

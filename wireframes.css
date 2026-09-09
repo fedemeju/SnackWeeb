@@ -28,9 +28,13 @@
   --shadow-floating: 0 16px 40px -12px rgba(20, 17, 13, 0.22),
                      0 4px 10px -4px rgba(20, 17, 13, 0.10);
 
-  /* Ritmo vertical · secciones */
+  /* Ritmo vertical · dos niveles, no más números sueltos.
+     Secciones grandes: galería, FAQ, reseñas, eventos, cotizador, heroes.
+     Bandas compactas: espacios, línea de tiempo, contacto. */
   --section-pad-y: 88px;
   --section-pad-y-mobile: 56px;
+  --band-pad-y: 48px;
+  --band-pad-y-mobile: 30px;
 }
 
 body.no-accent { --accent: #14110d; --accent-soft: #ece6d3; }
