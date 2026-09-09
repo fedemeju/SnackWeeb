@@ -3748,3 +3748,43 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   justify-content: center;
   margin-top: 20px;
 }
+
+/* ═══════════ CONTRASTE ═══════════
+   El rojo de marca (#E63329) con texto blanco da 4,31:1, apenas por debajo
+   del mínimo de 4,5. Y usado como color de texto sobre las bandas oscuras
+   da entre 3,67 y 4,06. Dos variantes del mismo rojo lo resuelven sin
+   cambiar la identidad: una un punto más profunda para fondos con texto
+   blanco, otra más clara para texto sobre oscuro. */
+:root {
+  --accent-cta: #d0271d;     /* fondo de botón con texto blanco · 5,26:1 */
+  --accent-on-dark: #ff6f62; /* texto rojo sobre banda oscura · 5,9:1 */
+}
+
+/* botones y píldoras con texto blanco sobre rojo */
+.final-site .btn--hero-primary,
+.final-site .sticky-btn--reserva,
+.final-site .btn--historia,
+.final-site .espacio-card-stat,
+.final-site .events-pkg-tag,
+.final-site .gallery-more-btn .gallery-more-count {
+  background-color: var(--accent-cta);
+}
+.final-site .btn--hero-primary { border-color: var(--accent-cta); }
+.final-site .btn--hero-primary:hover { background-color: #b8221a; border-color: #b8221a; }
+
+/* texto rojo sobre fondos oscuros */
+.final-site .sp-all,
+.final-site .sp-verify,
+.final-site .faq-link,
+.final-site #contacto a:not(.chip):not(.map-overlay),
+.final-site .seal-year,
+.final-site .hero-badge b {
+  color: var(--accent-on-dark);
+}
+
+/* metadato de las reseñas · gris demasiado apagado sobre la tarjeta */
+.final-site .sp-meta { color: var(--ink-2); }
+
+/* estos dos pierden por especificidad contra reglas previas */
+.final-site .espacio-card--bowling .espacio-card-stat { background: var(--accent-cta); }
+.final-site .sticky-cta-bar--home .sticky-btn--reserva { background: var(--accent-cta); }
