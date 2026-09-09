@@ -78,6 +78,10 @@ Abrir http://localhost:8000
 
 GA4 **ya está activo** en las 4 páginas con el ID `G-M6GGPZSK61`.
 
+Se carga **sólo en el dominio de producción** (`snackbowling.com.ar` y subdominios).
+En localhost, en previews de Cloudflare o abriendo el HTML directo no se dispara
+ningún evento, así que probar no ensucia los datos reales.
+
 Eventos que se trackean solos: `whatsapp_click`, `email_click`, `phone_click`,
 `map_click`, `menu_click`, `cotizacion_submit`, `reserva_modal_open`,
 `reserva_fuera_de_rango`, `whatsapp_popup_bloqueado`, `gallery_open`.

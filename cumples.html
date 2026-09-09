@@ -122,18 +122,28 @@
 <link rel="stylesheet" href="site.css">
 
 <!--
-  Google Analytics 4 · INSTRUCCIONES PARA ACTIVAR:
-  1. Crear cuenta GA4: https://analytics.google.com/  →  Admin  →  Crear propiedad
-  2. Anotar el "Measurement ID" (formato: G-M6GGPZSK61)
-  3. Reemplazar G-M6GGPZSK61 abajo con tu ID (2 lugares)
-  4. Descomentar el bloque entero (quitar las líneas con DESCOMENTAR)
+  Google Analytics 4 · sólo se carga en el dominio de producción.
+  En localhost, en previews de Cloudflare o abriendo el archivo directo no se
+  dispara ningún evento, así que probar no ensucia los datos reales.
 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M6GGPZSK61"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M6GGPZSK61', { anonymize_ip: true });
+  (function () {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+
+    var host = location.hostname;
+    var esProduccion = host === 'snackbowling.com.ar' || host.endsWith('.snackbowling.com.ar');
+    if (!esProduccion) return;
+
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-M6GGPZSK61';
+    document.head.appendChild(s);
+
+    gtag('js', new Date());
+    gtag('config', 'G-M6GGPZSK61', { anonymize_ip: true });
+  })();
 </script>
 </head>
 <body class="cumples-page final-site final-subpage has-sticky-bar">
