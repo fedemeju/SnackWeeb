@@ -3504,3 +3504,67 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (min-width: 980px) {
   .br-mobile { display: none; }
 }
+
+/* ═══════════ CONTACTO Y FOOTER UNIFICADOS ═══════════
+   Antes había dos copias con la dirección, el teléfono, el mail y los
+   horarios escritos dos veces. Ahora es un solo bloque responsive. */
+.contact-layout {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 980px) {
+  .contact-layout {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .contact-layout .ph--map { aspect-ratio: 4/3; min-height: 300px; }
+}
+.contact-addr {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  cursor: pointer;
+}
+@media (min-width: 980px) {
+  .contact-info { padding-top: 8px; }
+  .contact-addr { font-size: 22px; margin-bottom: 18px; }
+  .contact-info .contact-grid { gap: 18px 24px; }
+}
+
+.site-footer {
+  padding: 22px 20px 30px;
+  text-align: center;
+  background: #0f0d0a;
+  color: #f2ede0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  display: grid;
+  gap: 6px;
+  place-items: center;
+}
+@media (min-width: 980px) {
+  .site-footer { padding: 48px 56px 40px; gap: 8px; }
+}
+.site-footer-logo {
+  width: 70%;
+  max-width: 220px;
+  height: auto;
+  margin-bottom: 6px;
+}
+@media (min-width: 980px) {
+  .site-footer-logo { width: 240px; max-width: none; margin-bottom: 8px; }
+}
+.site-footer-tagline { letter-spacing: 0.18em; }
+.site-footer-meta {
+  font-family: var(--font-hand);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.4);
+}
