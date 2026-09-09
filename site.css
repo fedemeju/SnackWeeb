@@ -1026,7 +1026,10 @@ body.final-site {
 
 /* en páginas con sticky bar: ocultar FAB y dar padding-bottom al wrapper */
 .final-site.has-sticky-bar .fab { display: none; }
-.final-site.has-sticky-bar { padding-bottom: 72px; }  /* el espacio del sticky bar va en el body, no en cada tramo */
+/* el espacio del sticky bar va en el body, no en cada tramo · y sólo donde la barra existe */
+@media (max-width: 979px) {
+  .final-site.has-sticky-bar { padding-bottom: 72px; }
+}
 
 /* ─────────── botón HISTORIA COMPLETA · rojo accent ─────────── */
 .final-site .btn--historia {
@@ -3556,6 +3559,9 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   max-width: 220px;
   height: auto;
   margin-bottom: 6px;
+  /* el archivo es tinta oscura sobre transparente: sobre el fondo negro del
+     footer hay que invertirlo para que se lea */
+  filter: invert(1);
 }
 @media (min-width: 980px) {
   .site-footer-logo { width: 240px; max-width: none; margin-bottom: 8px; }
