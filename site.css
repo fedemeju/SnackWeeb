@@ -3659,3 +3659,77 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   /* el CTA a la historia completa ahora también está en desktop, donde faltaba */
   .timeline-home + .m-cta { margin-top: 28px; text-align: center; }
 }
+
+/* ═══════════ RISTREL UNIFICADO ═══════════
+   Una sola versión: en mobile se apila, en desktop va a dos columnas.
+   Mobile gana el pitch y los tres destacados (60+ platos, sin TACC, menú
+   para chicos), que antes existían sólo en la versión de escritorio. */
+.band--ristrel {
+  padding: 36px 22px 32px;
+  border-top: none;
+}
+@media (min-width: 980px) {
+  .band--ristrel { padding: 56px; }
+}
+.ristrel-layout {
+  display: grid;
+  gap: 22px;
+}
+@media (min-width: 980px) {
+  .ristrel-layout {
+    grid-template-columns: 1fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+}
+.ristrel-main {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media (min-width: 980px) {
+  .ristrel-main { text-align: left; }
+  .ristrel-main .ristrel-cta { grid-template-columns: 1fr 1fr; max-width: 520px; }
+  .ristrel-main .ristrel-logo { margin: 6px 0 8px; max-width: 360px; }
+}
+.ristrel-main .ristrel-logo { margin-left: auto; margin-right: auto; }
+@media (min-width: 980px) {
+  .ristrel-main .ristrel-logo { margin-left: 0; margin-right: 0; }
+}
+.ristrel-layout .ristrel-photo { margin-bottom: 0; }
+@media (min-width: 980px) {
+  .ristrel-layout .ristrel-photo { aspect-ratio: 4 / 5; }
+}
+/* el pitch y los destacados eran desktop-only: en mobile van más compactos */
+.ristrel-pitch { margin: 14px 0 18px; }
+@media (min-width: 980px) {
+  .ristrel-pitch { margin: 18px 0 24px; }
+}
+
+/* ═══════════ CUMPLES KIDS · una sola versión ═══════════
+   Se conserva el bloque de mobile, que era el más completo (tarjeta, qué
+   incluye y stats), y se le suma el CTA de WhatsApp que sólo tenía desktop.
+   En pantallas grandes se acota el ancho y la tarjeta va a dos columnas. */
+@media (min-width: 980px) {
+  .final-site .m-band--kids {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    border-radius: 24px;
+  }
+  .final-site .m-band--kids .kids-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+  .final-site .m-band--kids .kids-feat-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .final-site .m-band--kids .m-cta--kids {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 240px));
+    justify-content: center;
+    gap: 12px;
+  }
+}

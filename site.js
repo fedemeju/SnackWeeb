@@ -2125,11 +2125,11 @@ window.motivoReservaFueraDeRango = function (fecha, mins, en) {
   }, true);
 })();
 
-// ─── hero · "Cumples y eventos" scrollea a la sección visible (mobile o desktop) ───
+// ─── hero · "Cumples y eventos" scrollea a la sección de festejos ───
+// Ya no hace falta elegir entre dos copias: la sección es una sola.
 document.querySelectorAll('[data-goto-festejos]').forEach(link => {
   link.addEventListener('click', (e) => {
-    const target = [document.getElementById('festejos'), document.getElementById('festejos-d')]
-      .find(el => el && el.offsetParent !== null);
+    const target = document.getElementById('festejos');
     if (!target) return;
     e.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -1441,7 +1441,8 @@ body.menu-is-open .m-menu-close { display: none; }
 
 /* ──────────────── RISTREL · la carta ──────────────── */
 .m-band--ristrel,
-.d-band--ristrel {
+.d-band--ristrel,
+.band--ristrel {
   background:
     radial-gradient(ellipse 70% 55% at 50% 0%, rgba(230, 51, 41, 0.18), transparent 60%),
     radial-gradient(ellipse 80% 60% at 10% 100%, rgba(247, 178, 35, 0.10), transparent 60%),
@@ -1464,7 +1465,8 @@ body.menu-is-open .m-menu-close { display: none; }
 }
 
 .m-band--ristrel > *,
-.d-band--ristrel > * { position: relative; z-index: 2; }
+.d-band--ristrel > *,
+.band--ristrel > * { position: relative; z-index: 2; }
 
 /* Header lockup */
 .ristrel-head {
