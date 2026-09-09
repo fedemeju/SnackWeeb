@@ -3693,3 +3693,55 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (max-width: 720px) {
   .final-site .scroll-top-btn { display: none; }
 }
+
+/* ═══════════ ACCESIBILIDAD ═══════════ */
+
+/* Foco visible · sin esto, quien navega con teclado no ve dónde está parado.
+   :focus-visible sólo se activa con teclado, así que no ensucia el mouse. */
+.final-site a:focus-visible,
+.final-site button:focus-visible,
+.final-site input:focus-visible,
+.final-site select:focus-visible,
+.final-site textarea:focus-visible,
+.final-site summary:focus-visible,
+.final-site [tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* sobre fondos oscuros el rojo solo no separa lo suficiente */
+.final-site .band--ristrel a:focus-visible,
+.final-site .band--ristrel button:focus-visible,
+.final-site .m-band--events a:focus-visible,
+.final-site .site-footer a:focus-visible,
+.final-site .m-footer a:focus-visible {
+  outline-color: #fff;
+}
+
+/* Saltar al contenido · primer tab de la página, oculto hasta que recibe foco */
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -100px;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .04em;
+  padding: 12px 18px;
+  border-radius: 0 0 10px 10px;
+  text-decoration: none;
+  transition: top .18s ease;
+}
+.final-site .skip-link:focus,
+.final-site .skip-link:focus-visible,
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #fff;
+  outline-offset: -5px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+}
