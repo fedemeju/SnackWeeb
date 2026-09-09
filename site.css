@@ -3574,3 +3574,88 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   letter-spacing: 0;
   color: rgba(255,255,255,0.4);
 }
+
+/* ═══════════ LÍNEA DE TIEMPO UNIFICADA ═══════════
+   Un solo markup: vertical en mobile, horizontal en desktop.
+   Antes eran dos bloques con los mismos textos escritos dos veces (y ya
+   habían empezado a divergir: "Reforma · llega el pelotero infantil" vs
+   "Reforma · pelotero infantil"). */
+.timeline-home {
+  display: grid;
+  gap: 0;
+  margin: 16px 0;
+  position: relative;
+  padding-left: 22px;
+}
+.timeline-home .tl-axis {
+  position: absolute;
+  left: 8px;
+  top: 14px;
+  bottom: 14px;
+  width: 1px;
+  background: var(--ink);
+}
+.timeline-home .tl-node {
+  padding: 8px 0 14px;
+  position: relative;
+}
+.timeline-home .tl-node::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 12px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  border-radius: 50%;
+}
+.timeline-home .tl-year {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+.timeline-home .tl-card {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+@media (min-width: 980px) {
+  .timeline-home {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 30px 0 0;
+    margin: 0;
+  }
+  .timeline-home .tl-axis {
+    top: 38px;
+    bottom: auto;
+    left: 5%;
+    right: 5%;
+    width: auto;
+    height: 1.5px;
+  }
+  .timeline-home .tl-node {
+    text-align: center;
+    padding: 30px 0 0;
+  }
+  .timeline-home .tl-node::before {
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-width: 2.5px;
+  }
+  .timeline-home .tl-year {
+    font-size: 26px;
+    margin-top: 16px;
+    letter-spacing: -0.02em;
+  }
+  /* el CTA a la historia completa ahora también está en desktop, donde faltaba */
+  .timeline-home + .m-cta { margin-top: 28px; text-align: center; }
+}
