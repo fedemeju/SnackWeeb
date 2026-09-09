@@ -3802,3 +3802,13 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 .cumples-page .kids-includes .lbl {
   color: #6b5f45;
 }
+
+/* ─────────── Contraste · sección de eventos de la home ───────────
+   .events-headline-1 y .events-stat-n usan color: var(--paper), que en este
+   sitio es un tono oscuro (#1c1915), sobre una banda casi negra (#14110d):
+   1,07:1, invisible. Van en crema. */
+.final-site .m-band--events .events-headline-1,
+.final-site .m-band--events .events-stat-n {
+  color: #f2ede0;
+}
+.final-site .m-band--events .events-stat-sm { color: rgba(242, 237, 224, .6); }
