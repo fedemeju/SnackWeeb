@@ -3375,3 +3375,70 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 }
 .final-site .rating-bar-text b { color: var(--ink-1); font-weight: 700; }
 .final-site .rating-bar-arrow { color: var(--ink-3); font-size: 11px; }
+
+/* ═══════════════════════════════════════════════════════════
+   UNIFICACIÓN DEL DOM · fase 1
+   Los bloques idénticos entre mobile y desktop (FAQ, galería)
+   viven una sola vez, en .site-shared. Los wrappers se parten en
+   dos tramos: el primero trae el nav, el segundo es continuación.
+   ═══════════════════════════════════════════════════════════ */
+.site-shared {
+  background: var(--paper);
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+@media (max-width: 520px) {
+  .site-shared { max-width: none; }
+}
+@media (min-width: 980px) {
+  .site-shared { max-width: none; }
+}
+
+/* tramos de continuación · sin el offset del nav ni el alto mínimo */
+.site-mobile.site-mobile--cont,
+.site-desktop.site-desktop--cont {
+  padding-top: 0;
+  min-height: 0;
+  box-shadow: none;
+}
+/* el padding del sticky bar va sólo en el último tramo */
+.final-site.has-sticky-bar .site-mobile:not(.site-mobile--cont) {
+  padding-bottom: 0;
+}
+
+/* título de sección compartido · tamaño mobile y desktop en un solo lugar */
+.sec-h2 {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 6px 0 14px;
+  text-wrap: balance;
+}
+@media (min-width: 980px) {
+  .sec-h2 {
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 8px 0 0;
+  }
+}
+
+/* el tramo de continuación tiene que recortar igual que el primero,
+   si no las secciones quedan 15px más anchas en tablet */
+.site-mobile.site-mobile--cont { overflow-x: hidden; }
+
+/* grilla de reseñas de cumples · 6 testimonios */
+.final-site .sp-grid--cumples {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 1200px;
+}
+@media (min-width: 620px) {
+  .final-site .sp-grid--cumples { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1000px) {
+  .final-site .sp-grid--cumples { grid-template-columns: repeat(3, 1fr); }
+}
