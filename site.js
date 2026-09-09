@@ -1924,16 +1924,30 @@ document.querySelectorAll('[data-goto-festejos]').forEach(link => {
   });
 });
 
-// ─── barra fija de la home · aparece al salir del hero ───
-(function initHomeStickyBar() {
-  const bar = document.querySelector('.sticky-cta-bar--home');
-  if (!bar) return;
-  const hero = document.querySelector('.site-mobile .hero-carousel') || document.querySelector('.hero-carousel');
-  if (!hero) { bar.classList.add('is-visible'); return; }
-  if (!('IntersectionObserver' in window)) { bar.classList.add('is-visible'); return; }
-  new IntersectionObserver(([entry]) => {
-    bar.classList.toggle('is-visible', !entry.isIntersecting);
-  }, { threshold: 0, rootMargin: '-40px 0px 0px 0px' }).observe(hero);
+// ─── barra fija · aparece recién cuando el hero sale de pantalla ───
+// Aplica a la home y a las subpáginas. Se usa la posición de scroll y no un
+// IntersectionObserver porque en las subpáginas el observer no dispara: el
+// contenido vive dentro de un wrapper con overflow propio.
+(function initStickyBars() {
+  const bars = document.querySelectorAll('.sticky-cta-bar');
+  if (!bars.length) return;
+  const hero = document.querySelector('.hero-carousel, .cp-hero, .ev-hero');
+  if (!hero) return;
+
+  bars.forEach(b => b.classList.add('sticky-cta-bar--auto'));
+
+  function actualizar() {
+    // rect en vivo: al cargar, offsetHeight puede ser 0 si la imagen no bajó todavía
+    const limite = hero.getBoundingClientRect().bottom + window.scrollY - 40;
+    const pasoElHero = window.scrollY > limite;
+    bars.forEach(b => b.classList.toggle('is-visible', pasoElHero));
+  }
+  // sin requestAnimationFrame: si la pestaña está en segundo plano el rAF no
+  // corre y el flag queda trabado, dejando la barra escondida para siempre.
+  window.addEventListener('scroll', actualizar, { passive: true });
+  window.addEventListener('resize', actualizar);
+  window.addEventListener('load', actualizar);
+  actualizar();
 })();
 
 // ─── galería · filtros por espacio ───

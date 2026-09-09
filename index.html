@@ -202,7 +202,7 @@
 <div class="scroll-progress" aria-hidden="true"></div>
 
 <!-- MOBILE / TABLET VERSION -->
-<div class="site-mobile">
+<div class="site-mobile site-mobile--nav">
 <!-- nav -->
           <div class="m-nav m-nav--dir1">
             <a href="/" class="m-nav-logo-link" aria-label="Ir al inicio"><img class="m-nav-logo" src="assets/logo-nav.webp" width="2000" height="500" alt="Snack Ristrel"></a>
@@ -294,6 +294,31 @@
             </div>
           </div>
 
+</div>
+
+<div class="site-desktop site-desktop--nav">
+          <!-- nav -->
+          <div class="d-nav">
+            <a href="/" class="d-nav-logo-link" aria-label="Ir al inicio"><img class="d-nav-logo" src="assets/logo-nav-full.webp" width="2000" height="500" alt="Snack Ristrel"></a>
+            <div class="d-nav-links">
+              <a href="#espacios">Espacios</a>
+              <a href="/cumples">Cumples</a>
+              <a href="/eventos">Eventos</a>
+              <a href="/historia">Historia</a>
+              <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener">Carta ↗</a>
+              <a href="#contacto">Contacto</a>
+            </div>
+            <button class="lang-toggle d-lang-toggle" data-lang-toggle type="button" aria-label="Cambiar idioma">
+              <span class="lang-opt lang-opt--es is-active" data-lang="es">ES</span>
+              <span class="lang-sep">/</span>
+              <span class="lang-opt lang-opt--en" data-lang="en">EN</span>
+            </button>
+          </div>
+
+</div>
+
+<!-- ═══ COMPARTIDO · hero, datos, rating y espacios ═══ -->
+<div class="site-shared site-shared--top">
           <!-- HERO carousel -->
           <section class="hero-carousel">
             <div class="hero-slides" data-carousel>
@@ -347,10 +372,12 @@
           </a>
 
 
-          <!-- 4 ESPACIOS -->
-          <div class="m-band m-band--tan" id="espacios">
-            <span class="lbl">los espacios</span>
-            <h2 class="m-h2">Cuatro mundos<br>bajo un techo</h2>
+          <!-- 4 ESPACIOS · una sola versión para mobile y desktop -->
+          <div class="band band--tan" id="espacios">
+            <div class="band-head">
+              <span class="lbl">los espacios</span>
+              <h2 class="sec-h2">Cuatro mundos <br class="br-mobile">bajo un techo</h2>
+            </div>
             <div class="espacios-grid">
               <div class="espacio-card espacio-card--feat espacio-card--bowling">
                 <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/bowling.webp" width="611" height="477" alt="Pistas de bowling automáticas">
@@ -394,7 +421,10 @@
               </div>
             </div>
           </div>
+          </div>
+</div>
 
+<div class="site-mobile site-mobile--cont">
           <!-- ============ RISTREL · LA CARTA ============ -->
           <section class="m-band m-band--ristrel" id="ristrel">
             <div class="ristrel-glow" aria-hidden="true"></div>
@@ -497,6 +527,92 @@
             </div>
           </section>
 
+</div>
+
+<div class="site-desktop site-desktop--cont">
+          <!-- ============ RISTREL · LA CARTA ============ -->
+          <div class="d-band d-band--ristrel">
+            <div class="ristrel-glow" aria-hidden="true"></div>
+            <div class="d-ristrel">
+              <div class="d-ristrel-left">
+                <span class="lbl light">el restaurante</span>
+                <img class="ristrel-logo ristrel-logo--d" loading="lazy" decoding="async" src="assets/logo-ristrel.webp" width="1000" height="500" alt="Ristrel Food House">
+                <p class="ristrel-tagline">parrilla · pizzas · pastas · hamburguesas · tragos</p>
+
+                <p class="ristrel-pitch">La cocina que acompaña a Snack desde 1967. Carta amplia, opciones para chicos y grandes, sin necesidad de reservar.</p>
+
+                <!-- Destacados del momento -->
+                <div class="ristrel-features">
+                  <div class="ristrel-feature">
+                    <div class="ristrel-feature-num" aria-hidden="true">60+</div>
+                    <div class="ristrel-feature-lbl">platos<br>en la carta</div>
+                  </div>
+                  <div class="ristrel-feature">
+                    <div class="ristrel-feature-num" aria-hidden="true">★</div>
+                    <div class="ristrel-feature-lbl">opciones<br>sin TACC</div>
+                  </div>
+                  <div class="ristrel-feature">
+                    <div class="ristrel-feature-num" aria-hidden="true">🥟</div>
+                    <div class="ristrel-feature-lbl">menú<br>para chicos</div>
+                  </div>
+                </div>
+
+                <div class="ristrel-cta">
+                  <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener" class="btn btn--ristrel-primary">VER CARTA COMPLETA →</a>
+                  <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20reservar%20una%20mesa%20en%20Ristrel" target="_blank" rel="noopener" class="btn btn--ristrel-reserva" data-reserva-open>
+                    <svg class="reserva-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M3 10h18M5 6h14a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                      <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                      <circle cx="8.5" cy="14" r="1" fill="currentColor"/>
+                      <circle cx="12" cy="14" r="1" fill="currentColor"/>
+                      <circle cx="15.5" cy="14" r="1" fill="currentColor"/>
+                    </svg>
+                    Reservar mesa
+                  </a>
+                </div>
+              </div>
+
+              <div class="d-ristrel-right">
+                <div class="ristrel-photo ristrel-photo--d">
+                  <img loading="lazy" decoding="async" src="assets/plato.webp" width="1600" height="1060" alt="Plato de Ristrel">
+                  <div class="ristrel-photo-cap">Gran bife Ristrel</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KIDS · full width -->
+          <section class="d-duo-card d-duo-card--kids d-duo-card--solo" id="festejos-d">
+            <div class="kids-confetti" aria-hidden="true">
+              <span class="conf c1"></span><span class="conf c3"></span><span class="conf c5"></span>
+              <span class="conf c7"></span><span class="conf c9"></span>
+            </div>
+            <div class="d-kids-photo">
+              <img loading="lazy" decoding="async" src="assets/cumple-bowling.webp" width="1100" height="858" alt="Cumple infantil">
+              <span class="kids-tag-edad">de 6 a 13 años</span>
+            </div>
+            <img class="d-kids-logo" loading="lazy" decoding="async" src="assets/logo-kids.webp" width="1920" height="1080" alt="Snack Kids">
+            <p class="kids-lead">
+              <span class="kids-word kids-word--1">¡El cumple</span>
+              <span class="kids-word kids-word--2">más divertido</span>
+              <span class="kids-word kids-word--3">de zona norte!</span>
+            </p>
+            <div class="d-kids-feats">
+              <div class="kids-feat kids-feat--a"><div class="kids-feat-emoji" aria-hidden="true">🎳</div><div class="kids-feat-text">Bowling</div></div>
+              <div class="kids-feat kids-feat--b"><div class="kids-feat-emoji" aria-hidden="true">🏆</div><div class="kids-feat-text">Trofeos<br>y medallas <span class="kids-feat-only">solo Full</span></div></div>
+              <div class="kids-feat kids-feat--c"><div class="kids-feat-emoji" aria-hidden="true">🍕</div><div class="kids-feat-text">Comida</div></div>
+              <div class="kids-feat kids-feat--d"><div class="kids-feat-emoji" aria-hidden="true">🥤</div><div class="kids-feat-text">Bebida</div></div>
+            </div>
+            <div class="m-cta m-cta--kids">
+              <a class="btn btn--kids-primary" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20info%20de%20cumples%20infantiles!" target="_blank" rel="noopener"><span class="wp-icon-mini" aria-hidden="true"></span> HABLAR POR WP</a>
+              <a class="btn btn--kids-ghost" href="/cumples">VER PAQUETES →</a>
+            </div>
+          </section>
+
+</div>
+
+<!-- ═══ COMPARTIDO · eventos y reseñas ═══ -->
+<div class="site-shared">
           <!-- ============ EVENTOS / EMPRESAS ============ -->
           <section class="m-band m-band--events" id="eventos-section">
             <!-- background pattern -->
@@ -634,6 +750,9 @@
             <a class="sp-all" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">Ver todas las reseñas en Google ↗</a>
           </section>
 
+</div>
+
+<div class="site-mobile site-mobile--cont">
           <!-- TIMELINE -->
           <div class="m-band" id="historia">
             <span class="lbl">línea de tiempo</span>
@@ -649,341 +768,7 @@
 
 </div>
 
-<div class="site-desktop">
-
-
-          <!-- nav -->
-          <div class="d-nav">
-            <a href="/" class="d-nav-logo-link" aria-label="Ir al inicio"><img class="d-nav-logo" src="assets/logo-nav-full.webp" width="2000" height="500" alt="Snack Ristrel"></a>
-            <div class="d-nav-links">
-              <a href="#espacios">Espacios</a>
-              <a href="/cumples">Cumples</a>
-              <a href="/eventos">Eventos</a>
-              <a href="/historia">Historia</a>
-              <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener">Carta ↗</a>
-              <a href="#contacto">Contacto</a>
-            </div>
-            <button class="lang-toggle d-lang-toggle" data-lang-toggle type="button" aria-label="Cambiar idioma">
-              <span class="lang-opt lang-opt--es is-active" data-lang="es">ES</span>
-              <span class="lang-sep">/</span>
-              <span class="lang-opt lang-opt--en" data-lang="en">EN</span>
-            </button>
-          </div>
-
-          <!-- HERO carousel -->
-          <section class="hero-carousel">
-            <div class="hero-slides" data-carousel>
-              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" width="1280" height="1920" alt="Pista de bowling de Snack Bowling Martínez" data-i="0">
-              <img class="hero-slide" src="assets/hero/02-pizza.webp" width="1280" height="1920" alt="Pizza fresca del restaurante Ristrel" data-i="1" loading="lazy">
-              <img class="hero-slide" src="assets/hero/03-vino.webp" width="1280" height="1920" alt="Vino Rutini Cabernet-Malbec en Ristrel" data-i="2" loading="lazy">
-              <img class="hero-slide" src="assets/hero/04-cerveza.webp" width="1280" height="1920" alt="Cerveza tirada Patagonia en el bar" data-i="3" loading="lazy">
-            </div>
-            <div class="hero-content">
-              <img class="hero-logo" src="assets/logo-snack.webp" width="660" height="396" alt="Snack Bowling">
-              <p class="hero-tagline">Bowling, pool, restaurante y pelotero · en Martínez</p>
-              <span class="hero-badge">·  EST  · <b>1967</b> ·  MARTÍNEZ  ·</span>
-              <div class="hero-cta">
-                <button type="button" class="btn btn--hero-primary" data-reserva-open>Reservar mesa</button>
-                <a class="btn btn--hero-ghost" href="#festejos" data-goto-festejos>Cumples y eventos</a>
-              </div>
-            </div>
-            <div class="hero-dots" data-dots>
-              <button class="hero-dot is-active" data-i="0" type="button" aria-label="Slide 1"></button>
-              <button class="hero-dot" data-i="1" type="button" aria-label="Slide 2"></button>
-              <button class="hero-dot" data-i="2" type="button" aria-label="Slide 3"></button>
-              <button class="hero-dot" data-i="3" type="button" aria-label="Slide 4"></button>
-            </div>
-          </section>
-
-          <!-- FRANJA DE DATOS · responde las 4 dudas de entrada -->
-          <div class="quick-facts">
-            <div class="quick-fact quick-fact--hours">
-              <span class="quick-fact-live" data-hours="compact"></span>
-            </div>
-            <div class="quick-fact">
-              <span class="quick-fact-n">Sin reserva</span>
-              <span class="quick-fact-l">bowling y pool por orden de llegada</span>
-            </div>
-            <div class="quick-fact">
-              <span class="quick-fact-n">Estacionamiento</span>
-              <span class="quick-fact-l">propio, para más de 10 autos</span>
-            </div>
-            <div class="quick-fact">
-              <span class="quick-fact-n">Desde 1967</span>
-              <span class="quick-fact-l">el primer bowling automático del país</span>
-            </div>
-          </div>
-
-          <!-- Señal de confianza temprana · el detalle completo está en #opiniones -->
-          <a class="rating-bar" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">
-            <span class="rating-bar-stars" aria-hidden="true">★★★★★</span>
-            <span class="rating-bar-score">4,1</span>
-            <span class="rating-bar-text">con <b>4.636 reseñas</b> en Google</span>
-            <span class="rating-bar-arrow" aria-hidden="true">↗</span>
-          </a>
-
-
-          <!-- 4 MUNDOS scattered -->
-          <div class="d-band d-band--tan">
-            <div class="d-band-head">
-              <span class="lbl">los espacios</span>
-              <h2 class="d-h2">Cuatro mundos bajo un techo</h2>
-            </div>
-            <div class="espacios-grid">
-              <div class="espacio-card espacio-card--feat espacio-card--bowling">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/bowling.webp" width="611" height="477" alt="Pistas de bowling automáticas">
-                <div class="espacio-card-overlay"></div>
-                <span class="espacio-card-num">01</span>
-                <div class="espacio-card-content">
-                  <span class="espacio-card-stat">6 pistas</span>
-                  <h3 class="espacio-card-title">Bowling</h3>
-                  <p class="espacio-card-sub">automáticas con conteo digital</p>
-                </div>
-              </div>
-              <div class="espacio-card espacio-card--pool">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pool.webp" width="1920" height="1080" alt="Mesas de pool con paños rojos">
-                <div class="espacio-card-overlay"></div>
-                <span class="espacio-card-num">02</span>
-                <div class="espacio-card-content">
-                  <span class="espacio-card-stat">5 mesas</span>
-                  <h3 class="espacio-card-title">Pool</h3>
-                  <p class="espacio-card-sub">paños rojos clásicos</p>
-                </div>
-              </div>
-              <div class="espacio-card espacio-card--resto">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/resto.webp" width="1067" height="1600" alt="Interior del restaurante Ristrel">
-                <div class="espacio-card-overlay"></div>
-                <span class="espacio-card-num">03</span>
-                <div class="espacio-card-content">
-                  <span class="espacio-card-stat">60+ platos</span>
-                  <h3 class="espacio-card-title">Restaurante</h3>
-                  <p class="espacio-card-sub">parrilla, pizzas y pastas</p>
-                </div>
-              </div>
-              <div class="espacio-card espacio-card--pelotero">
-                <img class="espacio-card-img" loading="lazy" decoding="async" src="assets/pelotero.webp" width="1066" height="1600" alt="Pelotero infantil con pelotas de colores">
-                <div class="espacio-card-overlay"></div>
-                <span class="espacio-card-num">04</span>
-                <div class="espacio-card-content">
-                  <span class="espacio-card-stat">Kids zone</span>
-                  <h3 class="espacio-card-title">Pelotero</h3>
-                  <p class="espacio-card-sub">para los más chicos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ============ RISTREL · LA CARTA ============ -->
-          <div class="d-band d-band--ristrel">
-            <div class="ristrel-glow" aria-hidden="true"></div>
-            <div class="d-ristrel">
-              <div class="d-ristrel-left">
-                <span class="lbl light">el restaurante</span>
-                <img class="ristrel-logo ristrel-logo--d" loading="lazy" decoding="async" src="assets/logo-ristrel.webp" width="1000" height="500" alt="Ristrel Food House">
-                <p class="ristrel-tagline">parrilla · pizzas · pastas · hamburguesas · tragos</p>
-
-                <p class="ristrel-pitch">La cocina que acompaña a Snack desde 1967. Carta amplia, opciones para chicos y grandes, sin necesidad de reservar.</p>
-
-                <!-- Destacados del momento -->
-                <div class="ristrel-features">
-                  <div class="ristrel-feature">
-                    <div class="ristrel-feature-num" aria-hidden="true">60+</div>
-                    <div class="ristrel-feature-lbl">platos<br>en la carta</div>
-                  </div>
-                  <div class="ristrel-feature">
-                    <div class="ristrel-feature-num" aria-hidden="true">★</div>
-                    <div class="ristrel-feature-lbl">opciones<br>sin TACC</div>
-                  </div>
-                  <div class="ristrel-feature">
-                    <div class="ristrel-feature-num" aria-hidden="true">🥟</div>
-                    <div class="ristrel-feature-lbl">menú<br>para chicos</div>
-                  </div>
-                </div>
-
-                <div class="ristrel-cta">
-                  <a href="https://menu.maxirest.com/408" target="_blank" rel="noopener" class="btn btn--ristrel-primary">VER CARTA COMPLETA →</a>
-                  <a href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20reservar%20una%20mesa%20en%20Ristrel" target="_blank" rel="noopener" class="btn btn--ristrel-reserva" data-reserva-open>
-                    <svg class="reserva-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M3 10h18M5 6h14a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                      <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                      <circle cx="8.5" cy="14" r="1" fill="currentColor"/>
-                      <circle cx="12" cy="14" r="1" fill="currentColor"/>
-                      <circle cx="15.5" cy="14" r="1" fill="currentColor"/>
-                    </svg>
-                    Reservar mesa
-                  </a>
-                </div>
-              </div>
-
-              <div class="d-ristrel-right">
-                <div class="ristrel-photo ristrel-photo--d">
-                  <img loading="lazy" decoding="async" src="assets/plato.webp" width="1600" height="1060" alt="Plato de Ristrel">
-                  <div class="ristrel-photo-cap">Gran bife Ristrel</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- KIDS · full width -->
-          <section class="d-duo-card d-duo-card--kids d-duo-card--solo" id="festejos-d">
-            <div class="kids-confetti" aria-hidden="true">
-              <span class="conf c1"></span><span class="conf c3"></span><span class="conf c5"></span>
-              <span class="conf c7"></span><span class="conf c9"></span>
-            </div>
-            <div class="d-kids-photo">
-              <img loading="lazy" decoding="async" src="assets/cumple-bowling.webp" width="1100" height="858" alt="Cumple infantil">
-              <span class="kids-tag-edad">de 6 a 13 años</span>
-            </div>
-            <img class="d-kids-logo" loading="lazy" decoding="async" src="assets/logo-kids.webp" width="1920" height="1080" alt="Snack Kids">
-            <p class="kids-lead">
-              <span class="kids-word kids-word--1">¡El cumple</span>
-              <span class="kids-word kids-word--2">más divertido</span>
-              <span class="kids-word kids-word--3">de zona norte!</span>
-            </p>
-            <div class="d-kids-feats">
-              <div class="kids-feat kids-feat--a"><div class="kids-feat-emoji" aria-hidden="true">🎳</div><div class="kids-feat-text">Bowling</div></div>
-              <div class="kids-feat kids-feat--b"><div class="kids-feat-emoji" aria-hidden="true">🏆</div><div class="kids-feat-text">Trofeos<br>y medallas <span class="kids-feat-only">solo Full</span></div></div>
-              <div class="kids-feat kids-feat--c"><div class="kids-feat-emoji" aria-hidden="true">🍕</div><div class="kids-feat-text">Comida</div></div>
-              <div class="kids-feat kids-feat--d"><div class="kids-feat-emoji" aria-hidden="true">🥤</div><div class="kids-feat-text">Bebida</div></div>
-            </div>
-            <div class="m-cta m-cta--kids">
-              <a class="btn btn--kids-primary" href="https://api.whatsapp.com/send?phone=+541168225209&text=Hola,%20quiero%20info%20de%20cumples%20infantiles!" target="_blank" rel="noopener"><span class="wp-icon-mini" aria-hidden="true"></span> HABLAR POR WP</a>
-              <a class="btn btn--kids-ghost" href="/cumples">VER PAQUETES →</a>
-            </div>
-          </section>
-
-          <!-- EVENTOS · mismo diseño moderno que mobile -->
-          <section class="m-band m-band--events" id="eventos-section-d">
-            <div class="events-pattern" aria-hidden="true"></div>
-
-            <div class="events-head">
-              <div class="events-eyebrow">
-                <span class="events-eyebrow-dot"></span>
-                <span class="lbl light">para 10 a 180 personas</span>
-              </div>
-              <h2 class="events-headline">
-                <span class="events-headline-1">Festejá</span>
-                <span class="events-headline-2">tu evento</span>
-                <span class="events-headline-3">con nosotros.</span>
-              </h2>
-              <p class="events-sub">La mejor opción para salidas empresariales, familiares o con amigos. Salón privado, gastronomía y bowling — todo bajo el mismo techo desde 1967.</p>
-            </div>
-
-            <div class="events-types-grid">
-              <div class="events-type-card">
-                <span class="events-type-icon" aria-hidden="true">💼</span>
-                <span class="events-type-name">After office</span>
-              </div>
-              <div class="events-type-card">
-                <span class="events-type-icon" aria-hidden="true">👋</span>
-                <span class="events-type-name">Despedidas</span>
-              </div>
-              <div class="events-type-card">
-                <span class="events-type-icon" aria-hidden="true">🏢</span>
-                <span class="events-type-name">Corporativos</span>
-              </div>
-              <div class="events-type-card">
-                <span class="events-type-icon" aria-hidden="true">🥂</span>
-                <span class="events-type-name">Cumples adultos</span>
-              </div>
-            </div>
-
-            <div class="events-stats events-stats--v2">
-              <div class="events-stat">
-                <span class="events-stat-n">10<span class="events-stat-sm">–</span>180</span>
-                <span class="events-stat-l">personas</span>
-              </div>
-              <div class="events-stat-divider"></div>
-              <div class="events-stat">
-                <span class="events-stat-n">2<span class="events-stat-sm">h</span></span>
-                <span class="events-stat-l">duración base</span>
-              </div>
-              <div class="events-stat-divider"></div>
-              <div class="events-stat">
-                <span class="events-stat-n">4</span>
-                <span class="events-stat-l">paquetes</span>
-              </div>
-            </div>
-
-            <div class="events-pkg-section">
-              <span class="lbl light events-pkg-lbl">qué ofrecemos</span>
-              <div class="events-pkg-preview events-pkg-preview--v2">
-                <a href="/eventos" class="events-pkg events-pkg--num">
-                  <span class="events-pkg-n">01</span>
-                  <span class="events-pkg-body">
-                    <span class="events-pkg-name">Pizza Full</span>
-                    <span class="events-pkg-desc">Pizza libre + bebida libre + postre</span>
-                  </span>
-                  <span class="events-pkg-arrow">→</span>
-                </a>
-                <a href="/eventos" class="events-pkg events-pkg--num events-pkg--feat">
-                  <span class="events-pkg-tag">+ opciones</span>
-                  <span class="events-pkg-n">02</span>
-                  <span class="events-pkg-body">
-                    <span class="events-pkg-name">Ristrel Gourmet</span>
-                    <span class="events-pkg-desc">Plato principal a elección + postre</span>
-                  </span>
-                  <span class="events-pkg-arrow">→</span>
-                </a>
-                <a href="/eventos" class="events-pkg events-pkg--num">
-                  <span class="events-pkg-n">03</span>
-                  <span class="events-pkg-body">
-                    <span class="events-pkg-name">Fun Food</span>
-                    <span class="events-pkg-desc">Recepción + cazuela + postre</span>
-                  </span>
-                  <span class="events-pkg-arrow">→</span>
-                </a>
-                <a href="/eventos" class="events-pkg events-pkg--num">
-                  <span class="events-pkg-tag">bowling incluido</span>
-                  <span class="events-pkg-n">04</span>
-                  <span class="events-pkg-body">
-                    <span class="events-pkg-name">Pizza Teen</span>
-                    <span class="events-pkg-desc">Pizza libre + bebida libre + bowling</span>
-                  </span>
-                  <span class="events-pkg-arrow">→</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="events-cta-block">
-              <a href="/eventos" class="btn btn--events">VER LOS 4 PAQUETES →</a>
-              <p class="events-cta-foot">o pedí cotización directa por WhatsApp</p>
-            </div>
-          </section>
-
-
-          <!-- ═══ PRUEBA SOCIAL · reseñas reales de Google ═══ -->
-          <section class="social-proof" id="opiniones">
-            <div class="sp-head">
-              <span class="lbl">lo que dicen</span>
-              <h2 class="d-h2">Opiniones de Google</h2>
-              <a class="sp-rating" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">
-                <span class="sp-stars" aria-hidden="true">★★★★★</span>
-                <span class="sp-score">4,1</span>
-                <span class="sp-count">· 4.636 reseñas en Google</span>
-                <span class="sp-arrow">↗</span>
-              </a>
-            </div>
-            <div class="sp-grid">
-              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
-                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                <blockquote>¡Excelente comida! Muy amable la atención y altamente recomendable. Precios buenos para la zona y los empleados súper profesionales. Un lugar que no falla.</blockquote>
-                <div class="sp-foot"><span class="sp-author">Carolina</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
-              </a>
-              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
-                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                <blockquote>Un lugar re copado para ir con amigos o familia. Muy buen ambiente, las pistas andan bárbaro y la combinación de comer algo rico mientras jugás unos bolos hace que la noche sea perfecta.</blockquote>
-                <div class="sp-foot"><span class="sp-author">Lisandro</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
-              </a>
-              <a class="sp-card" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener" data-review-link>
-                <div class="sp-card-stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                <blockquote>Lugar clásico de Libertador. Muy buena gastronomía, porciones abundantes y atención de diez. Todo de diez, ideal para ir a divertirse y comer bien sin vueltas.</blockquote>
-                <div class="sp-foot"><span class="sp-author">Emilia</span><span class="sp-meta">Reseña de Google</span><span class="sp-verify">Ver en Google ↗</span></div>
-              </a>
-            </div>
-            <a class="sp-all" href="https://www.google.com/maps/place/Snack+Bowling+%26+Restaurant/@-34.4907045,-58.4855095,17z/data=!4m8!3m7!1s0x95bcb174c35f254f:0x4265a336265d66ed!8m2!3d-34.4907045!4d-58.4855095!9m1!1b1!16s%2Fg%2F1thgcmz0" target="_blank" rel="noopener">Ver todas las reseñas en Google ↗</a>
-          </section>
-
+<div class="site-desktop site-desktop--cont">
           <!-- TIMELINE HORIZONTAL -->
           <div class="d-band">
             <div class="d-band-head">
@@ -1013,7 +798,7 @@
 
 </div>
 
-<!-- ═══ BLOQUES COMPARTIDOS · una sola copia para mobile y desktop ═══ -->
+<!-- ═══ COMPARTIDO · FAQ y galería ═══ -->
 <div class="site-shared">
           <!-- FAQ -->
           <section class="faq-section" id="faq">

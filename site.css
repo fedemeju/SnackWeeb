@@ -1026,7 +1026,7 @@ body.final-site {
 
 /* en páginas con sticky bar: ocultar FAB y dar padding-bottom al wrapper */
 .final-site.has-sticky-bar .fab { display: none; }
-.final-site.has-sticky-bar .site-mobile { padding-bottom: 72px; }
+.final-site.has-sticky-bar { padding-bottom: 72px; }  /* el espacio del sticky bar va en el body, no en cada tramo */
 
 /* ─────────── botón HISTORIA COMPLETA · rojo accent ─────────── */
 .final-site .btn--historia {
@@ -1302,22 +1302,22 @@ body.final-site {
   }
 
   /* Events section · mismo diseño que mobile pero full desktop width */
-  .site-desktop .m-band--events {
+  .m-band--events {
     max-width: 1200px;
     margin: 0 auto 32px;
     padding: 64px 48px;
   }
   /* el headline mobile usa stack vertical (Festejá / tu evento / con nosotros),
      en desktop podemos hacerlo horizontal o más grande */
-  .site-desktop .m-band--events .events-headline {
+  .m-band--events .events-headline {
     font-size: clamp(36px, 4vw, 56px);
   }
   /* types grid · 4 cards en una fila en desktop */
-  .site-desktop .m-band--events .events-types-grid {
+  .m-band--events .events-types-grid {
     grid-template-columns: repeat(4, 1fr);
   }
   /* paquetes preview en grid de 3 cols en desktop */
-  .site-desktop .m-band--events .events-pkg-preview--v2 {
+  .m-band--events .events-pkg-preview--v2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
@@ -3081,13 +3081,13 @@ body.reserva-open { overflow: hidden; }
 
 /* La barra fija aparece recién cuando el hero salió de pantalla,
    así no se duplica el CTA de "Reservar mesa" en el primer pantallazo. */
-.final-site .sticky-cta-bar--home {
+.final-site .sticky-cta-bar--auto {
   transform: translateY(110%);
   transition: transform .28s cubic-bezier(.2,.8,.2,1);
 }
-.final-site .sticky-cta-bar--home.is-visible { transform: none; }
+.final-site .sticky-cta-bar--auto.is-visible { transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .final-site .sticky-cta-bar--home { transition: none; }
+  .final-site .sticky-cta-bar--auto { transition: none; }
 }
 
 /* fallback cuando el navegador bloquea la ventana de WhatsApp */
@@ -3386,7 +3386,6 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   background: var(--paper);
   max-width: 480px;
   margin: 0 auto;
-  overflow-x: hidden;
 }
 @media (max-width: 520px) {
   .site-shared { max-width: none; }
@@ -3401,10 +3400,6 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   padding-top: 0;
   min-height: 0;
   box-shadow: none;
-}
-/* el padding del sticky bar va sólo en el último tramo */
-.final-site.has-sticky-bar .site-mobile:not(.site-mobile--cont) {
-  padding-bottom: 0;
 }
 
 /* título de sección compartido · tamaño mobile y desktop en un solo lugar */
@@ -3428,7 +3423,7 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 
 /* el tramo de continuación tiene que recortar igual que el primero,
    si no las secciones quedan 15px más anchas en tablet */
-.site-mobile.site-mobile--cont { overflow-x: hidden; }
+
 
 /* grilla de reseñas de cumples · 6 testimonios */
 .final-site .sp-grid--cumples {
@@ -3468,4 +3463,44 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (max-width: 619px) {
   .final-site .sp-more-btn { display: block; }
   .final-site .sp-grid--collapsable:not(.is-expanded) .sp-card:nth-child(n+3) { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UNIFICACIÓN DEL DOM · fase 2
+   Hero, franja de datos, rating, espacios, eventos y reseñas
+   también son idénticos entre mobile y desktop: pasan a .site-shared.
+   Los wrappers quedan sólo con lo que de verdad difiere.
+   ═══════════════════════════════════════════════════════════ */
+
+/* el tramo del nav no aporta alto: el nav es fixed */
+.site-mobile.site-mobile--nav,
+.site-desktop.site-desktop--nav {
+  padding-top: 0;
+  min-height: 0;
+  box-shadow: none;
+}
+
+/* el primer bloque compartido compensa el nav fijo */
+.site-shared--top { padding-top: 74px; }
+@media (min-width: 980px) {
+  .site-shared--top { padding-top: 88px; }
+}
+
+/* banda de sección compartida · reemplaza a .m-band / .d-band */
+.band {
+  padding: 30px 20px 24px;
+  border-top: 1px solid var(--ink);
+  position: relative;
+}
+.band--tan { background: var(--paper-2); }
+.band-head { margin-bottom: 4px; }
+@media (min-width: 980px) {
+  .band { padding: 48px 56px; }
+  .band-head { margin-bottom: 24px; max-width: 720px; }
+}
+
+/* salto de línea sólo en mobile */
+.br-mobile { display: inline; }
+@media (min-width: 980px) {
+  .br-mobile { display: none; }
 }
