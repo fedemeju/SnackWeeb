@@ -1971,3 +1971,26 @@ document.querySelectorAll('.gallery-section').forEach(section => {
     });
   });
 });
+
+// ─── reseñas · en mobile se muestran 2 y el resto detrás de un botón ───
+document.querySelectorAll('.sp-grid').forEach(grid => {
+  const cards = grid.querySelectorAll('.sp-card');
+  if (cards.length <= 2) return;
+
+  grid.classList.add('sp-grid--collapsable');
+  const ocultas = cards.length - 2;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'sp-more-btn';
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = `<span class="sp-more-open">Ver más reseñas <span class="sp-more-count">(+${ocultas})</span></span><span class="sp-more-close">Ver menos ↑</span>`;
+  grid.after(btn);
+
+  btn.addEventListener('click', () => {
+    const abierto = grid.classList.toggle('is-expanded');
+    btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    if (!abierto) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    trackEvent('resenas_toggle', { expanded: abierto, page: location.pathname });
+  });
+});

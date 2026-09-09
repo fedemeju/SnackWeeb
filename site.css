@@ -3442,3 +3442,30 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (min-width: 1000px) {
   .final-site .sp-grid--cumples { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ─────────── Reseñas · colapsadas en mobile ─────────── */
+.final-site .sp-more-btn {
+  display: none;
+  margin: 12px auto 0;
+  padding: 11px 20px;
+  background: transparent;
+  border: 1px solid var(--fog);
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .03em;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.final-site .sp-more-btn:hover { color: var(--ink-1); border-color: var(--ink-3); }
+.final-site .sp-more-count { color: var(--ink-3); font-weight: 500; }
+.final-site .sp-more-btn .sp-more-close,
+.final-site .sp-grid.is-expanded + .sp-more-btn .sp-more-open { display: none; }
+.final-site .sp-grid.is-expanded + .sp-more-btn .sp-more-close { display: inline; }
+
+/* sólo en una columna tiene sentido colapsar */
+@media (max-width: 619px) {
+  .final-site .sp-more-btn { display: block; }
+  .final-site .sp-grid--collapsable:not(.is-expanded) .sp-card:nth-child(n+3) { display: none; }
+}
