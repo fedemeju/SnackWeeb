@@ -3662,27 +3662,6 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   .timeline-home + .m-cta { margin-top: 28px; text-align: center; }
 }
 
-/* ─────────── Contacto · ajustes del bloque unificado ─────────── */
-/* el botón de WhatsApp iba en crema y ocupaba todo el ancho: pesaba más que
-   los datos de contacto, que son lo importante del bloque */
-.final-site .contact-info .m-cta {
-  display: flex;
-  justify-content: flex-start;
-  margin: 18px 0 4px;
-}
-.final-site .contact-info .btn--solid {
-  flex: 0 0 auto;
-  width: auto;
-  min-width: 0;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  padding: 13px 22px;
-  font-size: 12.5px;
-  letter-spacing: .06em;
-}
-.final-site .contact-info .btn--solid:hover { background: #1eb955; }
 
 /* los datos con etiqueta respiran un poco más */
 .final-site .contact-info .contact-grid { margin: 18px 0 0; font-size: 13.5px; }
@@ -3763,3 +3742,9 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   color: #fff;
 }
 .final-site .gal-chip.is-active:hover { background: #b8221a; border-color: #b8221a; }
+
+/* redes centradas al pie del bloque de contacto */
+.final-site .contact-info .social-row {
+  justify-content: center;
+  margin-top: 20px;
+}
