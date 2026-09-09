@@ -3788,3 +3788,17 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 /* estos dos pierden por especificidad contra reglas previas */
 .final-site .espacio-card--bowling .espacio-card-stat { background: var(--accent-cta); }
 .final-site .sticky-cta-bar--home .sticky-btn--reserva { background: var(--accent-cta); }
+
+/* ─────────── Contraste · etiquetas de la sección de cumples ───────────
+   Crema sobre amarillo daba 1,58:1 y el label del bloque 1,73:1. Sólo
+   cambia el color del texto: la disposición queda igual. */
+.final-site .kids-tag-edad,
+.final-site .kids-feat-only,
+.cumples-page .kids-tag-edad,
+.cumples-page .kids-feat-only {
+  color: #14110d;
+}
+.final-site .kids-includes .lbl,
+.cumples-page .kids-includes .lbl {
+  color: #6b5f45;
+}
