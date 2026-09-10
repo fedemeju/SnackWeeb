@@ -3860,3 +3860,40 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (prefers-reduced-motion: reduce) {
   .ai-chat-atajo { transition: none; }
 }
+
+/* ═══════════ TABLET · 720 a 979px ═══════════
+   Las subpáginas quedaban en una columna de 480px flotando entre dos
+   márgenes vacíos. A partir de 720px la columna se ensancha y los paquetes
+   de eventos pasan a dos por fila.
+   Cumples queda fuera a propósito: su diseño no se toca. */
+@media (min-width: 720px) and (max-width: 979px) {
+  .eventos-page .site-mobile,
+  .historia-page .site-mobile {
+    max-width: 760px;
+  }
+  /* el nav va fijo y centrado: tiene que seguir el ancho del contenido */
+  .eventos-page .site-mobile .m-nav,
+  .historia-page .site-mobile .m-nav {
+    max-width: 760px;
+  }
+  .eventos-page .ev-pkg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  /* la comparativa y el cotizador no necesitan tanto ancho */
+  .eventos-page .ev-compare,
+  .eventos-page .cotizador-form,
+  .historia-page .hist-hero {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* El cotizador heredaba max-width 1100px y los campos quedaban de 1073px de
+   ancho en desktop: incómodo de completar y raro de leer. Se acota. */
+@media (min-width: 980px) {
+  .eventos-page .cotizador-form { max-width: 560px; }
+}
