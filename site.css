@@ -3897,3 +3897,11 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (min-width: 980px) {
   .eventos-page .cotizador-form { max-width: 560px; }
 }
+
+/* Patrick Hand es más ancha que Caveat: el tagline de Ristrel pasaba a dos
+   líneas y cortaba la enumeración por la mitad. Se ajusta el tamaño para
+   conservar la línea única que tenía antes. */
+.final-site .ristrel-tagline { font-size: 16px; }
+@media (min-width: 420px) {
+  .final-site .ristrel-tagline { font-size: 18px; }
+}
