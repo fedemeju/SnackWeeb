@@ -2049,10 +2049,10 @@ window.horaAMinutos = function (hhmm) {
 window.motivoReservaFueraDeRango = function (fecha, mins, en) {
   const dow = new Date(fecha + 'T12:00').getDay(); // 0 dom · 5 vie · 6 sáb
   if (mins < 510) return en ? 'We open at 08:30.' : 'Abrimos a las 08:30.';
-  if (dow === 5 && mins > 1320) {
+  if (dow === 5 && mins > 1290) {
     return en
-      ? 'On Friday nights we take reservations until <b>22:00</b>.'
-      : 'Los viernes a la noche tomamos reservas hasta las <b>22:00</b>.';
+      ? 'On Friday nights we take reservations until <b>21:30</b>.'
+      : 'Los viernes a la noche tomamos reservas hasta las <b>21:30</b>.';
   }
   if (dow === 6 && mins > 1275) {
     return en
@@ -2070,7 +2070,7 @@ window.motivoReservaFueraDeRango = function (fecha, mins, en) {
 // ═══════════════════════════════════════════════════════════════
 // RESERVA DE MESA · modal compartido (mobile + desktop)
 // Reglas de horario:
-//   · Vie a la noche → hasta las 22:00
+//   · Vie a la noche → hasta las 21:30
 //   · Sáb a la noche → hasta las 21:15
 //   · Sáb y Dom al mediodía → hasta las 13:30
 //   · Fuera de esos rangos → no se toma la reserva
