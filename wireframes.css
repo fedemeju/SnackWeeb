@@ -15,8 +15,8 @@
   --accent-soft: #3a1815;
   --green: #25D366;
 
-  --font-sketch: 'Patrick Hand', cursive;
-  --font-hand: 'Patrick Hand', cursive;
+  --font-sketch: 'Patrick Hand', 'Caveat', cursive;
+  --font-hand: 'Caveat', cursive;
   --font-ui: 'Archivo', system-ui, sans-serif;
 
   --phone-w: 390px;
