@@ -2400,29 +2400,42 @@ body.cumples-page {
   background-image: none !important;
   color: #14110d !important;
 }
-body.historia-page .subpage-d-nav,
-body.eventos-page .subpage-d-nav,
+/* Nav claro SOLO en cumples · historia y eventos usan nav oscuro */
 body.cumples-page .subpage-d-nav,
-body.historia-page .site-mobile .m-nav,
-body.eventos-page .site-mobile .m-nav,
 body.cumples-page .site-mobile .m-nav {
   background: rgba(246, 243, 234, 0.85) !important;
   border-bottom-color: rgba(20, 17, 13, 0.08) !important;
   color: #14110d !important;
 }
-body.historia-page .subpage-d-nav .d-nav-links a,
-body.eventos-page .subpage-d-nav .d-nav-links a,
 body.cumples-page .subpage-d-nav .d-nav-links a { color: #14110d !important; }
-body.historia-page .subpage-d-nav .d-nav-links a.is-current,
-body.eventos-page .subpage-d-nav .d-nav-links a.is-current,
 body.cumples-page .subpage-d-nav .d-nav-links a.is-current { color: #E63329 !important; }
-/* Botón hamburguesa e íconos del nav mobile en color oscuro */
+body.cumples-page .m-nav-back,
+body.cumples-page .m-burger { color: #14110d !important; }
+
+/* Nav oscuro en historia y eventos */
+body.historia-page .subpage-d-nav,
+body.eventos-page .subpage-d-nav,
+body.historia-page .site-mobile .m-nav,
+body.eventos-page .site-mobile .m-nav {
+  background: rgba(28, 25, 21, 0.85) !important;
+  border-bottom-color: rgba(242, 237, 224, 0.08) !important;
+  color: #f2ede0 !important;
+}
+body.historia-page .subpage-d-nav .d-nav-links a,
+body.eventos-page .subpage-d-nav .d-nav-links a { color: #f2ede0 !important; }
+body.historia-page .subpage-d-nav .d-nav-links a.is-current,
+body.eventos-page .subpage-d-nav .d-nav-links a.is-current { color: #E63329 !important; }
 body.historia-page .m-nav-back,
 body.eventos-page .m-nav-back,
-body.cumples-page .m-nav-back,
 body.historia-page .m-burger,
-body.eventos-page .m-burger,
-body.cumples-page .m-burger { color: #14110d !important; }
+body.eventos-page .m-burger { color: #f2ede0 !important; }
+/* Logo del nav en historia · usar full claro sin invert */
+body.historia-page .subpage-d-nav .d-nav-logo,
+body.historia-page .site-mobile .m-nav-logo,
+body.historia-page .m-menu-head .m-nav-logo {
+  content: url("assets/logo-nav-full.webp") !important;
+  filter: none !important;
+}
 
 /* Historia · timeline */
 body.historia-page .hist-hero,
