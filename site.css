@@ -3903,15 +3903,11 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 }
 
 /* ═══ EVENTOS · nav + body dark (cards siguen claras) ═══ */
-html body.eventos-page.final-site {
+body.eventos-page {
   background: #14110d !important;
   background-image:
     radial-gradient(circle at 20% 30%, rgba(230, 51, 41, 0.06), transparent 45%),
     radial-gradient(circle at 80% 70%, rgba(255, 200, 100, 0.04), transparent 50%) !important;
-}
-/* El wrapper site-mobile en subpáginas tenía bg paper claro · en eventos lo hacemos transparent */
-body.eventos-page.final-subpage .site-mobile {
-  background: transparent !important;
 }
 body.eventos-page .subpage-d-nav,
 body.eventos-page .site-mobile .m-nav {
