@@ -460,6 +460,8 @@ document.querySelectorAll('[data-menu-link]').forEach(link => {
   link.addEventListener('click', (e) => {
     const menu = link.closest('[data-menu]');
     if (menu) menu.classList.remove('open');
+    document.body.classList.remove('menu-is-open');
+    document.querySelectorAll('.m-burger').forEach(b => b.classList.remove('is-open'));
     const href = link.getAttribute('href');
     if (href && href.startsWith('#')) {
       e.preventDefault();
