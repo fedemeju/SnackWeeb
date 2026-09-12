@@ -2384,6 +2384,7 @@ body.menu-is-open .scroll-top-btn {
    Override de tokens · todo lo que usa var(--paper), var(--ink), etc.
    queda con valores claros automáticamente sin necesidad de !important en cada regla */
 body.historia-page,
+body.eventos-page,
 body.cumples-page {
   --paper: #f6f3ea;
   --paper-2: #ece6d3;
@@ -2400,27 +2401,27 @@ body.cumples-page {
   color: #14110d !important;
 }
 body.historia-page .subpage-d-nav,
-body.eventos-page-DISABLED .subpage-d-nav,
+body.eventos-page .subpage-d-nav,
 body.cumples-page .subpage-d-nav,
 body.historia-page .site-mobile .m-nav,
-body.eventos-page-DISABLED .site-mobile .m-nav,
+body.eventos-page .site-mobile .m-nav,
 body.cumples-page .site-mobile .m-nav {
   background: rgba(246, 243, 234, 0.85) !important;
   border-bottom-color: rgba(20, 17, 13, 0.08) !important;
   color: #14110d !important;
 }
 body.historia-page .subpage-d-nav .d-nav-links a,
-body.eventos-page-DISABLED .subpage-d-nav .d-nav-links a,
+body.eventos-page .subpage-d-nav .d-nav-links a,
 body.cumples-page .subpage-d-nav .d-nav-links a { color: #14110d !important; }
 body.historia-page .subpage-d-nav .d-nav-links a.is-current,
-body.eventos-page-DISABLED .subpage-d-nav .d-nav-links a.is-current,
+body.eventos-page .subpage-d-nav .d-nav-links a.is-current,
 body.cumples-page .subpage-d-nav .d-nav-links a.is-current { color: #E63329 !important; }
 /* Botón hamburguesa e íconos del nav mobile en color oscuro */
 body.historia-page .m-nav-back,
-body.eventos-page-DISABLED .m-nav-back,
+body.eventos-page .m-nav-back,
 body.cumples-page .m-nav-back,
 body.historia-page .m-burger,
-body.eventos-page-DISABLED .m-burger,
+body.eventos-page .m-burger,
 body.cumples-page .m-burger { color: #14110d !important; }
 
 /* Historia · timeline */
@@ -2448,69 +2449,69 @@ body.historia-page .timeline-item:nth-child(even) .timeline-content::after {
 body.historia-page .timeline-content .date { background: #14110d !important; color: #fff !important; }
 
 /* Eventos · cards, cotizador, chips */
-body.eventos-page-DISABLED .ev-hero,
-body.eventos-page-DISABLED .ev-pkg,
-body.eventos-page-DISABLED .ev-pkg--pizza,
-body.eventos-page-DISABLED .ev-pkg--gourmet,
-body.eventos-page-DISABLED .ev-pkg--fun,
-body.eventos-page-DISABLED .ev-compare,
-body.eventos-page-DISABLED .ev-final,
-body.eventos-page-DISABLED .cotizador-form {
+body.eventos-page .ev-hero,
+body.eventos-page .ev-pkg,
+body.eventos-page .ev-pkg--pizza,
+body.eventos-page .ev-pkg--gourmet,
+body.eventos-page .ev-pkg--fun,
+body.eventos-page .ev-compare,
+body.eventos-page .ev-final,
+body.eventos-page .cotizador-form {
   background: #fdfbf3 !important;
   color: #14110d !important;
   border: 1px solid rgba(20, 17, 13, 0.08) !important;
 }
-body.eventos-page-DISABLED .ev-hero-title,
-body.eventos-page-DISABLED .ev-hero-sub,
-body.eventos-page-DISABLED .ev-pkg-name,
-body.eventos-page-DISABLED .ev-pkg-tag,
-body.eventos-page-DISABLED .ev-pkg-tagline,
-body.eventos-page-DISABLED .ev-pkg-item,
-body.eventos-page-DISABLED .ev-option,
-body.eventos-page-DISABLED .ev-option-mini,
-body.eventos-page-DISABLED .ev-list li,
-body.eventos-page-DISABLED .ev-compare th,
-body.eventos-page-DISABLED .ev-compare td,
-body.eventos-page-DISABLED .ev-final-title,
-body.eventos-page-DISABLED .ev-final-sub,
-body.eventos-page-DISABLED .cotizador-title,
-body.eventos-page-DISABLED .cotizador-sub,
-body.eventos-page-DISABLED .cotizador-field label,
-body.eventos-page-DISABLED .cotizador-field-label,
-body.eventos-page-DISABLED .cotizador-foot { color: #14110d !important; }
+body.eventos-page .ev-hero-title,
+body.eventos-page .ev-hero-sub,
+body.eventos-page .ev-pkg-name,
+body.eventos-page .ev-pkg-tag,
+body.eventos-page .ev-pkg-tagline,
+body.eventos-page .ev-pkg-item,
+body.eventos-page .ev-option,
+body.eventos-page .ev-option-mini,
+body.eventos-page .ev-list li,
+body.eventos-page .ev-compare th,
+body.eventos-page .ev-compare td,
+body.eventos-page .ev-final-title,
+body.eventos-page .ev-final-sub,
+body.eventos-page .cotizador-title,
+body.eventos-page .cotizador-sub,
+body.eventos-page .cotizador-field label,
+body.eventos-page .cotizador-field-label,
+body.eventos-page .cotizador-foot { color: #14110d !important; }
 
 /* Círculo "desde X personas" · bg oscuro con texto claro */
-body.eventos-page-DISABLED .ev-pkg-min {
+body.eventos-page .ev-pkg-min {
   background: #14110d !important;
   border-color: #14110d !important;
   color: #f6f3ea !important;
 }
-body.eventos-page-DISABLED .ev-pkg-min-n { color: #f6f3ea !important; }
-body.eventos-page-DISABLED .ev-pkg-min-from,
-body.eventos-page-DISABLED .ev-pkg-min-l { color: rgba(246, 243, 234, 0.7) !important; }
-body.eventos-page-DISABLED .ev-pkg--gourmet .ev-pkg-min {
+body.eventos-page .ev-pkg-min-n { color: #f6f3ea !important; }
+body.eventos-page .ev-pkg-min-from,
+body.eventos-page .ev-pkg-min-l { color: rgba(246, 243, 234, 0.7) !important; }
+body.eventos-page .ev-pkg--gourmet .ev-pkg-min {
   background: #E63329 !important;
   border-color: #E63329 !important;
 }
-body.eventos-page-DISABLED .ev-hero-sub,
-body.eventos-page-DISABLED .ev-pkg-tagline,
-body.eventos-page-DISABLED .cotizador-sub { color: #4a4238 !important; }
-body.eventos-page-DISABLED .cotizador-foot { color: #837a68 !important; }
-body.eventos-page-DISABLED .ev-option,
-body.eventos-page-DISABLED .ev-option-mini,
-body.eventos-page-DISABLED .ev-addon {
+body.eventos-page .ev-hero-sub,
+body.eventos-page .ev-pkg-tagline,
+body.eventos-page .cotizador-sub { color: #4a4238 !important; }
+body.eventos-page .cotizador-foot { color: #837a68 !important; }
+body.eventos-page .ev-option,
+body.eventos-page .ev-option-mini,
+body.eventos-page .ev-addon {
   background: rgba(20, 17, 13, 0.04) !important;
   border-color: rgba(20, 17, 13, 0.10) !important;
   color: #14110d !important;
 }
-body.eventos-page-DISABLED .ev-hero-types .events-type,
-body.eventos-page-DISABLED .events-type {
+body.eventos-page .ev-hero-types .events-type,
+body.eventos-page .events-type {
   background: rgba(20, 17, 13, 0.04) !important;
   border-color: rgba(20, 17, 13, 0.14) !important;
   color: #14110d !important;
 }
 /* Form · warm y aireado, no rígido */
-body.eventos-page-DISABLED .cotizador-form,
+body.eventos-page .cotizador-form,
 body.historia-page .cotizador-form,
 body.cumples-page .cotizador-form {
   background: transparent !important;
@@ -2572,27 +2573,27 @@ body.cumples-page .cotizador-form {
 }
 .final-subpage .cotizador-title { font-size: 32px !important; }
 .final-subpage .cotizador-sub { font-size: 15px !important; margin-bottom: 32px !important; }
-body.eventos-page-DISABLED .ev-compare-wrap {
+body.eventos-page .ev-compare-wrap {
   background: #fff !important;
   border-color: rgba(20, 17, 13, 0.15) !important;
 }
-body.eventos-page-DISABLED .ev-compare-table thead th {
+body.eventos-page .ev-compare-table thead th {
   background: #f6f3ea !important;
   color: #14110d !important;
 }
-body.eventos-page-DISABLED .ev-compare-table th,
-body.eventos-page-DISABLED .ev-compare-table td {
+body.eventos-page .ev-compare-table th,
+body.eventos-page .ev-compare-table td {
   color: #14110d !important;
   border-bottom-color: rgba(20, 17, 13, 0.08) !important;
 }
-body.eventos-page-DISABLED .ev-compare-table th:first-child,
-body.eventos-page-DISABLED .ev-compare-table td:first-child {
+body.eventos-page .ev-compare-table th:first-child,
+body.eventos-page .ev-compare-table td:first-child {
   color: #4a4238 !important;
   background: rgba(20, 17, 13, 0.03) !important;
 }
-body.eventos-page-DISABLED .ev-compare-table tbody td:not(:first-child) { color: #14110d !important; }
-body.eventos-page-DISABLED .ev-compare { border-color: rgba(20, 17, 13, 0.15) !important; }
-body.eventos-page-DISABLED .ev-compare-foot { color: #4a4238 !important; }
+body.eventos-page .ev-compare-table tbody td:not(:first-child) { color: #14110d !important; }
+body.eventos-page .ev-compare { border-color: rgba(20, 17, 13, 0.15) !important; }
+body.eventos-page .ev-compare-foot { color: #4a4238 !important; }
 
 /* Logo del nav · TODAS las subpáginas (claras) usan el logo full con invert */
 .final-subpage .subpage-d-nav .d-nav-logo,
@@ -3900,3 +3901,29 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
 @media (min-width: 980px) {
   .eventos-page .cotizador-form { max-width: 560px; }
 }
+
+/* ═══ EVENTOS · nav + body dark (cards siguen claras) ═══ */
+body.eventos-page {
+  background: #14110d !important;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(230, 51, 41, 0.06), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255, 200, 100, 0.04), transparent 50%) !important;
+}
+body.eventos-page .subpage-d-nav,
+body.eventos-page .site-mobile .m-nav {
+  background: rgba(28, 25, 21, 0.85) !important;
+  border-bottom-color: rgba(242, 237, 224, 0.08) !important;
+  color: #f2ede0 !important;
+}
+body.eventos-page .subpage-d-nav .d-nav-links a { color: #f2ede0 !important; }
+body.eventos-page .subpage-d-nav .d-nav-links a.is-current { color: #E63329 !important; }
+body.eventos-page .m-nav-back,
+body.eventos-page .m-burger { color: #f2ede0 !important; }
+/* Logo · usar full claro sin invert */
+body.eventos-page .subpage-d-nav .d-nav-logo,
+body.eventos-page .site-mobile .m-nav-logo,
+body.eventos-page .m-menu-head .m-nav-logo {
+  content: url("assets/logo-nav-full.webp") !important;
+  filter: none !important;
+}
+/* Footer del sitio en eventos · ya es dark por default */
