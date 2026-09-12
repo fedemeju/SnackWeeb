@@ -203,7 +203,7 @@ window.showToast = function(message, duration = 2500) {
   const targets = document.querySelectorAll(
     '.m-band, .d-band, .gallery-section, .cotizador, .cp-hero, .ev-hero, ' +
     '.ristrel-head, .ristrel-photo, .kids-card, .events-head, .events-types-grid, ' +
-    '.events-stats, .events-pkg-section, .events-cta-block, .paq-pair, .ev-pkg-grid, ' +
+    '.events-stats, .events-pkg-section, .events-cta-block, .paq-pair, ' +
     '.paq-compare, .ev-compare, .cp-faq, .cp-final, .ev-final, .d-duo-card--solo, ' +
     '.d-mundos, .d-ristrel, .d-timeline, .d-contact, .espacios-grid, .hist-hero'
     /* NOTA: .timeline NO va acá porque ya tiene su propia animación de items
