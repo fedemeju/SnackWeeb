@@ -1258,20 +1258,24 @@ body.final-site {
   }
   .cumples-page .paq-divider { display: none; }
 
-  /* ── Eventos · 3 paquetes en grid de 3 cols ── */
+  /* ── Eventos · 4 paquetes en grid 2×2 ── */
   .eventos-page .ev-pkg-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
     align-items: start;
     margin: 0 auto 40px;
-    max-width: 1400px;
+    max-width: 1100px;
   }
-  /* En pantallas más chicas que 1200px pero arriba de 980px, mejor 1 columna */
+  /* Orden visual · largos arriba, cortos abajo */
+  .eventos-page .ev-pkg-grid > .ev-pkg:nth-child(1) { order: 3; } /* Pizza Full */
+  .eventos-page .ev-pkg-grid > .ev-pkg:nth-child(2) { order: 1; } /* Ristrel Gourmet */
+  .eventos-page .ev-pkg-grid > .ev-pkg:nth-child(3) { order: 2; } /* Fun Food */
+  .eventos-page .ev-pkg-grid > .ev-pkg:nth-child(4) { order: 4; } /* Pizza Teen */
 }
 @media (min-width: 980px) and (max-width: 1199px) {
   .eventos-page .ev-pkg-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
   }
 }
