@@ -3915,6 +3915,21 @@ body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
   .eventos-page .cotizador-form { max-width: 560px; }
 }
 
+/* ═══ Footer del site-mobile en subpáginas desktop · full-width edge to edge ═══ */
+@media (min-width: 980px) {
+  .final-subpage .site-mobile { position: relative; }
+  .final-subpage .m-footer {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding-left: max(32px, 5vw);
+    padding-right: max(32px, 5vw);
+  }
+}
+
 /* ═══ EVENTOS · nav + body dark (cards siguen claras) ═══ */
 body.eventos-page {
   background: #14110d !important;
