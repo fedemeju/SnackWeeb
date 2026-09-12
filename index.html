@@ -37,6 +37,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Preload LCP image (hero mobile) -->
+<link rel="preload" as="image" href="assets/hero/01-bowling.webp" fetchpriority="high">
 <link rel="stylesheet" href="wireframes.css">
 <link rel="stylesheet" href="site.css">
 
@@ -334,7 +336,7 @@
           <!-- HERO carousel -->
           <section class="hero-carousel">
             <div class="hero-slides" data-carousel>
-              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" width="1280" height="1920" alt="Pista de bowling de Snack Bowling Martínez" data-i="0">
+              <img class="hero-slide is-active" src="assets/hero/01-bowling.webp" width="1280" height="1920" alt="Pista de bowling de Snack Bowling Martínez" data-i="0" fetchpriority="high" decoding="async">
               <img class="hero-slide" src="assets/hero/02-pizza.webp" width="1280" height="1920" alt="Pizza fresca del restaurante Ristrel" data-i="1" loading="lazy">
               <img class="hero-slide" src="assets/hero/03-vino.webp" width="1280" height="1920" alt="Vino Rutini Cabernet-Malbec en Ristrel" data-i="2" loading="lazy">
               <img class="hero-slide" src="assets/hero/04-cerveza.webp" width="1280" height="1920" alt="Cerveza tirada Patagonia en el bar" data-i="3" loading="lazy">
@@ -1000,7 +1002,7 @@
   <div class="lightbox-counter"><span class="lightbox-current">1</span> <span class="lightbox-sep">/</span> <span class="lightbox-total">25</span></div>
 </div>
 
-<script src="site.js"></script>
+<script src="site.js" defer></script>
 
 <!-- ═══ CHAT ASISTENTE ═══ -->
 <div class="ai-chat" data-chat data-chat-state="closed">
