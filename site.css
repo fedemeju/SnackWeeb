@@ -3962,15 +3962,17 @@ body.eventos-page .m-menu-head .m-nav-logo {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     gap: 48px;
-    align-items: center;
+    align-items: stretch;
     padding: 48px 52px;
     max-width: 1400px;
   }
   .site-desktop .d-duo-card--kids .d-kids-photo {
     grid-row: 1 / span 4;
     grid-column: 1;
-    aspect-ratio: 4 / 5;
-    max-height: 620px;
+    align-self: stretch;
+    aspect-ratio: auto;
+    height: 100%;
+    max-height: none;
     margin-bottom: 0;
     border-radius: 22px;
   }
@@ -4027,4 +4029,34 @@ body.eventos-page .m-menu-head .m-nav-logo {
   }
   .site-desktop .d-duo-card--kids .kids-lead { font-size: 40px; }
   .site-desktop .d-duo-card--kids .kids-lead .kids-word--2 { font-size: 48px; }
+}
+
+/* Fix botones kids · colores hardcoded (index sigue dark theme) */
+body.final-site:not(.cumples-page) .btn--kids-primary {
+  background: #25D366 !important;
+  color: #fff !important;
+  border-color: #14110d !important;
+  box-shadow: 3px 3px 0 #14110d !important;
+  text-decoration: none !important;
+}
+body.final-site:not(.cumples-page) .btn--kids-primary:hover {
+  background: #128c7e !important;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #14110d !important;
+}
+body.final-site:not(.cumples-page) .btn--kids-ghost {
+  background: #fff !important;
+  color: #14110d !important;
+  border-color: #14110d !important;
+  box-shadow: 3px 3px 0 #14110d !important;
+  text-decoration: none !important;
+}
+body.final-site:not(.cumples-page) .btn--kids-ghost:hover {
+  background: #f6f3ea !important;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #14110d !important;
+}
+/* Icono WP en el botón · círculo blanco visible */
+body.final-site:not(.cumples-page) .btn--kids-primary .wp-icon-mini {
+  filter: brightness(0) invert(1);
 }
