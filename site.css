@@ -3961,9 +3961,11 @@ body.eventos-page .m-menu-head .m-nav-logo {
   .site-desktop .d-duo-card--kids {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 48px;
+    grid-template-rows: auto auto auto auto;
+    gap: 20px 48px;
     align-items: stretch;
-    padding: 48px 52px;
+    align-content: space-between;
+    padding: 40px 44px;
     max-width: 1400px;
   }
   .site-desktop .d-duo-card--kids .d-kids-photo {
@@ -3973,6 +3975,7 @@ body.eventos-page .m-menu-head .m-nav-logo {
     aspect-ratio: auto;
     height: 100%;
     max-height: none;
+    min-height: 480px;
     margin-bottom: 0;
     border-radius: 22px;
   }
