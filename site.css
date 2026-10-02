@@ -3351,8 +3351,9 @@ img { height: auto; }
 
 /* El título del bloque CTA de cumples usaba var(--ink), que en fondo oscuro
    resolvía a casi negro: texto negro sobre card negra. */
-body.final-site .kids-cta-block .kids-cta-title,
-body.cumples-page .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
+body.final-site:not(.cumples-page) .kids-cta-block .kids-cta-title { color: #fff8e6 !important; }
+/* en cumples el bloque va sobre fondo claro: tinta oscura */
+body.cumples-page .kids-cta-block .kids-cta-title { color: #14110d !important; }
 
 /* Las tarjetas de paquetes se centraban por contenido: cada una arrancaba en
    un x distinto según el largo del texto. Ahora el bloque ocupa todo el ancho
@@ -4073,4 +4074,13 @@ body.final-site:not(.cumples-page) .btn--kids-ghost:hover {
 /* Icono WP en el botón · círculo blanco visible */
 body.final-site:not(.cumples-page) .btn--kids-primary .wp-icon-mini {
   filter: brightness(0) invert(1);
+}
+
+/* ─────────── Contraste · páginas claras ───────────
+   --accent-on-dark (#ff6f62) está pensado para bandas oscuras. En cumples,
+   eventos e historia las reseñas van sobre fondo crema y daba 2,46:1.
+   Ahí se usa un rojo profundo (6,1:1). */
+.cumples-page .sp-all,
+.cumples-page .sp-verify {
+  color: #b8221a;
 }
