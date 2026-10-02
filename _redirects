@@ -1,3 +1,9 @@
+# Redirect Netlify (QR impresos viejos) → dominio real
+# Solo matchea cuando el host es snackbowling.netlify.app
+# Cloudflare Pages lo ignora porque su host es snackbowling.com.ar
+https://snackbowling.netlify.app/*  https://snackbowling.com.ar/:splat  301!
+http://snackbowling.netlify.app/*   https://snackbowling.com.ar/:splat  301!
+
 /cumples.html   /cumples.html   200!
 /eventos.html   /eventos.html   200!
 /historia.html  /historia.html  200!
