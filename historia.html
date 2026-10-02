@@ -119,12 +119,23 @@
   }
   .timeline-img-header {
     height: 220px;
+    background-color: #2a251e; /* reserva mientras carga la foto lazy */
     position: relative;
     margin: 0;
     background-size: cover;
     background-position: center;
   }
+  .timeline-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: var(--pos, center);
+  }
+  .timeline-img-header::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,var(--shade, .45)));
+  }
   .timeline-img-header h2 {
+    z-index: 2;
     color: #fff;
     position: absolute;
     bottom: 12px;
@@ -164,20 +175,20 @@
   }
 
   /* fotos del timeline */
-  .ti-1 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)), url("assets/timeline/19.webp"); }
-  .ti-2 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.6)),  url("assets/timeline/7.webp"); }
-  .ti-3 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25)), url("assets/timeline/18.webp"); }
-  .ti-4 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)),  url("assets/timeline/20.webp"); background-position: top center; }
-  .ti-5 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)), url("assets/timeline/11.webp"); }
-  .ti-6 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)), url("assets/timeline/3.webp"); }
-  .ti-7 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/2.webp"); }
-  .ti-8 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.65)), url("assets/timeline/1.webp"); }
-  .ti-9 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/9.webp"); }
-  .ti-10 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)),  url("assets/timeline/13.webp"); }
-  .ti-11 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/21.webp"); }
-  .ti-12 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/22.webp"); }
-  .ti-13 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)),  url("assets/timeline/14.webp"); }
-  .ti-14 { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)),  url("assets/timeline/15.webp"); }
+  .ti-1 { --shade: 0.45; }
+  .ti-2 { --shade: 0.6; }
+  .ti-3 { --shade: 0.25; }
+  .ti-4 { --shade: 0.7; --pos: top; }
+  .ti-5 { --shade: 0.45; }
+  .ti-6 { --shade: 0.45; }
+  .ti-7 { --shade: 0.5; }
+  .ti-8 { --shade: 0.65; }
+  .ti-9 { --shade: 0.5; }
+  .ti-10 { --shade: 0.2; }
+  .ti-11 { --shade: 0.5; }
+  .ti-12 { --shade: 0.5; }
+  .ti-13 { --shade: 0.5; }
+  .ti-14 { --shade: 0.2; }
 
   /* ───── responsive: mobile timeline ───── */
   @media (max-width: 768px) {
@@ -377,7 +388,7 @@
           <div class="timeline-item is-visible">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-1"><h2>Restaurante</h2></div>
+              <div class="timeline-img-header ti-1"><img class="timeline-photo" src="assets/timeline/19.webp" width="1920" height="1080" alt="Foto histórica: Restaurante" fetchpriority="high" decoding="async"><h2>Restaurante</h2></div>
               <div class="date">25 MAY 1967</div>
               <p>Más de 50 años de experiencia en el sector gastronómico. En esta foto podemos observar la primera caja registradora ¡una verdadera reliquia!</p>
             </div>
@@ -386,7 +397,7 @@
           <div class="timeline-item is-visible">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-2"><h2>Salón principal</h2></div>
+              <div class="timeline-img-header ti-2"><img class="timeline-photo" src="assets/timeline/7.webp" width="1920" height="1080" alt="Foto histórica: Salón principal" fetchpriority="high" decoding="async"><h2>Salón principal</h2></div>
               <div class="date">25 MAY 1972</div>
               <p>Acá podemos ver el primer salón principal del restaurante, con la distribución original.</p>
             </div>
@@ -395,7 +406,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-3"><h2>Sector Bowling</h2></div>
+              <div class="timeline-img-header ti-3"><img class="timeline-photo" src="assets/timeline/18.webp" width="1920" height="1080" alt="Foto histórica: Sector Bowling" loading="lazy" decoding="async"><h2>Sector Bowling</h2></div>
               <div class="date">25 MAY 1972</div>
               <p>Acá podemos ver el bowling en sus orígenes. Los puntos se anotaban a mano y eran proyectados. Las máquinas de bowling son unas Brunswick A-1 ¡las primeras máquinas para palos automáticas de la Argentina!</p>
             </div>
@@ -404,7 +415,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-4"><h2>Primer diseño del bowling</h2></div>
+              <div class="timeline-img-header ti-4"><img class="timeline-photo" src="assets/timeline/20.webp" width="1920" height="1080" alt="Foto histórica: Primer diseño del bowling" loading="lazy" decoding="async"><h2>Primer diseño del bowling</h2></div>
               <div class="date">25 MAY 1972</div>
               <p>El primer estilo del bowling bien retro, el Brunswick Red Crown. Las pistas eran de madera, por lo cual se les hacía más mantenimiento para que no se dañen. Arriba se proyectaban las anotaciones.</p>
             </div>
@@ -413,7 +424,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-5"><h2>Cambio a pistas sintéticas</h2></div>
+              <div class="timeline-img-header ti-5"><img class="timeline-photo" src="assets/timeline/11.webp" width="1920" height="1080" alt="Foto histórica: Cambio a pistas sintéticas" loading="lazy" decoding="async"><h2>Cambio a pistas sintéticas</h2></div>
               <div class="date">5 OCT 1995</div>
               <p>Se cambiaron las viejas pistas de madera por nuevas pistas sintéticas, más duraderas, con menos mantenimiento y las que se utilizan para jugar profesionalmente.</p>
             </div>
@@ -422,7 +433,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-6"><h2>¡Estrenando pistas!</h2></div>
+              <div class="timeline-img-header ti-6"><img class="timeline-photo" src="assets/timeline/3.webp" width="1920" height="1080" alt="Foto histórica: ¡Estrenando pistas!" loading="lazy" decoding="async"><h2>¡Estrenando pistas!</h2></div>
               <div class="date">5 OCT 1995</div>
               <p>Las nuevas pistas y los nuevos retornos de bolas completamente instalados. También se cambió la decoración de las "máscaras" — lo que tapa la máquina de bowling — y los asientos.</p>
             </div>
@@ -431,7 +442,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-7"><h2>Nuevo salón restaurante</h2></div>
+              <div class="timeline-img-header ti-7"><img class="timeline-photo" src="assets/timeline/2.webp" width="1920" height="1080" alt="Foto histórica: Nuevo salón restaurante" loading="lazy" decoding="async"><h2>Nuevo salón restaurante</h2></div>
               <div class="date">5 OCT 1995</div>
               <p>Se renovó completamente el restaurante, cambiando la distribución del salón y unificando el mostrador (antes había dos). Se cambiaron todas las sillas y mesas.</p>
             </div>
@@ -440,7 +451,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-8"><h2>Mostrador restaurante</h2></div>
+              <div class="timeline-img-header ti-8"><img class="timeline-photo" src="assets/timeline/1.webp" width="1920" height="1080" alt="Foto histórica: Mostrador restaurante" loading="lazy" decoding="async"><h2>Mostrador restaurante</h2></div>
               <div class="date">5 OCT 1995</div>
               <p>Renovación del mostrador principal, cambio de heladeras y modernización del sistema de control de mesas.</p>
             </div>
@@ -449,7 +460,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-9"><h2>Nueva entrada</h2></div>
+              <div class="timeline-img-header ti-9"><img class="timeline-photo" src="assets/timeline/9.webp" width="1920" height="1080" alt="Foto histórica: Nueva entrada" loading="lazy" decoding="async"><h2>Nueva entrada</h2></div>
               <div class="date">5 OCT 1995</div>
               <p>Remodelación del jardín del frente. En ese momento no era necesario contar con estacionamiento, por lo tanto se usaba como jardín para poner mesas.</p>
             </div>
@@ -458,7 +469,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-10"><h2>¡Apareció el pool!</h2></div>
+              <div class="timeline-img-header ti-10"><img class="timeline-photo" src="assets/timeline/13.webp" width="1920" height="1080" alt="Foto histórica: ¡Apareció el pool!" loading="lazy" decoding="async"><h2>¡Apareció el pool!</h2></div>
               <div class="date">25 MAY 2000</div>
               <p>¡Nuevo pool! Antes este sector se usaba como salón secundario con mesas para cenar o almorzar. Se remodeló completamente, agregando 5 mesas de pool.</p>
             </div>
@@ -467,7 +478,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-11"><h2>Estacionamiento</h2></div>
+              <div class="timeline-img-header ti-11"><img class="timeline-photo" src="assets/timeline/21.webp" width="1504" height="1000" alt="Foto histórica: Estacionamiento" loading="lazy" decoding="async"><h2>Estacionamiento</h2></div>
               <div class="date">5 MAY 2008</div>
               <p>Ahora sí aparece el estacionamiento. También se renovó la fachada principal del local haciendo juego con el interior.</p>
             </div>
@@ -476,7 +487,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-12"><h2>Tercer diseño del bowling</h2></div>
+              <div class="timeline-img-header ti-12"><img class="timeline-photo" src="assets/timeline/22.webp" width="1600" height="1066" alt="Foto histórica: Tercer diseño del bowling" loading="lazy" decoding="async"><h2>Tercer diseño del bowling</h2></div>
               <div class="date">25 NOV 2008</div>
               <p>Se cambió la estética general del bowling. Se cambió el sistema de anotaciones ¡por uno automático, ya no hay que anotar! Ahora los puntos se ven en pantallas.</p>
             </div>
@@ -485,7 +496,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-13"><h2>Nueva fachada</h2></div>
+              <div class="timeline-img-header ti-13"><img class="timeline-photo" src="assets/timeline/14.webp" width="1920" height="1080" alt="Foto histórica: Nueva fachada" loading="lazy" decoding="async"><h2>Nueva fachada</h2></div>
               <div class="date">25 MAY 2020</div>
               <p>Se renovó completamente el espacio exterior con una nueva imagen más moderna.</p>
             </div>
@@ -494,7 +505,7 @@
           <div class="timeline-item">
             <div class="timeline-img"></div>
             <div class="timeline-content timeline-card">
-              <div class="timeline-img-header ti-14"><h2>Decks y nuevo cartel</h2></div>
+              <div class="timeline-img-header ti-14"><img class="timeline-photo" src="assets/timeline/15.webp" width="1920" height="1080" alt="Foto histórica: Decks y nuevo cartel" loading="lazy" decoding="async"><h2>Decks y nuevo cartel</h2></div>
               <div class="date">25 NOV 2021</div>
               <p>Se agregaron 3 decks exteriores y se cambió el cartel principal que da a la calle.</p>
             </div>

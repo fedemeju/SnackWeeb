@@ -4084,3 +4084,60 @@ body.final-site:not(.cumples-page) .btn--kids-primary .wp-icon-mini {
 .cumples-page .sp-verify {
   color: #b8221a;
 }
+
+/* ═══════════ TARGETS TÁCTILES · mínimo 44px ═══════════
+   Medido en mobile: 22 elementos de la home estaban por debajo de 40px
+   (puntitos del carrusel de 4px de alto, selector de idioma de 26px, links
+   de contacto de 22px). Donde se puede, se agranda el área tocable SIN
+   cambiar el aspecto: padding con margen negativo o un pseudo-elemento
+   invisible. Sólo se sube el tamaño visible donde es lo natural.
+   Los links dentro de una frase quedan exentos (WCAG 2.5.8). */
+
+/* ── navegación ── */
+.final-site .m-burger { width: 44px; height: 44px; }
+.final-site .m-nav-back {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px;
+}
+.final-site .m-nav-logo-link {
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+/* el selector de idioma es una píldora chica: su área se extiende sin crecer */
+.final-site .lang-toggle { position: relative; }
+.final-site .lang-toggle::after {
+  content: ''; position: absolute; inset: -9px -4px;
+}
+
+/* ── carrusel del hero · puntitos de 4px ── */
+.final-site .hero-dot { position: relative; }
+.final-site .hero-dot::after {
+  content: ''; position: absolute; inset: -20px -6px;
+}
+
+/* ── botones y filtros ── */
+.final-site .sp-more-btn,
+.final-site .gallery-more-btn,
+.final-site .gal-chip { min-height: 44px; }
+.final-site .sp-all {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 44px;
+}
+.final-site .chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px;
+}
+
+/* ── datos de contacto (tel / WhatsApp / mail) ── */
+.final-site .contact-grid a {
+  display: inline-block;
+  padding: 11px 0;
+  margin: -11px 0;
+}
+
+/* ── chat ── */
+.final-site .ai-chat-close { width: 44px; height: 44px; }
+.final-site .ai-chat-wa { min-height: 44px; }
+
+/* preguntas rápidas del chat: eran de 36px */
+.final-site .ai-chat-quick,
+.final-site .ai-chat-atajo { min-height: 44px; }
