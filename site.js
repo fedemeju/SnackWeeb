@@ -417,12 +417,27 @@ if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.p
 
 // ─── analytics helper · enchufable a GA4 / Plausible / lo que sea ───
 // Uso: trackEvent('cta_click', { label: 'whatsapp_hero' })
+// Datos que NUNCA deben salir hacia analítica ni publicidad. Los wizards del
+// chat pasaban el nombre de la persona como parámetro del evento, y Google
+// Analytics prohíbe datos personales. Se filtra acá, en un solo lugar.
+const CAMPOS_PRIVADOS = ['nombre', 'telefono', 'contacto', 'mail', 'email', 'mensaje'];
+
 window.trackEvent = function(name, params) {
   try {
+    const limpios = {};
+    Object.keys(params || {}).forEach(k => {
+      if (!CAMPOS_PRIVADOS.includes(k.toLowerCase())) limpios[k] = params[k];
+    });
+
+    // Google Analytics (directo, sólo en producción)
     if (typeof window.gtag === 'function') {
-      window.gtag('event', name, params || {});
+      window.gtag('event', name, limpios);
     }
-    // si después agregás Plausible: window.plausible && plausible(name, {props: params});
+    // Google Tag Manager · evento personalizado en formato objeto, que es el
+    // que se usa como disparador. Si GTM no está cargado (localhost), queda
+    // en el dataLayer y no hace nada.
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({}, limpios, { event: name }));
+    // si después agregás Plausible: window.plausible && plausible(name, {props: limpios});
   } catch (e) {}
 };
 

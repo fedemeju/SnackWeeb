@@ -90,6 +90,21 @@ Eventos que se trackean solos: `whatsapp_click`, `email_click`, `phone_click`,
 `phone_click` como *conversiones* (Admin → Eventos → marcar como conversión).
 Sin eso no se puede optimizar campañas ni medir el retorno.
 
+## Google Tag Manager
+
+Contenedor `GTM-W58M3PF2`, instalado en las 4 páginas (más el `<noscript>` del `<body>`).
+Lo administra el asesor de marketing y se usa **sólo para Google Ads**.
+
+- Se carga sólo en producción, igual que Analytics.
+- **Google Analytics sigue cargando directo.** No agregar una etiqueta de GA4 dentro del
+  contenedor: las visitas y los eventos se contarían dobles.
+- `trackEvent()` manda cada evento a GA4 y además lo empuja al `dataLayer` como
+  `{ event: nombre, ...parámetros }`, que es lo que GTM usa como disparador personalizado
+  (`cotizacion_submit`, `whatsapp_click`, `phone_click`, ...).
+- **Datos personales:** `trackEvent()` descarta `nombre`, `telefono`, `contacto`, `mail`,
+  `email` y `mensaje` antes de enviar nada. Si se agrega un campo con datos de la persona,
+  sumarlo a `CAMPOS_PRIVADOS` en `site.js`.
+
 ## Leads del cotizador
 
 Cada envío se guarda antes de abrir WhatsApp: copia local en `localStorage` y POST
