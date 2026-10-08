@@ -4,8 +4,9 @@
 https://snackbowling.netlify.app/*  https://snackbowling.com.ar/:splat  301!
 http://snackbowling.netlify.app/*   https://snackbowling.com.ar/:splat  301!
 
-/cumples.html   /cumples.html   200!
-/eventos.html   /eventos.html   200!
-/historia.html  /historia.html  200!
-/404.html       /404.html       200!
-/index.html     /index.html     200!
+/cumples.html       /cumples.html       200!
+/eventos.html       /eventos.html       200!
+/historia.html      /historia.html      200!
+/datosReserva.html  /datosReserva.html  200!
+/404.html           /404.html           200!
+/index.html         /index.html         200!
