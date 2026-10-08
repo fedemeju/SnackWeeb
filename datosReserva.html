@@ -15,12 +15,17 @@
   :root {
     --paper: #f6f3ea;
     --paper-2: #ece6d3;
+    --card: #fffdf7;
     --ink: #14110d;
     --ink-2: #4b4536;
     --ink-3: #8a8473;
+    --line: #e5dec9;
+    --line-strong: #c8bfa6;
     --accent: #E63329;
+    --accent-tint: rgba(230, 51, 41, 0.08);
     --wp: #25D366;
     --wp-dark: #128c7e;
+    --shadow: 0 1px 2px rgba(20, 17, 13, 0.04), 0 10px 30px -12px rgba(20, 17, 13, 0.12);
     --font-ui: "Archivo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     --font-serif: "Fraunces", Georgia, serif;
   }
@@ -28,63 +33,97 @@
   html, body { margin: 0; padding: 0; }
   body {
     font-family: var(--font-ui);
-    background: var(--paper);
+    background:
+      radial-gradient(1200px 400px at 50% -100px, rgba(230, 51, 41, 0.06), transparent 60%),
+      var(--paper);
     color: var(--ink);
-    line-height: 1.4;
+    line-height: 1.45;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   .wrap {
-    max-width: 560px;
+    max-width: 540px;
     margin: 0 auto;
-    padding: 28px 20px 60px;
+    padding: 32px 18px 56px;
   }
   .brand {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
   .brand img {
-    height: 56px;
+    height: 48px;
     width: auto;
     filter: brightness(0) saturate(100%) invert(22%) sepia(93%) saturate(2000%) hue-rotate(350deg) brightness(95%) contrast(95%);
   }
   .brand a { text-decoration: none; display: inline-flex; }
+  .header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-tint);
+    padding: 5px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
   h1 {
     font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin: 8px 0 6px;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+    color: var(--ink);
   }
   .sub {
     color: var(--ink-2);
     font-size: 15px;
-    margin: 0 0 24px;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
   }
   form {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
   }
   .field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 7px;
   }
   label {
     font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.01em;
-    color: var(--ink);
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
   }
   .hint {
     font-weight: 400;
     color: var(--ink-3);
-    font-size: 12px;
-    margin-left: 4px;
+    font-size: 11px;
+    letter-spacing: 0;
+    text-transform: none;
   }
   input[type="text"],
   input[type="number"],
@@ -96,70 +135,80 @@
     font-size: 16px;
     color: var(--ink);
     background: #fff;
-    border: 1.5px solid var(--ink);
-    border-radius: 10px;
-    padding: 11px 13px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 13px 14px;
     outline: none;
-    transition: box-shadow .15s, border-color .15s;
+    transition: box-shadow .18s, border-color .18s;
     width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
   }
+  input::placeholder, textarea::placeholder { color: var(--ink-3); }
+  input:hover, textarea:hover, select:hover { border-color: var(--ink-2); }
   input:focus, textarea:focus, select:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(230, 51, 41, 0.15);
+    box-shadow: 0 0 0 4px var(--accent-tint);
   }
-  textarea { min-height: 70px; resize: vertical; }
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='none' stroke='%2314110d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5l5 5 5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+  textarea { min-height: 72px; resize: vertical; line-height: 1.4; }
   .row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
   @media (max-width: 420px) {
-    .row { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 1fr; gap: 18px; }
   }
   .radios {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
-  .radio-chip {
-    flex: 1;
-    min-width: 120px;
-    position: relative;
-  }
+  .radio-chip { position: relative; display: block; }
   .radio-chip input { position: absolute; opacity: 0; pointer-events: none; }
   .radio-chip span {
     display: block;
+    width: 100%;
     text-align: center;
-    padding: 11px 10px;
-    border: 1.5px solid var(--ink);
-    border-radius: 10px;
-    font-size: 14px;
+    padding: 13px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    font-size: 15px;
     font-weight: 600;
     background: #fff;
+    color: var(--ink);
     cursor: pointer;
-    transition: background .15s, color .15s;
+    transition: all .18s;
   }
+  .radio-chip:hover span { border-color: var(--ink-2); }
   .radio-chip input:checked + span {
     background: var(--ink);
     color: var(--paper);
+    border-color: var(--ink);
   }
   .radio-chip input:focus-visible + span {
-    box-shadow: 0 0 0 3px rgba(230, 51, 41, 0.3);
+    box-shadow: 0 0 0 4px var(--accent-tint);
   }
   .submit {
-    margin-top: 12px;
+    margin-top: 10px;
     background: var(--wp);
     color: #fff;
-    border: 1.5px solid var(--ink);
-    border-radius: 999px;
-    padding: 14px 20px;
+    border: none;
+    border-radius: 14px;
+    padding: 16px 22px;
     font-family: var(--font-ui);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15.5px;
     letter-spacing: 0.02em;
     cursor: pointer;
-    box-shadow: 3px 3px 0 var(--ink);
-    transition: transform .1s, box-shadow .1s, background .15s;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.1), 0 8px 20px -8px rgba(37, 211, 102, 0.5);
+    transition: transform .12s, box-shadow .18s, background .18s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -167,21 +216,19 @@
   }
   .submit:hover {
     background: var(--wp-dark);
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0 var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.1), 0 12px 24px -8px rgba(18, 140, 126, 0.55);
   }
-  .submit:active {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0 var(--ink);
-  }
+  .submit:active { transform: translateY(0); }
   .submit svg { width: 20px; height: 20px; }
   .footer {
-    margin-top: 20px;
+    margin-top: 24px;
     color: var(--ink-3);
-    font-size: 12px;
+    font-size: 12.5px;
     text-align: center;
   }
-  .footer a { color: var(--ink-2); }
+  .footer a { color: var(--ink-2); text-decoration: none; }
+  .footer a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -192,9 +239,13 @@
       </a>
     </div>
 
-    <h1>Datos del cumple</h1>
-    <p class="sub">Completá los datos y nos llegan directo por WhatsApp.</p>
+    <div class="header">
+      <span class="eyebrow">Reserva de cumple</span>
+      <h1>Datos del cumple</h1>
+      <p class="sub">Completá los datos y nos llegan directo por WhatsApp.</p>
+    </div>
 
+    <div class="card">
     <form id="form-reserva" novalidate>
       <div class="row">
         <div class="field">
@@ -268,6 +319,7 @@
         Enviar por WhatsApp
       </button>
     </form>
+    </div>
 
     <p class="footer">
       <a href="/">← Volver al inicio</a>
