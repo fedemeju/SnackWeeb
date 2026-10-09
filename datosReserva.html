@@ -253,8 +253,8 @@
           <input type="number" id="cantCumple" name="cantCumple" min="1" max="20" inputmode="numeric" required>
         </div>
         <div class="field">
-          <label for="edad">Edad</label>
-          <input type="number" id="edad" name="edad" min="1" max="99" inputmode="numeric" required>
+          <label for="edad">Edad <span class="hint">6 a 14</span></label>
+          <input type="number" id="edad" name="edad" min="6" max="14" inputmode="numeric" required>
         </div>
       </div>
 
@@ -290,8 +290,8 @@
       </div>
 
       <div class="field">
-        <label for="cantChicos">Cantidad de chicos</label>
-        <input type="number" id="cantChicos" name="cantChicos" min="1" max="200" inputmode="numeric" required>
+        <label for="cantChicos">Cantidad de chicos <span class="hint">mínimo 10</span></label>
+        <input type="number" id="cantChicos" name="cantChicos" min="10" max="200" inputmode="numeric" required>
       </div>
 
       <div class="row">
@@ -331,7 +331,27 @@
   const WP_NUMBER = '541168225209';
   const form = document.getElementById('form-reserva');
 
+  // Mensajes de validación custom en español
+  const edadEl = document.getElementById('edad');
+  const chicosEl = document.getElementById('cantChicos');
+  const setMsg = (el, msg) => el.setCustomValidity(msg);
+  const validateEdad = () => {
+    const v = Number(edadEl.value);
+    if (edadEl.value === '') return setMsg(edadEl, '');
+    if (v < 6 || v > 14) setMsg(edadEl, 'La edad debe estar entre 6 y 14 años.');
+    else setMsg(edadEl, '');
+  };
+  const validateChicos = () => {
+    const v = Number(chicosEl.value);
+    if (chicosEl.value === '') return setMsg(chicosEl, '');
+    if (v < 10) setMsg(chicosEl, 'La cantidad mínima es 10 chicos.');
+    else setMsg(chicosEl, '');
+  };
+  edadEl.addEventListener('input', validateEdad);
+  chicosEl.addEventListener('input', validateChicos);
+
   form.addEventListener('submit', (e) => {
+    validateEdad(); validateChicos();
     e.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
