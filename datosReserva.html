@@ -306,12 +306,12 @@
       </div>
 
       <div class="field">
-        <label for="colegio">Colegio</label>
-        <input type="text" id="colegio" name="colegio" required>
+        <label for="colegio">Colegio <span class="hint">opcional</span></label>
+        <input type="text" id="colegio" name="colegio">
       </div>
 
       <div class="field">
-        <label for="celiacos">Niños celíacos <span class="hint">(cantidad y nombre si querés)</span></label>
+        <label for="celiacos">Niños celíacos <span class="hint">opcional</span></label>
         <textarea id="celiacos" name="celiacos" placeholder="Ej: 1 — Mateo. O: ninguno"></textarea>
       </div>
 
@@ -375,7 +375,7 @@
       `-Menú de comida: ${data.menu}`,
       `-Cantidad de chicos: ${data.cantChicos}`,
       `-Horario y Dia: ${data.horario} · ${formatearFecha(data.dia)}`,
-      `-Colegio: ${data.colegio}`,
+      `-Colegio: ${(data.colegio || '').trim() || '-'}`,
       `-Edad: ${data.edad}`,
       `-Niños celiacos: ${(data.celiacos || '').trim() || 'ninguno'}`
     ];
