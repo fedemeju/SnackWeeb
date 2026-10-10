@@ -229,6 +229,16 @@
   }
   .footer a { color: var(--ink-2); text-decoration: none; }
   .footer a:hover { color: var(--accent); }
+  .helper {
+    margin: -4px 0 0;
+    padding: 10px 12px;
+    background: var(--paper-2);
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .helper strong { color: var(--ink); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -304,6 +314,9 @@
           <input type="time" id="horario" name="horario" required>
         </div>
       </div>
+      <p class="helper" id="horarioHint">
+        <strong>Horarios:</strong> lun a vie hasta 18:30 · sáb hasta 12:30 · dom 11:00 únicamente. Feriados se coordinan por WhatsApp.
+      </p>
 
       <div class="field">
         <label for="colegio">Colegio <span class="hint">opcional</span></label>
@@ -334,7 +347,12 @@
   // Mensajes de validación custom en español
   const edadEl = document.getElementById('edad');
   const chicosEl = document.getElementById('cantChicos');
+  const diaEl = document.getElementById('dia');
+  const horarioEl = document.getElementById('horario');
+  const menuEl = document.getElementById('menu');
+
   const setMsg = (el, msg) => el.setCustomValidity(msg);
+
   const validateEdad = () => {
     const v = Number(edadEl.value);
     if (edadEl.value === '') return setMsg(edadEl, '');
@@ -347,11 +365,79 @@
     if (v < 10) setMsg(chicosEl, 'La cantidad mínima es 10 chicos.');
     else setMsg(chicosEl, '');
   };
+
+  // Parse YYYY-MM-DD en hora local (sin UTC drift)
+  const parseLocalDate = (iso) => {
+    if (!iso) return null;
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  };
+  const toMinutes = (hhmm) => {
+    if (!hhmm) return null;
+    const [h, m] = hhmm.split(':').map(Number);
+    return h * 60 + m;
+  };
+  const diasHasta = (fecha) => {
+    const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+    return Math.round((fecha - hoy) / 86400000);
+  };
+
+  // dia: no permitir fechas pasadas
+  const hoyIso = (() => {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${dd}`;
+  })();
+  diaEl.setAttribute('min', hoyIso);
+
+  const validateHorarioPorDia = () => {
+    const fecha = parseLocalDate(diaEl.value);
+    const min = toMinutes(horarioEl.value);
+    if (!fecha || min == null) return setMsg(horarioEl, '');
+    const dow = fecha.getDay(); // 0=dom, 6=sab
+    if (dow === 0) {
+      // Domingo: solo 11:00
+      if (min !== 11 * 60) {
+        setMsg(horarioEl, 'Los domingos los cumples son únicamente a las 11:00.');
+        return;
+      }
+    } else if (dow === 6) {
+      // Sábado: hasta 12:30
+      if (min > 12 * 60 + 30) {
+        setMsg(horarioEl, 'Los sábados el horario de inicio no puede ser más tarde de 12:30.');
+        return;
+      }
+    } else {
+      // Lunes a viernes: hasta 18:30
+      if (min > 18 * 60 + 30) {
+        setMsg(horarioEl, 'De lunes a viernes el horario de inicio no puede ser más tarde de 18:30.');
+        return;
+      }
+    }
+    setMsg(horarioEl, '');
+  };
+
+  const validateMenuPlazo = () => {
+    const fecha = parseLocalDate(diaEl.value);
+    if (!fecha) return setMsg(menuEl, '');
+    const dias = diasHasta(fecha);
+    if (dias < 7 && menuEl.value === 'A definir') {
+      setMsg(menuEl, 'Faltan menos de 7 días para el cumple, tenés que elegir un menú (no puede quedar "a definir").');
+      return;
+    }
+    setMsg(menuEl, '');
+  };
+
   edadEl.addEventListener('input', validateEdad);
   chicosEl.addEventListener('input', validateChicos);
+  diaEl.addEventListener('change', () => { validateHorarioPorDia(); validateMenuPlazo(); });
+  horarioEl.addEventListener('change', validateHorarioPorDia);
+  menuEl.addEventListener('change', validateMenuPlazo);
 
   form.addEventListener('submit', (e) => {
-    validateEdad(); validateChicos();
+    validateEdad(); validateChicos(); validateHorarioPorDia(); validateMenuPlazo();
     e.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
