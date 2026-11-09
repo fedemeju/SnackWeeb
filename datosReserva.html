@@ -315,7 +315,7 @@
         </div>
       </div>
       <p class="helper" id="horarioHint">
-        <strong>Horarios:</strong> lun a vie hasta 18:30 · sáb hasta 12:30 · dom 11:00 únicamente. Feriados se coordinan por WhatsApp.
+        <strong>Horarios:</strong> lun a vie hasta 18:30 · sáb hasta 12:30 · dom y feriados 11:00 únicamente.
       </p>
 
       <div class="field">
@@ -392,15 +392,24 @@
   })();
   diaEl.setAttribute('min', hoyIso);
 
+  // Feriados — tratan como domingo (únicamente 11:00)
+  const FERIADOS = new Set([
+    '2026-11-09',
+    '2026-11-11'
+  ]);
+
   const validateHorarioPorDia = () => {
     const fecha = parseLocalDate(diaEl.value);
     const min = toMinutes(horarioEl.value);
     if (!fecha || min == null) return setMsg(horarioEl, '');
+    const esFeriado = FERIADOS.has(diaEl.value);
     const dow = fecha.getDay(); // 0=dom, 6=sab
-    if (dow === 0) {
-      // Domingo: solo 11:00
+    if (dow === 0 || esFeriado) {
+      // Domingo o feriado: solo 11:00
       if (min !== 11 * 60) {
-        setMsg(horarioEl, 'Los domingos los cumples son únicamente a las 11:00.');
+        setMsg(horarioEl, esFeriado
+          ? 'Los feriados los cumples son únicamente a las 11:00.'
+          : 'Los domingos los cumples son únicamente a las 11:00.');
         return;
       }
     } else if (dow === 6) {
